@@ -1,0 +1,163 @@
+<!doctype HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+<link href="/css/2019-11-01.css" rel="stylesheet">
+<title>Source &amp; Binary / Substrate release notes</title>
+</head>
+<body>
+<header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
+
+<h1>Substrate release notes</h1>
+
+<p><!--</p>
+
+<h2 id="2021.08">2021.08</h2>
+
+<ul>
+<li>Roll <code>substrate-apigateway-authorizer</code>, <code>substrate-credential-factory</code>, and <code>substrate-instance-factory</code> into <code>substrate-intranet</code>. This is a no-op listed here for transparency. It&rsquo;s a prerequisite step towards unifying all the Substrate tools as subcommands of <code>substrate</code>, thereby reducing the size and complexity of the Substrate distribution.</li>
+<li>Stop using the <code>archive</code> and <code>external</code> Terraform providers by embedding <code>substrate-intranet.zip</code> directly in <code>substrate-create-admin-account</code>. Dependence on these providers will be made optional in a subsequent release.</li>
+<li>VPCs are no longer shared organization-wide, leaving the fine-grained VPC sharing introduced in 2021.07 to maintain each service account&rsquo;s access to its intended VPCs.
+--></li>
+</ul>
+
+<h2 id="2021.07">2021.07</h2>
+
+<ul>
+<li>The Intranet&rsquo;s <code>/accounts</code> page now opens the AWS Console in new browser tabs as it probably always should have.</li>
+<li>Substrate now only manages the version constraint on the <code>archive</code>, <code>aws</code>, and <code>external</code> providers rather than all of <code>versions.tf</code>. This opens the door to Substrate users adding (and version constraining) additional providers. See <a href="additional-terraform-providers/">additional Terraform providers</a> for an example.</li>
+<li>Upgrade to and pin Terraform 1.0.2 and the <code>aws</code> provider >= 3.49.0.</li>
+<li>Tag many more AWS resources with <code>Manager</code> and <code>SubstrateVersion</code> using the <code>default_tags</code> facility of the AWS provider.</li>
+<li>All Substrate tools will now change their working directory to the value of the <code>SUBSTRATE_ROOT</code> environment variable, if set, rather than always proceeding in whatever the working directory was when invoked.</li>
+<li>Share VPCs specifically with accounts that match their environment and quality. This is a no-op that enables a future release to remove organization-wide VPC sharing.</li>
+</ul>
+
+<p>You must upgrade to Terraform 1.0.2 in order to use Substrate 2021.07. Terraform 1.0.2 may be found here:</p>
+
+<ul>
+<li><a href="https://releases.hashicorp.com/terraform/1.0.2/terraform_1.0.2_darwin_amd64.zip">https://releases.hashicorp.com/terraform/1.0.2/terraform_1.0.2_darwin_amd64.zip</a></li>
+<li><a href="https://releases.hashicorp.com/terraform/1.0.2/terraform_1.0.2_darwin_arm64.zip">https://releases.hashicorp.com/terraform/1.0.2/terraform_1.0.2_darwin_arm64.zip</a></li>
+<li><a href="https://releases.hashicorp.com/terraform/1.0.2/terraform_1.0.2_linux_amd64.zip">https://releases.hashicorp.com/terraform/1.0.2/terraform_1.0.2_linux_amd64.zip</a></li>
+<li><a href="https://releases.hashicorp.com/terraform/1.0.2/terraform_1.0.2_linux_arm64.zip">https://releases.hashicorp.com/terraform/1.0.2/terraform_1.0.2_linux_arm64.zip</a></li>
+</ul>
+
+<p>After upgrading Terraform and Substrate:</p>
+
+<ol>
+<li>Run <code>substrate-bootstrap-network-account</code> and <code>substrate-bootstrap-deploy-account</code> to complete the Terraform 1.0.2 upgrade there. Note well that <code>tags</code> and <code>tags_all</code> output will be somewhat confusing but will ultimately do the right thing.</li>
+<li>Run <code>substrate-create-admin-account</code> and <code>substrate-create-account</code> to complete the Terraform 1.0.2 upgrade for each of your admin and service accounts. Here, too, note well that <code>tags</code> and <code>tags_all</code> output will be somewhat confusing but will ultimately do the right thing.</li>
+</ol>
+
+<h2 id="2021.06">2021.06</h2>
+
+<ul>
+<li>List all the Intranet resources on the Intranet homepage, not just top-level resources.</li>
+<li>Roll <code>substrate-apigateway-authenticator</code> and <code>substrate-apigateway-index</code> into <code>substrate-intranet</code>. This is a no-op listed here for transparency.</li>
+<li>Tag shared VPCs in service accounts to clearly indicate in the AWS Console which one you should be using. This lays the groundwork for finer-grained VPC sharing in a future release.</li>
+<li>Upgrade to and pin Terraform 0.15.5 and newer providers with relaxed <code>&gt;=</code> version constraints on providers (but not Terraform itself).</li>
+</ul>
+
+<p>You must upgrade to Terraform 0.15.5 in order to use Substrate 2021.06. Terraform 0.15.5 may be found here:</p>
+
+<ul>
+<li><a href="https://releases.hashicorp.com/terraform/0.15.5/terraform_0.15.5_darwin_amd64.zip">https://releases.hashicorp.com/terraform/0.15.5/terraform_0.15.5_darwin_amd64.zip</a></li>
+<li><a href="https://releases.hashicorp.com/terraform/0.15.5/terraform_0.15.5_linux_amd64.zip">https://releases.hashicorp.com/terraform/0.15.5/terraform_0.15.5_linux_amd64.zip</a></li>
+<li><a href="https://releases.hashicorp.com/terraform/0.15.5/terraform_0.15.5_linux_arm64.zip">https://releases.hashicorp.com/terraform/0.15.5/terraform_0.15.5_linux_arm64.zip</a></li>
+</ul>
+
+<p>After upgrading Terraform and Substrate:</p>
+
+<ol>
+<li>Run <code>substrate-bootstrap-network-account</code> and <code>substrate-bootstrap-deploy-account</code> to complete the Terraform 0.15.5 upgrade there.</li>
+<li>Run <code>substrate-create-admin-account -quality="..."</code> to update your Intranet.</li>
+<li>Run <code>substrate-create-account -domain="..." -environment="..." -quality="..."</code> for all your service accounts to tag your shared VPCs.</li>
+</ol>
+
+<p>If you&rsquo;ve added any stub <code>provider</code> blocks to your modules, leave them in place for now and accept the deprecation warning. Terraform only allows one <code>required_providers</code> block and that is now managed by Substrate. A future release will accommodate these additional providers.</p>
+
+<h2 id="2021.05">2021.05</h2>
+
+<ul>
+<li>Bug fix: S3 traffic from private subnets is now correctly routed via the VPC Endpoint and not through the NAT Gateway.</li>
+<li>Bug fix: Allow outbound IPv6 traffic from Instance Factory instances to match IPv4 and enable use of the IPv6 Internet.</li>
+<li>Bug fix: Instance Factory instances now have 100GB disks instead of whatever the AMI happened to request, which recently shrank from 8GB to 2GB.</li>
+<li>Bug fix: The Instance Factory now only lists instances which belong to you. It previously listed all instances for all your users.</li>
+<li>By popular request, authorize admin accounts to directly access CloudWatch logs and metrics from all your accounts.</li>
+</ul>
+
+<p>After upgrading:</p>
+
+<ul>
+<li>Run <code>substrate-bootstrap-network-account</code> to fix S3 routes.</li>
+<li>Run <code>substrate-create-admin-account -quality="..."</code> to enable direct CloudWatch access and make Instance Factory improvements.</li>
+</ul>
+
+<h2 id="2021.04">2021.04</h2>
+
+<ul>
+<li>Added <code>/accounts</code> to the Intranet with links to assume the Administrator and Auditor roles in all your accounts in the AWS Console.</li>
+<li>Added <code>-console</code> to <code>substrate-assume-role</code> which attempts to open the AWS Console&rsquo;s role switching screen in your web browser with all the values filled in.</li>
+<li>Added <code>substrate-create-terraform-module</code> which creates the directory structure (with the <code>global</code> and <code>regional</code> pattern), providers, and Substrate metadata for a new Terraform module.</li>
+<li>Now building for M1 Macs, too.</li>
+</ul>
+
+<p>After upgrading, run <code>substrate-create-admin-account -quality="..."</code> to add <code>/accounts</code> to your Intranet.</p>
+
+<h2 id="2021.03">2021.03</h2>
+
+<ul>
+<li>Extended AWS Console sessions to 12 hours for organizations using GSuite as their IdP.</li>
+<li>Upgrade to and pin Terraform 0.14.7.</li>
+<li><code>substrate-bootstrap-network-account</code> now creates peering connections between all VPCs in all regions for each environment across all valid qualities.</li>
+<li>Fixed a bug in the <code>Administrator</code> role in admin accounts that prevented Instance Factory instances from seamlessly assuming the role.</li>
+</ul>
+
+<p>You must upgrade to Terraform 0.14.7 in order to use Substrate 2021.03. Terraform 0.14.7 may be found here:</p>
+
+<ul>
+<li><a href="https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_darwin_amd64.zip">https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_darwin_amd64.zip</a></li>
+<li><a href="https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_amd64.zip">https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_amd64.zip</a></li>
+<li><a href="https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_arm64.zip">https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_arm64.zip</a></li>
+</ul>
+
+<p>After upgrading:</p>
+
+<ol>
+<li><code>rm -f -r root-modules/network/*/peering</code> and remove these files from version control.</li>
+<li><code>substrate-bootstrap-network-account</code> to peer all your VPCs that should be peered.</li>
+<li><code>substrate-create-admin-account -quality="..."</code> to fix Instance Factory IAM roles, following the <a href="https://src-bin.com/substrate/manual/getting-started/gsuite-saml/">GSuite SAML setup</a> guide if GSuite is your IdP to also get 12-hour AWS Console sessions.</li>
+</ol>
+
+<h2 id="2021.02">2021.02</h2>
+
+<ul>
+<li>Added <code>-format</code> from <code>substrate-credentials</code> to <code>substrate-assume-role</code> per request from a customer. Now credentials can be had with or without the <code>export</code> prefix or as JSON a la <code>aws sts assume-role</code> itself.</li>
+<li>Removed <code>root-modules/admin/*</code>&rsquo;s awkward dependency on finding <code>GOBIN</code> in the environment. The generated <code>Makefile</code> in each root module remains, however.</li>
+<li>Upgrade to and pin Terraform 0.13.6 and the Terraform AWS provider 3.26.0.</li>
+<li><code>substrate-assume-role</code> and <code>substrate-credentials</code> now (better) tolerate being invoked from subdirectories of your Substrate repository.</li>
+<li>Fix a bug in Terraform module generation in which the <code>aws.network</code> provider was incorrectly added to global modules and thus should have been expected in module stanzas.</li>
+<li>Stop printing the <code>export AWS_ACCESS_KEY_ID=...</code> line when <code>substrate-assume-role</code> is given a command to execute directly.</li>
+<li>Provide the Intranet&rsquo;s REST API ID, root resource ID, and a few other necessities as outputs from the <code>intranet/regional</code> module to facilitate adding more resources to these APIs.</li>
+</ul>
+
+<p>You must upgrade to Terraform 0.13.6 in order to use Substrate 2021.02. Terraform 0.13.6 may be found here:</p>
+
+<ul>
+<li><a href="https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_darwin_amd64.zip">https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_darwin_amd64.zip</a></li>
+<li><a href="https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_linux_amd64.zip">https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_linux_amd64.zip</a></li>
+<li><a href="https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_linux_arm64.zip">https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_linux_arm64.zip</a></li>
+</ul>
+
+<h2>2021.01 and prior releases</h2>
+
+<p>Contact <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;:&#104;&#x65;&#108;l&#111;&#64;&#115;&#x72;&#99;-&#98;&#x69;&#x6E;&#46;&#99;&#111;&#109;">&#104;&#x65;&#108;l&#111;&#64;&#115;&#x72;&#99;-&#98;&#x69;&#x6E;&#46;&#99;&#111;&#109;</a> for prior release notes.</p>
+
+<footer>
+<ul>
+<li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
+<li><a href="/substrate/">Substrate</a>, <small>my suite of AWS management tools</small></li>
+</ul>
+<p>Copyright &copy; 2020-2021 &mdash; Source <span class="fancy">&amp;</span> Binary LLC</p>
+</footer>
+</body>
+</html>

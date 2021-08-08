@@ -1,0 +1,52 @@
+<!doctype HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+<link href="/css/2019-11-01.css" rel="stylesheet">
+<title>Source &amp; Binary / Okta SAML setup</title>
+</head>
+<body>
+<header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
+
+<h1>Okta SAML setup</h1>
+
+<ol>
+<li>Visit your Okta admin panel in a browser</li>
+<li>Click <strong>Get Started</strong> in the menu bar (or visit <code>/admin/apps/add-app</code> on your Okta admin domain and skip to step 4)</li>
+<li>Click <strong>Add App</strong></li>
+<li>Search for "AWS Account Federation"</li>
+<li>Click <strong>AWS Account Federation</strong> in the search results</li>
+<li>Click <strong>Add</strong></li>
+<li>Customize the <em>Application label</em> if you please</li>
+<li>Uncheck "Automatically log in when user lands on login page"</li>
+<li>Click <strong>Next</strong></li>
+<li>Select "SAML 2.0"</li>
+<li>Click <strong>Identity Provider metadata</strong>; keep the browser tab this opens handy</li>
+<li>Run <code>substrate-create-admin-account -quality="..."</code></li>
+<li>Paste the Identity Provider metadata XML from your browser tab when prompted</li>
+<li>The tool will offer an IAM role ARN and a SAML provider ARN</li>
+<li>Paste the SAML provider ARN into <em>Identity Provider ARN</em></li>
+<li>Change <em>Session Duration</em> to 43200 (optional)</li>
+<li>Check "Join all roles" and "Use Group Mapping"</li>
+<li>Click <strong>Done</strong></li>
+<li>Click <strong>Provisioning</strong></li>
+<li>Click <strong>Configure API integration</strong></li>
+<li>Check "Enable API integration"</li>
+<li>Paste the access key ID and secret access key provided by <code>substrate-create-admin-account</code> as <em>Access Key</em> and <em>Secret Key</em></li>
+<li>Click <strong>Save</strong></li>
+<li>In <em>Provisioning to App</em> click <strong>Edit</strong></li>
+<li>Check "Enable" under both <em>Create Users</em> and <em>Update User Attributes</em></li>
+<li>Click <strong>Save</strong></li>
+<li>Click <strong>Assignments</strong></li>
+<li>Click <strong>Assign</strong> and follow the prompts to grant your people access to AWS; check both the "Administrator" and "Auditor" roles for each</li>
+</ol>
+
+<footer>
+<ul>
+<li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
+<li><a href="/substrate/">Substrate</a>, <small>my suite of AWS management tools</small></li>
+</ul>
+<p>Copyright &copy; 2020-2021 &mdash; Source <span class="fancy">&amp;</span> Binary LLC</p>
+</footer>
+</body>
+</html>

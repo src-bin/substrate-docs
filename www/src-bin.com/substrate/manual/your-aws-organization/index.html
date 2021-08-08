@@ -1,0 +1,97 @@
+<!doctype HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+<link href="/css/2019-11-01.css" rel="stylesheet">
+<title>Source &amp; Binary / Your Substrate-managed AWS organization</title>
+</head>
+<body>
+<header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
+
+<h1>Your Substrate-managed AWS organization</h1>
+
+<p>The <a href="/substrate/manual/getting-started/">getting started</a> guide ends once you have a fully configured AWS organization, one that should last you many years and weather all sorts of growth in infrastructure and team size. This manual exists to orient you within that organization so you know what you have and how to use it most effectively to achieve your company&rsquo;s goals.</p>
+
+<p>This is a distillation of the original <a href="https://www.notion.so/srcbin/Substrate-design-616feb1d5f3042ccb0bd9e8ede6589c1">Substrate design</a> that better aligns with the rest of the manual and omits all the aspirational parts.</p>
+
+<h2>Your Substrate directory</h2>
+
+<p>In the <a href="/substrate/manual/getting-started/">getting started</a> guide, you decided on a directory where you&rsquo;ll run Substrate commands and started committing all the files Substrate places there to version control. This directory is a critical part of your Substrate-managed AWS organization and should be managed like source code.</p>
+
+<p>The <code>substrate.*</code> files in this directory are records of how you responded to the various prompts from Substrate commands. While it&rsquo;s possible to edit a file and re-run the corresponding Substrate commands, it&rsquo;s recommended to edit the files when offered the opportunity to do so by the Substrate commands themselves.</p>
+
+<p>The Terraform modules placed in the <code>modules</code> subdirectory - <code>intranet</code>, <code>lambda-function</code>, and <code>substrate</code> - are generated and kept up-to-date by Substrate commands. They&rsquo;re copied here to ensure you completely control your Substrate-managed AWS organization even if you decide to stop using Substrate and continue on your own.</p>
+
+<p>The root Terraform modules - every leaf directory in the <code>root-modules</code> subdirectory tree are where you run Terraform commands. Each has a <code>Makefile</code> to enable single command directory change and Terraform invocation thus: <code>make -C root-modules/example/staging/alpha apply</code></p>
+
+<h2>AWS accounts</h2>
+
+<p>Why even bother having more than one AWS account, anyway?</p>
+
+<ul>
+<li>Security: The AWS IAM team recommends using AWS accounts as the primary security boundary between unrelated systems. Within a single account it can be difficult to fully model permissions and convince oneself that two systems really are separate. Between multiple accounts, though, it&rsquo;s far easier to move quickly by granting broad permissions within one account with confidence that those permissions don&rsquo;t bleed over into the other accounts.</li>
+<li>Cost management: Most organizations struggle to tag AWS resources effectively enough to get a clear picture of where they&rsquo;re spending money. Every single AWS resource, though, is unavoidably attached to some account number. By mapping AWS accounts to cost centers, one can get a baseline picture of costs that&rsquo;s often enough all by itself.</li>
+</ul>
+
+<p>Substrate wholeheartedly endorses the use of multiple AWS accounts. There are a few special AWS accounts in a Substrate-managed AWS organization and then as many more as you like for your purposes.</p>
+
+<p>The special accounts are:</p>
+
+<ul>
+<li>The management account, which contains no resources and is only used to create and control other accounts within the organization.</li>
+<li>The audit account, which hosts CloudTrail logs for the entire organization.</li>
+<li>The deploy account, which hosts deployable artifacts for exchange between all domains, environments, and qualities in order to allow them to remain otherwise completely separate.</li>
+<li>The network account, which hosts VPCs and subnets that are shared with other accounts to simplify network topology and reduce network transfer costs.</li>
+</ul>
+
+<p>There are additionally admin accounts (of which there can be more than one), which host Intranet services like the Credential and Instance Factories that can exchange IdP (Google or Okta) credentials for temporary AWS credentials or EC2 instances.</p>
+
+<p>Finally, there are accounts where you host your software (be it software you&rsquo;ve written yourself or an AWS-managed service). Each of these accounts is tagged with a <a href="/substrate/manual/domains-environments-qualities/">domain, environment, and quality</a>.</p>
+
+<p>This constellation of AWS accounts works together to increase the reliability and security of your product and reduce the blast radius of changes to any part of it.</p>
+
+<h2>AWS IAM roles</h2>
+
+<p>Now that you have many AWS accounts you&rsquo;ll inevitably need to switch between them rather frequently. Substrate provides two tools to aid you in this task.</p>
+
+<p><code>substrate.accounts.txt</code> in your Substrate directory is an up-to-date list of all your AWS accounts, their account numbers, and the roles you&rsquo;ll want to assume there. With this information you can use the Switch Role feature in the AWS Console or any number of other tools built expecting IAM role ARNs.</p>
+
+<p><code>substrate-assume-role</code> is a friendlier command-line interface that operates on domains, environments, and qualities instead of account numbers. So, for example, instead of assuming the <code>Administrator</code> role in account number 123456789012, you <code>substrate-assume-role -domain=example -environment=staging -quality=alpha</code> and get on your way.</p>
+
+<p>In general, Substrate creates an <code>Administrator</code> and <code>Auditor</code> role in every account, though the special accounts have special names (e.g. the network account uses <code>NetworkAdministrator</code>) in order to prevent accidental access while looping through all the accounts in your organization.</p>
+
+<h2>AWS regions</h2>
+
+<p>You&rsquo;re asked, as Substrate&rsquo;s preparing to construct your network, to select which AWS regions you&rsquo;ll use. Substrate is capable of operating a multi-region AWS organization across the board. This is, however, easier in many ways than operating a multi-region product. Thus, while it&rsquo;s recommended you select multiple regions, it&rsquo;s by no means required that you do so, nor that you actually use all the regions you select all at the same time.</p>
+
+<p>You should not simply select every region, however. For one thing, it won&rsquo;t work due to the hard limits on VPC peering. (Peering multiple domains, each with multiple qualities across every AWS region is possible using Transit Gateway but that is expensive and currently not supported by Substrate.) For another, it will make applying Terraform changes terribly slow.</p>
+
+<p>Substrate recommends starting with 2-4 regions that make geographic sense to your customers.</p>
+
+<h2>Networks (VPCs and subnets)</h2>
+
+<p>Software-defined networking offers cloud infrastructure nearly endless flexibility that&rsquo;s nearly completely divorced from the physical networks that back it. Unfortunately, this flexibility is usually (as is the case in AWS) presented in its entirety to users. Substrate constructs networks on your behalf that, for the vast majority of use-cases, return you to the simplicity of one big, flat network that made cloud infrastructure so attractive in the first place.</p>
+
+<p>Substrate defines VPCs and subnets in your network account, shares into all your other AWS accounts, and peers together to create one big network for each of your environments.</p>
+
+<p>By using shared VPCs, your organization is free to use many domains to improve the security and reliability of your services without incurring huge network transfer costs going from one VPC to another.</p>
+
+<p>But Substrate also preserves the ability to roll out network changes somewhat gradually. Each quality within an environment gets a separate VPC, peered with the VPCs for all the other qualities in the environment. This affords you the opportunity to apply Terraform changes to e.g. your production beta network that&rsquo;s carrying 10% of your traffic before your production gamma network carrying the remaining 90%.</p>
+
+<p>Each of these networks comes with three public /22 subnets and three private /20 subnets in three availability zones with all the appropriate gateways and routes in place. Be mindful, as always, that traffic crossing between availability zones costs money.</p>
+
+<p>Using these networks should be relatively straightforward. In your Terraform code, you can use <code>module.substrate.public_subnet_ids</code> and <code>module.substrate.private_subnet_ids</code> to get a <code>list(string)</code> of those three subnets to use in other Terraform resources that create clusters, define autoscaling groups, and so on. Likewise, you can use <code>module.substrate.vpc_id</code> to define security groups because you still get to control exactly what&rsquo;s allowed to access your services.</p>
+
+<h2>Terraform state</h2>
+
+<p>All the root Terraform modules generated by Substrate use the standard <a href="https://www.terraform.io/docs/backends/types/s3.html">S3 backend</a> with DynamoDB locking to safely manage Terraform state. The state is all stored in an S3 bucket in your deploy account, which Terraform accesses by assuming the <code>TerraformStateManager</code> role.</p>
+
+<footer>
+<ul>
+<li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
+<li><a href="/substrate/">Substrate</a>, <small>my suite of AWS management tools</small></li>
+</ul>
+<p>Copyright &copy; 2020-2021 &mdash; Source <span class="fancy">&amp;</span> Binary LLC</p>
+</footer>
+</body>
+</html>

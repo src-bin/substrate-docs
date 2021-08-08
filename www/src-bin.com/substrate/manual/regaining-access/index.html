@@ -1,0 +1,36 @@
+<!doctype HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+<link href="/css/2019-11-01.css" rel="stylesheet">
+<title>Source &amp; Binary / Regaining access if Credential and Instance Factories are broken</title>
+</head>
+<body>
+<header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
+
+<h1>Regaining access if Credential and Instance Factories are broken</h1>
+
+<p>If for some reason your Credential and Instance Factories are both broken, which could in fact be because the API Gateway authenticator and/or authorizer that ties them to your identity provider are broken, you&rsquo;ll find yourself feeling pretty locked out.</p>
+
+<p>If you happen to have credentials in your shell environment that are still valid, you can run <code>substrate-create-admin-account</code> to remedy the situation.</p>
+
+<p>More likely, though, you&rsquo;ll need to follow these steps:</p>
+
+<ol>
+<li>Login to the AWS Console via your identity provider (or, in extreme situations, login to your AWS organization&rsquo;s management account directly and skip to step 3)</li>
+<li>Assume the <code>OrganizationAdministrator</code> role in your management account (using the information in <code>substrate.accounts.txt</code> as your guide)</li>
+<li>Visit <a href="https://console.aws.amazon.com/iam/home?#/users/OrganizationAdministrator?section=security_credentials">https://console.aws.amazon.com/iam/home?#/users/OrganizationAdministrator?section=security_credentials</a></li>
+<li>Click <strong>Create access key</strong></li>
+<li>Provide the resulting access key ID and secret access key to <code>substrate-create-admin-account</code></li>
+<li>When your Credential and Instance Factories return to service, delete the access key you created in step 4</li>
+</ol>
+
+<footer>
+<ul>
+<li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
+<li><a href="/substrate/">Substrate</a>, <small>my suite of AWS management tools</small></li>
+</ul>
+<p>Copyright &copy; 2020-2021 &mdash; Source <span class="fancy">&amp;</span> Binary LLC</p>
+</footer>
+</body>
+</html>

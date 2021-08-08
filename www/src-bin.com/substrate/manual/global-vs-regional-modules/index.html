@@ -1,0 +1,36 @@
+<!doctype HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+<link href="/css/2019-11-01.css" rel="stylesheet">
+<title>Source &amp; Binary / Global versus regional modules</title>
+</head>
+<body>
+<header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
+
+<h1>Global versus regional modules</h1>
+
+<p>Substrate generates a lot of Terraform code in modules with leaf directory names of <code>global</code> and <code>regional</code>. This is necessary because certain AWS services are global - IAM, notably - and thus their resources cannot be successfully managed from two AWS regions in two regional Terraform statefiles. Doing so will cause conflicts that generally aren&rsquo;t detected in Terraform plans but nonetheless fail when changes are applied. It&rsquo;s not simply a matter of importing resources, either, because every change will cause those imported copies to drift and require manual intervention.</p>
+
+<p>Thus, we&rsquo;re stuck with <code>global</code> and <code>regional</code> modules. There are two situations in which Terraform resources should be placed in a <code>global</code> module:</p>
+
+<ol>
+<li>The resource is one from a global AWS service like IAM or a pseudo-global service like Lambda@Edge (which may only be managed from us-east-1)</li>
+<li>The resource, regardless of type, represents a global singleton resource in <em>your</em> infrastructure e.g. a singular S3 bucket with a well-known name <em>and</em> you&rsquo;re cool with it being managed from us-east-1</li>
+</ol>
+
+<p>If you have global singleton resources that you want to exist in a region besides us-east-1, use <code>substrate-create-terraform-module</code> and then instantiate that module in <code>root-modules/<em>domain</em>/<em>environment</em>/<em>quality</em>/<em>region</em>/main.tf</code> as you see fit. If this singleton doesn&rsquo;t even need to be duplicated per environment, you can skip creating a module and instantiate the resource directly in some leaf subdirectory of <code>root-modules</code>, though beware that doing so gives up your ability to test changes to these resources.</p>
+
+<p>It&rsquo;s common, once you&rsquo;ve created resources in a <code>global</code> module, to need to reference these resources from regional modules. Use Terraform data sources to lookup these resource by their name, tags, or the like in the accompanying <code>regional</code> module.</p>
+
+<p>Of course, with every rule there are exceptions. Sometimes it&rsquo;s not possible (or is significantly harder) to create a global resource without first knowing something about a regional resource. A typical example would be an IAM role used as a service account for EKS pods; the IAM role&rsquo;s trust policy needs to know the identity of the cluster and its OAuth OIDC provider before it can be written. In such cases, the correct practice is to namespace the global resource (e.g. the IAM role) with at least the AWS region in which it&rsquo;s being created and possibly also the name of the regional resource that forced it to be regional, too.</p>
+
+<footer>
+<ul>
+<li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
+<li><a href="/substrate/">Substrate</a>, <small>my suite of AWS management tools</small></li>
+</ul>
+<p>Copyright &copy; 2020-2021 &mdash; Source <span class="fancy">&amp;</span> Binary LLC</p>
+</footer>
+</body>
+</html>

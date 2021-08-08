@@ -1,0 +1,35 @@
+<!doctype HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+<link href="/css/2019-11-01.css" rel="stylesheet">
+<title>Source &amp; Binary / Okta OAuth OIDC setup</title>
+</head>
+<body>
+<header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
+
+<h1>Okta OAuth OIDC setup</h1>
+
+<ol>
+<li>Visit your Okta admin panel in a browser</li>
+<li>Click <strong>Applications</strong></li>
+<li>Click <strong>Add Application</strong></li>
+<li>Click <strong>Web</strong></li>
+<li>Click <strong>Next</strong></li>
+<li>Customize <em>Name</em></li>
+<li>Remove all <em>Base URIs</em></li>
+<li>Change the first/only item in <em>Login redirect URIs</em> to "<a href="https://example.com/login">https://example.com/login</a>" (substituting your intranet DNS domain name)</li>
+<li>Remove all <em>Logout redirect URIs</em></li>
+<li>Click <strong>Done</strong></li>
+<li>Paste the <em>Client ID</em> and <em>Client secret</em> in response to <code>substrate-create-admin-account</code>&rsquo;s prompts</li>
+</ol>
+
+<footer>
+<ul>
+<li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
+<li><a href="/substrate/">Substrate</a>, <small>my suite of AWS management tools</small></li>
+</ul>
+<p>Copyright &copy; 2020-2021 &mdash; Source <span class="fancy">&amp;</span> Binary LLC</p>
+</footer>
+</body>
+</html>

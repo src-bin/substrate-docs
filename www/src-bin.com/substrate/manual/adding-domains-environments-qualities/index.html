@@ -1,0 +1,77 @@
+<!doctype HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+<link href="/css/2019-11-01.css" rel="stylesheet">
+<title>Source &amp; Binary / Adding domains, environments, and qualities</title>
+</head>
+<body>
+<header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
+
+<h1>Adding domains, environments, and qualities</h1>
+
+<h2>Adding a domain</h2>
+
+<p>Domains are a mechanism for protecting one service (or group of services) from others. You may create as many as you like. Creating and subsequent updates are simple: Run <code>substrate-create-account -domain="..." -environment="..." -quality="..."</code> with the name of your (new) domain and a declared environment and quality. This will create a new AWS account in your organization, add it to <code>substrate.accounts.txt</code>, and create all the necessary IAM roles to allow administrators to access the account.</p>
+
+<p>In almost every case, you&rsquo;ll create an account for every domain in every environment. Sometimes you may create accounts with multiple qualities to allow changes (even changes to AWS resources) to be deployed gradually within the domain.</p>
+
+<h2>Adding an environment</h2>
+
+<p>Especially in the early build-out of your Substrate-managed AWS organization, you may need to add an environment (or two) to create space for a new data set, perhaps to support a new phase in your development process, a quality-assurance function, disaster recovery, or something else.</p>
+
+<p>Environments primarily create separation amongst themselves at the network level. Thus environments are created by <code>substrate-bootstrap-network-account</code>. To create a new one (or two), simply respond as follows to its prompts:</p>
+
+<ol>
+<li>Run <code>substrate-bootstrap-network-account</code></li>
+<li>Answer "no" when asked if your list of environments is correct</li>
+<li>Add your new one in the text editor that was opened for you, paying attention to the order you want your environments presented</li>
+<li>Save and exit the text editor</li>
+<li>Optionally, do the same with with qualities</li>
+<li>Answer "no" when asked if the valid environment and quality pairs are correct</li>
+<li>Then answer "yes" and "no" accordingly to allow whatever new combinations of environment and quality you want and continue to disallow the rest</li>
+<li>Unfortunately, if your changes cause sufficiently many VPCs to be created, the tools will open support cases on your behalf to have service quotas for VPCs and related resources raised
+<ul>
+<li>If AWS gives you a hard time it is likely because they don&rsquo;t want to give you additional Elastic IPs; tell them you&rsquo;re trying to create VPCs to share to all your AWS accounts with three private subnets and zonal NAT Gateways and they&rsquo;ll hopefully let you get on with your life but if they don&rsquo;t, feel free to escalate to Source &amp; Binary</li>
+<li>These support cases sometimes take hours or even days to be resolved</li>
+<li>If the tool exits or is interrupted it may simply be re-run</li>
+<li>You can say "no" to applying Terraform changes in certain root modules so as to e.g. avoid actually instantiating your network in some regions that you want to keep around only as cold standbys</li>
+</ul></li>
+<li>When <code>substrate-bootstrap-network-account</code> exits successfully, your new environment is ready for use</li>
+</ol>
+
+<h2>Adding a quality</h2>
+
+<p>Likewise, you may need to add a quality (or two) to reduce the blast radius of changes, especially changes to AWS resources like load balancers, auto scaling groups, and higher-level clusters.</p>
+
+<p>Qualities provide a means to reduce the blast radius of changes within an environment and, just like environments themselves, operate primarily at the network level. Thus qualities, too, are created by <code>substrate-bootstrap-network-account</code>. To create a new one (or two), simply respond as follows to its prompts:</p>
+
+<ol>
+<li>Run <code>substrate-bootstrap-network-account</code></li>
+<li>Answer "no" when asked if your list of qualities is correct</li>
+<li>Add your new one in the text editor that was opened for you, paying attention to the order you want your qualities presented
+<ul>
+<li>Substrate&rsquo;s recommended qualities of alpha, beta, and gamma have the nice side-effect of being alphabetically ordered but it is the order they appear in <code>substrate.qualities</code> that really matters</li>
+</ul></li>
+<li>Save and exit the text editor</li>
+<li>Answer "no" when asked if the valid environment and quality pairs are correct</li>
+<li>Then answer "yes" and "no" accordingly to allow whatever new combinations of environment and quality you want and continue to disallow the rest</li>
+<li>Unfortunately, if your changes cause sufficiently many VPCs to be created, the tools will open support cases on your behalf to have service quotas for VPCs and related resources raised
+<ul>
+<li>If AWS gives you a hard time it is likely because they don&rsquo;t want to give you additional Elastic IPs; tell them you&rsquo;re trying to create VPCs to share to all your AWS accounts with three private subnets and zonal NAT Gateways and they&rsquo;ll hopefully let you get on with your life but if they don&rsquo;t, feel free to escalate to Source &amp; Binary</li>
+<li>These support cases sometimes take hours or even days to be resolved</li>
+<li>If the tool exits or is interrupted it may simply be re-run</li>
+<li>You can say "no" to applying Terraform changes in certain root modules so as to e.g. avoid actually instantiating your network in some regions that you want to keep around only as cold standbys</li>
+</ul></li>
+<li>When <code>substrate-bootstrap-network-account</code> exits successfully, your new quality is ready for use</li>
+</ol>
+
+<footer>
+<ul>
+<li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
+<li><a href="/substrate/">Substrate</a>, <small>my suite of AWS management tools</small></li>
+</ul>
+<p>Copyright &copy; 2020-2021 &mdash; Source <span class="fancy">&amp;</span> Binary LLC</p>
+</footer>
+</body>
+</html>

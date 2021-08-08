@@ -1,0 +1,41 @@
+<!doctype HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+<link href="/css/2019-11-01.css" rel="stylesheet">
+<title>Source &amp; Binary / Adding a service account</title>
+</head>
+<body>
+<header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
+
+<h1>Adding a service account</h1>
+
+<p>You&rsquo;ll no doubt need to authorize service accounts - those granted to software services rather than human beings - to access various AWS resources for reasons ranging from test coverage to integration with third parties to enabling your customer-facing applications to provision AWS resources on demand.</p>
+
+<p>This example shows how you grant access to e.g. Circle CI, though these steps apply to any sort of service account that needs an IAM user, as is commonly required by third parties. Service accounts for your own services can skip most of this and start at step 6.</p>
+
+<ol>
+<li><code>root-modules/admin/alpha/global/circle-ci.tf</code>: Add an IAM user in your admin account; allow it to <code>sts:AssumeRole</code>, constraining which roles it&rsquo;s allowed to assume as you see fit (substituting the quality of your admin account and the filename you want to use)</li>
+<li><code>root-modules/api/staging/alpha/global/admin-providers.tf</code>: Add a provider referencing your admin account with <code>alias = "admin"</code> so that the service account in your admin account may assume roles in this other account (substituting the domain, environment, and quality of the account in question)
+<ul>
+<li>This isn&rsquo;t strictly necessary - service accounts can of course be created in any AWS account - but it&rsquo;s more convenient to centralize credential management in your admin accounts so it&rsquo;s easier to manage multiple domains, environments, and/or qualities</li>
+</ul></li>
+<li><code>root-modules/api/staging/alpha/global/main.tf</code>: Add <code>aws.admin = aws.admin</code> to the <code>providers</code> map passed to <code>module "api"</code> so that the IAM role in step 6 may reference the IAM user from step 1 (substituting the domain, environment, and quality of the account in question)</li>
+<li><code>modules/api/global/admin-providers.tf</code>: Add <code>provider "aws" { alias = "admin" }</code> to tell Terraform to expect an <code>aws.admin</code> provider (substituting the domain of the account in question)</li>
+<li><code>modules/api/global/main.tf</code>: Add a data source that looks up the Circle CI user in the admin account using the <code>aws.admin</code> provider so that the IAM role in step 6 may reference the IAM user from step 1 (substituting the domain of the account in question)</li>
+<li><code>modules/api/global/main.tf</code>: Add an IAM role that may be assumed by the Circle CI user in your admin account (substituting the domain of the account in question)</li>
+<li><code>modules/api/global/main.tf</code>: Attach policies, inline or managed, to allow the service account to perform its duties (substituting the domain of the account in question)</li>
+<li><code>substrate-create-admin-account -quality=alpha</code> (substituting the quality of your admin account)</li>
+<li><code>substrate-create-account -domain=api -environment=staging -quality=alpha</code> (substituting the domain, environment, and quality of the account in question)</li>
+<li><code>aws iam create-access-key --user-name circle-ci</code> and give the resulting access key to Circle CI (substituting the name of the IAM user from step 1)</li>
+</ol>
+
+<footer>
+<ul>
+<li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
+<li><a href="/substrate/">Substrate</a>, <small>my suite of AWS management tools</small></li>
+</ul>
+<p>Copyright &copy; 2020-2021 &mdash; Source <span class="fancy">&amp;</span> Binary LLC</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+<link href="/css/2019-11-01.css" rel="stylesheet">
+<title>Source &amp; Binary / Cost management</title>
+</head>
+<body>
+<header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
+
+<h1>Cost management</h1>
+
+<p>AWS Cost Explorer often gets a bad rap but, in a well-structured AWS organization such as one managed by Substrate, it can get the job done easily.</p>
+
+<p>To use Cost Explorer, first ensure you&rsquo;ve followed the steps to <strong>Delegate access to billing data</strong> in the <a href="/substrate/manual/getting-started/">getting started</a> guide. Then, alas, you&rsquo;ll have to wait up to 24 hours for AWS to get you enrolled in Cost Explorer. From that second day onward, though, it&rsquo;ll be up and running.</p>
+
+<p>The most important facet to use when dissecting your bill is AWS account. If you&rsquo;re using <a href="/substrate/manual/domains-environments-qualities/">domains, environments, and qualities</a> effectively, you won&rsquo;t need to stress greatly over tagging strategies in order to quickly derive meaningful insights on your cloud infrastructure costs.</p>
+
+<p>Be mindful, though, that Cost Explorer works for all accounts in your AWS organization. This can be useful, of course, because it allows domain owners to dissect their own costs endlessly without being distracted by costs associated with other domains. To get a view of the entire organization, though, assume a role like <code>OrganizationAdministrator</code> in your master account.</p>
+
+<p>Once Cost Explorer is enabled, you may consider additionally setting up Cost Anomaly Detection. See their <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/getting-started-ad.html">getting started</a> guide for more information and instructions.</p>
+
+<h2>Frequently asked questions</h2>
+
+<h3>What if I have credits in a legacy account that I invite to an organization?</h3>
+
+<p>The credits get applied to the organization, eventually. This may take some time.</p>
+
+<p><a href="https://aws.amazon.com/premiumsupport/knowledge-center/consolidated-billing-credits/">https://aws.amazon.com/premiumsupport/knowledge-center/consolidated-billing-credits/</a></p>
+
+<footer>
+<ul>
+<li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
+<li><a href="/substrate/">Substrate</a>, <small>my suite of AWS management tools</small></li>
+</ul>
+<p>Copyright &copy; 2020-2021 &mdash; Source <span class="fancy">&amp;</span> Binary LLC</p>
+</footer>
+</body>
+</html>

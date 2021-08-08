@@ -1,0 +1,43 @@
+<!doctype HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+<link href="/css/2019-11-01.css" rel="stylesheet">
+<title>Source &amp; Binary / Adding a region</title>
+</head>
+<body>
+<header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
+
+<h1>Adding a region</h1>
+
+<p>Substrate keeps you prepared for the day when you need to tolerate the failure of an AWS region. Everything is built with this in mind, even if such capabilities aren&rsquo;t used from day one. When you need to add a second (or third) region, it&rsquo;s a simple matter of expanding your network and running your existing Terraform code to start using it.</p>
+
+<p>Regions are added by <code>substrate-bootstrap-network-account</code>. To add a new one (or two), simply respond as follows to its prompts:</p>
+
+<ol>
+<li>Run <code>substrate-bootstrap-network-account</code></li>
+<li>Answer "no" when asked if your list of regions is correct</li>
+<li>Add your new one in the text editor that was opened for you, paying attention to the order you want your qualities presented</li>
+<li>Save and exit the text editor</li>
+<li>Unfortunately, if your changes cause sufficiently many VPCs to be created, the tools will open support cases on your behalf to have service quotas for VPCs and related resources raised
+<ul>
+<li>If AWS gives you a hard time it is likely because they don&rsquo;t want to give you additional Elastic IPs; tell them you&rsquo;re trying to create VPCs to share to all your AWS accounts with three private subnets and zonal NAT Gateways and they&rsquo;ll hopefully let you get on with your life but if they don&rsquo;t, feel free to escalate to Source &amp; Binary</li>
+<li>These support cases sometimes take hours or even days to be resolved</li>
+<li>If the tool exits or is interrupted it may simply be re-run</li>
+<li>You can say "no" to applying Terraform changes in certain root modules so as to e.g. avoid actually instantiating your network in some regions that you want to keep around only as cold standbys</li>
+</ul></li>
+<li>When <code>substrate-bootstrap-network-account</code> exits successfully, your network is ready for use in the added region(s)</li>
+<li>Run <code>substrate-bootstrap-deploy-account</code></li>
+<li>Run <code>substrate-create-admin-account</code> for all your admin accounts</li>
+<li>Run <code>substrate-create-account</code> for all your domain, environment, quality accounts</li>
+</ol>
+
+<footer>
+<ul>
+<li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
+<li><a href="/substrate/">Substrate</a>, <small>my suite of AWS management tools</small></li>
+</ul>
+<p>Copyright &copy; 2020-2021 &mdash; Source <span class="fancy">&amp;</span> Binary LLC</p>
+</footer>
+</body>
+</html>

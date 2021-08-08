@@ -1,0 +1,61 @@
+<!doctype HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+<link href="/css/2019-11-01.css" rel="stylesheet">
+<title>Source &amp; Binary / Closing an AWS account</title>
+</head>
+<body>
+<header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
+
+<h1>Closing an AWS account</h1>
+
+<p>From time to time you may want to close an AWS account that you&rsquo;ve created through Substrate or close a legacy account you invited into your organization and finished migrating into domain accounts. Either way, the process is unfortunately tedious.</p>
+
+<ol>
+<li>Visit <a href="https://console.aws.amazon.com">https://console.aws.amazon.com</a> in an incognito window</li>
+<li>Leave "Root user" selected</li>
+<li>Enter the email address of the account
+<ul>
+<li>If you&rsquo;re closing an account that <code>substrate-create-account</code> created, the email address is the same as you used for your management account with "+<em>domain</em>-<em>environment</em>-<em>quality</em>" appended to the local part</li>
+<li>If you&rsquo;re closing an account that <code>substrate-create-admin-account</code> created, the email address is the same as you used for your management account with "+admin-<em>quality</em>" appended to the local part</li>
+<li>If you&rsquo;re closing an account you invited into your organization, the email address is unchanged from what it was before it joined the organization</li>
+</ul></li>
+<li>Click <strong>Next</strong></li>
+<li>Click <strong>Forgot password?</strong></li>
+<li>Respond to the captcha and click <strong>Send email</strong></li>
+<li>Open the link emailed to you in an incognito window</li>
+<li>Reset the password and, after that&rsquo;s finished, click <strong>Sign in</strong></li>
+<li>Sign in using that same email address and the password you just set</li>
+<li>Visit <a href="https://console.aws.amazon.com/organizations/home?#/organization/overview">https://console.aws.amazon.com/organizations/home?#/organization/overview</a></li>
+<li>Click <strong>Leave organization</strong></li>
+<li>Confirm; click <strong>Leave organization</strong> again</li>
+<li>Click <strong>Complete the account sign-up steps</strong></li>
+<li>Provide payment information</li>
+<li>Verify your phone number</li>
+<li>Select the free support plan</li>
+<li>When returned to the AWS Organizations console, click <strong>Leave organization</strong> again and confirm</li>
+<li>Click on the name of your account, the third option from the right in the top row of the console</li>
+<li>Click <strong>My Account</strong></li>
+<li>Scroll to the bottom of the page</li>
+<li>Read all four conditions and check all four checkboxes</li>
+<li>Click <strong>Close Account</strong></li>
+<li>Confirm; click <strong>Close Account</strong></li>
+</ol>
+
+<h2>References</h2>
+
+<ul>
+<li><a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_close.html">https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_close.html</a></li>
+<li><a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_access.html#orgs_manage_accounts_access-as-root">https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_access.html#orgs_manage_accounts_access-as-root</a></li>
+</ul>
+
+<footer>
+<ul>
+<li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
+<li><a href="/substrate/">Substrate</a>, <small>my suite of AWS management tools</small></li>
+</ul>
+<p>Copyright &copy; 2020-2021 &mdash; Source <span class="fancy">&amp;</span> Binary LLC</p>
+</footer>
+</body>
+</html>

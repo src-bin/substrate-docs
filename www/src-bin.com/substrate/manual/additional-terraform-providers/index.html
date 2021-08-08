@@ -1,0 +1,67 @@
+<!doctype HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+<link href="/css/2019-11-01.css" rel="stylesheet">
+<title>Source &amp; Binary / Additional Terraform providers</title>
+</head>
+<body>
+<header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
+
+<h1>Additional Terraform providers</h1>
+
+<p>Terraform 0.15 migrated from stub <code>provider { alias = "..." }</code> blocks to using <code>configuration_aliases</code> in the <code>terraform</code> block to define which providers a module expects. Unfortunately, this introduces a limitation in that additional providers cannot be added in arbitrary additional files.</p>
+
+<p>Substrate 2021.07 deals with this limitation by managing only the version constraints for the <code>archive</code>, <code>aws</code>, and <code>external</code> providers and leaving other providers alone.</p>
+
+<p>In order to add a new provider, add it to <code>versions.tf</code> with a version constraint that suits you:</p>
+
+<pre>terraform {
+  required_providers {
+    archive = {
+      source  = "hashicorp/archive"
+      version = ">= 2.2.0"
+    }
+    aws = {
+      configuration_aliases = [
+        aws.network,
+      ]
+      source  = "hashicorp/aws"
+      version = ">= 3.45.0"
+    }
+    external = {
+      source  = "hashicorp/external"
+      version = ">= 2.1.0"
+    }
+    <strong>pagerduty = {
+      source = "PagerDuty/pagerduty"
+      version = "= 1.9.9"
+    }</strong>
+  }
+  required_version = "= 0.15.5"
+}</pre>
+
+<p>Then add a <code>provider</code> block to the root modules that need to use this provider and pass it to your module via its <code>providers</code> attribute:</p>
+
+<pre>module "example" {
+  <strong>providers = {
+    aws         = aws
+    aws.network = aws
+    pagerduty   = pagerduty
+  }</strong>
+  source = "../../../../../modules/example/regional"
+}
+
+<strong>provider "pagerduty" {
+  token = var.pagerduty_token
+}</strong></pre>
+
+<footer>
+<ul>
+<li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
+<li><a href="/substrate/">Substrate</a>, <small>my suite of AWS management tools</small></li>
+</ul>
+<p>Copyright &copy; 2020-2021 &mdash; Source <span class="fancy">&amp;</span> Binary LLC</p>
+</footer>
+</body>
+</html>

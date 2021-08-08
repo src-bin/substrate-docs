@@ -1,0 +1,29 @@
+<!doctype HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+<link href="/css/2019-11-01.css" rel="stylesheet">
+<title>Source &amp; Binary / Auditing your Substrate-managed AWS organization</title>
+</head>
+<body>
+<header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
+
+<h1>Auditing your Substrate-managed AWS organization</h1>
+
+<p>One of the very first things Substrate does is to configure AWS CloudTrail with a single trail that covers all organization accounts in all regions. To access this wealth of data, assume the <code>Auditor</code> role in your audit account.</p>
+
+<p>On the command line: <code>substrate-assume-role -special="audit" -role="Auditor"</code></p>
+
+<p>Or you can assume the role in the AWS Console. The audit account number is listed in <code>substrate.accounts.txt</code> for use with the AWS Console&rsquo;s <strong>Switch Role</strong> feature.</p>
+
+<p>In either case, the data you seek is in the <code>PREFIX-cloudtrail</code> (substituting your chosen prefix as stored in <code>substrate.prefix</code>) S3 bucket. You can download it to analyze locally or <a href="https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html">query it with Amazon Athena</a>.</p>
+
+<footer>
+<ul>
+<li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
+<li><a href="/substrate/">Substrate</a>, <small>my suite of AWS management tools</small></li>
+</ul>
+<p>Copyright &copy; 2020-2021 &mdash; Source <span class="fancy">&amp;</span> Binary LLC</p>
+</footer>
+</body>
+</html>

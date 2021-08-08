@@ -1,0 +1,143 @@
+<!doctype HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+<link href="/css/2019-11-01.css" rel="stylesheet">
+<title>Source &amp; Binary / Your daily workflow in your Substrate-managed AWS organization</title>
+</head>
+<body>
+<header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
+
+<h1>Your daily workflow in your Substrate-managed AWS organization</h1>
+
+<p>You&rsquo;ve reached the end of the <a href="/substrate/manual/getting-started/">getting started</a> guide and <a href="/substrate/manual/your-aws-organization">you understand your Substrate-managed AWS organization</a>. Now what? Now you get to work. Here&rsquo;s how.</p>
+
+<p>To make it easy to move around your directory tree, consider setting <code>SUBSTRATE_ROOT</code> in your environment (permanently via your <code>~/.profile</code>, even) to the fully-qualified directory where you initially ran Substrate. All Substrate tools will change to this working directory if this environment variable is set.</p>
+
+<h2>Getting into AWS</h2>
+
+<p>For most tasks, you&rsquo;re going to need AWS credentials. Substrate strongly discourages the creation of personal IAM users with long-lived access keys; these are highly likely to be stolen in case of a laptop compromise and misuse can be difficult to detect. It&rsquo;s best not to have them at all. Instead, Substrate helps you get very short-lived AWS credentials in one of three ways:</p>
+
+<p>Run <code>eval $(substrate-credentials)</code> in your terminal and follow its instructions. This will work from instances in the cloud or a laptop, though the flow is a smoothest on a laptop where a web browser can be opened from the command line. This is the best choice for most folks.</p>
+
+<p>If for some reason <code>eval $(substrate-credentials)</code> doesn&rsquo;t work for you, visit <a href="https://example.com/credential-factory">https://example.com/credential-factory</a> (substituting your Intranet DNS domain name), then paste the <code>export</code> command into your terminal. This makes the most sense for folks who like to work from their laptop, regardless of what the rest of their toolchain looks like.</p>
+
+<p>You can also visit <a href="https://example.com/instance-factory">https://example.com/instance-factory</a> (substituting your Intranet DNS domain name) and follow the steps to provision an EC2 instance to use for your administrative work. This makes the most sense for folks who use a terminal-based text editor and like to work "in the cloud."</p>
+
+<p>In all three cases, the temporary credentials are going to put you in the <code>Administrator</code> role in (one of) your admin account(s). From here you&rsquo;ll be able to go anywhere you need to go.</p>
+
+<h2>Navigating your AWS organization</h2>
+
+<p>There isn&rsquo;t usually much to do in your admin account. Instead, you&rsquo;ll be assuming roles in other accounts where your real work happens. There are three ways this happens:</p>
+
+<p>Ad-hoc movement throughout your organization is made easy by the <code>substrate-assume-role</code> tool. It understands the layout and can convert domains, environments, and qualities into the appropriate AWS account numbers for you. Thus, to get temporary credentials in your <em>example staging alpha</em> account (once you&rsquo;ve created such an account), you&rsquo;d run <code>substrate-assume-role -domain=example -environment=staging -quality=alpha</code> and paste the resulting environment variables into your terminal. Or, if you had a specific command you needed to run, tack it onto the end thus: <code>substrate-assume-role -domain=example -environment=staging -quality=alpha aws ec2 describe-security-groups</code>. When you&rsquo;re finished, you can <code>unassume-role</code> to revert to the credentials previously stored in your environment. (This is analogous to the <code>cd</code> builtin&rsquo;s use of the <code>OLDPWD</code> environment variable.)</p>
+
+<p>Exploration aside, most work on your AWS organization happens in Terraform. <code>substrate-create-account</code> creates a root Terraform module for you with providers configured to assume the appropriate role so you don&rsquo;t have to think about matching credentials in your environment with directories in which you invoke <code>terraform apply</code>. All you&rsquo;ll ever need to invoke Terraform are those <code>Administrator</code> credentials you get from the Credential and Instance Factories.</p>
+
+<p>Finally, there is also <code>substrate.accounts.txt</code> in your Substrate directory. With the account numbers and roles in this file you can use the Switch Role feature in the AWS Console or any number of other tools built expecting IAM role ARNs.</p>
+
+<h3>Networks</h3>
+
+<p>Your networks, all in your network account, are tagged according to their environment and quality. Unfortunately, those tags aren&rsquo;t visible outside the network account, so in order to see those, you&rsquo;ll need to assume the <code>Auditor</code> or <code>NetworkAdministrator</code> role in your network account.</p>
+
+<p>This is, in practice, a rare occurrence because the <code>substrate</code> module that&rsquo;s automatically instantiated in all your domain Terraform modules gives you a quick reference to the correct public and private subnets via <code>module.substrate.public_subnet_ids</code> and <code>module.substrate.private_subnet_ids</code>.</p>
+
+<h2>Organizing your code</h2>
+
+<p><strong>tl;dr: Write code in the <code>modules</code> subdirectories Substrate creates for you. Run Terraform from the <code>root-modules</code> subdirectories matching the domain, environment, quality, and AWS region you want.</strong></p>
+
+<p>Suppose you&rsquo;re responsible for a service called <em>example</em> that you run in <em>staging</em> as <em>alpha</em>-quality and in <em>production</em> as <em>beta</em>- and <em>gamma</em>-quality. You will have run the following commands to create all the AWS accounts:</p>
+
+<ul>
+<li><code>substrate-create-account -domain=example -environment=staging -quality=alpha</code></li>
+<li><code>substrate-create-account -domain=example -environment=production -quality=beta</code></li>
+<li><code>substrate-create-account -domain=example -environment=production -quality=gamma</code></li>
+</ul>
+
+<p>These will create the following directory trees, which you will have committed to version control:</p>
+
+<ul>
+<li><code>modules</code>
+<ul>
+<li><code>example</code>
+<ul>
+<li><code>global</code></li>
+<li><code>regional</code></li>
+</ul></li>
+</ul></li>
+<li><code>root-modules</code>
+<ul>
+<li><code>example</code>
+<ul>
+<li><code>staging</code>
+<ul>
+<li><code>alpha</code>
+<ul>
+<li><code>global</code></li>
+<li><code>us-east-2</code></li>
+<li><code>us-west-2</code></li>
+</ul></li>
+</ul></li>
+<li><code>production</code>
+<ul>
+<li><code>beta</code>
+<ul>
+<li><code>global</code></li>
+<li><code>us-east-2</code></li>
+<li><code>us-west-2</code></li>
+</ul></li>
+<li><code>gamma</code>
+<ul>
+<li><code>global</code></li>
+<li><code>us-east-2</code></li>
+<li><code>us-west-2</code></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>What do you do next? And where do you do it?</p>
+
+<p>The vast majority of your work should happen in your domain&rsquo;s Terraform modules. In this <em>example</em> domain those are <code>modules/example/global</code> and <code>modules/example/regional</code>. Put global resources like IAM roles and Route 53 records in <code>modules/example/global</code>. Put regional resources like autoscaling groups and EKS clusters in <code>modules/example/regional</code>. (Substrate has generated all the <code>module</code> blocks necessary to instantiate these modules with the right Terraform providers.)</p>
+
+<p>You selected some number of AWS regions when you configured your network but you may not want to run all your infrastructure in all those regions all the time (if for no other reason than cost control). You may edit <code>root-modules/*/*/*/*/main.tf</code> to customize which of your selected regions are actually in use. By default, all your selected regions are in use. If you don&rsquo;t want to provision your infrastructure in any of them, simply comment out the resources in <code>root-modules/*/*/*/*/main.tf</code> (substituting your domains, environments, qualities, and regions as desired).</p>
+
+<h2>Testing and deploying Terraform changes</h2>
+
+<p>It&rsquo;s no accident that <code>modules/example/global</code> and <code>modules/example/regional</code> are referenced by the root Terraform modules for every environment and quality in the domain. These afford you multiple opportunities to implement changes in pre-<em>production</em> and partial-<em>production</em> in order to catch more bugs and failures before they impact all your capacity and all your customers. Continuing from the example above, here is the complete lifecycle of a Terraform change in the <em>example</em> domain:</p>
+
+<ol>
+<li>Change e.g. an EC2 launch template in <code>example/regional/main.tf</code></li>
+<li>Commit, push, get a code review, and merge into the main branch</li>
+<li><code>make -C root-modules/example/staging/alpha/us-east-2 plan</code> and inspect the output</li>
+<li><code>make -C root-modules/example/staging/alpha/us-east-2 apply</code></li>
+<li>Verify the correctness of the change in your <em>staging</em> environment</li>
+<li><code>make -C root-modules/example/production/beta/us-east-2 plan</code> and inspect the output</li>
+<li><code>make -C root-modules/example/production/beta/us-east-2 apply</code></li>
+<li>Observe your product&rsquo;s behavior in your <em>production</em> environment for long enough to convince yourself the change is correct
+<ul>
+<li>If your beta-quality infrastructure sees only a tiny trickle of traffic, this may take a while</li>
+<li>As you mature, it&rsquo;ll become more and more valuable to <a href="https://aws.amazon.com/builders-library/automating-safe-hands-off-deployments/">automate</a> this observation step</li>
+</ul></li>
+<li><code>make -C root-modules/example/production/gamma/us-east-2 plan</code> and inspect the output</li>
+<li><code>make -C root-modules/example/production/gamma/us-east-2 apply</code></li>
+<li>Observe your product&rsquo;s behavior in your <em>production</em> environment for long enough to convince yourself the change is correct
+<ul>
+<li>Now that your change has landed everywhere, this should be a much shorter time</li>
+</ul></li>
+</ol>
+
+<p>Any failure or suspicious behavior is reason to abort, revert the change, and rollback all the changes you actually made.</p>
+
+<p>All the steps in this process can easily be executed by CI/CD systems according to your preferences. A CI/CD system running in AWS can be granted <code>Administrator</code> privileges directly. A CI/CD system offered as SaaS may be able to assume an IAM role but, more likely, you&rsquo;ll need to define an <code>aws_iam_user</code> resource in your admin account and arrange to provide an access key for that user to your CI/CD system. (Don&rsquo;t forget to accommodate <em>and practice</em> access key rotation!)</p>
+
+<footer>
+<ul>
+<li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
+<li><a href="/substrate/">Substrate</a>, <small>my suite of AWS management tools</small></li>
+</ul>
+<p>Copyright &copy; 2020-2021 &mdash; Source <span class="fancy">&amp;</span> Binary LLC</p>
+</footer>
+</body>
+</html>
