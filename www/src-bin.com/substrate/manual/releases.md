@@ -13,7 +13,9 @@
 * The Intranet's `/accounts` page now opens the AWS Console in new browser tabs as it probably always should have.
 * Substrate now only manages the version constraint on the `archive`, `aws`, and `external` providers rather than all of `versions.tf`. This opens the door to Substrate users adding (and version constraining) additional providers. See [additional Terraform providers](additional-terraform-providers/) for an example.
 * Upgrade to and pin Terraform 1.0.2 and the `aws` provider >= 3.49.0.
-* Tag many more AWS resources with `Manager` and `SubstrateVersion` using the `default_tags` facility of the AWS provider.
+* Tag many more AWS resources with `Manager` and `SubstrateVersion` using the `default_tags` facility of the AWS provider. If you encounter the following error, remove `Manager` and `SubstrateVersion` (if present) from the indicated resources and re-run.<br><pre>Error: "tags" are identical to those in the
+"default_tags" configuration block of the provider:
+please de-duplicate and try again</pre>
 * All Substrate tools will now change their working directory to the value of the `SUBSTRATE_ROOT` environment variable, if set, rather than always proceeding in whatever the working directory was when invoked.
 * Share VPCs specifically with accounts that match their environment and quality. This is a no-op that enables a future release to remove organization-wide VPC sharing.
 

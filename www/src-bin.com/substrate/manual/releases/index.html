@@ -27,7 +27,9 @@
 <li>The Intranet&rsquo;s <code>/accounts</code> page now opens the AWS Console in new browser tabs as it probably always should have.</li>
 <li>Substrate now only manages the version constraint on the <code>archive</code>, <code>aws</code>, and <code>external</code> providers rather than all of <code>versions.tf</code>. This opens the door to Substrate users adding (and version constraining) additional providers. See <a href="additional-terraform-providers/">additional Terraform providers</a> for an example.</li>
 <li>Upgrade to and pin Terraform 1.0.2 and the <code>aws</code> provider >= 3.49.0.</li>
-<li>Tag many more AWS resources with <code>Manager</code> and <code>SubstrateVersion</code> using the <code>default_tags</code> facility of the AWS provider.</li>
+<li>Tag many more AWS resources with <code>Manager</code> and <code>SubstrateVersion</code> using the <code>default_tags</code> facility of the AWS provider. If you encounter the following error, remove <code>Manager</code> and <code>SubstrateVersion</code> (if present) from the indicated resources and re-run.<br><pre>Error: "tags" are identical to those in the
+"default_tags" configuration block of the provider:
+please de-duplicate and try again</pre></li>
 <li>All Substrate tools will now change their working directory to the value of the <code>SUBSTRATE_ROOT</code> environment variable, if set, rather than always proceeding in whatever the working directory was when invoked.</li>
 <li>Share VPCs specifically with accounts that match their environment and quality. This is a no-op that enables a future release to remove organization-wide VPC sharing.</li>
 </ul>
@@ -150,7 +152,7 @@
 
 <h2>2021.01 and prior releases</h2>
 
-<p>Contact <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;:&#104;&#x65;&#108;l&#111;&#64;&#115;&#x72;&#99;-&#98;&#x69;&#x6E;&#46;&#99;&#111;&#109;">&#104;&#x65;&#108;l&#111;&#64;&#115;&#x72;&#99;-&#98;&#x69;&#x6E;&#46;&#99;&#111;&#109;</a> for prior release notes.</p>
+<p>Contact <a href="&#x6D;a&#x69;&#108;&#116;&#111;:&#104;&#101;&#x6C;&#108;&#x6F;&#64;&#x73;&#x72;c&#45;b&#x69;&#110;&#x2E;&#99;&#111;m">&#104;&#101;&#x6C;&#108;&#x6F;&#64;&#x73;&#x72;c&#45;b&#x69;&#110;&#x2E;&#99;&#111;m</a> for prior release notes.</p>
 
 <footer>
 <ul>
