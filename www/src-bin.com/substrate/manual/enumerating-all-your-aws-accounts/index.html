@@ -34,6 +34,8 @@ jq -e -r &apos;.[].Tags | select(.Domain and .Domain != "admin") | "substrate-cr
 sh -e -x
 </code></pre>
 
+<p>You can process this JSON ahead of time to e.g. generate CI/CD configuration files or at runtime to e.g. propagate a Substrate upgrade to all your AWS accounts. No matter what, it&rsquo;s a small matter of programming.</p>
+
 <footer>
 <ul>
 <li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>

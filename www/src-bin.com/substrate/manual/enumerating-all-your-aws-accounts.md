@@ -22,4 +22,4 @@ But admin accounts and service accounts need to be identified by quality (for ad
     jq -e -r '.[].Tags | select(.Domain and .Domain != "admin") | "substrate-create-account -domain=\(.Domain) -environment=\(.Environment) -quality=\(.Quality)"' |
     sh -e -x
 
-
+You can process this JSON ahead of time to e.g. generate CI/CD configuration files or at runtime to e.g. propagate a Substrate upgrade to all your AWS accounts. No matter what, it's a small matter of programming.
