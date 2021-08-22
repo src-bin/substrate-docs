@@ -20,7 +20,7 @@ do
 <header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
 EOF
         echo
-        Markdown.pl --html4tags "$PATHNAME" | sed "s/'/\&rsquo;/g"
+        Markdown.pl --html4tags "$PATHNAME"
         echo
         cat <<EOF
 <footer>
@@ -34,4 +34,11 @@ EOF
 </html>
 EOF
     } >"$DIRNAME/index.html"
+    until diff "$DIRNAME/.index.html" "$DIRNAME/index.html" >"/dev/null"
+    do
+        cp "$DIRNAME/index.html" "$DIRNAME/.index.html"
+        sed -z "s/<pre>\(.*\)'\(.*\)<\\/pre>/<pre>\1\&apos;\2<\/pre>/g" <"$DIRNAME/.index.html" >"$DIRNAME/index.html"
+    done
+    rm -f "$DIRNAME/.index.html"
+    sed -i "s/'/\&rsquo;/g" "$DIRNAME/index.html"
 done

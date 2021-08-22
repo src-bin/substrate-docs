@@ -10,22 +10,31 @@
 
 <h1>Substrate release notes</h1>
 
-<p><!--</p>
-
 <h2 id="2021.08">2021.08</h2>
 
 <ul>
 <li>Roll <code>substrate-apigateway-authorizer</code>, <code>substrate-credential-factory</code>, and <code>substrate-instance-factory</code> into <code>substrate-intranet</code>. This is a no-op listed here for transparency. It&rsquo;s a prerequisite step towards unifying all the Substrate tools as subcommands of <code>substrate</code>, thereby reducing the size and complexity of the Substrate distribution.</li>
 <li>Stop using the <code>archive</code> and <code>external</code> Terraform providers by embedding <code>substrate-intranet.zip</code> directly in <code>substrate-create-admin-account</code>. Dependence on these providers will be made optional in a subsequent release.</li>
-<li>VPCs are no longer shared organization-wide, leaving the fine-grained VPC sharing introduced in 2021.07 to maintain each service account&rsquo;s access to its intended VPCs.
---></li>
+<li>VPCs are no longer shared organization-wide, leaving the fine-grained VPC sharing introduced in 2021.07 to maintain each service account&rsquo;s access to its intended VPCs.</li>
+<li>The Instance Factory now supports ARM instances (i.e. the a1, c6g, m6g, and t4g families).</li>
+<li>Bug fix: Switch back to the original working directory in <code>substrate-assume-role</code> (which will have changed if invoked with <code>SUBSTRATE_ROOT</code> set) before forking and executing a child process.</li>
+<li>Added <code>substrate-whoami</code> to make it easy to learn the domain, environment, and quality of the AWS account your current credentials operate on.</li>
+<li>Added <code>-format=json</code> to <code>substrate-accounts</code> to make it easier to enumerate and act programatically on every AWS account in your organization. See <a href="../enumerating-all-your-aws-accounts/">enumerating all your AWS accounts</a> for an example.</li>
 </ul>
+
+<p>After upgrading Substrate:</p>
+
+<ol>
+<li>Run <code>substrate-bootstrap-management-account</code> to grant <code>substrate-whoami</code> the permissions it needs.</li>
+<li>Run <code>substrate-bootstrap-network-account</code> to remove coarse-grained organization-wide VPC sharing.</li>
+<li>Run <code>substrate-create-admin-account</code> to upgrade your Intranet.</li>
+</ol>
 
 <h2 id="2021.07">2021.07</h2>
 
 <ul>
 <li>The Intranet&rsquo;s <code>/accounts</code> page now opens the AWS Console in new browser tabs as it probably always should have.</li>
-<li>Substrate now only manages the version constraint on the <code>archive</code>, <code>aws</code>, and <code>external</code> providers rather than all of <code>versions.tf</code>. This opens the door to Substrate users adding (and version constraining) additional providers. See <a href="additional-terraform-providers/">additional Terraform providers</a> for an example.</li>
+<li>Substrate now only manages the version constraint on the <code>archive</code>, <code>aws</code>, and <code>external</code> providers rather than all of <code>versions.tf</code>. This opens the door to Substrate users adding (and version constraining) additional providers. See <a href="../additional-terraform-providers/">additional Terraform providers</a> for an example.</li>
 <li>Upgrade to and pin Terraform 1.0.2 and the <code>aws</code> provider >= 3.49.0.</li>
 <li>Tag many more AWS resources with <code>Manager</code> and <code>SubstrateVersion</code> using the <code>default_tags</code> facility of the AWS provider. If you encounter the following error, remove <code>Manager</code> and <code>SubstrateVersion</code> (if present) from the indicated resources and re-run.<br><pre>Error: "tags" are identical to those in the
 "default_tags" configuration block of the provider:
@@ -152,7 +161,7 @@ please de-duplicate and try again</pre></li>
 
 <h2>2021.01 and prior releases</h2>
 
-<p>Contact <a href="&#x6D;a&#x69;&#108;&#116;&#111;:&#104;&#101;&#x6C;&#108;&#x6F;&#64;&#x73;&#x72;c&#45;b&#x69;&#110;&#x2E;&#99;&#111;m">&#104;&#101;&#x6C;&#108;&#x6F;&#64;&#x73;&#x72;c&#45;b&#x69;&#110;&#x2E;&#99;&#111;m</a> for prior release notes.</p>
+<p>Contact <a href="&#x6D;&#x61;&#x69;&#x6C;&#x74;&#111;:&#104;&#101;&#108;&#108;&#111;&#64;&#115;r&#x63;&#x2D;b&#105;&#x6E;&#x2E;&#99;&#x6F;&#109;">&#104;&#101;&#108;&#108;&#111;&#64;&#115;r&#x63;&#x2D;b&#105;&#x6E;&#x2E;&#99;&#x6F;&#109;</a> for prior release notes.</p>
 
 <footer>
 <ul>

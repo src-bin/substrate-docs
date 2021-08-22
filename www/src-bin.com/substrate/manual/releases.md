@@ -1,17 +1,25 @@
 # Substrate release notes
 
-<!--
 <h2 id="2021.08">2021.08</h2>
 
 * Roll `substrate-apigateway-authorizer`, `substrate-credential-factory`, and `substrate-instance-factory` into `substrate-intranet`. This is a no-op listed here for transparency. It's a prerequisite step towards unifying all the Substrate tools as subcommands of `substrate`, thereby reducing the size and complexity of the Substrate distribution.
 * Stop using the `archive` and `external` Terraform providers by embedding `substrate-intranet.zip` directly in `substrate-create-admin-account`. Dependence on these providers will be made optional in a subsequent release.
 * VPCs are no longer shared organization-wide, leaving the fine-grained VPC sharing introduced in 2021.07 to maintain each service account's access to its intended VPCs.
--->
+* The Instance Factory now supports ARM instances (i.e. the a1, c6g, m6g, and t4g families).
+* Bug fix: Switch back to the original working directory in `substrate-assume-role` (which will have changed if invoked with `SUBSTRATE_ROOT` set) before forking and executing a child process.
+* Added `substrate-whoami` to make it easy to learn the domain, environment, and quality of the AWS account your current credentials operate on.
+* Added `-format=json` to `substrate-accounts` to make it easier to enumerate and act programatically on every AWS account in your organization. See [enumerating all your AWS accounts](../enumerating-all-your-aws-accounts/) for an example.
+
+After upgrading Substrate:
+
+1. Run `substrate-bootstrap-management-account` to grant `substrate-whoami` the permissions it needs.
+1. Run `substrate-bootstrap-network-account` to remove coarse-grained organization-wide VPC sharing.
+1. Run `substrate-create-admin-account` to upgrade your Intranet.
 
 <h2 id="2021.07">2021.07</h2>
 
 * The Intranet's `/accounts` page now opens the AWS Console in new browser tabs as it probably always should have.
-* Substrate now only manages the version constraint on the `archive`, `aws`, and `external` providers rather than all of `versions.tf`. This opens the door to Substrate users adding (and version constraining) additional providers. See [additional Terraform providers](additional-terraform-providers/) for an example.
+* Substrate now only manages the version constraint on the `archive`, `aws`, and `external` providers rather than all of `versions.tf`. This opens the door to Substrate users adding (and version constraining) additional providers. See [additional Terraform providers](../additional-terraform-providers/) for an example.
 * Upgrade to and pin Terraform 1.0.2 and the `aws` provider >= 3.49.0.
 * Tag many more AWS resources with `Manager` and `SubstrateVersion` using the `default_tags` facility of the AWS provider. If you encounter the following error, remove `Manager` and `SubstrateVersion` (if present) from the indicated resources and re-run.<br><pre>Error: "tags" are identical to those in the
 "default_tags" configuration block of the provider:

@@ -1,0 +1,45 @@
+<!doctype HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+<link href="/css/2019-11-01.css" rel="stylesheet">
+<title>Source &amp; Binary / Enumerating all your AWS accounts</title>
+</head>
+<body>
+<header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
+
+<h1>Enumerating all your AWS accounts</h1>
+
+<p>Substrate 2021.08 added <code>-format="json"</code> to <code>substrate-accounts</code> which makes it easier to programmatically enumerate all your AWS accounts. You might want to integrate Substrate into your CI/CD system, implement a monitoring function, or something else entirely. The JSON output includes account numbers, ARNs, and tags, which should be enough to parameterize almost anything you might want to do to most or all of your AWS accounts.</p>
+
+<p>The rest of this page considers how to run the appropriate Substrate command against every AWS account in your organization.</p>
+
+<p>The special accounts are singletons and thus don&rsquo;t need to be parameterized by the output of <code>substrate-accounts</code>:</p>
+
+<pre><code>substrate-bootstrap-management-account
+
+substrate-bootstrap-network-account # possibly with -no-nat-gateways
+
+substrate-bootstrap-deploy-account
+</code></pre>
+
+<p>But admin accounts and service accounts need to be identified by quality (for admin accounts) or domain, environment, and quality (for service accounts). You can pass these parameters from the output of <code>substrate-accounts</code> to <code>substrate-create-admin-account</code> and <code>substrate-create-account</code> thus:</p>
+
+<pre><code>substrate-accounts -format=json |
+jq -e -r &apos;.[].Tags | select(.Domain == "admin") | "substrate-create-admin-account -quality=\(.Quality)"&apos; |
+sh -e -x
+
+substrate-accounts -format=json |
+jq -e -r &apos;.[].Tags | select(.Domain and .Domain != "admin") | "substrate-create-account -domain=\(.Domain) -environment=\(.Environment) -quality=\(.Quality)"&apos; |
+sh -e -x
+</code></pre>
+
+<footer>
+<ul>
+<li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
+<li><a href="/substrate/">Substrate</a>, <small>my suite of AWS management tools</small></li>
+</ul>
+<p>Copyright &copy; 2020-2021 &mdash; Source <span class="fancy">&amp;</span> Binary LLC</p>
+</footer>
+</body>
+</html>
