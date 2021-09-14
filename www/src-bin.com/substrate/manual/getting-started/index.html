@@ -71,7 +71,7 @@
 
 <p>Substrate is designed to manage your entire AWS organization. As such it is highly recommended that you start using Substrate in a brand new AWS account. Later you&rsquo;ll have opportunities to bring preexisting AWS accounts into the fold.</p>
 
-<p>You should strongly consider creating a mailing list or alias like <a href="&#x6D;&#x61;&#x69;&#x6C;&#x74;&#x6F;:&#x61;&#x77;&#x73;&#64;&#x65;&#120;&#97;&#109;&#x70;&#108;&#x65;.&#x63;o&#x6D;">&#x61;&#x77;&#x73;&#64;&#x65;&#120;&#97;&#109;&#x70;&#108;&#x65;.&#x63;o&#x6D;</a> to own your AWS organization as it provides your company flexibility later as personnel and roles change. If you&rsquo;re using GSuite and Google Groups, ensure that your group allows <em>External</em> users to <em>Publish posts</em>.</p>
+<p>You should strongly consider creating a mailing list or alias like <a href="&#109;&#97;&#105;&#108;&#x74;&#x6F;:&#x61;&#119;&#x73;&#64;&#101;&#x78;&#x61;&#x6D;&#x70;&#x6C;&#x65;.c&#111;&#109;">&#x61;&#119;&#x73;&#64;&#101;&#x78;&#x61;&#x6D;&#x70;&#x6C;&#x65;.c&#111;&#109;</a> to own your AWS organization as it provides your company flexibility later as personnel and roles change. If you&rsquo;re using GSuite and Google Groups, ensure that your group allows <em>External</em> users to <em>Publish posts</em>.</p>
 
 <p>Visit <a href="https://portal.aws.amazon.com/billing/signup#/start">https://portal.aws.amazon.com/billing/signup</a> to begin. Sign up for a new account, provide payment information, and verify your phone number. This account will remain nearly devoid of activity once the rest of the Substrate organization is configured.</p>
 
@@ -160,7 +160,7 @@
 
 <p>After the account is created and integrated with your identity provider, this program will create and configure an Intranet hosted in AWS API Gateway and Lambda.</p>
 
-<p>You&rsquo;ll be prompted to buy or transfer a DNS domain name or delegate a DNS zone from elsewhere into this new account. Note well: The domain must end up owned by or delegated to the admin account being created by this step. Be sure to respond to the emails sent by Route 53 to avoid your domain being suspended in a few days.</p>
+<p>You&rsquo;ll be prompted to buy or transfer a DNS domain name or delegate a DNS zone from elsewhere into this new account. If you&rsquo;re at a loss for inspiration, consider using your company&rsquo;s name with the <code>.company</code> or <code>.tools</code> TLD.  Note well: The domain must end up owned by or delegated to the admin account being created by this step. Be sure to respond to the emails sent by Route 53 to avoid your domain being suspended in a few days.</p>
 
 <p>We&rsquo;ll use <a href="http://example.com">example.com</a> as a placeholder for this domain throughout the rest of this guide. With that domain in hand, this program configures API Gateway and Lambda to serve authenticated and authorized web pages that serve up short-lived administrative AWS credentials and on-demand administrative EC2 instances. You&rsquo;ll be prompted for OAuth OIDC credentials from your identity provider, which can be created as follows:</p>
 
