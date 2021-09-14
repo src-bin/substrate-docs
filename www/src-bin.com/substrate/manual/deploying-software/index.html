@@ -14,7 +14,11 @@
 
 <p>The first and most basic thing Substrate does is create its deploy account. When you use separate AWS accounts for every environment, you need someplace that can host your deployable artifacts as they&rsquo;re developed, built, tested, and promoted through your environments on their way to serving your customers. The deploy account is meant to be that place.</p>
 
-<p>Furthermore, a great many organizations use Amazon S3 as a repository for software artifacts - tarballs, Debian packages, RPMs, etc. - and Substrate takes the liberty of creating S3 buckets for you to use to distribute these artifacts. The buckets named <code>PREFIX-deploy-artifacts-REGION</code> (substituting your chosen prefix as stored in <code>substrate.prefix</code> and the name of each region you&rsquo;re using) are ready and waiting for whatever you want to store there. Every account in your organization has access to read and write objects in these versioned buckets. Where you go from there is up to you.</p>
+<h2>S3</h2>
+
+<p>A great many organizations use Amazon S3 as a repository for software artifacts - tarballs, Debian packages, RPMs, etc. - and Substrate takes the liberty of creating S3 buckets for you to use to distribute these artifacts. The buckets named <code>PREFIX-deploy-artifacts-REGION</code> (substituting your chosen prefix as stored in <code>substrate.prefix</code> and the name of each region you&rsquo;re using) are ready and waiting for whatever you want to store there (but be sure to set the <code>bucket-owner-full-control</code> canned ACL). Every account in your organization has access to read and write objects in these versioned buckets. Where you go from there is up to you.</p>
+
+<h2>ECR</h2>
 
 <p>Some organizations use higher-level repositories, too, as offered by AWS ECR. We recommend these repositories be created in your deploy account by, for example, placing the following in <code>root-modules/deploy/REGION/ecr.tf</code>:</p>
 
