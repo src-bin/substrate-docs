@@ -1,5 +1,25 @@
 # Substrate release notes
 
+<h2 id="2021.09">2021.09</h2>
+
+This release changes the interactive interface to `substrate-bootstrap-network-account` and `substrate-create-admin-account` to make them easier to run in CI. **If you are automating these commands by providing `yes` and `no` answers on standard input, this release will break your automation; you should run these commands interactively first to see what's changed.** The details of what's changed are listed in the usual format below.
+
+* Move all Substrate commands into the `substrate` binary with symbolic links replacing the `substrate-*` binaries from previous releases. This can mostly be considered a no-op but note that now Substrate commands may be also be invoked as <code>substrate <em>subcommand</em></code>. This is not a deprecation notice for the original invocation style.
+* Added `-fully-interactive`, `-minimally-interactive`, and `-non-interactive` to all Substrate commands. `-fully-interactive` is almost identical (see below) to the behavior of 2021.08 and earlier releases. `-minimally-interactive` is the new default and removes the incessant "is this correct? (yes/no)" dialogs, which I thought would be welcome but turned out to be annoying. `-non-interactive` will never prompt for input and will instead exit with a non-zero status if input is required.
+* Changed the interactive prompts concerning GSuite and Okta configuration to make them less bothersome and (in the Okta case) less prone to unintentional changes. **If you are automating `substrate-create-admin-account` by providing `yes` and `no` answers on standard input, this change will break your automation; you should run this command interactively first to see what's changed.**
+* Added a confirmation to `substrate-create-admin-account` and `substrate-create-account` to prevent errant creation of new AWS accounts (which are tedious to delete in case creation was a mistake) plus a new `-create` option to suppress that confirmation.
+* Updated the Substrate-managed Service Control Policy attached to your organization to deny access to the `cloudtrail:CreateTrail` API. Substrate creates a multi-region, organization-wide trail early in its initialization. This policy prevents what additional trails from being created because they are excessively expensive and redundant.
+* Added e-mail address columns to tables of AWS accounts in `substrate.accounts.txt`, `substrate-accounts`, and the Intranet's `/accounts` page.
+* Added `-format=shell` to `substrate-accounts`, which enumerates AWS accounts as shell commands to the various `substrate-bootstrap-*` and `substrate-create-*` commands. This is useful for driving CI/CD of Terraform changes. It's also useful for automating Substrate upgrades.
+* Added `substrate-root-modules`, which enumerates every Substrate-managed Terraform root module in a sensible order. This, too, is useful for driving CI/CD of Terraform changes.
+* Bug fix: Ensure that objects put into the deploy buckets in S3 by any account in your organization may actually be fetched by other accounts in your organization. Requires objects be uploaded with the `bucket-owner-full-control` canned ACL.
+* Bug fix: Avoid a fork bomb in case `substrate-whoami` is invoked with a `/` in the pathname (i.e. as `~/bin/substrate-whoami`).
+
+After upgrading Substrate:
+
+1. Run `substrate-bootstrap-management-account` to update your organization's Service Control Policy.
+1. Run `substrate-bootstrap-deploy-account` to reconfigure the deploy buckets in S3.
+
 <h2 id="2021.08">2021.08</h2>
 
 * Roll `substrate-apigateway-authorizer`, `substrate-credential-factory`, and `substrate-instance-factory` into `substrate-intranet`. This is a no-op listed here for transparency. It's a prerequisite step towards unifying all the Substrate tools as subcommands of `substrate`, thereby reducing the size and complexity of the Substrate distribution.

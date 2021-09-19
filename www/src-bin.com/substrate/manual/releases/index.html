@@ -10,13 +10,37 @@
 
 <h1>Substrate release notes</h1>
 
+<h2 id="2021.09">2021.09</h2>
+
+<p>This release changes the interactive interface to <code>substrate-bootstrap-network-account</code> and <code>substrate-create-admin-account</code> to make them easier to run in CI. <strong>If you are automating these commands by providing <code>yes</code> and <code>no</code> answers on standard input, this release will break your automation; you should run these commands interactively first to see what&rsquo;s changed.</strong> The details of what&rsquo;s changed are listed in the usual format below.</p>
+
+<ul>
+<li>Move all Substrate commands into the <code>substrate</code> binary with symbolic links replacing the <code>substrate-*</code> binaries from previous releases. This can mostly be considered a no-op but note that now Substrate commands may be also be invoked as <code>substrate <em>subcommand</em></code>. This is not a deprecation notice for the original invocation style.</li>
+<li>Added <code>-fully-interactive</code>, <code>-minimally-interactive</code>, and <code>-non-interactive</code> to all Substrate commands. <code>-fully-interactive</code> is almost identical (see below) to the behavior of 2021.08 and earlier releases. <code>-minimally-interactive</code> is the new default and removes the incessant "is this correct? (yes/no)" dialogs, which I thought would be welcome but turned out to be annoying. <code>-non-interactive</code> will never prompt for input and will instead exit with a non-zero status if input is required.</li>
+<li>Changed the interactive prompts concerning GSuite and Okta configuration to make them less bothersome and (in the Okta case) less prone to unintentional changes. <strong>If you are automating <code>substrate-create-admin-account</code> by providing <code>yes</code> and <code>no</code> answers on standard input, this change will break your automation; you should run this command interactively first to see what&rsquo;s changed.</strong></li>
+<li>Added a confirmation to <code>substrate-create-admin-account</code> and <code>substrate-create-account</code> to prevent errant creation of new AWS accounts (which are tedious to delete in case creation was a mistake) plus a new <code>-create</code> option to suppress that confirmation.</li>
+<li>Updated the Substrate-managed Service Control Policy attached to your organization to deny access to the <code>cloudtrail:CreateTrail</code> API. Substrate creates a multi-region, organization-wide trail early in its initialization. This policy prevents what additional trails from being created because they are excessively expensive and redundant.</li>
+<li>Added e-mail address columns to tables of AWS accounts in <code>substrate.accounts.txt</code>, <code>substrate-accounts</code>, and the Intranet&rsquo;s <code>/accounts</code> page.</li>
+<li>Added <code>-format=shell</code> to <code>substrate-accounts</code>, which enumerates AWS accounts as shell commands to the various <code>substrate-bootstrap-*</code> and <code>substrate-create-*</code> commands. This is useful for driving CI/CD of Terraform changes. It&rsquo;s also useful for automating Substrate upgrades.</li>
+<li>Added <code>substrate-root-modules</code>, which enumerates every Substrate-managed Terraform root module in a sensible order. This, too, is useful for driving CI/CD of Terraform changes.</li>
+<li>Bug fix: Ensure that objects put into the deploy buckets in S3 by any account in your organization may actually be fetched by other accounts in your organization. Requires objects be uploaded with the <code>bucket-owner-full-control</code> canned ACL.</li>
+<li>Bug fix: Avoid a fork bomb in case <code>substrate-whoami</code> is invoked with a <code>/</code> in the pathname (i.e. as <code>~/bin/substrate-whoami</code>).</li>
+</ul>
+
+<p>After upgrading Substrate:</p>
+
+<ol>
+<li>Run <code>substrate-bootstrap-management-account</code> to update your organization&rsquo;s Service Control Policy.</li>
+<li>Run <code>substrate-bootstrap-deploy-account</code> to reconfigure the deploy buckets in S3.</li>
+</ol>
+
 <h2 id="2021.08">2021.08</h2>
 
 <ul>
 <li>Roll <code>substrate-apigateway-authorizer</code>, <code>substrate-credential-factory</code>, and <code>substrate-instance-factory</code> into <code>substrate-intranet</code>. This is a no-op listed here for transparency. It&rsquo;s a prerequisite step towards unifying all the Substrate tools as subcommands of <code>substrate</code>, thereby reducing the size and complexity of the Substrate distribution.</li>
 <li>Stop using the <code>archive</code> and <code>external</code> Terraform providers by embedding <code>substrate-intranet.zip</code> directly in <code>substrate-create-admin-account</code>. Dependence on these providers will be made optional in a subsequent release.</li>
 <li>VPCs are no longer shared organization-wide, leaving the fine-grained VPC sharing introduced in 2021.07 to maintain each service account&rsquo;s access to its intended VPCs.</li>
-<li>The Instance Factory now supports ARM instances (i.e. the a1, c6g, m6g, and t4g families).</li>
+<li>The Instance Factory now supports ARM instances (i.e. the a1, c6g, m6g, r6g, and t4g families).</li>
 <li>Bug fix: Switch back to the original working directory in <code>substrate-assume-role</code> (which will have changed if invoked with <code>SUBSTRATE_ROOT</code> set) before forking and executing a child process.</li>
 <li>Added <code>substrate-whoami</code> to make it easy to learn the domain, environment, and quality of the AWS account your current credentials operate on.</li>
 <li>Added <code>-format=json</code> to <code>substrate-accounts</code> to make it easier to enumerate and act programatically on every AWS account in your organization. See <a href="../enumerating-all-your-aws-accounts/">enumerating all your AWS accounts</a> for an example.</li>
@@ -161,7 +185,7 @@ please de-duplicate and try again</pre></li>
 
 <h2>2021.01 and prior releases</h2>
 
-<p>Contact <a href="&#109;&#x61;&#105;&#x6C;&#x74;&#x6F;:&#104;&#x65;l&#x6C;&#111;&#64;&#115;&#114;&#x63;-&#x62;&#105;n&#46;&#x63;&#x6F;&#x6D;">&#104;&#x65;l&#x6C;&#111;&#64;&#115;&#114;&#x63;-&#x62;&#105;n&#46;&#x63;&#x6F;&#x6D;</a> for prior release notes.</p>
+<p>Contact <a href="m&#x61;&#x69;&#108;&#x74;&#111;:&#104;e&#x6C;&#x6C;&#111;&#64;&#115;&#114;&#x63;&#45;&#98;&#x69;&#110;&#x2E;&#x63;&#x6F;&#x6D;">&#104;e&#x6C;&#x6C;&#111;&#64;&#115;&#114;&#x63;&#45;&#98;&#x69;&#110;&#x2E;&#x63;&#x6F;&#x6D;</a> for prior release notes.</p>
 
 <footer>
 <ul>

@@ -25,16 +25,23 @@ substrate-bootstrap-deploy-account
 
 <p>But admin accounts and service accounts need to be identified by quality (for admin accounts) or domain, environment, and quality (for service accounts). You can pass these parameters from the output of <code>substrate-accounts</code> to <code>substrate-create-admin-account</code> and <code>substrate-create-account</code> thus:</p>
 
-<pre><code>substrate-accounts -format=json |
+<pre><code>substrate-accounts -format="json" |
 jq -e -r &apos;.[].Tags | select(.Domain == "admin") | "substrate-create-admin-account -quality=\(.Quality)"&apos; |
 sh -e -x
 
-substrate-accounts -format=json |
+substrate-accounts -format="json" |
 jq -e -r &apos;.[].Tags | select(.Domain and .Domain != "admin") | "substrate-create-account -domain=\(.Domain) -environment=\(.Environment) -quality=\(.Quality)"&apos; |
 sh -e -x
 </code></pre>
 
-<p>You can process this JSON ahead of time to e.g. generate CI/CD configuration files or at runtime to e.g. propagate a Substrate upgrade to all your AWS accounts. No matter what, it&rsquo;s a small matter of programming.</p>
+<p>You can process this JSON ahead of time to e.g. generate CI/CD configuration files or at runtime to e.g. propagate a Substrate upgrade to all your AWS accounts. No matter what, it&apos;s a small matter of programming.</p>
+
+<p>If your use-case is more straightforward and you just need the shell commands necessary to touch every one of your Substrate-managed AWS accounts, use <code>substrate-accounts -format="shell"</code> (added in Substrate 2021.09).</p>
+
+<pre><code>substrate-accounts -format="shell" | sh -e -x
+</code></pre>
+
+<p>This will accomplish the same thing as the series of commands constructed above.</p>
 
 <footer>
 <ul>
