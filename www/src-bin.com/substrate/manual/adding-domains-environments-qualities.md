@@ -2,9 +2,11 @@
 
 ## Adding a domain
 
-Domains are a mechanism for protecting one service (or group of services) from others. You may create as many as you like. Creating and subsequent updates are simple: Run `substrate-create-account -domain="..." -environment="..." -quality="..."` with the name of your (new) domain and a declared environment and quality. This will create a new AWS account in your organization, add it to `substrate.accounts.txt`, and create all the necessary IAM roles to allow administrators to access the account.
+Domains are a mechanism for protecting one service (or group of services) from others. You may create as many as you like. Creation and subsequent updates are simple: Run `substrate-create-account -domain="..." -environment="..." -quality="..."` with the name of your (new) domain and a declared environment and quality. This will create a new AWS account in your organization, add it to `substrate.accounts.txt`, and create all the necessary IAM roles to allow administrators to access the account.
 
 In almost every case, you'll create an account for every domain in every environment. Sometimes you may create accounts with multiple qualities to allow changes (even changes to AWS resources) to be deployed gradually within the domain.
+
+All accounts with a given domain, across all environments and qualities, will by default reference a generated Terraform module named the same as the domain. This is where you should put the vast majority of Terraform resources, possibly parameterized by `module.substrate.tags.domain`, `module.substrate.tags.environment`, and `module.substrate.tags.quality` as well as `module.substrate.public_subnet_ids` and `module.substrate.private_subnet_ids`. If you choose to add `variable` stanzas to that module, it is recommended that you do not set a `default`; this will force you to consider the appropriate values when creating service accounts for this domain in different environments and/or qualities.
 
 ## Adding an environment
 

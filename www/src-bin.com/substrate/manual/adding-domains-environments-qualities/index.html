@@ -12,9 +12,11 @@
 
 <h2>Adding a domain</h2>
 
-<p>Domains are a mechanism for protecting one service (or group of services) from others. You may create as many as you like. Creating and subsequent updates are simple: Run <code>substrate-create-account -domain="..." -environment="..." -quality="..."</code> with the name of your (new) domain and a declared environment and quality. This will create a new AWS account in your organization, add it to <code>substrate.accounts.txt</code>, and create all the necessary IAM roles to allow administrators to access the account.</p>
+<p>Domains are a mechanism for protecting one service (or group of services) from others. You may create as many as you like. Creation and subsequent updates are simple: Run <code>substrate-create-account -domain="..." -environment="..." -quality="..."</code> with the name of your (new) domain and a declared environment and quality. This will create a new AWS account in your organization, add it to <code>substrate.accounts.txt</code>, and create all the necessary IAM roles to allow administrators to access the account.</p>
 
 <p>In almost every case, you&rsquo;ll create an account for every domain in every environment. Sometimes you may create accounts with multiple qualities to allow changes (even changes to AWS resources) to be deployed gradually within the domain.</p>
+
+<p>All accounts with a given domain, across all environments and qualities, will by default reference a generated Terraform module named the same as the domain. This is where you should put the vast majority of Terraform resources, possibly parameterized by <code>module.substrate.tags.domain</code>, <code>module.substrate.tags.environment</code>, and <code>module.substrate.tags.quality</code> as well as <code>module.substrate.public_subnet_ids</code> and <code>module.substrate.private_subnet_ids</code>. If you choose to add <code>variable</code> stanzas to that module, it is recommended that you do not set a <code>default</code>; this will force you to consider the appropriate values when creating service accounts for this domain in different environments and/or qualities.</p>
 
 <h2>Adding an environment</h2>
 

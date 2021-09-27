@@ -19,10 +19,11 @@
 <li>Added <code>-fully-interactive</code>, <code>-minimally-interactive</code>, and <code>-non-interactive</code> to all Substrate commands. <code>-fully-interactive</code> is almost identical (see below) to the behavior of 2021.08 and earlier releases. <code>-minimally-interactive</code> is the new default and removes the incessant "is this correct? (yes/no)" dialogs, which I thought would be welcome but turned out to be annoying. <code>-non-interactive</code> will never prompt for input and will instead exit with a non-zero status if input is required.</li>
 <li>Changed the interactive prompts concerning GSuite and Okta configuration to make them less bothersome and (in the Okta case) less prone to unintentional changes. <strong>If you are automating <code>substrate-create-admin-account</code> by providing <code>yes</code> and <code>no</code> answers on standard input, this change will break your automation; you should run this command interactively first to see what&rsquo;s changed.</strong></li>
 <li>Added a confirmation to <code>substrate-create-admin-account</code> and <code>substrate-create-account</code> to prevent errant creation of new AWS accounts (which are tedious to delete in case creation was a mistake) plus a new <code>-create</code> option to suppress that confirmation.</li>
-<li>Updated the Substrate-managed Service Control Policy attached to your organization to deny access to the <code>cloudtrail:CreateTrail</code> API. Substrate creates a multi-region, organization-wide trail early in its initialization. This policy prevents what additional trails from being created because they are excessively expensive and redundant.</li>
+<li>Updated the Substrate-managed Service Control Policy attached to your organization to deny access to the <code>cloudtrail:CreateTrail</code> API. Substrate creates a multi-region, organization-wide trail early in its initialization. This policy prevents additional trails from being created because they are excessively expensive and redundant.</li>
 <li>Added e-mail address columns to tables of AWS accounts in <code>substrate.accounts.txt</code>, <code>substrate-accounts</code>, and the Intranet&rsquo;s <code>/accounts</code> page.</li>
 <li>Added <code>-format=shell</code> to <code>substrate-accounts</code>, which enumerates AWS accounts as shell commands to the various <code>substrate-bootstrap-*</code> and <code>substrate-create-*</code> commands. This is useful for driving CI/CD of Terraform changes. It&rsquo;s also useful for automating Substrate upgrades.</li>
 <li>Added <code>substrate-root-modules</code>, which enumerates every Substrate-managed Terraform root module in a sensible order. This, too, is useful for driving CI/CD of Terraform changes.</li>
+<li>Added a new <code>root-modules/deploy/global</code> root module under the management of <code>substrate-bootstrap-deploy-account</code>. Substrate doesn&rsquo;t manage any resources there but you&rsquo;re free to.</li>
 <li>Bug fix: Ensure that objects put into the deploy buckets in S3 by any account in your organization may actually be fetched by other accounts in your organization. Requires objects be uploaded with the <code>bucket-owner-full-control</code> canned ACL.</li>
 <li>Bug fix: Avoid a fork bomb in case <code>substrate-whoami</code> is invoked with a <code>/</code> in the pathname (i.e. as <code>~/bin/substrate-whoami</code>).</li>
 </ul>
@@ -31,7 +32,8 @@
 
 <ol>
 <li>Run <code>substrate-bootstrap-management-account</code> to update your organization&rsquo;s Service Control Policy.</li>
-<li>Run <code>substrate-bootstrap-deploy-account</code> to reconfigure the deploy buckets in S3.</li>
+<li>Run <code>substrate-bootstrap-deploy-account</code> to reconfigure the deploy buckets in S3 and generate the <code>global</code> root module.</li>
+<li>Run <code>substrate-create-admin-account</code> to add the e-mail address column to your Intranet&rsquo;s <code>/accounts</code> page.</li>
 </ol>
 
 <h2 id="2021.08">2021.08</h2>
@@ -185,7 +187,7 @@ please de-duplicate and try again</pre></li>
 
 <h2>2021.01 and prior releases</h2>
 
-<p>Contact <a href="m&#x61;&#x69;&#108;&#x74;&#111;:&#104;e&#x6C;&#x6C;&#111;&#64;&#115;&#114;&#x63;&#45;&#98;&#x69;&#110;&#x2E;&#x63;&#x6F;&#x6D;">&#104;e&#x6C;&#x6C;&#111;&#64;&#115;&#114;&#x63;&#45;&#98;&#x69;&#110;&#x2E;&#x63;&#x6F;&#x6D;</a> for prior release notes.</p>
+<p>Contact <a href="&#x6D;&#x61;&#105;&#108;&#116;&#111;:&#x68;&#x65;&#108;&#x6C;&#x6F;&#64;&#x73;&#x72;&#99;&#45;&#98;&#x69;&#110;&#x2E;&#99;&#111;m">&#x68;&#x65;&#108;&#x6C;&#x6F;&#64;&#x73;&#x72;&#99;&#45;&#98;&#x69;&#110;&#x2E;&#99;&#111;m</a> for prior release notes.</p>
 
 <footer>
 <ul>
