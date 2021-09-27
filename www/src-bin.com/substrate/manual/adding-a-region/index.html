@@ -15,8 +15,8 @@
 <p>Regions are added by <code>substrate-bootstrap-network-account</code>. To add a new one (or two), simply respond as follows to its prompts:</p>
 
 <ol>
-<li>Run <code>substrate-bootstrap-network-account</code></li>
-<li>Answer "no" when asked if your list of regions is correct</li>
+<li>Run <code>substrate-bootstrap-network-account -fully-interactive</code></li>
+<li>Answer &ldquo;no&rdquo; when asked if your list of regions is correct</li>
 <li>Add your new one in the text editor that was opened for you, paying attention to the order you want your qualities presented</li>
 <li>Save and exit the text editor</li>
 <li>Unfortunately, if your changes cause sufficiently many VPCs to be created, the tools will open support cases on your behalf to have service quotas for VPCs and related resources raised
@@ -24,7 +24,7 @@
 <li>If AWS gives you a hard time it is likely because they don&rsquo;t want to give you additional Elastic IPs; tell them you&rsquo;re trying to create VPCs to share to all your AWS accounts with three private subnets and zonal NAT Gateways and they&rsquo;ll hopefully let you get on with your life but if they don&rsquo;t, feel free to escalate to Source &amp; Binary</li>
 <li>These support cases sometimes take hours or even days to be resolved</li>
 <li>If the tool exits or is interrupted it may simply be re-run</li>
-<li>You can say "no" to applying Terraform changes in certain root modules so as to e.g. avoid actually instantiating your network in some regions that you want to keep around only as cold standbys</li>
+<li>You can say &ldquo;no&rdquo; to applying Terraform changes in certain root modules so as to e.g. avoid actually instantiating your network in some regions that you want to keep around only as cold standbys</li>
 </ul></li>
 <li>When <code>substrate-bootstrap-network-account</code> exits successfully, your network is ready for use in the added region(s)</li>
 <li>Run <code>substrate-bootstrap-deploy-account</code></li>

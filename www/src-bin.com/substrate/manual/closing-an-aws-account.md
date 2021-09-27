@@ -2,13 +2,13 @@
 
 From time to time you may want to close an AWS account that you've created through Substrate or close a legacy account you invited into your organization and finished migrating into domain accounts. Either way, the process is unfortunately tedious.
 
-Before you begin this process, note well that AWS enforces a waiting period of "a few days" (which they really do neglect to specify more precisely) between an account joining an organization, whether by invitation or creation, and that account leaving the organization. If you're met with this error (or you know you will be), do what it says and try again in a few days.
+Before you begin this process, note well that AWS enforces a waiting period of "a few days" (which they really do neglect to specify more precisely) between an account joining an organization, whether by invitation or creation, and that account leaving the organization. If you're met with this error (or you know you will be), do what it says and try again in a few days and possibly up to a full week.
 
 1. Visit [https://console.aws.amazon.com](https://console.aws.amazon.com) in an incognito window
-2. Leave "Root user" selected
+2. Leave &ldquo;Root user&rdquo; selected
 3. Enter the email address of the account
-    - If you're closing an account that `substrate-create-account` created, the email address is the same as you used for your management account with "+_domain_-_environment_-_quality_" appended to the local part
-    - If you're closing an account that `substrate-create-admin-account` created, the email address is the same as you used for your management account with "+admin-_quality_" appended to the local part
+    - If you're closing an account that `substrate-create-account` created, the email address is the same as you used for your management account with &ldquo;+_domain_-_environment_-_quality_&rdquo; appended to the local part
+    - If you're closing an account that `substrate-create-admin-account` created, the email address is the same as you used for your management account with &ldquo;+admin-_quality_&rdquo; appended to the local part
     - If you're closing an account you invited into your organization, the email address is unchanged from what it was before it joined the organization
 4. Click **Next**
 5. Click **Forgot password?**

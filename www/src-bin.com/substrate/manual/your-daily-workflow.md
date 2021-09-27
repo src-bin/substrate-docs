@@ -12,7 +12,7 @@ Run `eval $(substrate-credentials)` in your terminal and follow its instructions
 
 If for some reason `eval $(substrate-credentials)` doesn't work for you, visit [https://example.com/credential-factory](https://example.com/credential-factory) (substituting your Intranet DNS domain name), then paste the `export` command into your terminal. This makes the most sense for folks who like to work from their laptop, regardless of what the rest of their toolchain looks like.
 
-You can also visit [https://example.com/instance-factory](https://example.com/instance-factory) (substituting your Intranet DNS domain name) and follow the steps to provision an EC2 instance to use for your administrative work. This makes the most sense for folks who use a terminal-based text editor and like to work "in the cloud."
+You can also visit [https://example.com/instance-factory](https://example.com/instance-factory) (substituting your Intranet DNS domain name) and follow the steps to provision an EC2 instance to use for your administrative work. This makes the most sense for folks who use a terminal-based text editor and like to work &ldquo;in the cloud.&rdquo;
 
 In all three cases, the temporary credentials are going to put you in the `Administrator` role in (one of) your admin account(s). From here you'll be able to go anywhere you need to go.
 

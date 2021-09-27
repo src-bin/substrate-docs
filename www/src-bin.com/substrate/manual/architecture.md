@@ -1,6 +1,6 @@
 # Architecture within your Substrate-managed AWS organization
 
-Very little about your use of AWS is constrained by Substrate. Beyond a few central assumptions, your choices are as endless as AWS makes them. This is a double-edged sword. Part of the value of Substrate is in helping Source & Binary's clients through the endless maze that must be navigated just to _start_ using AWS in a scalable manner. But as soon as Substrate gets in their way, its benefits become costs and it falls to the same "but what if I outgrow it?" fear that has so often doomed the likes of Heroku.
+Very little about your use of AWS is constrained by Substrate. Beyond a few central assumptions, your choices are as endless as AWS makes them. This is a double-edged sword. Part of the value of Substrate is in helping Source & Binary's clients through the endless maze that must be navigated just to _start_ using AWS in a scalable manner. But as soon as Substrate gets in their way, its benefits become costs and it falls to the same &ldquo;but what if I outgrow it?&rdquo; fear that has so often doomed the likes of Heroku.
 
 So Substrate stays modest in the constraints it imposes:
 
@@ -39,7 +39,7 @@ Most SaaS products embrace multi-tenancy as a necessary design point to enable f
 
 It seems like Substrate should express an opinion on how DNS domains and load balancers are organized. The truth, though, is that these decisions are more tightly tied to how traffic enters your network than how that network is laid out.
 
-If you have a single service that "fronts" all your other services then buying your DNS names and hosting your load balancers in domain accounts makes sense.
+If you have a single service that &ldquo;fronts&rdquo; all your other services then buying your DNS names and hosting your load balancers in domain accounts makes sense.
 
 On the other hand, if you use a single load balancer to route traffic to many services spread across more than one domain then buying DNS domains and hosting the load balancer in a dedicated domain account or even the network account makes sense.
 

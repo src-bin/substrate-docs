@@ -16,7 +16,7 @@
 
 <ul>
 <li>Move all Substrate commands into the <code>substrate</code> binary with symbolic links replacing the <code>substrate-*</code> binaries from previous releases. This can mostly be considered a no-op but note that now Substrate commands may be also be invoked as <code>substrate <em>subcommand</em></code>. This is not a deprecation notice for the original invocation style.</li>
-<li>Added <code>-fully-interactive</code>, <code>-minimally-interactive</code>, and <code>-non-interactive</code> to all Substrate commands. <code>-fully-interactive</code> is almost identical (see below) to the behavior of 2021.08 and earlier releases. <code>-minimally-interactive</code> is the new default and removes the incessant "is this correct? (yes/no)" dialogs, which I thought would be welcome but turned out to be annoying. <code>-non-interactive</code> will never prompt for input and will instead exit with a non-zero status if input is required.</li>
+<li>Added <code>-fully-interactive</code>, <code>-minimally-interactive</code>, and <code>-non-interactive</code> to all Substrate commands. <code>-fully-interactive</code> is almost identical (see below) to the behavior of 2021.08 and earlier releases. <code>-minimally-interactive</code> is the new default and removes the incessant &ldquo;is this correct? (yes/no)&rdquo; dialogs, which I thought would be welcome but turned out to be annoying. <code>-non-interactive</code> will never prompt for input and will instead exit with a non-zero status if input is required.</li>
 <li>Changed the interactive prompts concerning GSuite and Okta configuration to make them less bothersome and (in the Okta case) less prone to unintentional changes. <strong>If you are automating <code>substrate-create-admin-account</code> by providing <code>yes</code> and <code>no</code> answers on standard input, this change will break your automation; you should run this command interactively first to see what&rsquo;s changed.</strong></li>
 <li>Added a confirmation to <code>substrate-create-admin-account</code> and <code>substrate-create-account</code> to prevent errant creation of new AWS accounts (which are tedious to delete in case creation was a mistake) plus a new <code>-create</code> option to suppress that confirmation.</li>
 <li>Updated the Substrate-managed Service Control Policy attached to your organization to deny access to the <code>cloudtrail:CreateTrail</code> API. Substrate creates a multi-region, organization-wide trail early in its initialization. This policy prevents additional trails from being created because they are excessively expensive and redundant.</li>
@@ -33,7 +33,7 @@
 <ol>
 <li>Run <code>substrate-bootstrap-management-account</code> to update your organization&rsquo;s Service Control Policy.</li>
 <li>Run <code>substrate-bootstrap-deploy-account</code> to reconfigure the deploy buckets in S3 and generate the <code>global</code> root module.</li>
-<li>Run <code>substrate-create-admin-account</code> to add the e-mail address column to your Intranet&rsquo;s <code>/accounts</code> page.</li>
+<li>Run <code>substrate-create-admin-account -quality="..."</code> to add the e-mail address column to your Intranet&rsquo;s <code>/accounts</code> page.</li>
 </ol>
 
 <h2 id="2021.08">2021.08</h2>
@@ -53,7 +53,7 @@
 <ol>
 <li>Run <code>substrate-bootstrap-management-account</code> to grant <code>substrate-whoami</code> the permissions it needs.</li>
 <li>Run <code>substrate-bootstrap-network-account</code> to remove coarse-grained organization-wide VPC sharing.</li>
-<li>Run <code>substrate-create-admin-account</code> to upgrade your Intranet.</li>
+<li>Run <code>substrate-create-admin-account -quality="..."</code> to upgrade your Intranet.</li>
 </ol>
 
 <h2 id="2021.07">2021.07</h2>
@@ -62,9 +62,7 @@
 <li>The Intranet&rsquo;s <code>/accounts</code> page now opens the AWS Console in new browser tabs as it probably always should have.</li>
 <li>Substrate now only manages the version constraint on the <code>archive</code>, <code>aws</code>, and <code>external</code> providers rather than all of <code>versions.tf</code>. This opens the door to Substrate users adding (and version constraining) additional providers. See <a href="../additional-terraform-providers/">additional Terraform providers</a> for an example.</li>
 <li>Upgrade to and pin Terraform 1.0.2 and the <code>aws</code> provider >= 3.49.0.</li>
-<li>Tag many more AWS resources with <code>Manager</code> and <code>SubstrateVersion</code> using the <code>default_tags</code> facility of the AWS provider. If you encounter the following error, remove <code>Manager</code> and <code>SubstrateVersion</code> (if present) from the indicated resources and re-run.<br><pre>Error: "tags" are identical to those in the
-"default_tags" configuration block of the provider:
-please de-duplicate and try again</pre></li>
+<li>Tag many more AWS resources with <code>Manager</code> and <code>SubstrateVersion</code> using the <code>default_tags</code> facility of the AWS provider. If you encounter the following error, remove <code>Manager</code> and <code>SubstrateVersion</code> (if present) from the indicated resources and re-run.<br><pre>Error: "tags" are identical to those in the "default_tags" configuration block of the provider: please de-duplicate and try again</pre></li>
 <li>All Substrate tools will now change their working directory to the value of the <code>SUBSTRATE_ROOT</code> environment variable, if set, rather than always proceeding in whatever the working directory was when invoked.</li>
 <li>Share VPCs specifically with accounts that match their environment and quality. This is a no-op that enables a future release to remove organization-wide VPC sharing.</li>
 </ul>
@@ -187,7 +185,7 @@ please de-duplicate and try again</pre></li>
 
 <h2>2021.01 and prior releases</h2>
 
-<p>Contact <a href="&#x6D;&#x61;&#105;&#108;&#116;&#111;:&#x68;&#x65;&#108;&#x6C;&#x6F;&#64;&#x73;&#x72;&#99;&#45;&#98;&#x69;&#110;&#x2E;&#99;&#111;m">&#x68;&#x65;&#108;&#x6C;&#x6F;&#64;&#x73;&#x72;&#99;&#45;&#98;&#x69;&#110;&#x2E;&#99;&#111;m</a> for prior release notes.</p>
+<p>Contact <a href="&#x6D;&#97;&#105;&#108;&#116;&#x6F;:&#104;&#x65;&#x6C;&#108;&#111;&#64;&#x73;r&#99;-&#98;&#105;&#110;&#x2E;&#99;&#x6F;&#x6D;">&#104;&#x65;&#x6C;&#108;&#111;&#64;&#x73;r&#99;-&#98;&#105;&#110;&#x2E;&#99;&#x6F;&#x6D;</a> for prior release notes.</p>
 
 <footer>
 <ul>

@@ -84,7 +84,7 @@ While you're logged into your management account using the root credentials, fol
 
 1. Visit [https://console.aws.amazon.com/billing/home?#/account](https://console.aws.amazon.com/billing/home?#/account)
 2. Open the _IAM User and Role Access to Billing Information_ section
-3. Check "Activate IAM Access"
+3. Check &ldquo;Activate IAM Access&rdquo;
 4. Click **Update**
 5. Visit [https://console.aws.amazon.com/billing/home#/costexplorer](https://console.aws.amazon.com/billing/home#/costexplorer)
 6. Click **Enable Cost Explorer**
@@ -97,11 +97,11 @@ The previous step created the three special AWS accounts - audit, deploy, and ne
 
 Here, too, during your first run you'll be prompted for your root access key.
 
-This program additionally asks for the names of your environments, the release qualities you want to use, and the specific combinations that are valid. Environments typically have names like "development" and "production" - they identify a set of data and all the infrastructure that may access it. Qualities are names given to independent copies of your infrastructure _within an environment_ that make it possible to gradually deploy changes to AWS resources just like you might gradually deploy changes to your software.
+This program additionally asks for the names of your environments, the release qualities you want to use, and the specific combinations that are valid. Environments typically have names like &ldquo;development&rdquo; and &ldquo;production&rdquo; - they identify a set of data and all the infrastructure that may access it. Qualities are names given to independent copies of your infrastructure _within an environment_ that make it possible to gradually deploy changes to AWS resources just like you might gradually deploy changes to your software.
 
 It also asks which AWS regions you want to use. Your answers inform how it lays out your networks to strike a balance between security, reliability, ergonomics, and cost. Substrate recommends starting with 2-4 regions that make geographic sense to your customers.
 
-This program may attempt to programmatically raise the limit on some specific AWS service quotas. Depending on the regions you chose, how many environments and qualities you specified, and how the AWS support staff are feeling, this may block you for a long time. It's recommended to start slow by, for instance, only specifying "admin" and "staging" environments, expecting to add more later.
+This program may attempt to programmatically raise the limit on some specific AWS service quotas. Depending on the regions you chose, how many environments and qualities you specified, and how the AWS support staff are feeling, this may block you for a long time. It's recommended to start slow by, for instance, only specifying &ldquo;admin&rdquo; and &ldquo;staging&rdquo; environments, expecting to add more later.
 
 When this program exits, you should commit `substrate.*` and `root-modules/network/` to version control. It is safe to re-run this program at any time and during those runs you can add additional environments and qualities if you so choose.
 

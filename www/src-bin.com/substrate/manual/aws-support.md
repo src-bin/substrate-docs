@@ -5,11 +5,11 @@ You may wish to purchase an AWS Support plan for one or more of your AWS account
 If you've decided one (or more) of your accounts need an AWS Support plan, here's how you purchase it (buckle up).
 
 1. Visit [https://console.aws.amazon.com](https://console.aws.amazon.com) in an incognito window
-2. Leave "Root user" selected
+2. Leave &ldquo;Root user&rdquo; selected
 3. Enter the email address of the account
     - If you're purchasing for the management account, the email address is the one you used when you first signed up for AWS
-    - If you're purchasing for an account that `substrate-create-account` created, the email address is the same as you used for your management account with "+_domain_-_environment_-_quality_" appended to the local part
-    - If you're purchasing for an account that `substrate-create-admin-account` created, the email address is the same as you used for your management account with "+admin-_quality_" appended to the local part
+    - If you're purchasing for an account that `substrate-create-account` created, the email address is the same as you used for your management account with &ldquo;+_domain_-_environment_-_quality_&rdquo; appended to the local part
+    - If you're purchasing for an account that `substrate-create-admin-account` created, the email address is the same as you used for your management account with &ldquo;+admin-_quality_&rdquo; appended to the local part
     - If you're purchasing for an account you invited into your organization, the email address is unchanged from what it was before it joined the organization
 4. Click **Next**
 5. Click **Forgot password?**

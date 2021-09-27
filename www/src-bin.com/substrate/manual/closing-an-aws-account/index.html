@@ -12,15 +12,15 @@
 
 <p>From time to time you may want to close an AWS account that you&rsquo;ve created through Substrate or close a legacy account you invited into your organization and finished migrating into domain accounts. Either way, the process is unfortunately tedious.</p>
 
-<p>Before you begin this process, note well that AWS enforces a waiting period of "a few days" (which they really do neglect to specify more precisely) between an account joining an organization, whether by invitation or creation, and that account leaving the organization. If you&rsquo;re met with this error (or you know you will be), do what it says and try again in a few days.</p>
+<p>Before you begin this process, note well that AWS enforces a waiting period of "a few days" (which they really do neglect to specify more precisely) between an account joining an organization, whether by invitation or creation, and that account leaving the organization. If you&rsquo;re met with this error (or you know you will be), do what it says and try again in a few days and possibly up to a full week.</p>
 
 <ol>
 <li>Visit <a href="https://console.aws.amazon.com">https://console.aws.amazon.com</a> in an incognito window</li>
-<li>Leave "Root user" selected</li>
+<li>Leave &ldquo;Root user&rdquo; selected</li>
 <li>Enter the email address of the account
 <ul>
-<li>If you&rsquo;re closing an account that <code>substrate-create-account</code> created, the email address is the same as you used for your management account with "+<em>domain</em>-<em>environment</em>-<em>quality</em>" appended to the local part</li>
-<li>If you&rsquo;re closing an account that <code>substrate-create-admin-account</code> created, the email address is the same as you used for your management account with "+admin-<em>quality</em>" appended to the local part</li>
+<li>If you&rsquo;re closing an account that <code>substrate-create-account</code> created, the email address is the same as you used for your management account with &ldquo;+<em>domain</em>-<em>environment</em>-<em>quality</em>&rdquo; appended to the local part</li>
+<li>If you&rsquo;re closing an account that <code>substrate-create-admin-account</code> created, the email address is the same as you used for your management account with &ldquo;+admin-<em>quality</em>&rdquo; appended to the local part</li>
 <li>If you&rsquo;re closing an account you invited into your organization, the email address is unchanged from what it was before it joined the organization</li>
 </ul></li>
 <li>Click <strong>Next</strong></li>

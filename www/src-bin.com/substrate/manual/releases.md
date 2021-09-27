@@ -5,7 +5,7 @@
 This release changes the interactive interface to `substrate-bootstrap-network-account` and `substrate-create-admin-account` to make them easier to run in CI. **If you are automating these commands by providing `yes` and `no` answers on standard input, this release will break your automation; you should run these commands interactively first to see what's changed.** The details of what's changed are listed in the usual format below.
 
 * Move all Substrate commands into the `substrate` binary with symbolic links replacing the `substrate-*` binaries from previous releases. This can mostly be considered a no-op but note that now Substrate commands may be also be invoked as <code>substrate <em>subcommand</em></code>. This is not a deprecation notice for the original invocation style.
-* Added `-fully-interactive`, `-minimally-interactive`, and `-non-interactive` to all Substrate commands. `-fully-interactive` is almost identical (see below) to the behavior of 2021.08 and earlier releases. `-minimally-interactive` is the new default and removes the incessant "is this correct? (yes/no)" dialogs, which I thought would be welcome but turned out to be annoying. `-non-interactive` will never prompt for input and will instead exit with a non-zero status if input is required.
+* Added `-fully-interactive`, `-minimally-interactive`, and `-non-interactive` to all Substrate commands. `-fully-interactive` is almost identical (see below) to the behavior of 2021.08 and earlier releases. `-minimally-interactive` is the new default and removes the incessant &ldquo;is this correct? (yes/no)&rdquo; dialogs, which I thought would be welcome but turned out to be annoying. `-non-interactive` will never prompt for input and will instead exit with a non-zero status if input is required.
 * Changed the interactive prompts concerning GSuite and Okta configuration to make them less bothersome and (in the Okta case) less prone to unintentional changes. **If you are automating `substrate-create-admin-account` by providing `yes` and `no` answers on standard input, this change will break your automation; you should run this command interactively first to see what's changed.**
 * Added a confirmation to `substrate-create-admin-account` and `substrate-create-account` to prevent errant creation of new AWS accounts (which are tedious to delete in case creation was a mistake) plus a new `-create` option to suppress that confirmation.
 * Updated the Substrate-managed Service Control Policy attached to your organization to deny access to the `cloudtrail:CreateTrail` API. Substrate creates a multi-region, organization-wide trail early in its initialization. This policy prevents additional trails from being created because they are excessively expensive and redundant.
@@ -20,7 +20,7 @@ After upgrading Substrate:
 
 1. Run `substrate-bootstrap-management-account` to update your organization's Service Control Policy.
 1. Run `substrate-bootstrap-deploy-account` to reconfigure the deploy buckets in S3 and generate the `global` root module.
-1. Run `substrate-create-admin-account` to add the e-mail address column to your Intranet's `/accounts` page.
+1. Run `substrate-create-admin-account -quality="..."` to add the e-mail address column to your Intranet's `/accounts` page.
 
 <h2 id="2021.08">2021.08</h2>
 
@@ -36,16 +36,14 @@ After upgrading Substrate:
 
 1. Run `substrate-bootstrap-management-account` to grant `substrate-whoami` the permissions it needs.
 1. Run `substrate-bootstrap-network-account` to remove coarse-grained organization-wide VPC sharing.
-1. Run `substrate-create-admin-account` to upgrade your Intranet.
+1. Run `substrate-create-admin-account -quality="..."` to upgrade your Intranet.
 
 <h2 id="2021.07">2021.07</h2>
 
 * The Intranet's `/accounts` page now opens the AWS Console in new browser tabs as it probably always should have.
 * Substrate now only manages the version constraint on the `archive`, `aws`, and `external` providers rather than all of `versions.tf`. This opens the door to Substrate users adding (and version constraining) additional providers. See [additional Terraform providers](../additional-terraform-providers/) for an example.
 * Upgrade to and pin Terraform 1.0.2 and the `aws` provider >= 3.49.0.
-* Tag many more AWS resources with `Manager` and `SubstrateVersion` using the `default_tags` facility of the AWS provider. If you encounter the following error, remove `Manager` and `SubstrateVersion` (if present) from the indicated resources and re-run.<br><pre>Error: "tags" are identical to those in the
-"default_tags" configuration block of the provider:
-please de-duplicate and try again</pre>
+* Tag many more AWS resources with `Manager` and `SubstrateVersion` using the `default_tags` facility of the AWS provider. If you encounter the following error, remove `Manager` and `SubstrateVersion` (if present) from the indicated resources and re-run.<br><pre>Error: "tags" are identical to those in the "default_tags" configuration block of the provider: please de-duplicate and try again</pre>
 * All Substrate tools will now change their working directory to the value of the `SUBSTRATE_ROOT` environment variable, if set, rather than always proceeding in whatever the working directory was when invoked.
 * Share VPCs specifically with accounts that match their environment and quality. This is a no-op that enables a future release to remove organization-wide VPC sharing.
 
