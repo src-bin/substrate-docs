@@ -6,7 +6,6 @@ It's early days for this guide. Please refer to the [Substrate design](https://w
 
 ## Prerequisites
 
-- [AWS command-line interface](https://aws.amazon.com/cli/) (most likely via `brew install awscli` or `pip install awscli` or `yum install awscli`)
 - [Terraform 1.0.2](https://releases.hashicorp.com/terraform/1.0.2/) (unzip and put `terraform` on your `PATH`)
 
 ## Installation
@@ -19,15 +18,14 @@ It's early days for this guide. Please refer to the [Substrate design](https://w
 
 Additional prerequsites:
 
-- [Go 1.16](https://golang.org/dl/)
+- [Go 1.17](https://golang.org/dl/)
 - GNU Make
 
 Procedure:
 
 1. `git clone git@github.com:src-bin/substrate.git`
 2. `cd substrate`
-3. `make && make install GOBIN="..."` with the value of `GOBIN` being a directory on your `PATH`
-    - Or simply `make && make install` if `GOBIN` is already in your environment
+3. `make && make install` (or `make && make install GOBIN="..."` if you want to customize `GOBIN` where it's installed)
 
 ## Decide where you'll run Substrate commands
 
