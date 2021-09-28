@@ -10,6 +10,14 @@
 
 <h1>Substrate release notes</h1>
 
+<h2 id="2021.09.28">2021.09.28</h2>
+
+<ul>
+<li>Bug fix: Properly detect when Substrate tools are invoked via symbolic links (i.e. in their original <code>substrate-assume-role</code> form rather than their new <code>substrate assume-role</code> form) on MacOS.</li>
+</ul>
+
+<p>If you&rsquo;re upgrading from 2021.08, follow the upgrade instructions from 2021.09. If you already upgraded to 2021.09, there are no further upgrade steps.</p>
+
 <h2 id="2021.09">2021.09</h2>
 
 <p>This release changes the interactive interface to <code>substrate-bootstrap-network-account</code> and <code>substrate-create-admin-account</code> to make them easier to run in CI. <strong>If you are automating these commands by providing <code>yes</code> and <code>no</code> answers on standard input, this release will break your automation; you should run these commands interactively first to see what&rsquo;s changed.</strong> The details of what&rsquo;s changed are listed in the usual format below.</p>
@@ -185,7 +193,7 @@
 
 <h2>2021.01 and prior releases</h2>
 
-<p>Contact <a href="&#x6D;&#97;&#105;&#108;&#116;&#x6F;:&#104;&#x65;&#x6C;&#108;&#111;&#64;&#x73;r&#99;-&#98;&#105;&#110;&#x2E;&#99;&#x6F;&#x6D;">&#104;&#x65;&#x6C;&#108;&#111;&#64;&#x73;r&#99;-&#98;&#105;&#110;&#x2E;&#99;&#x6F;&#x6D;</a> for prior release notes.</p>
+<p>Contact <a href="&#109;&#x61;&#105;&#108;&#116;&#x6F;:&#104;&#x65;&#x6C;&#x6C;&#111;&#64;&#x73;&#x72;&#x63;&#x2D;&#x62;&#x69;&#110;&#x2E;&#x63;&#x6F;&#x6D;">&#104;&#x65;&#x6C;&#x6C;&#111;&#64;&#x73;&#x72;&#x63;&#x2D;&#x62;&#x69;&#110;&#x2E;&#x63;&#x6F;&#x6D;</a> for prior release notes.</p>
 
 <footer>
 <ul>

@@ -1,5 +1,11 @@
 # Substrate release notes
 
+<h2 id="2021.09.28">2021.09.28</h2>
+
+* Bug fix: Properly detect when Substrate tools are invoked via symbolic links (i.e. in their original `substrate-assume-role` form rather than their new `substrate assume-role` form) on MacOS.
+
+If you're upgrading from 2021.08, follow the upgrade instructions from 2021.09. If you already upgraded to 2021.09, there are no further upgrade steps.
+
 <h2 id="2021.09">2021.09</h2>
 
 This release changes the interactive interface to `substrate-bootstrap-network-account` and `substrate-create-admin-account` to make them easier to run in CI. **If you are automating these commands by providing `yes` and `no` answers on standard input, this release will break your automation; you should run these commands interactively first to see what's changed.** The details of what's changed are listed in the usual format below.
