@@ -1,0 +1,31 @@
+<!doctype HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+<link href="/css/2019-11-01.css" rel="stylesheet">
+<title>Source &amp; Binary / Offboarding users</title>
+</head>
+<body>
+<header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
+
+<h1>Offboarding users</h1>
+
+<p>The nice thing about having an IdP is that offboarding users from your Substrate-managed AWS organization doesn&rsquo;t have to involve a single additional step - just deactivate the users in your IdP and go on about your day.</p>
+
+<p>There are, however, a couple of things you might want to do to tidy up after someone leaves and loses access to AWS.</p>
+
+<ol>
+<li>Look for and (probably) terminate EC2 instances they provisioned from the Instance Factory by their email address: <code>xargs -I"<strong><em>" aws ec2 describe-instances --filters "Name=key-name,Values=<em>email-address</em>" --region "</em></strong>" &lt;"substrate.regions"</code></li>
+<li>Talk to their teammates to ensure all the infrastructure they were managing is owned and accounted for</li>
+<li>Rotate secrets they may have had access to and which may be used from the public Internet e.g. GitHub API tokens, IAM user access keys for integrations that don&rsquo;t support IAM roles</li>
+</ol>
+
+<footer>
+<ul>
+<li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
+<li><a href="/substrate/">Substrate</a>, <small>my suite of AWS management tools</small></li>
+</ul>
+<p>Copyright &copy; 2020-2021 &mdash; Source <span class="fancy">&amp;</span> Binary LLC</p>
+</footer>
+</body>
+</html>

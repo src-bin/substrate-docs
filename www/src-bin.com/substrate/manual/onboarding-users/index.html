@@ -1,0 +1,58 @@
+<!doctype HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+<link href="/css/2019-11-01.css" rel="stylesheet">
+<title>Source &amp; Binary / Onboarding users</title>
+</head>
+<body>
+<header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
+
+<h1>Onboarding users</h1>
+
+<p>When new folks join your company they&rsquo;re probably going to need access to AWS. Here&rsquo;s a quick guide for granting it, depending on which IdP you use.</p>
+
+<h2>Google Workspace</h2>
+
+<ol>
+<li>Visit <a href="https://admin.google.com/ac/users">https://admin.google.com/ac/users</a> (or visit <a href="https://admin.google.com">https://admin.google.com</a> and click <strong>Users</strong>)</li>
+<li>Click on the name of a user who already has access to AWS</li>
+<li>Click <strong>User information</strong></li>
+<li>Copy the value of <em>Role</em> from the <em>AWS</em> section</li>
+<li>Go back to the list of users by clicking <strong>Users</strong> in the breadcrumbs or left-side menu</li>
+<li>For each of your new folks:
+<ol>
+<li>Click the user&rsquo;s name</li>
+<li>Click <strong>User information</strong></li>
+<li>In the <em>AWS</em> section, click <strong>Add Role</strong> and paste the string you copied in step 4 above</li>
+<li>In the <em>AWS</em> section, click <strong>Add SessionDuration</strong> and enter &ldquo;43200&rdquo; (representing 12-hour maximum session duration in the AWS Console)</li>
+<li>Click <strong>SAVE</strong></li>
+</ol></li>
+</ol>
+
+<h2>Okta</h2>
+
+<ol>
+<li>Add the new folks to Okta per your usual onboarding process</li>
+<li>Open the configuration screen for your &ldquo;AWS Account Federation&rdquo; app</li>
+<li>Click <strong>Assign</strong> and then <strong>Assign to People</strong></li>
+<li>Select your new folks</li>
+<li>Click <strong>Next</strong></li>
+<li>For each one, choose the AWS IAM role(s) they&rsquo;re allowed to assume</li>
+<li>Click <strong>Assign</strong></li>
+<li>Open the configuration screen for your &ldquo;Intranet&rdquo; app</li>
+<li>Click the <strong>Assignments</strong> tab</li>
+<li>Click <strong>Assign</strong> and then <strong>Assign to People</strong></li>
+<li>Select your new folks</li>
+<li>Click <strong>Assign</strong></li>
+</ol>
+
+<footer>
+<ul>
+<li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
+<li><a href="/substrate/">Substrate</a>, <small>my suite of AWS management tools</small></li>
+</ul>
+<p>Copyright &copy; 2020-2021 &mdash; Source <span class="fancy">&amp;</span> Binary LLC</p>
+</footer>
+</body>
+</html>
