@@ -1,6 +1,6 @@
-# GSuite SAML setup
+# Google SAML setup
 
-These steps must be completed by a GSuite Super Admin. Be mindful, too, of which GSuite account you're using if you're signed into more than one in the same browser profile. Google has a habit of switching accounts when you least expect it.
+These steps must be completed by a Google Super Admin. Be mindful, too, of which Google account you're using if you're signed into more than one in the same browser profile. Google has a habit of switching accounts when you least expect it.
 
 1. Visit [https://admin.google.com/ac/customschema](https://admin.google.com/ac/customschema) in a browser (or visit [https://admin.google.com](https://admin.google.com), click **Users**, click **More**, and click **Manage custom attributes**)
 2. Click **ADD CUSTOM ATTRIBUTE**
@@ -37,6 +37,6 @@ Your authorized users can now access the AWS Console by finding _Amazon Web Serv
 
 ## References
 
-- Create and set custom attributes in GSuite: [https://support.google.com/a/answer/6208725?hl=en](https://support.google.com/a/answer/6208725?hl=en)
-- SAML apps backed by GSuite: [https://support.google.com/a/answer/6194963?hl=en](https://support.google.com/a/answer/6194963?hl=en)
+- Create and set custom attributes in Google: [https://support.google.com/a/answer/6208725?hl=en](https://support.google.com/a/answer/6208725?hl=en)
+- SAML apps backed by Google: [https://support.google.com/a/answer/6194963?hl=en](https://support.google.com/a/answer/6194963?hl=en)
 - Concerning the format of the custom attribute value for telling AWS what role to assume: [https://docs.aws.amazon.com/IAM/latest/UserGuide/id\_roles\_providers\_create\_saml\_assertions.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml_assertions.html)

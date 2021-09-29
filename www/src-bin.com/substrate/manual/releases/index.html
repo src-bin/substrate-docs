@@ -25,7 +25,7 @@
 <ul>
 <li>Move all Substrate commands into the <code>substrate</code> binary with symbolic links replacing the <code>substrate-*</code> binaries from previous releases. This can mostly be considered a no-op but note that now Substrate commands may be also be invoked as <code>substrate <em>subcommand</em></code>. This is not a deprecation notice for the original invocation style.</li>
 <li>Added <code>-fully-interactive</code>, <code>-minimally-interactive</code>, and <code>-non-interactive</code> to all Substrate commands. <code>-fully-interactive</code> is almost identical (see below) to the behavior of 2021.08 and earlier releases. <code>-minimally-interactive</code> is the new default and removes the incessant &ldquo;is this correct? (yes/no)&rdquo; dialogs, which I thought would be welcome but turned out to be annoying. <code>-non-interactive</code> will never prompt for input and will instead exit with a non-zero status if input is required.</li>
-<li>Changed the interactive prompts concerning GSuite and Okta configuration to make them less bothersome and (in the Okta case) less prone to unintentional changes. <strong>If you are automating <code>substrate-create-admin-account</code> by providing <code>yes</code> and <code>no</code> answers on standard input, this change will break your automation; you should run this command interactively first to see what&rsquo;s changed.</strong></li>
+<li>Changed the interactive prompts concerning Google and Okta configuration to make them less bothersome and (in the Okta case) less prone to unintentional changes. <strong>If you are automating <code>substrate-create-admin-account</code> by providing <code>yes</code> and <code>no</code> answers on standard input, this change will break your automation; you should run this command interactively first to see what&rsquo;s changed.</strong></li>
 <li>Added a confirmation to <code>substrate-create-admin-account</code> and <code>substrate-create-account</code> to prevent errant creation of new AWS accounts (which are tedious to delete in case creation was a mistake) plus a new <code>-create</code> option to suppress that confirmation.</li>
 <li>Updated the Substrate-managed Service Control Policy attached to your organization to deny access to the <code>cloudtrail:CreateTrail</code> API. Substrate creates a multi-region, organization-wide trail early in its initialization. This policy prevents additional trails from being created because they are excessively expensive and redundant.</li>
 <li>Added e-mail address columns to tables of AWS accounts in <code>substrate.accounts.txt</code>, <code>substrate-accounts</code>, and the Intranet&rsquo;s <code>/accounts</code> page.</li>
@@ -149,7 +149,7 @@
 <h2 id="2021.03">2021.03</h2>
 
 <ul>
-<li>Extended AWS Console sessions to 12 hours for organizations using GSuite as their IdP.</li>
+<li>Extended AWS Console sessions to 12 hours for organizations using Google as their IdP.</li>
 <li>Upgrade to and pin Terraform 0.14.7.</li>
 <li><code>substrate-bootstrap-network-account</code> now creates peering connections between all VPCs in all regions for each environment across all valid qualities.</li>
 <li>Fixed a bug in the <code>Administrator</code> role in admin accounts that prevented Instance Factory instances from seamlessly assuming the role.</li>
@@ -168,7 +168,7 @@
 <ol>
 <li><code>rm -f -r root-modules/network/*/peering</code> and remove these files from version control.</li>
 <li><code>substrate-bootstrap-network-account</code> to peer all your VPCs that should be peered.</li>
-<li><code>substrate-create-admin-account -quality="..."</code> to fix Instance Factory IAM roles, following the <a href="https://src-bin.com/substrate/manual/getting-started/gsuite-saml/">GSuite SAML setup</a> guide if GSuite is your IdP to also get 12-hour AWS Console sessions.</li>
+<li><code>substrate-create-admin-account -quality="..."</code> to fix Instance Factory IAM roles, following the <a href="https://src-bin.com/substrate/manual/getting-started/google-saml/">Google SAML setup</a> guide if Google is your IdP to also get 12-hour AWS Console sessions.</li>
 </ol>
 
 <h2 id="2021.02">2021.02</h2>
@@ -193,7 +193,7 @@
 
 <h2>2021.01 and prior releases</h2>
 
-<p>Contact <a href="&#x6D;&#97;i&#x6C;t&#111;:&#x68;&#x65;&#108;&#108;&#111;&#64;&#115;&#x72;&#99;&#45;&#x62;&#105;&#x6E;&#x2E;&#99;&#111;&#109;">&#x68;&#x65;&#108;&#108;&#111;&#64;&#115;&#x72;&#99;&#45;&#x62;&#105;&#x6E;&#x2E;&#99;&#111;&#109;</a> for prior release notes.</p>
+<p>Contact <a href="&#109;&#97;&#105;&#108;&#116;&#x6F;:&#x68;&#x65;&#x6C;&#108;&#x6F;&#64;&#115;&#114;&#x63;&#45;&#98;&#105;&#110;&#x2E;&#x63;&#x6F;&#109;">&#x68;&#x65;&#x6C;&#108;&#x6F;&#64;&#115;&#114;&#x63;&#45;&#98;&#105;&#110;&#x2E;&#x63;&#x6F;&#109;</a> for prior release notes.</p>
 
 <footer>
 <ul>

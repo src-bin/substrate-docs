@@ -12,7 +12,7 @@ This release changes the interactive interface to `substrate-bootstrap-network-a
 
 * Move all Substrate commands into the `substrate` binary with symbolic links replacing the `substrate-*` binaries from previous releases. This can mostly be considered a no-op but note that now Substrate commands may be also be invoked as <code>substrate <em>subcommand</em></code>. This is not a deprecation notice for the original invocation style.
 * Added `-fully-interactive`, `-minimally-interactive`, and `-non-interactive` to all Substrate commands. `-fully-interactive` is almost identical (see below) to the behavior of 2021.08 and earlier releases. `-minimally-interactive` is the new default and removes the incessant &ldquo;is this correct? (yes/no)&rdquo; dialogs, which I thought would be welcome but turned out to be annoying. `-non-interactive` will never prompt for input and will instead exit with a non-zero status if input is required.
-* Changed the interactive prompts concerning GSuite and Okta configuration to make them less bothersome and (in the Okta case) less prone to unintentional changes. **If you are automating `substrate-create-admin-account` by providing `yes` and `no` answers on standard input, this change will break your automation; you should run this command interactively first to see what's changed.**
+* Changed the interactive prompts concerning Google and Okta configuration to make them less bothersome and (in the Okta case) less prone to unintentional changes. **If you are automating `substrate-create-admin-account` by providing `yes` and `no` answers on standard input, this change will break your automation; you should run this command interactively first to see what's changed.**
 * Added a confirmation to `substrate-create-admin-account` and `substrate-create-account` to prevent errant creation of new AWS accounts (which are tedious to delete in case creation was a mistake) plus a new `-create` option to suppress that confirmation.
 * Updated the Substrate-managed Service Control Policy attached to your organization to deny access to the `cloudtrail:CreateTrail` API. Substrate creates a multi-region, organization-wide trail early in its initialization. This policy prevents additional trails from being created because they are excessively expensive and redundant.
 * Added e-mail address columns to tables of AWS accounts in `substrate.accounts.txt`, `substrate-accounts`, and the Intranet's `/accounts` page.
@@ -110,7 +110,7 @@ After upgrading, run `substrate-create-admin-account -quality="..."` to add `/ac
 
 <h2 id="2021.03">2021.03</h2>
 
-* Extended AWS Console sessions to 12 hours for organizations using GSuite as their IdP.
+* Extended AWS Console sessions to 12 hours for organizations using Google as their IdP.
 * Upgrade to and pin Terraform 0.14.7.
 * `substrate-bootstrap-network-account` now creates peering connections between all VPCs in all regions for each environment across all valid qualities.
 * Fixed a bug in the `Administrator` role in admin accounts that prevented Instance Factory instances from seamlessly assuming the role.
@@ -125,7 +125,7 @@ After upgrading:
 
 1. `rm -f -r root-modules/network/*/peering` and remove these files from version control.
 2. `substrate-bootstrap-network-account` to peer all your VPCs that should be peered.
-3. `substrate-create-admin-account -quality="..."` to fix Instance Factory IAM roles, following the [GSuite SAML setup](https://src-bin.com/substrate/manual/getting-started/gsuite-saml/) guide if GSuite is your IdP to also get 12-hour AWS Console sessions.
+3. `substrate-create-admin-account -quality="..."` to fix Instance Factory IAM roles, following the [Google SAML setup](https://src-bin.com/substrate/manual/getting-started/google-saml/) guide if Google is your IdP to also get 12-hour AWS Console sessions.
 
 <h2 id="2021.02">2021.02</h2>
 

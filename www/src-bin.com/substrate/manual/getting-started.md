@@ -49,7 +49,7 @@ Decide and change to that directory before proceeding.
 
 Substrate is designed to manage your entire AWS organization. As such it is highly recommended that you start using Substrate in a brand new AWS account. Later you'll have opportunities to bring preexisting AWS accounts into the fold.
 
-You should strongly consider creating a mailing list or alias like <aws@example.com> to own your AWS organization as it provides your company flexibility later as personnel and roles change. If you're using GSuite and Google Groups, ensure that your group allows _External_ users to _Publish posts_.
+You should strongly consider creating a mailing list or alias like <aws@example.com> to own your AWS organization as it provides your company flexibility later as personnel and roles change. If you're using Google Groups, ensure that your group allows _External_ users to _Publish posts_.
 
 Visit [https://portal.aws.amazon.com/billing/signup](https://portal.aws.amazon.com/billing/signup#/start) to begin. Sign up for a new account, provide payment information, and verify your phone number. This account will remain nearly devoid of activity once the rest of the Substrate organization is configured.
 
@@ -111,11 +111,11 @@ When this program exits, you should commit `root-modules/deploy/` to version con
 
 ## Creating your first admin account
 
-### Sign up for GSuite or Okta
+### Sign up for Google Workspace or Okta
 
-You'll need an identity provider to broker access to the AWS Console and to Intranet tools (some of which Substrate brings but others which you may eventually develop yourself). Substrate supports [GSuite](https://gsuite.google.com) and [Okta](https://www.okta.com). Which one should you choose?
+You'll need an identity provider to broker access to the AWS Console and to Intranet tools (some of which Substrate brings but others which you may eventually develop yourself). Substrate supports [Google Workspace](https://workspace.google.com) and [Okta](https://www.okta.com). Which one should you choose?
 
-Your organization probably already uses GSuite to host your mail and calendars. Why not use it to broker access to the AWS Console and your Intranet? It's perfectly capable. You'll find, however, that Okta's strength is in scale. In GSuite, each user that's granted access to the AWS Console must have a specific and very long string attached to a custom attribute in their account. Okta's integration with AWS IAM roles is much better when you're managing even dozens of users.
+Your organization probably already uses Google to host your mail and calendars. Why not use it to broker access to the AWS Console and your Intranet? It's perfectly capable. You'll find, however, that Okta's strength is in scale. In Google Workspace, each user that's granted access to the AWS Console must have a specific and very long string attached to a custom attribute in their account. Okta's integration with AWS IAM roles is much better when you're managing even dozens of users.
 
 Feel free to try them both. Whichever you choose, take comfort in knowing your decision isn't permanent. You can switch an admin account from one to the other by re-running the command in the next section and answering the prompts differently.
 
@@ -125,7 +125,7 @@ As is the custom, you'll be prompted for input, this time mostly concerning your
 
 You'll be prompted for SAML metadata XML from Google or Okta which will be used to authenticate and authorize AWS Console access.
 
-- [GSuite SAML setup](/substrate/manual/getting-started/gsuite-saml/)
+- [Google SAML setup](/substrate/manual/getting-started/google-saml/)
 - [Okta SAML setup](/substrate/manual/getting-started/okta-saml/)
 
 After the account is created and integrated with your identity provider, this program will create and configure an Intranet hosted in AWS API Gateway and Lambda.
@@ -141,7 +141,7 @@ When this program exits, you should commit `substrate.*`, `root-modules/admin/de
 
 You can now access the AWS Console as follows:
 
-- For GSuite users: Click **Amazon Web Services** in the grid menu in the top right corner of any Google page
+- For Google users: Click **Amazon Web Services** in the grid menu in the top right corner of any Google page
 - For Okta users: Click **AWS Account Federation** in your Okta tiles
 
 ### Using the Credential Factory

@@ -1,6 +1,6 @@
 # Google OAuth OIDC setup
 
-Be mindful of which GSuite account you're using throughout this process if you're signed into more than one in the same browser profile. Google has a habit of switching accounts when you least expect it.
+Be mindful of which Google account you're using throughout this process if you're signed into more than one in the same browser profile. Google has a habit of switching accounts when you least expect it.
 
 1. Visit [https://console.developers.google.com/](https://console.developers.google.com/) in a browser
 2. Click **CREATE PROJECT**
