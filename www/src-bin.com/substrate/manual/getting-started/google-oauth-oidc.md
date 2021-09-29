@@ -7,17 +7,17 @@ Be mindful of which GSuite account you're using throughout this process if you'r
 3. Name the project and, optionally, put it in an organization (but don't worry if you can't put it in an organization, because everything still works without one)
 4. Click **CREATE**
 5. Click **OAuth consent screen**
-6. Select "Internal"
+6. Select &ldquo;Internal&rdquo;
 7. Click **CREATE**
-8. Enter "Intranet" for _Application name_
+8. Enter &ldquo;Intranet&rdquo; for _Application name_
 9. Enter your intranet DNS domain name in _Authorized domains_
 10. Click **Save**
 11. Click **Credentials** in the left column
 12. Click **CREATE CREDENTIALS** and then **OAuth client ID** in the expanded menu
-13. Select "Web application" for _Application type_
+13. Select &ldquo;Web application&rdquo; for _Application type_
 14. Enter a _Name_, if desired
 15. Click **ADD URI** in the _Authorized redirect URIs_ section
-16. Enter "[https://example.com/login](https://example.com/login)" (substituting your intranet DNS domain name)
+16. Enter &ldquo;[https://example.com/login](https://example.com/login)&rdquo; (substituting your intranet DNS domain name)
 17. Click **CREATE**
 18. Use the credentials to respond to `substrate-create-admin-account`'s prompts
 

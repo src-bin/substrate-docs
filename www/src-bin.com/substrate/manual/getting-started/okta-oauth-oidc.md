@@ -7,7 +7,7 @@
 5. Click **Next**
 6. Customize _Name_
 7. Remove all _Base URIs_
-8. Change the first/only item in _Login redirect URIs_ to "[https://example.com/login](https://example.com/login)" (substituting your intranet DNS domain name)
+8. Change the first/only item in _Login redirect URIs_ to &ldquo;[https://example.com/login](https://example.com/login)&rdquo; (substituting your intranet DNS domain name)
 9. Remove all _Logout redirect URIs_
 10. Click **Done**
 11. Paste the _Client ID_ and _Client secret_ in response to `substrate-create-admin-account`'s prompts

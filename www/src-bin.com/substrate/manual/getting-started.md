@@ -119,7 +119,7 @@ Your organization probably already uses GSuite to host your mail and calendars. 
 
 Feel free to try them both. Whichever you choose, take comfort in knowing your decision isn't permanent. You can switch an admin account from one to the other by re-running the command in the next section and answering the prompts differently.
 
-### `substrate-create-admin-account -quality="alpha"`
+### `substrate-create-admin-account -quality="default"`
 
 As is the custom, you'll be prompted for input, this time mostly concerning your identity provider.
 
@@ -137,7 +137,7 @@ We'll use [example.com](http://example.com) as a placeholder for this domain thr
 - [Google OAuth OIDC setup](/substrate/manual/getting-started/google-oauth-oidc/)
 - [Okta OAuth OIDC setup](/substrate/manual/getting-started/okta-oauth-oidc/)
 
-When this program exits, you should commit `substrate.*`, `root-modules/admin/alpha`, and `modules` to version control. It is safe to re-run this program at any time. It is also safe to have multiple admin accounts of various qualities.
+When this program exits, you should commit `substrate.*`, `root-modules/admin/default`, and `modules` to version control. It is safe to re-run this program at any time. It is also safe to have multiple admin accounts of various qualities.
 
 You can now access the AWS Console as follows:
 
@@ -169,7 +169,7 @@ From now on, the Credential and Instance Factories are how you access your organ
 
 If you're like most modern teams, the vast majority of your development work is happening on folks' laptops. Thus, it probably makes the most sense for the first cloud infrastructure to be something more like a staging environment for a service which demands high reliability.
 
-### `substrate-create-account -domain="..." -environment="staging" -quality="alpha"`
+### `substrate-create-account -domain="..." -environment="staging" -quality="default"`
 
 This is the first of probably many accounts that'll be created in your organization. This command creates an empty root Terraform module that's ready to hold whatever you need it to. Here, for the first time, you're being asked to name a domain, as well as an environment and quality. A domain is a collection of one or more applications/services, often owned by the same group of people, that run in an AWS account of their own to protect them from changes in other domains.
 

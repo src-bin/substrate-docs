@@ -26,11 +26,11 @@ An AWS account in your organization is associated with exactly one quality but c
 
 ### Example
 
-Suppose your organization defined the qualities _alpha_, _beta_, and _gamma_ (which are what Substrate recommends). You could run 1% of your production environment in your alpha accounts, 9% in your beta accounts, and the remaining 90% in your gamma accounts. This isn't as smooth as routing a slowly increasing percentage of traffic to your new software as it's being deployed (and you should strongly consider doing that, too) but this strategy works even for AWS resources like load balancers and security groups.
+Suppose your organization defined the qualities _alpha_, _beta_, and _gamma_ (which is one set of qualities that Substrate recommends). You could run 1% of your production environment in your alpha accounts, 9% in your beta accounts, and the remaining 90% in your gamma accounts. This isn't as smooth as routing a slowly increasing percentage of traffic to your new software as it's being deployed (and you should strongly consider doing that, too) but this strategy works even for AWS resources like load balancers and security groups.
 
 You could also decide to name your qualities _blue_ and _green_ and swing traffic back and forth between them. The slight disadvantage to this architecture is that the one that's not receiving any traffic is not, at that moment, proving that its configuration is functional and thus the first trickle of traffic that comes to it when you start to swing back to it is slightly higher risk.
 
-You could also decide to name your only quality _default_. Later, when you need it, you can add a _canary_ quality that your deploy to first and that takes a small fraction of your traffic. You might also add an _enterprise_ quality that you deploy to last where your highest-paying or most-risk-averse customers are routed.
+You could also decide to name your only quality _default_. Later, when you need it, you can add a _canary_ quality that your deploy to first and that takes a small fraction of your traffic. You might also add an _enterprise_ or _proven_ quality that you deploy to last where your highest-paying or most-risk-averse customers are routed.
 
 ## Domains
 
