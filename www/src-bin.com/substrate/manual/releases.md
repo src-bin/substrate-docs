@@ -1,5 +1,21 @@
 # Substrate release notes
 
+<h2 id="2021.10">2021.10</h2>
+
+* The Intranet's `/accounts` page now logs you into the AWS Console and assumes the specified role without requiring you to have already been logged in.
+* The `-console` option to `substrate-assume-role` likewise now logs into the AWS Console and assumes the specified role without requiring you to have already been logged in.
+* Auditor roles can now assume other Auditor roles, making it possible for Auditor to move throughout the organization while retaining its read-only status.
+* The lists of principals that can assume the `Administrator` and `Auditor` roles may now be augmented by adding a JSON-encoded assume role policy in `substrate.Administrator.assume-role-policy.json` and/or `substrate.Auditor.assume-role-policy.json`.
+* Enforce the use of IMDSv2 on instances from the Instance Factory. This is a prerequisite for organization-wide enforcement of using IMDSv2, which is an important default that reduces the potential impact of SSRF vulnerabilities.
+* `substrate-whoami` output now also includes your IAM role ARN.
+* Prompt folks to `cd` or set `SUBSTRATE_ROOT` when they try to `eval $(substrate-credentials)` from outside the Substrate repository.
+* Allow all accounts in the organization, not just admin accounts, to read shared CloudWatch metrics.
+* Added experimental `modules/intranet/regional/proxy` that makes it easy to put SSO in front of internal websites and HTTP APIs. See [protecting internal websites](../protecting-internal-websites/) for more information and an example.
+* Bug fix: Grant `s3:PutObjectAcl` so that it's possible for all authorized principals to upload objects with the `bucket-owner-full-control` canned ACL.
+* Bug fix: Extract `substrate-intranet.zip` from the `substrate` binary during Terraform runs in `root-modules/admin/*/*` instead of only during `substrate-create-admin-account`. This makes it far less painful for mulitple teammates to work in the same Substrate repository and for CI/CD systems to apply Terraform changes.
+* Bug fix: Prevent a race between VPC sharing and tagging that caused `substrate-create-admin-account` and `substrate-create-account` to fail every time they were used to actually create an account.
+* Added `-no-cloudwatch` to `substrate-bootstrap-management-account`, `substrate-create-admin-account`, and `substrate-create-account` that skips the slow process of managing all the roles necessary for cross-account CloudWatch sharing. (Useful if you're certain you've not created a new account and you're in a hurry.)
+
 <h2 id="2021.09.28">2021.09.28</h2>
 
 * Bug fix: Properly detect when Substrate tools are invoked via symbolic links (i.e. in their original `substrate-assume-role` form rather than their new `substrate assume-role` form) on MacOS.

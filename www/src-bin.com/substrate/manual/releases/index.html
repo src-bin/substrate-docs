@@ -10,6 +10,24 @@
 
 <h1>Substrate release notes</h1>
 
+<h2 id="2021.10">2021.10</h2>
+
+<ul>
+<li>The Intranet&rsquo;s <code>/accounts</code> page now logs you into the AWS Console and assumes the specified role without requiring you to have already been logged in.</li>
+<li>The <code>-console</code> option to <code>substrate-assume-role</code> likewise now logs into the AWS Console and assumes the specified role without requiring you to have already been logged in.</li>
+<li>Auditor roles can now assume other Auditor roles, making it possible for Auditor to move throughout the organization while retaining its read-only status.</li>
+<li>The lists of principals that can assume the <code>Administrator</code> and <code>Auditor</code> roles may now be augmented by adding a JSON-encoded assume role policy in <code>substrate.Administrator.assume-role-policy.json</code> and/or <code>substrate.Auditor.assume-role-policy.json</code>.</li>
+<li>Enforce the use of IMDSv2 on instances from the Instance Factory. This is a prerequisite for organization-wide enforcement of using IMDSv2, which is an important default that reduces the potential impact of SSRF vulnerabilities.</li>
+<li><code>substrate-whoami</code> output now also includes your IAM role ARN.</li>
+<li>Prompt folks to <code>cd</code> or set <code>SUBSTRATE_ROOT</code> when they try to <code>eval $(substrate-credentials)</code> from outside the Substrate repository.</li>
+<li>Allow all accounts in the organization, not just admin accounts, to read shared CloudWatch metrics.</li>
+<li>Added experimental <code>modules/intranet/regional/proxy</code> that makes it easy to put SSO in front of internal websites and HTTP APIs. See <a href="../protecting-internal-websites/">protecting internal websites</a> for more information and an example.</li>
+<li>Bug fix: Grant <code>s3:PutObjectAcl</code> so that it&rsquo;s possible for all authorized principals to upload objects with the <code>bucket-owner-full-control</code> canned ACL.</li>
+<li>Bug fix: Extract <code>substrate-intranet.zip</code> from the <code>substrate</code> binary during Terraform runs in <code>root-modules/admin/*/*</code> instead of only during <code>substrate-create-admin-account</code>. This makes it far less painful for mulitple teammates to work in the same Substrate repository and for CI/CD systems to apply Terraform changes.</li>
+<li>Bug fix: Prevent a race between VPC sharing and tagging that caused <code>substrate-create-admin-account</code> and <code>substrate-create-account</code> to fail every time they were used to actually create an account.</li>
+<li>Added <code>-no-cloudwatch</code> to <code>substrate-bootstrap-management-account</code>, <code>substrate-create-admin-account</code>, and <code>substrate-create-account</code> that skips the slow process of managing all the roles necessary for cross-account CloudWatch sharing. (Useful if you&rsquo;re certain you&rsquo;ve not created a new account and you&rsquo;re in a hurry.)</li>
+</ul>
+
 <h2 id="2021.09.28">2021.09.28</h2>
 
 <ul>
@@ -193,7 +211,7 @@
 
 <h2>2021.01 and prior releases</h2>
 
-<p>Contact <a href="&#109;&#x61;&#x69;&#x6C;&#x74;&#x6F;:&#104;&#x65;&#108;&#108;&#x6F;&#64;&#x73;&#114;&#x63;&#x2D;&#98;&#x69;n.&#x63;&#111;&#109;">&#104;&#x65;&#108;&#108;&#x6F;&#64;&#x73;&#114;&#x63;&#x2D;&#98;&#x69;n.&#x63;&#111;&#109;</a> for prior release notes.</p>
+<p>Contact <a href="&#109;&#x61;&#x69;l&#x74;&#x6F;:&#x68;&#101;&#x6C;&#x6C;&#111;&#64;&#115;&#114;&#x63;&#45;&#x62;&#105;&#x6E;&#46;&#99;&#111;&#x6D;">&#x68;&#101;&#x6C;&#x6C;&#111;&#64;&#115;&#114;&#x63;&#45;&#x62;&#105;&#x6E;&#46;&#99;&#111;&#x6D;</a> for prior release notes.</p>
 
 <footer>
 <ul>

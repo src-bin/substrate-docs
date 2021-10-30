@@ -123,16 +123,18 @@ Feel free to try them both. Whichever you choose, take comfort in knowing your d
 
 As is the custom, you'll be prompted for input, this time mostly concerning your identity provider.
 
+<!--
 You'll be prompted for SAML metadata XML from Google or Okta which will be used to authenticate and authorize AWS Console access.
 
 - [Google SAML setup](/substrate/manual/getting-started/google-saml/)
 - [Okta SAML setup](/substrate/manual/getting-started/okta-saml/)
+-->
 
-After the account is created and integrated with your identity provider, this program will create and configure an Intranet hosted in AWS API Gateway and Lambda.
+After the account is created<!-- and integrated with your identity provider-->, this program will create and configure an Intranet hosted in AWS API Gateway and Lambda.
 
-You'll be prompted to buy or transfer a DNS domain name or delegate a DNS zone from elsewhere into this new account. If you're at a loss for inspiration, consider using your company's name with the `.company` or `.tools` TLD.  Note well: The domain must end up owned by or delegated to the admin account being created by this step. Be sure to respond to the emails sent by Route 53 to avoid your domain being suspended in a few days.
+You'll be prompted to buy or transfer a DNS domain name or delegate a DNS zone from elsewhere into this new account. If you're at a loss for inspiration, consider using your company's name with the `.company` or `.tools` TLD.  Note well: The domain must end up owned by or delegated to the admin account being created by this step. **Be sure to respond to the emails sent by Route 53 (which Google often flags as suspicious) to avoid your domain being suspended in a few days.**
 
-We'll use [example.com](http://example.com) as a placeholder for this domain throughout the rest of this guide. With that domain in hand, this program configures API Gateway and Lambda to serve authenticated and authorized web pages that serve up short-lived administrative AWS credentials and on-demand administrative EC2 instances. You'll be prompted for OAuth OIDC credentials from your identity provider, which can be created as follows:
+We'll use [example.com](http://example.com) as a placeholder for this domain throughout the rest of this guide. With that domain in hand, this program configures API Gateway and Lambda to serve authenticated and authorized web pages that serve up short-lived administrative AWS credentials, on-demand EC2 instances, and access to the AWS Console. You'll be prompted for OAuth OIDC credentials from your identity provider, which can be created as follows:
 
 - [Google OAuth OIDC setup](/substrate/manual/getting-started/google-oauth-oidc/)
 - [Okta OAuth OIDC setup](/substrate/manual/getting-started/okta-oauth-oidc/)
@@ -211,7 +213,8 @@ To allow your admin accounts to access this legacy account, proceed:
               "Effect": "Allow",
               "Principal": {
                 "AWS": [
-                  "arn:aws:iam::ADMIN_ACCOUNT_NUMBER:role/Administrator"
+                  "arn:aws:iam::ADMIN_ACCOUNT_NUMBER:role/Administrator",
+                  "arn:aws:iam::ADMIN_ACCOUNT_NUMBER:role/Intranet"
                 ]
               },
               "Action": "sts:AssumeRole"
