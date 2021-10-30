@@ -16,6 +16,11 @@
 * Bug fix: Prevent a race between VPC sharing and tagging that caused `substrate-create-admin-account` and `substrate-create-account` to fail every time they were used to actually create an account.
 * Added `-no-cloudwatch` to `substrate-bootstrap-management-account`, `substrate-create-admin-account`, and `substrate-create-account` that skips the slow process of managing all the roles necessary for cross-account CloudWatch sharing. (Useful if you're certain you've not created a new account and you're in a hurry.)
 
+After upgrading Substrate:
+
+1. Run `substrate-bootstrap-deploy-account` to fix the bucket policy so that all authorized principals in the organization can upload to the deploy artifact bucket(s).
+1. Run `substrate-create-admin-account -quality="..."` to upgrade your Intranet and Auditor roles. Note well this will produce a fair number of new resources; this is step one in a multi-month process of brining some naming consistency to Substrate-managed resources in IAM, Lambda, and other AWS services.
+
 <h2 id="2021.09.28">2021.09.28</h2>
 
 * Bug fix: Properly detect when Substrate tools are invoked via symbolic links (i.e. in their original `substrate-assume-role` form rather than their new `substrate assume-role` form) on MacOS.
