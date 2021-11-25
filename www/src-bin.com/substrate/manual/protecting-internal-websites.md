@@ -102,3 +102,5 @@ When the Intranet passes a request to a Lambda function as an event, the identit
 That same identity is made available to internal websites in the `X-Substrate-Intranet-Proxy-Principal` header.
 
 In most cases, the principal is given as an email address though its exact format depends on your identity provider and its configuration.
+
+Jenkins users can use the [Reverse Proxy Auth Plugin](https://plugins.jenkins.io/reverse-proxy-auth-plugin/) to accept the `X-Substrate-Intranet-Proxy-Principal` header. If you take this path you _must_ set both Header User Name and Header Groups Name to `X-Substrate-Intranet-Proxy-Principal` to avoid introducing a security vulnerability and you must be OK with not being able to use Jenkins groups in any meaningful sense.

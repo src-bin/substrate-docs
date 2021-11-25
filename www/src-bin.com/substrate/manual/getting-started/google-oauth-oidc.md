@@ -1,6 +1,17 @@
 # Google OAuth OIDC setup
 
-Be mindful of which Google account you're using throughout this process if you're signed into more than one in the same browser profile. Google has a habit of switching accounts when you least expect it.
+These steps must be completed by a Google Super Admin. Be mindful, too, of which Google account you're using if you're signed into more than one in the same browser profile. Google has a habit of switching accounts when you least expect it.
+
+## Create a custom schema for assigning IAM roles to Google users
+
+1. Visit [https://admin.google.com/ac/customschema](https://admin.google.com/ac/customschema) in a browser (or visit [https://admin.google.com](https://admin.google.com), click **Users**, click **More**, and click **Manage custom attributes**)
+2. Click **ADD CUSTOM ATTRIBUTE**
+3. Enter &ldquo;AWS&rdquo; for _Category_
+4. Under _Custom fields_, enter &ldquo;Role&rdquo; for _Name_, select &ldquo;Text&rdquo; for _Info type_, select &ldquo;Visible to user and admin&rdquo; for _Visibility_, select &ldquo;Single Value&rdquo; for _No. of values_
+5. In the new row that's appeared, enter &ldquo;SessionDuration&rdquo; for _Name_, select &ldquo;Whole Number&rdquo; for _Info type_, select &ldquo;Visible to user and admin&rdquo; for _Visibility_, select &ldquo;Single Value&rdquo; for _No. of values_
+6. Click **ADD**
+
+## Create and configure an OAuth OIDC client
 
 1. Visit [https://console.developers.google.com/](https://console.developers.google.com/) in a browser
 2. Click **CREATE PROJECT**
@@ -20,6 +31,9 @@ Be mindful of which Google account you're using throughout this process if you'r
 16. Enter &ldquo;[https://example.com/login](https://example.com/login)&rdquo; (substituting your intranet DNS domain name)
 17. Click **CREATE**
 18. Use the credentials to respond to `substrate-create-admin-account`'s prompts
+19. Visit [https://console.cloud.google.com/apis/library/admin.googleapis.com](https://console.cloud.google.com/apis/library/admin.googleapis.com) in a browser
+20. Confirm the project you created a moment ago is selected (its name will be listed next to "Google Cloud Platform" in the header)
+21. Click **ENABLE**
 
 ## References
 

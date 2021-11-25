@@ -1,5 +1,20 @@
 # Substrate release notes
 
+<h2 id="2021.11">2021.11</h2>
+
+* New installations no longer configure a SAML provider. Instead, all AWS API and Console access is brokered by OAuth OIDC and your Intranet. Existing SAML providers are not removed.
+* For those using Google as their IdP, read the name of the role to assume in the Credential and Instance Factories and the AWS Console from custom attributes on Google Workspace users. (For Okta users, Administrator is still the default.)
+* Forward `Cookie` headers to HTTP(S) services wired into the Intranet by the experimental new `modules/intranet/regional/proxy` module. The theoretical security benefit of not exposing raw cookies (and instead exposing identity) is not remotely worth the loss in functionality it cost.
+* Reduce the chance of Intranet misconfiguration by limiting which API Gateways can forward to the `substrate-intranet` Lambda function.
+* Bug fix: The links to other parts of the Intranet from the page that `substrate-credentials` opens in your browser are relative links and were missing the `../` prefix, which has now been added.
+* Removed version pinning of the long-unused Terraform `archive` provider.
+* Removed `-no-cloudwatch` from `substrate-bootstrap-management-account`, `substrate-create-admin-account`, and `substrate-create-account` in favor of just actually detecting when it's necessary and not doing it when it's not.
+
+After upgrading Substrate:
+
+1. If you're using Google as your IdP, visit <https://console.cloud.google.com/apis/library/admin.googleapis.com> and click **ENABLE**.
+2. Run `substrate-create-admin-account -quality="..."` to upgrade your Intranet.
+
 <h2 id="2021.10">2021.10</h2>
 
 * The Intranet's `/accounts` page now logs you into the AWS Console and assumes the specified role without requiring you to have already been logged in.

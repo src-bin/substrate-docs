@@ -10,4 +10,4 @@
 8. Change the first/only item in _Login redirect URIs_ to &ldquo;[https://example.com/login](https://example.com/login)&rdquo; (substituting your intranet DNS domain name)
 9. Remove all _Logout redirect URIs_
 10. Click **Done**
-11. Paste the _Client ID_ and _Client secret_ in response to `substrate-create-admin-account`'s prompts
+11. Paste the _Client ID_, _Client secret_, and _Okta hostname_ in response to `substrate-create-admin-account`'s prompts

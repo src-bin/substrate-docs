@@ -10,7 +10,20 @@
 
 <h1>Google OAuth OIDC setup</h1>
 
-<p>Be mindful of which Google account you&rsquo;re using throughout this process if you&rsquo;re signed into more than one in the same browser profile. Google has a habit of switching accounts when you least expect it.</p>
+<p>These steps must be completed by a Google Super Admin. Be mindful, too, of which Google account you&rsquo;re using if you&rsquo;re signed into more than one in the same browser profile. Google has a habit of switching accounts when you least expect it.</p>
+
+<h2>Create a custom schema for assigning IAM roles to Google users</h2>
+
+<ol>
+<li>Visit <a href="https://admin.google.com/ac/customschema">https://admin.google.com/ac/customschema</a> in a browser (or visit <a href="https://admin.google.com">https://admin.google.com</a>, click <strong>Users</strong>, click <strong>More</strong>, and click <strong>Manage custom attributes</strong>)</li>
+<li>Click <strong>ADD CUSTOM ATTRIBUTE</strong></li>
+<li>Enter &ldquo;AWS&rdquo; for <em>Category</em></li>
+<li>Under <em>Custom fields</em>, enter &ldquo;Role&rdquo; for <em>Name</em>, select &ldquo;Text&rdquo; for <em>Info type</em>, select &ldquo;Visible to user and admin&rdquo; for <em>Visibility</em>, select &ldquo;Single Value&rdquo; for <em>No. of values</em></li>
+<li>In the new row that&rsquo;s appeared, enter &ldquo;SessionDuration&rdquo; for <em>Name</em>, select &ldquo;Whole Number&rdquo; for <em>Info type</em>, select &ldquo;Visible to user and admin&rdquo; for <em>Visibility</em>, select &ldquo;Single Value&rdquo; for <em>No. of values</em></li>
+<li>Click <strong>ADD</strong></li>
+</ol>
+
+<h2>Create and configure an OAuth OIDC client</h2>
 
 <ol>
 <li>Visit <a href="https://console.developers.google.com/">https://console.developers.google.com/</a> in a browser</li>
@@ -31,6 +44,9 @@
 <li>Enter &ldquo;<a href="https://example.com/login">https://example.com/login</a>&rdquo; (substituting your intranet DNS domain name)</li>
 <li>Click <strong>CREATE</strong></li>
 <li>Use the credentials to respond to <code>substrate-create-admin-account</code>&rsquo;s prompts</li>
+<li>Visit <a href="https://console.cloud.google.com/apis/library/admin.googleapis.com">https://console.cloud.google.com/apis/library/admin.googleapis.com</a> in a browser</li>
+<li>Confirm the project you created a moment ago is selected (its name will be listed next to "Google Cloud Platform" in the header)</li>
+<li>Click <strong>ENABLE</strong></li>
 </ol>
 
 <h2>References</h2>

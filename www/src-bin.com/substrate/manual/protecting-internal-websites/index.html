@@ -113,6 +113,8 @@ module "proxy-example" {
 
 <p>In most cases, the principal is given as an email address though its exact format depends on your identity provider and its configuration.</p>
 
+<p>Jenkins users can use the <a href="https://plugins.jenkins.io/reverse-proxy-auth-plugin/">Reverse Proxy Auth Plugin</a> to accept the <code>X-Substrate-Intranet-Proxy-Principal</code> header. If you take this path you <em>must</em> set both Header User Name and Header Groups Name to <code>X-Substrate-Intranet-Proxy-Principal</code> to avoid introducing a security vulnerability and you must be OK with not being able to use Jenkins groups in any meaningful sense.</p>
+
 <footer>
 <ul>
 <li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>

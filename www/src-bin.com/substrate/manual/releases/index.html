@@ -10,6 +10,25 @@
 
 <h1>Substrate release notes</h1>
 
+<h2 id="2021.11">2021.11</h2>
+
+<ul>
+<li>New installations no longer configure a SAML provider. Instead, all AWS API and Console access is brokered by OAuth OIDC and your Intranet. Existing SAML providers are not removed.</li>
+<li>For those using Google as their IdP, read the name of the role to assume in the Credential and Instance Factories and the AWS Console from custom attributes on Google Workspace users. (For Okta users, Administrator is still the default.)</li>
+<li>Forward <code>Cookie</code> headers to HTTP(S) services wired into the Intranet by the experimental new <code>modules/intranet/regional/proxy</code> module. The theoretical security benefit of not exposing raw cookies (and instead exposing identity) is not remotely worth the loss in functionality it cost.</li>
+<li>Reduce the chance of Intranet misconfiguration by limiting which API Gateways can forward to the <code>substrate-intranet</code> Lambda function.</li>
+<li>Bug fix: The links to other parts of the Intranet from the page that <code>substrate-credentials</code> opens in your browser are relative links and were missing the <code>../</code> prefix, which has now been added.</li>
+<li>Removed version pinning of the long-unused Terraform <code>archive</code> provider.</li>
+<li>Removed <code>-no-cloudwatch</code> from <code>substrate-bootstrap-management-account</code>, <code>substrate-create-admin-account</code>, and <code>substrate-create-account</code> in favor of just actually detecting when it&rsquo;s necessary and not doing it when it&rsquo;s not.</li>
+</ul>
+
+<p>After upgrading Substrate:</p>
+
+<ol>
+<li>If you&rsquo;re using Google as your IdP, visit <a href="https://console.cloud.google.com/apis/library/admin.googleapis.com">https://console.cloud.google.com/apis/library/admin.googleapis.com</a> and click <strong>ENABLE</strong>.</li>
+<li>Run <code>substrate-create-admin-account -quality="..."</code> to upgrade your Intranet.</li>
+</ol>
+
 <h2 id="2021.10">2021.10</h2>
 
 <ul>
@@ -218,7 +237,7 @@
 
 <h2>2021.01 and prior releases</h2>
 
-<p>Contact <a href="&#109;&#97;&#105;&#x6C;&#x74;&#x6F;:&#x68;&#x65;l&#108;&#111;&#64;&#x73;&#x72;c-&#98;&#x69;&#x6E;&#x2E;&#x63;&#111;&#109;">&#x68;&#x65;l&#108;&#111;&#64;&#x73;&#x72;c-&#98;&#x69;&#x6E;&#x2E;&#x63;&#111;&#109;</a> for prior release notes.</p>
+<p>Contact <a href="&#x6D;&#97;&#x69;&#108;&#x74;&#x6F;:h&#101;&#x6C;&#x6C;&#x6F;&#64;&#x73;&#114;&#x63;&#x2D;&#98;&#105;&#110;.&#99;&#111;&#x6D;">h&#101;&#x6C;&#x6C;&#x6F;&#64;&#x73;&#114;&#x63;&#x2D;&#98;&#105;&#110;.&#99;&#111;&#x6D;</a> for prior release notes.</p>
 
 <footer>
 <ul>

@@ -121,16 +121,7 @@ Feel free to try them both. Whichever you choose, take comfort in knowing your d
 
 ### `substrate-create-admin-account -quality="default"`
 
-As is the custom, you'll be prompted for input, this time mostly concerning your identity provider.
-
-<!--
-You'll be prompted for SAML metadata XML from Google or Okta which will be used to authenticate and authorize AWS Console access.
-
-- [Google SAML setup](/substrate/manual/getting-started/google-saml/)
-- [Okta SAML setup](/substrate/manual/getting-started/okta-saml/)
--->
-
-After the account is created<!-- and integrated with your identity provider-->, this program will create and configure an Intranet hosted in AWS API Gateway and Lambda.
+As is the custom, you'll be prompted for input, this time concerning your identity provider and the Intranet this command constructs. After the account is created, this program will create and configure the Intranet hosted in AWS API Gateway and Lambda.
 
 You'll be prompted to buy or transfer a DNS domain name or delegate a DNS zone from elsewhere into this new account. If you're at a loss for inspiration, consider using your company's name with the `.company` or `.tools` TLD.  Note well: The domain must end up owned by or delegated to the admin account being created by this step. **Be sure to respond to the emails sent by Route 53 (which Google often flags as suspicious) to avoid your domain being suspended in a few days.**
 
@@ -141,10 +132,9 @@ We'll use [example.com](http://example.com) as a placeholder for this domain thr
 
 When this program exits, you should commit `substrate.*`, `root-modules/admin/default`, and `modules` to version control. It is safe to re-run this program at any time. It is also safe to have multiple admin accounts of various qualities.
 
-You can now access the AWS Console as follows:
+### Accessing the AWS Console
 
-- For Google users: Click **Amazon Web Services** in the grid menu in the top right corner of any Google page
-- For Okta users: Click **AWS Account Federation** in your Okta tiles
+Visit the `/accounts` page of your new Intranet (at a URL like <https://example.com/accounts> but on the domain you just purchased) or provide the `-console` option to `substrate-assume-role`.
 
 ### Using the Credential Factory
 
