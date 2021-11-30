@@ -10,19 +10,19 @@
 * Removed version pinning of the long-unused Terraform `archive` provider.
 * Removed `-no-cloudwatch` from `substrate-bootstrap-management-account`, `substrate-create-admin-account`, and `substrate-create-account` in favor of just actually detecting when it's necessary and not doing it when it's not.
 
-Before upgrading Substrate:
+Before upgrading Substrate, if you're using Google as your IdP:
 
-1. If you're using Google as your IdP, add an additional custom attribute as follows:
+1. Add an additional custom attribute as follows:
     1. Visit <https://admin.google.com/ac/customschema> in a browser (or visit <https://admin.google.com>, click **Users**, click **More**, and click **Manage custom attributes**)
     2. Click the **AWS section**
     3. In the blank bottom row, enter &ldquo;RoleName&rdquo; for _Name_, select &ldquo;Text&rdquo; for _Info type_, select &ldquo;Visible to user and admin&rdquo; for _Visibility_, select &ldquo;Single Value&rdquo; for _No. of values_
     4. Click **SAVE**
-2. If you're using Google as your IdP, visit <https://admin.google.com/ac/users> and set the _RoleName_ attribute in the _AWS_ category to &ldquo;Administrator&rdquo; for every user authorized to use AWS.
+2. Visit <https://admin.google.com/ac/users> and set the _RoleName_ attribute in the _AWS_ category to &ldquo;Administrator&rdquo; for every user authorized to use AWS.
+3. Visit <https://console.cloud.google.com/apis/library/admin.googleapis.com> and click **ENABLE**.
 
 After upgrading Substrate:
 
-1. If you're using Google as your IdP, visit <https://console.cloud.google.com/apis/library/admin.googleapis.com> and click **ENABLE**.
-2. Run `substrate-create-admin-account -quality="..."` to upgrade your Intranet.
+1. Run `substrate-create-admin-account -quality="..."` to upgrade your Intranet.
 
 <h2 id="2021.10">2021.10</h2>
 
