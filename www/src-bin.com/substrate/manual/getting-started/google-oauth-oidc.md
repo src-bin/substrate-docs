@@ -7,8 +7,7 @@ These steps must be completed by a Google Super Admin. Be mindful, too, of which
 1. Visit [https://admin.google.com/ac/customschema](https://admin.google.com/ac/customschema) in a browser (or visit [https://admin.google.com](https://admin.google.com), click **Users**, click **More**, and click **Manage custom attributes**)
 2. Click **ADD CUSTOM ATTRIBUTE**
 3. Enter &ldquo;AWS&rdquo; for _Category_
-4. Under _Custom fields_, enter &ldquo;Role&rdquo; for _Name_, select &ldquo;Text&rdquo; for _Info type_, select &ldquo;Visible to user and admin&rdquo; for _Visibility_, select &ldquo;Single Value&rdquo; for _No. of values_
-5. In the new row that's appeared, enter &ldquo;SessionDuration&rdquo; for _Name_, select &ldquo;Whole Number&rdquo; for _Info type_, select &ldquo;Visible to user and admin&rdquo; for _Visibility_, select &ldquo;Single Value&rdquo; for _No. of values_
+4. Under _Custom fields_, enter &ldquo;RoleName&rdquo; for _Name_, select &ldquo;Text&rdquo; for _Info type_, select &ldquo;Visible to user and admin&rdquo; for _Visibility_, select &ldquo;Single Value&rdquo; for _No. of values_
 6. Click **ADD**
 
 ## Create and configure an OAuth OIDC client
@@ -34,6 +33,15 @@ These steps must be completed by a Google Super Admin. Be mindful, too, of which
 19. Visit [https://console.cloud.google.com/apis/library/admin.googleapis.com](https://console.cloud.google.com/apis/library/admin.googleapis.com) in a browser
 20. Confirm the project you created a moment ago is selected (its name will be listed next to "Google Cloud Platform" in the header)
 21. Click **ENABLE**
+
+## Authorize users to use AWS
+
+1. Visit [https://admin.google.com/ac/users](https://admin.google.com/ac/users) in a browser (or visit [https://admin.google.com](https://admin.google.com) and click **Users**)
+2. For every user authorized to use AWS:
+    1. Click the user's name
+    2. Click **User information**
+    3. In the _AWS_ section, click **Add RoleName** and paste the name (not the ARN) of the IAM role they should assume in your admin account (most likely, &ldquo;Administrator&rdquo;)
+    4. Click **SAVE**
 
 ## References
 
