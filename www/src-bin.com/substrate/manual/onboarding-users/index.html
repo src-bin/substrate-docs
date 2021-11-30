@@ -16,16 +16,11 @@
 
 <ol>
 <li>Visit <a href="https://admin.google.com/ac/users">https://admin.google.com/ac/users</a> (or visit <a href="https://admin.google.com">https://admin.google.com</a> and click <strong>Users</strong>)</li>
-<li>Click on the name of a user who already has access to AWS</li>
-<li>Click <strong>User information</strong></li>
-<li>Copy the value of <em>Role</em> from the <em>AWS</em> section</li>
-<li>Go back to the list of users by clicking <strong>Users</strong> in the breadcrumbs or left-side menu</li>
 <li>For each of your new folks:
 <ol>
 <li>Click the user&rsquo;s name</li>
 <li>Click <strong>User information</strong></li>
-<li>In the <em>AWS</em> section, click <strong>Add Role</strong> and paste the string you copied in step 4 above</li>
-<li>In the <em>AWS</em> section, click <strong>Add SessionDuration</strong> and enter &ldquo;43200&rdquo; (representing 12-hour maximum session duration in the AWS Console)</li>
+<li>In the <em>AWS</em> section, click <strong>Add RoleName</strong> and paste the name (not the ARN) of the IAM role they should assume in your admin account (most likely, &ldquo;Administrator&rdquo;)</li>
 <li>Click <strong>SAVE</strong></li>
 </ol></li>
 </ol>

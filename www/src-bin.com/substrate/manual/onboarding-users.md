@@ -5,16 +5,11 @@ When new folks join your company they're probably going to need access to AWS. H
 ## Google Workspace
 
 1. Visit [https://admin.google.com/ac/users](https://admin.google.com/ac/users) (or visit [https://admin.google.com](https://admin.google.com) and click **Users**)
-2. Click on the name of a user who already has access to AWS
-3. Click **User information**
-4. Copy the value of _Role_ from the _AWS_ section
-5. Go back to the list of users by clicking **Users** in the breadcrumbs or left-side menu
-6. For each of your new folks:
+2. For each of your new folks:
     1. Click the user's name
     2. Click **User information**
-    3. In the _AWS_ section, click **Add Role** and paste the string you copied in step 4 above
-    4. In the _AWS_ section, click **Add SessionDuration** and enter &ldquo;43200&rdquo; (representing 12-hour maximum session duration in the AWS Console)
-    5. Click **SAVE**
+    3. In the _AWS_ section, click **Add RoleName** and paste the name (not the ARN) of the IAM role they should assume in your admin account (most likely, &ldquo;Administrator&rdquo;)
+    4. Click **SAVE**
 
 ## Okta
 
