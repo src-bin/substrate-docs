@@ -103,6 +103,8 @@
 
 <p>You selected some number of AWS regions when you configured your network but you may not want to run all your infrastructure in all those regions all the time (if for no other reason than cost control). You may edit <code>root-modules/*/*/*/*/main.tf</code> to customize which of your selected regions are actually in use. By default, all your selected regions are in use. If you don&rsquo;t want to provision your infrastructure in any of them, simply comment out the resources in <code>root-modules/*/*/*/*/main.tf</code> (substituting your domains, environments, qualities, and regions as desired).</p>
 
+<p><a href="../referencing-substrate-parameters-in-terraform/">Referencing Substrate parameters in Terraform</a> documents how, within these modules and files, you can parameterize your own code by domain, environment, and quality and make use of the VPC Substrate automatically shares with each AWS account.</p>
+
 <h2>Testing and deploying Terraform changes</h2>
 
 <p>It&rsquo;s no accident that <code>modules/example/global</code> and <code>modules/example/regional</code> are referenced by the root Terraform modules for every environment and quality in the domain. These afford you multiple opportunities to implement changes in pre-<em>production</em> and partial-<em>production</em> in order to catch more bugs and failures before they impact all your capacity and all your customers. Continuing from the example above, here is the complete lifecycle of a Terraform change in the <em>example</em> domain:</p>

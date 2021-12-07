@@ -1,0 +1,34 @@
+<!doctype HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+<link href="/css/2019-11-01.css" rel="stylesheet">
+<title>Source &amp; Binary / Referencing Substrate parameters in Terraform</title>
+</head>
+<body>
+<header><h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1></header>
+
+<h1>Referencing Substrate parameters in Terraform</h1>
+
+<p>As you write your own Terraform modules, you&rsquo;re certainly going to want to parameterize them in the same ways Substrate helps you parameterize your AWS accounts. Plus, you&rsquo;re also going to need a network, and Substrate&rsquo;s already created and shared one with every account to make it easy, secure, and cost-effective to build new things.</p>
+
+<p><code>substrate-create-account</code> automatically creates a Terraform module for your domain and automatically references it from every environment and quality in that domain. This is generally the best place to put your Terraform code. Each domain module in turn instantiates the <code>substrate</code> module which includes some helpful context you&rsquo;re likely to need.</p>
+
+<ul>
+<li><code>module.substrate.tags.domain</code>: The domain of this AWS account, from the tags on the account itself.</li>
+<li><code>module.substrate.tags.environment</code>: The environment of this AWS account, from the tags on the account itself.</li>
+<li><code>module.substrate.tags.quality</code>: The quality of this AWS account, from the tags on the account itself.</li>
+<li><code>module.substrate.private_subnet_ids</code>: A <em>set</em> of three private subnet IDs in this environment/quality&rsquo;s shared VPC.</li>
+<li><code>module.substrate.private_subnet_ids</code>: A <em>set</em> of three public subnet IDs in this environment/quality&rsquo;s shared VPC. (This set is empty in admin accounts.)</li>
+<li><code>module.substrate.vpc_id</code>: The ID of this environment/quality&rsquo;s shared VPC.</li>
+</ul>
+
+<footer>
+<ul>
+<li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
+<li><a href="/substrate/">Substrate</a>, <small>my suite of AWS management tools</small></li>
+</ul>
+<p>Copyright &copy; 2020-2021 &mdash; Source <span class="fancy">&amp;</span> Binary LLC</p>
+</footer>
+</body>
+</html>
