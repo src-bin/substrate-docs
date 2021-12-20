@@ -1,5 +1,11 @@
 # Substrate release notes
 
+<h2 id="2021.12">2021.12</h2>
+
+* Substate now uses your default region (the one you chose to host your organization's CloudTrail logs, among other things) when it executes global root modules. This allows you to more completely decouple yourself from us-east-1 if you so choose.
+* Bug fix: Allow the Instance Factory to pass any IAM role configured in your IdP on to EC2 instances your non-Administrator users provision.
+* Safety feature: No longer read `~/.aws/credentials` under any circumstances. Since we never use this file in a Substrate-managed AWS organization, reading this file can only serve to &ldquo;cross the streams&rdquo; with a legacy AWS account.
+
 <h2 id="2021.11">2021.11</h2>
 
 * New installations no longer configure a SAML provider. Instead, all AWS API and Console access is brokered by OAuth OIDC and your Intranet. Existing SAML providers are not removed.

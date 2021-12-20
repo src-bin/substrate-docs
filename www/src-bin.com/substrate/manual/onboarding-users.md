@@ -8,7 +8,7 @@ When new folks join your company they're probably going to need access to AWS. H
 2. For each of your new folks:
     1. Click the user's name
     2. Click **User information**
-    3. In the _AWS_ section, click **Add RoleName** and paste the name (not the ARN) of the IAM role they should assume in your admin account (most likely, &ldquo;Administrator&rdquo;)
+    3. In the _AWS_ section, click **Add RoleName** and paste the name (not the ARN) of the IAM role they should assume in your admin account (if it's not &ldquo;Administrator&rdquo;, ensure you've followed [adding non-Administrator roles for humans](../adding-non-administrator-roles-for-humans) first)
     4. Click **SAVE**
 
 ## Okta

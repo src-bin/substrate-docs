@@ -10,10 +10,11 @@ It's early days for this guide. Please refer to the [Substrate design](https://w
 
 ## Installation
 
-### From a binary release
+<!--### From a binary release-->
 
 `tar xf substrate-VERSION-COMMIT-GOOS-GOARCH.tar.gz -C ~/bin` (substituting the filename where you've stored the binary release and the directory on your `PATH` where you want it installed)
 
+<!--
 ### From source
 
 Additional prerequsites:
@@ -26,6 +27,7 @@ Procedure:
 1. `git clone git@github.com:src-bin/substrate.git`
 2. `cd substrate`
 3. `make && make install` (or `make && make install GOBIN="..."` if you want to customize `GOBIN` where it's installed)
+-->
 
 ## Decide where you'll run Substrate commands
 
