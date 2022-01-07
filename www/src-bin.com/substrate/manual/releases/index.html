@@ -10,16 +10,91 @@
 
 <h1>Substrate release notes</h1>
 
-<p><!--</p>
-
 <h2 id="2021.12">2021.12</h2>
 
 <ul>
-<li>TODO some stuff Cosmo asked for</li>
+<li>Substate now uses your default region (the one you chose to host your organization&rsquo;s CloudTrail logs, among other things) when it executes global root modules. This allows you to more completely decouple yourself from us-east-1 if you so choose.</li>
 <li>Bug fix: Allow the Instance Factory to pass any IAM role configured in your IdP on to EC2 instances your non-Administrator users provision.</li>
-<li>Safety feature: No longer read <code>~/.aws/credentials</code> under any circumstances. Since we never use this file in a Substrate-managed AWS organization, reading this file can only serve to &ldquo;cross the streams&rdquo; with a legacy AWS account.
---></li>
+<li>Safety feature: No longer read <code>~/.aws/credentials</code> under any circumstances. Since we never use this file in a Substrate-managed AWS organization, reading this file can only serve to &ldquo;cross the streams&rdquo; with a legacy AWS account.</li>
 </ul>
+
+<p>The upgrade process this month is much more involved that most. As such, we&rsquo;ll talk in Slack about when you&rsquo;re going to perform the upgrade to ensure support&rsquo;s available in the moment.</p>
+
+<p>Before upgrading Substrate, audit your Terraform modules for resources in global modules that aren&rsquo;t from global AWS serivces by copying the following program to <code>audit.sh</code> in your Substrate repository and running <code>sh audit.sh</code>.</p>
+
+<pre><code>set -e
+
+substrate root-modules |
+grep "/global\$" |
+while read DIRNAME
+do
+    echo "$DIRNAME" &gt;&amp;2
+    terraform -chdir="$DIRNAME" state pull &gt;"$DIRNAME/audit.tfstate"
+    grep -F ":us-east-1:" "$DIRNAME/audit.tfstate" || :
+    rm -f "$DIRNAME/audit.tfstate"
+    echo &gt;&amp;2
+done
+</code></pre>
+
+<p>Every resource this program identifies needs to be modified before proceeding. The most likely modification is to add <code>provider = aws.us-east-1</code> to resources in the Terraform code that manages them.</p>
+
+<p>Block all your coworkers from making Terraform changes however you usually do (announcing in Slack, deactivating CI/CD jobs, taking state file locks, etc.) and move your global state files from us-east-1 to your default region by copying the following program to <code>mv-state.sh</code> in your Substrate repository and running <code>sh mv-state.sh</code>.</p>
+
+<pre><code>set -e
+
+DEFAULT_REGION="$(cat "substrate.default-region")"
+PREFIX="$(cat "substrate.prefix")"
+
+if [ "$DEFAULT_REGION" = "us-east-1" ]
+then exit # nothing to do
+fi
+
+eval $(substrate-assume-role -role="DeployAdministrator" -special="deploy")
+
+substrate root-modules |
+grep "/global\$" |
+while read DIRNAME
+do
+    echo "$DIRNAME" &gt;&amp;2
+    aws s3 cp "s3://$PREFIX-terraform-state-us-east-1/$DIRNAME/terraform.tfstate" "s3://$PREFIX-terraform-state-$DEFAULT_REGION/$DIRNAME/terraform.tfstate"
+    aws s3 rm "s3://$PREFIX-terraform-state-us-east-1/$DIRNAME/terraform.tfstate"
+    echo &gt;&amp;2
+done
+</code></pre>
+
+<p>Once you&rsquo;ve run this program, there&rsquo;s a provider to thread through the tree of Terraform modules before you can upgrade to Substrate 2021.12.</p>
+
+<ul>
+<li><p>Add the following four lines in the domain module stanzas in <code>root-modules/*/*/*/global/main.tf</code>:</p>
+
+<pre><code>providers = {
+  aws           = aws
+  aws.us-east-1 = aws.us-east-1
+}
+</code></pre></li>
+<li><p>Add the following three lines below <code>aws = {</code> in <code>modules/*/global/versions.tf</code> except <code>modules/lambda-function/global/versions.tf</code>, <code>modules/substrate/global/versions.tf</code>, and your own modules:</p>
+
+<pre><code>configuration_aliases = [
+  aws.us-east-1,
+]
+</code></pre></li>
+</ul>
+
+<p>(I regret not being able to provide a <code>patch</code>(1) file for these operations but the contents of <code>versions.tf</code> post-Terraform 1.0 are too unpredictable to do so safely.)</p>
+
+<p>Now you can upgrade Substrate. Don&rsquo;t release your block just yet, though.</p>
+
+<p>After upgrading Substrate:</p>
+
+<ol>
+<li><code>substrate-bootstrap-deploy-account</code></li>
+<li><code>substrate-create-admin-account -quality="..."</code> for each of your admin accounts</li>
+<li><code>substrate-create-account -domain="..." -environment="..." -quality="..."</code> for each of your service accounts</li>
+</ol>
+
+<p>Once all of these have run successfully, ensure all your coworkers upgrade Substrate and unblock Terraform changes.</p>
+
+<p>I regret the complexity of this upgrade process but feel it is, on balance, less risky than attempting to hide all this motion behind automation. Thanks for your patience.</p>
 
 <h2 id="2021.11">2021.11</h2>
 
@@ -261,7 +336,7 @@
 
 <h2>2021.01 and prior releases</h2>
 
-<p>Contact <a href="&#x6D;&#x61;&#105;&#108;&#x74;o:&#x68;&#101;l&#x6C;&#x6F;&#64;&#x73;&#114;&#x63;&#45;&#98;&#105;&#x6E;&#x2E;&#x63;&#111;&#109;">&#x68;&#101;l&#x6C;&#x6F;&#64;&#x73;&#114;&#x63;&#45;&#98;&#105;&#x6E;&#x2E;&#x63;&#111;&#109;</a> for prior release notes.</p>
+<p>Contact <a href="&#109;&#x61;i&#x6C;&#116;&#111;:&#x68;&#x65;&#108;&#x6C;&#111;&#64;&#x73;&#114;&#x63;&#45;&#98;&#105;&#x6E;&#46;&#x63;&#x6F;&#109;">&#x68;&#x65;&#108;&#x6C;&#111;&#64;&#x73;&#114;&#x63;&#45;&#98;&#105;&#x6E;&#46;&#x63;&#x6F;&#109;</a> for prior release notes.</p>
 
 <footer>
 <ul>

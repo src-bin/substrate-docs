@@ -19,8 +19,9 @@
 <pre><code>data "aws_iam_policy_document" "developer" {
   statement {
     actions = [
-      "ec2:DescribeVpcs", # an example for demonstration purposes; could be anything, including wildcards
-      "sts:AssumeRole",   # required to use /accounts and the AWS Console
+      "ec2:DescribeVpcs",                   # an example for demonstration purposes; could be anything, including wildcards
+      "organizations:DescribeOrganization", # required to use Substrate command-line tools
+      "sts:AssumeRole",                     # required to use /accounts and the AWS Console
     ]
     resources = ["*"]
   }
@@ -78,7 +79,8 @@ resource "aws_iam_role_policy_attachment" "developer" {
 <pre><code>data "aws_iam_policy_document" "developer" {
   statement {
     actions = [
-      "ec2:DescribeVpcs", # an example for demonstration purposes; could be anything, including wildcards
+      "ec2:DescribeVpcs",                   # an example for demonstration purposes; could be anything, including wildcards
+      "organizations:DescribeOrganization", # required to use Substrate command-line tools
     ]
     resources = ["*"]
   }

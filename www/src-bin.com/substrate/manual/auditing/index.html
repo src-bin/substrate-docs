@@ -18,6 +18,30 @@
 
 <p>In either case, the data you seek is in the <code>PREFIX-cloudtrail</code> (substituting your chosen prefix as stored in <code>substrate.prefix</code>) S3 bucket. You can download it to analyze locally or <a href="https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html">query it with Amazon Athena</a>.</p>
 
+<h2>Allowing third-parties to audit your Substrate-managed AWS organization</h2>
+
+<p>Many tools have grown the ability to assume an IAM role in your AWS account to perform some auditing or monitoring feature on your behalf. To allow these into your AWS organization, create an assume role policy in <code>substrate.Auditor.assume-role-policy.json</code> with contents like this:</p>
+
+<pre><code>{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": ["arn:aws:iam::ACCOUNT_NUMBER:role/ROLE_NAME"]
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+</code></pre>
+
+<p>You can include as many principals as you&rsquo;d like and they can be IAM role ARNs (recommended) or AWS account numbers (as JSON strings).</p>
+
+<p>Every time you update this file, you&rsquo;ll need to re-run whichever of <code>substrate-bootstrap-management-account</code>, <code>substrate-bootstrap-deploy-account</code>, <code>substrate-bootstrap-network-account</code>, <code>substrate-create-admin-account</code> (for each of your admin accounts), and/or <code>substrate-create-account</code> (for each of your service accounts) are relevant to your situation.</p>
+
+<p>This will authorize third-party principals to <code>sts:AssumeRole</code> using the ARN of one of your Auditor roles and operate as you would there.</p>
+
 <footer>
 <ul>
 <li><a href="/services/">Services</a>: <small>infrastructure, architecture, compliance</small></li>
