@@ -1,5 +1,21 @@
 # Substrate release notes
 
+<!--
+* TODO Manage L-29A0C5DF, the AWS service limit on the number of accounts in an AWS organization so that `substrate-create-admin-account` and `substrate-create-account` won't fail.
+-->
+
+<h2 id="2022.01">2022.01</h2>
+
+* The `-role="..."` option to `substrate-assume-role` now defaults to OrganizationAdministrator, Auditor, DeployAdministrator, or NetworkAdministrator for the special accounts and Administrator for admin and service accounts (or Auditor pretty much across the board, if you begin in the Auditor role). This should save a great deal of typing.
+* Add a navigational header to the Intranet to help folks get around.
+* Allow the Auditor role in the audit account to use Amazon Athena to query the CloudTrail logs stored in S3 there. See [auditing your Substrate-managed AWS organization](../auditing/) for more details.
+* Bug fix: Substrate 2021.12 inadvertantly stopped accepting EC2 instance profile credentials on Instance Factory instances. (The instances are still assigned the correct role, Substrate programs just wouldn't use it.) Substrate programs once again use EC2 instance profile credentials when available.
+
+After upgrading Substrate:
+
+1. `substrate-create-admin-account -quality="..."`
+2. Upgrade Substrate in your Instance Factory instances, if you install it there
+
 <h2 id="2021.12">2021.12</h2>
 
 * Substate now uses your default region (the one you chose to host your organization&rsquo;s CloudTrail logs, among other things) when it executes global root modules. This allows you to more completely decouple yourself from us-east-1 if you so choose.

@@ -10,6 +10,26 @@
 
 <h1>Substrate release notes</h1>
 
+<!--
+* TODO Manage L-29A0C5DF, the AWS service limit on the number of accounts in an AWS organization so that `substrate-create-admin-account` and `substrate-create-account` won&rsquo;t fail.
+-->
+
+<h2 id="2022.01">2022.01</h2>
+
+<ul>
+<li>The <code>-role="..."</code> option to <code>substrate-assume-role</code> now defaults to OrganizationAdministrator, Auditor, DeployAdministrator, or NetworkAdministrator for the special accounts and Administrator for admin and service accounts (or Auditor pretty much across the board, if you begin in the Auditor role). This should save a great deal of typing.</li>
+<li>Add a navigational header to the Intranet to help folks get around.</li>
+<li>Allow the Auditor role in the audit account to use Amazon Athena to query the CloudTrail logs stored in S3 there. See <a href="../auditing/">auditing your Substrate-managed AWS organization</a> for more details.</li>
+<li>Bug fix: Substrate 2021.12 inadvertantly stopped accepting EC2 instance profile credentials on Instance Factory instances. (The instances are still assigned the correct role, Substrate programs just wouldn&rsquo;t use it.) Substrate programs once again use EC2 instance profile credentials when available.</li>
+</ul>
+
+<p>After upgrading Substrate:</p>
+
+<ol>
+<li><code>substrate-create-admin-account -quality="..."</code></li>
+<li>Upgrade Substrate in your Instance Factory instances, if you install it there</li>
+</ol>
+
 <h2 id="2021.12">2021.12</h2>
 
 <ul>
@@ -336,7 +356,7 @@ done
 
 <h2>2021.01 and prior releases</h2>
 
-<p>Contact <a href="&#109;&#x61;i&#x6C;&#116;&#111;:&#x68;&#x65;&#108;&#x6C;&#111;&#64;&#x73;&#114;&#x63;&#45;&#98;&#105;&#x6E;&#46;&#x63;&#x6F;&#109;">&#x68;&#x65;&#108;&#x6C;&#111;&#64;&#x73;&#114;&#x63;&#45;&#98;&#105;&#x6E;&#46;&#x63;&#x6F;&#109;</a> for prior release notes.</p>
+<p>Contact <a href="m&#x61;i&#108;&#116;o:&#104;&#101;&#108;&#108;&#x6F;&#64;&#115;&#x72;&#99;&#45;&#x62;&#105;&#110;&#46;&#x63;&#111;&#109;">&#104;&#101;&#108;&#108;&#x6F;&#64;&#115;&#x72;&#99;&#45;&#x62;&#105;&#110;&#46;&#x63;&#111;&#109;</a> for prior release notes.</p>
 
 <footer>
 <ul>
