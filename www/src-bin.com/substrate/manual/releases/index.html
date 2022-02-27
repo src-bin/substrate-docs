@@ -10,9 +10,34 @@
 
 <h1>Substrate release notes</h1>
 
-<!--
-* TODO Manage L-29A0C5DF, the AWS service limit on the number of accounts in an AWS organization so that `substrate-create-admin-account` and `substrate-create-account` won&rsquo;t fail.
--->
+<h2 id="2022.02">2022.02</h2>
+
+<ul>
+<li>Upgrade to Terraform 1.1.6.</li>
+<li>Manage L-29A0C5DF, the AWS service limit on the number of accounts in an AWS organization, so that <code>substrate-create-admin-account</code> and <code>substrate-create-account</code> can proceed smoothly when you create your 11th account.</li>
+<li>Remove the <code>SubstrateVersion</code> tag from Terraform-managed resources. It hasn&rsquo;t been as helpful here as it is on Substrate-managed resources. Plus, Terraform plans are much easier to read without it.</li>
+<li>Bug fix: Pin the Terraform AWS provider to versions less than 4.0 which contains breaking changes that will be addressed in a subsequent Substrate release.</li>
+</ul>
+
+<p>You must upgrade to Terraform 1.1.6 in order to use Substrate 2022.02. Terraform 1.1.6 may be found here:</p>
+
+<ul>
+<li><a href="https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_darwin_amd64.zip">https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_darwin_amd64.zip</a></li>
+<li><a href="https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_darwin_arm64.zip">https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_darwin_arm64.zip</a></li>
+<li><a href="https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_linux_amd64.zip">https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_linux_amd64.zip</a></li>
+<li><a href="https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_linux_arm64.zip">https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_linux_arm64.zip</a></li>
+</ul>
+
+<p>After upgrading Substrate, do the following to land the Terraform upgrade and remove the <code>SubstrateVersion</code> tags:</p>
+
+<ol>
+<li><code>substrate-bootstrap-network-account</code></li>
+<li><code>substrate-bootstrap-deploy-account</code></li>
+<li><code>substrate-create-admin-account -quality="..."</code> for each of your admin accounts</li>
+<li><code>substrate-create-account -domain="..." -environment="..." -quality="..."</code> for each of your service accounts</li>
+</ol>
+
+<!--If you&rsquo;re feeling bold, `substrate-accounts -format="shell" | TF_CLI_ARGS="-auto-approve" sh` will run Substrate and Terraform everywhere without any further input.-->
 
 <h2 id="2022.01">2022.01</h2>
 
@@ -356,7 +381,7 @@ done
 
 <h2>2021.01 and prior releases</h2>
 
-<p>Contact <a href="m&#x61;i&#108;&#116;o:&#104;&#101;&#108;&#108;&#x6F;&#64;&#115;&#x72;&#99;&#45;&#x62;&#105;&#110;&#46;&#x63;&#111;&#109;">&#104;&#101;&#108;&#108;&#x6F;&#64;&#115;&#x72;&#99;&#45;&#x62;&#105;&#110;&#46;&#x63;&#111;&#109;</a> for prior release notes.</p>
+<p>Contact <a href="&#109;&#x61;&#105;&#x6C;&#x74;&#111;:&#104;&#x65;&#x6C;lo&#64;&#x73;&#x72;&#99;&#x2D;&#98;&#105;&#x6E;&#x2E;&#99;&#x6F;m">&#104;&#x65;&#x6C;lo&#64;&#x73;&#x72;&#99;&#x2D;&#98;&#105;&#x6E;&#x2E;&#99;&#x6F;m</a> for prior release notes.</p>
 
 <footer>
 <ul>

@@ -180,16 +180,17 @@ Inviting your existing AWS account(s) into your new Substrate-managed AWS organi
 To begin, you'll need root login credentials for the AWS Console for the account you wish to invite into your organization. When you're ready, proceed:
 
 1. Open the AWS Console via your identity provider; assume the `Administrator` role
-2. Assume the `OrganizationAdministrator` role in your management account (you can find the account number in `substrate.accounts.txt` if you don't have it handy)
-3. Visit [https://console.aws.amazon.com/organizations/home?#/accounts](https://console.aws.amazon.com/organizations/home?#/accounts)
+2. Assume the `OrganizationAdministrator` role in your management account via your Intranet's accounts page
+3. Visit <https://console.aws.amazon.com/organizations/home?#/accounts>
 4. Click **Add account**
 5. Click **Invite account**
 6. Enter the email address attached to the account you're inviting into your organization (or its account number, if you have that handy)
 7. Click **Invite**
 8. In an incognito window, sign into the AWS Console using your root credentials for the account you just invited into your organization
-9. Visit [https://console.aws.amazon.com/organizations/home#/invites](https://console.aws.amazon.com/organizations/home#/invites) in that incognito window
-10. Click **Accept**
-11. Click **Confirm**
+9. In that incognito window, visit <https://console.aws.amazon.com/cloudtrail/home#/dashboard> and delete any existing trails (to avoid very expensive surprises in your consolidated AWS bills)
+10. In that incognito window, visit <https://console.aws.amazon.com/organizations/home#/invites>
+11. Click **Accept**
+12. Click **Confirm**
 
 If you stop here, you'll have integrated billing data from your legacy account into your organization and you'll have the ability to constrain your legacy account using service control policies.
 

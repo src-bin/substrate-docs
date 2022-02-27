@@ -1,8 +1,27 @@
 # Substrate release notes
 
-<!--
-* TODO Manage L-29A0C5DF, the AWS service limit on the number of accounts in an AWS organization so that `substrate-create-admin-account` and `substrate-create-account` won't fail.
--->
+<h2 id="2022.02">2022.02</h2>
+
+* Upgrade to Terraform 1.1.6.
+* Manage L-29A0C5DF, the AWS service limit on the number of accounts in an AWS organization, so that `substrate-create-admin-account` and `substrate-create-account` can proceed smoothly when you create your 11th account.
+* Remove the `SubstrateVersion` tag from Terraform-managed resources. It hasn't been as helpful here as it is on Substrate-managed resources. Plus, Terraform plans are much easier to read without it.
+* Bug fix: Pin the Terraform AWS provider to versions less than 4.0 which contains breaking changes that will be addressed in a subsequent Substrate release.
+
+You must upgrade to Terraform 1.1.6 in order to use Substrate 2022.02. Terraform 1.1.6 may be found here:
+
+* <https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_darwin_amd64.zip>
+* <https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_darwin_arm64.zip>
+* <https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_linux_amd64.zip>
+* <https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_linux_arm64.zip>
+
+After upgrading Substrate, do the following to land the Terraform upgrade and remove the `SubstrateVersion` tags:
+
+1. `substrate-bootstrap-network-account`
+1. `substrate-bootstrap-deploy-account`
+2. `substrate-create-admin-account -quality="..."` for each of your admin accounts
+3. `substrate-create-account -domain="..." -environment="..." -quality="..."` for each of your service accounts
+
+<!--If you're feeling bold, `substrate-accounts -format="shell" | TF_CLI_ARGS="-auto-approve" sh` will run Substrate and Terraform everywhere without any further input.-->
 
 <h2 id="2022.01">2022.01</h2>
 
