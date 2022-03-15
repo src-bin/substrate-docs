@@ -1,6 +1,6 @@
-# Adding non-Administrator roles for humans
+# Adding non-Administrator (and non-Auditor) roles for humans
 
-In order to set the `RoleName` attribute on any of your IdP users to any value except &ldquo;Administrator&rdquo;, you'll need to define a role in your admin account and possibly some (or all) of your service accounts.
+In order to set the `RoleName` attribute on any of your IdP users to any value except &ldquo;Administrator&rdquo; or &ldquo;Auditor&rdquo;, you'll need to define a role in your admin account and possibly some (or all) of your service accounts.
 
 ## In your admin account(s)
 

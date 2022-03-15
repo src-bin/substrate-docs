@@ -40,7 +40,7 @@ These steps must be completed by a Google Super Admin. Be mindful, too, of which
 2. For every user authorized to use AWS:
     1. Click the user's name
     2. Click **User information**
-    3. In the _AWS_ section, click **Add RoleName** and paste the name (not the ARN) of the IAM role they should assume in your admin account (&ldquo;Administrator&rdquo; for yourself as you're getting started; if for others it's not &ldquo;Administrator&rdquo;, ensure you've followed [adding non-Administrator roles for humans](../adding-non-administrator-roles-for-humans) first)
+    3. In the _AWS_ section, click **Add RoleName** and paste the name (not the ARN) of the IAM role they should assume in your admin account (&ldquo;Administrator&rdquo; for yourself as you're getting started; if for others it's not &ldquo;Administrator&rdquo; or &ldquo;Auditor&rdquo;, ensure you've followed [adding non-Administrator roles for humans](../adding-non-administrator-roles-for-humans/) first)
     4. Click **SAVE**
 
 ## References
