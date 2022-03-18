@@ -1,12 +1,10 @@
 # Getting started with Substrate
 
-Substrate is an opinionated suite of tools that manage secure, reliable, and compliant cloud infrastructure in AWS. This part of the manual exists to guide you through installing Substrate and bootstrapping your Substrate-managed AWS organization.
-
-It's early days for this guide. Please refer to the [Substrate design](https://www.notion.so/srcbin/Substrate-design-616feb1d5f3042ccb0bd9e8ede6589c1) to fill in philosophical details.
+Substrate helps you manage secure, reliable, and compliant cloud infrastructure in AWS. This part of the manual exists to guide you through installing Substrate and bootstrapping your Substrate-managed AWS organization.
 
 ## Prerequisites
 
-- [Terraform 1.0.2](https://releases.hashicorp.com/terraform/1.0.2/) (unzip and put `terraform` on your `PATH`)
+- [Terraform 1.1.6](https://releases.hashicorp.com/terraform/1.1.6/) (unzip and put `terraform` on your `PATH`)
 
 ## Installation
 
