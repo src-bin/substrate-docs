@@ -43,39 +43,56 @@
 <p>The following index describes the contents and purpose of all the files the various Substrate tools create in your Substrate repository on your behalf.</p>
 
 <ul>
-<li><code>modules</code>
+<li><code>modules</code> <br>
+A tree of Terraform modules, the ones listed below to support your network and admin accounts, one module for each domain you define, and all the modules you define to encapsulate your own code.
 <ul>
 <li><code>intranet</code></li>
 <li><code>lambda-function</code></li>
 <li><code>peering-connection</code></li>
 <li><code>substrate</code></li>
 </ul></li>
-<li><code>root-modules</code>
+<li><code>root-modules</code> <br>
+A tree of Terraform root modules, each with a correctly configured state file stored in DynamoDB and S3. The tree is organized by domain, environment, quality, and region with some additional complexity for network peering arrangements.
 <ul>
 <li><code>admin</code></li>
 <li><code>deploy</code></li>
-<li><code>network</code></li>
+<li><code>network</code>
+<ul>
+<li><code>peering</code></li>
+</ul></li>
 </ul></li>
 <li><code>substrate.accounts.txt</code> <br>
-A convenient listing of all your AWS accounts and the IAM roles to assume when you need to access them.</li>
+A convenient listing of all your AWS accounts and the IAM roles to assume when you need to access them. (Managed by all the programs that potentially create AWS accounts.)</li>
 <li><code>substrate.admin-networks.json</code> <br>
-Allocator for CIDR blocks used by VPCs and subnets for your admin accounts.</li>
-<li><code>substrate.default-region</code></li>
+Allocator for CIDR blocks used by VPCs and subnets for your admin accounts. (Managed by <code>substrate bootstrap-network-account</code>.)</li>
+<li><code>substrate.default-region</code> <br>
+The AWS region where CloudTrail logs and other global resources are located. (Managed by <code>substrate bootstrap-management-account</code>.)</li>
 <li><code>substrate.environments</code> <br>
-Logically ordered list of all your environments.</li>
-<li><code>substrate.intranet-dns-domain-name</code></li>
+Logically ordered list of all your environments. (Managed by <code>substrate bootstrap-network-account</code>.)</li>
+<li><code>substrate.intranet-dns-domain-name</code> <br>
+DNS domain name that&rsquo;s owned by, or at least hosted in, your admin account. (Managed by <code>substrate create-admin-account</code>.)</li>
 <li><code>substrate.networks.json</code> <br>
-Allocator for CIDR blocks used by VPCs and subnets for your non-admin accounts.</li>
-<li><code>substrate.oauth-oidc-client-id</code></li>
-<li><code>substrate.oauth-oidc-client-secret-timestamp</code></li>
-<li><code>substrate.okta-hostname</code></li>
-<li><code>substrate.prefix</code></li>
+Allocator for CIDR blocks used by VPCs and subnets for your non-admin accounts. (Managed by <code>substrate bootstrap-network-account</code>.)</li>
+<li><code>substrate.oauth-oidc-client-id</code> <br>
+OAuth OIDC client ID from your identity provider. (Managed by <code>substrate create-admin-account</code>.)</li>
+<li><code>substrate.oauth-oidc-client-secret-timestamp</code> <br>
+Timestamp of the AWS Secrets Manager secret version that&rsquo;s storing the OAuth OIDC client secret from your identity provider. (Managed by <code>substrate create-admin-account</code>.)</li>
+<li><code>substrate.okta-hostname</code> <br>
+Hostname of your Okta-hosted identity provider, if you&rsquo;re using Okta. (Managed by <code>substrate create-admin-account</code>.)</li>
+<li><code>substrate.nat-gateways</code> <br>
+"yes" or "no" to indicate whether NAT Gateways will be provisioned with your private subnets. (Managed by <code>substrate bootstrap-network-account</code>.)</li>
+<li><code>substrate.prefix</code> <br>
+Prefix to use for the names of global resources like S3 buckets. (Managed by <code>substrate bootstrap-management-account</code>.)</li>
 <li><code>substrate.qualities</code> <br>
-Logically ordered list of all your qualities.</li>
-<li><code>substrate.regions</code></li>
-<li><code>substrate.saml-metadata.xml</code></li>
+Logically ordered list of all your qualities. (Managed by <code>substrate bootstrap-network-account</code>.)</li>
+<li><code>substrate.regions</code> <br>
+List of AWS regions you&rsquo;re using. (Managed by <code>substrate bootstrap-network-account</code>.)</li>
+<li><code>substrate.saml-metadata.xml</code> <br>
+Legacy configuration for a SAML integration that early Substrate installations have for getting into the AWS Console. (Not created for new installations.)</li>
+<li><code>substrate.telemetry</code> <br>
+"yes" or "no" to indicate whether telemetry may be sent to Source &amp; Binary. (Managed by all Substrate tools.)</li>
 <li><code>substrate.valid-environment-quality-pairs.json</code> <br>
-Pairings you&rsquo;ve declared as valid. Used to avoid creating VPCs you&rsquo;ll never use to spare your service quotas.</li>
+Pairings you&rsquo;ve declared as valid. Used to avoid creating VPCs you&rsquo;ll never use to spare your service quotas. (Managed by <code>substrate bootstrap-network-account</code>.)</li>
 </ul>
 
         </section>

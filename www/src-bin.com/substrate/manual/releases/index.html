@@ -36,6 +36,22 @@
 
 <h1>Substrate release notes</h1>
 
+<h2 id="2022.03">2022.03</h2>
+
+<ul>
+<li>Substrate now asks if it may post <a href="../telemetry/">telemetry</a> to Source &amp; Binary. The data will be used to better understand how Substrate is being used and how it can be improved.</li>
+<li>Address deprecation warnings from the AWS Terraform provider by refactoring <code>root-modules/deploy</code>.</li>
+<li>Bug fix: Correctly pass an AWS access key to Terraform even if that access key is from an IAM user. This situation is unlikely but can come up during bootstrapping in brownfield environments.</li>
+<li>Bug fix: Display environments and qualities in the order they&rsquo;re defined in <code>substrate.environments</code> and <code>substrate.qualities</code> on the Intranet&rsquo;s Accounts page and in the output of <code>substrate accounts</code> and <code>substrate root-modules</code>.</li>
+</ul>
+
+<p>After upgrading Substrate:</p>
+
+<ol>
+<li><code>substrate bootstrap-deploy-account</code></li>
+<li><code>substrate-create-admin-account -quality="..."</code> for each of your admin accounts</li>
+</ol>
+
 <h2 id="2022.02">2022.02</h2>
 
 <ul>
@@ -407,7 +423,7 @@ done
 
 <h2>2021.01 and prior releases</h2>
 
-<p>Contact <a href="&#x6D;&#97;i&#108;t&#x6F;:&#x68;e&#x6C;&#108;&#111;&#64;&#x73;&#114;&#x63;&#45;&#x62;&#105;&#110;&#46;&#x63;&#x6F;&#x6D;">&#x68;e&#x6C;&#108;&#111;&#64;&#x73;&#114;&#x63;&#45;&#x62;&#105;&#110;&#46;&#x63;&#x6F;&#x6D;</a> for prior release notes.</p>
+<p>Contact <a href="ma&#x69;&#108;&#116;&#111;:&#104;&#x65;&#108;&#108;&#111;&#64;&#115;&#x72;&#x63;&#45;b&#105;n&#x2E;&#x63;&#111;&#x6D;">&#104;&#x65;&#108;&#108;&#111;&#64;&#115;&#x72;&#x63;&#45;b&#105;n&#x2E;&#x63;&#111;&#x6D;</a> for prior release notes.</p>
 
         </section>
 

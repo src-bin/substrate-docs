@@ -1,0 +1,61 @@
+<!doctype HTML>
+<html lang="en">
+    <meta charset="utf-8">
+    <head>
+        <!--<link href="https://src-bin.com/" rel="canonical">-->
+        <link href="/css/2022-03-03.css" rel="stylesheet">
+        <meta property="og:description" content="Purveyors of secure, reliable, and compliant cloud infrastructure">
+        <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta property="og:title" content="Source &amp; Binary">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://src-bin.com/">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:description" content="Purveyors of secure, reliable, and compliant cloud infrastructure">
+        <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta name="twitter:site" content="@src_bin">
+        <meta name="twitter:title" content="Source &amp; Binary">
+        <title>Source &amp; Binary / Telemetry in Substrate</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1>
+            <p><a href="mailto:hello@src-bin.com">hello@src-bin.com</a></p>
+            <aside>Purveyors&nbsp;of&nbsp;secure,&nbsp;reliable,&nbsp;and&nbsp;compliant&nbsp;cloud&nbsp;infrastructure&nbsp;since&nbsp;2020</aside>
+            <nav>
+                <ul>
+                    <li><a href="/">Benefits</a></li>
+                    <li><a href="/substrate/">Features</a></li>
+                    <li><a href="/substrate/manual/">Documentation</a></li>
+                    <li><a href="/pricing/">Pricing</a></li>
+                    <!--<li><a href="/compliance/">Compliance Workshop</a></li>-->
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+
+<h1>Telemetry in Substrate</h1>
+
+<p>Since 2022.03, Substrate asks if it may post telemetry to Source &amp; Binary (and it remembers your answer). The data are used to better understand how Substrate is being used and how it can be improved.</p>
+
+<p>The data collected were specifically chosen to avoid disclosing sensitive information about your organization and personally identifying information about you and your employees. Here is everything Substrate posts and how it&rsquo;s used:</p>
+
+<ul>
+<li><code>Command</code> and <code>Subcommand</code>: The name of the Substrate tool being run, like <code>substrate assume-role</code> or <code>substrate-intranet</code> and <code>/accounts</code> (but never any custom resources added to the Intranet). These reveal how frequently each tool is used, which gives clues about people&rsquo;s workflows and how proactive versus reactive Substrate use is. Comparing to Substrate&rsquo;s release history reveals how quickly upgrades are undertaken.</li>
+<li><code>Version</code>: The version of Substrate being used. This more directly reveals whether and how quickly upgrades are undertaken.</li>
+<li><code>InitialAccountNumber</code> and <code>FinalAccountNumber</code>: The AWS account number(s) accessed by this command. In many cases, the two values are the same; they differ in commands like <code>substrate assume-role</code> which explicitly change from one account to another and <code>substrate bootstrap-*</code> that (potentially) switch from an admin account to one of the special accounts. AWS account numbers are not sensitive and their variety reveals how effectively people are using AWS accounts to promote security and reliability. Additionally, posting AWS account numbers keeps the names of your domains, environments, and qualities secret since they may be sensitive.</li>
+<li><code>EmailDomainName</code>: The domain portion of the AWS accounts&rsquo; email addresses (guaranteed to be the same for all Substrate-managed AWS accounts in an organization). This associates otherwise inscrutable AWS account numbers with a customer. Posting only the domain avoids disclosing domains, environments, and qualities from the local portion of the email address since they may be sensitive.</li>
+<li><code>InitialRoleName</code> and <code>FinalRoleName</code>: The AWS IAM role name(s) accessed by this command. In many cases, the two values are the same; they differ in commands like <code>substrate assume-role</code> which will try to assume any role you tell it to and <code>substrate bootstrap-*</code> that switch from a role like Administrator to OrganizationAdministrator, NetworkAdministrator, or DeployAdministrator (so named to make clear the special status of those accounts). Substrate will only ever post "Administrator", "Auditor", or "Other" to avoid disclosing the names of non-Substrate-managed AWS IAM roles.</li>
+<li><code>IsEC2</code>: Boolean true if the Substrate command is being executed in EC2 (or another AWS service built on EC2 and exposing the Instance Metadata Service) or boolean false if not. This reveals the prevelance of remote and CI/CD workflows.</li>
+<li><code>Format</code>: The <code>-format</code> flag, where applicable. This reveals a bit about how folks are integrating Substrate with other tools. (JSON? Shell environment variables?)</li>
+</ul>
+
+<p>The Telemetry is posted to <a href="https://src-bin.com/telemetry">https://src-bin.com/telemetry</a>, an endpoint hosted in AWS and Honeycomb. If at any time you want to change whether your organization opts into or out of telemetry, delete <code>substrate.telemetry</code>, run any Substrate command, and answer differently.</p>
+
+        </section>
+
+        <footer>
+            <p class="fine-print">&copy; 2020-2022 &mdash; Source <span class="fancy">&amp;</span> Binary&nbsp;LLC</p>
+        </footer>
+    </body>
+</html>

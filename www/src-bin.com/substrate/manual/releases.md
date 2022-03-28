@@ -1,5 +1,17 @@
 # Substrate release notes
 
+<h2 id="2022.03">2022.03</h2>
+
+* Substrate now asks if it may post [telemetry](../telemetry/) to Source &amp; Binary. The data will be used to better understand how Substrate is being used and how it can be improved.
+* Address deprecation warnings from the AWS Terraform provider by refactoring `root-modules/deploy`.
+* Bug fix: Correctly pass an AWS access key to Terraform even if that access key is from an IAM user. This situation is unlikely but can come up during bootstrapping in brownfield environments.
+* Bug fix: Display environments and qualities in the order they're defined in `substrate.environments` and `substrate.qualities` on the Intranet's Accounts page and in the output of `substrate accounts` and `substrate root-modules`.
+
+After upgrading Substrate:
+
+1. `substrate bootstrap-deploy-account`
+2. `substrate-create-admin-account -quality="..."` for each of your admin accounts
+
 <h2 id="2022.02">2022.02</h2>
 
 * Upgrade to Terraform 1.1.6.
