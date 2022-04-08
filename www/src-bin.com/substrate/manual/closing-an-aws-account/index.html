@@ -4,16 +4,16 @@
     <head>
         <!--<link href="https://src-bin.com/" rel="canonical">-->
         <link href="/css/2022-03-03.css" rel="stylesheet">
-        <meta property="og:description" content="Purveyors of secure, reliable, and compliant cloud infrastructure">
+        <meta property="og:description" content="A page from the Substrate manual">
         <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
-        <meta property="og:title" content="Source &amp; Binary">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Closing an AWS account">
         <meta property="og:type" content="website">
-        <meta property="og:url" content="https://src-bin.com/">
+        <meta property="og:url" content="https://src-bin.com/substrate/manual/closing-an-aws-account/">
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:description" content="Purveyors of secure, reliable, and compliant cloud infrastructure">
+        <meta name="twitter:description" content="A page from the Substrate manual">
         <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
         <meta name="twitter:site" content="@src_bin">
-        <meta name="twitter:title" content="Source &amp; Binary">
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Closing an AWS account">
         <title>Source &amp; Binary / Closing an AWS account</title>
     </head>
     <body>
@@ -36,47 +36,17 @@
 
 <h1>Closing an AWS account</h1>
 
-<p>From time to time you may want to close an AWS account that you&rsquo;ve created through Substrate or close a legacy account you invited into your organization and finished migrating into domain accounts. Either way, the process is unfortunately tedious.</p>
+<p>In March of 2022, AWS introduced the oft-requested <code>organizations:CloseAccount</code> API which at long last allows administrators to close AWS accounts programmatically, saving them from a tedious process that formerly involved password resets, credit cards, and phone number verification.</p>
 
-<p>Before you begin this process, note well that AWS enforces a waiting period of "a few days" (which they really do neglect to specify more precisely) between an account joining an organization, whether by invitation or creation, and that account leaving the organization. If you&rsquo;re met with this error (or you know you will be), do what it says and try again in a few days and possibly up to a full week.</p>
+<p>To close an AWS account that&rsquo;s a member of your organization, follow these steps:</p>
 
 <ol>
-<li>Visit <a href="https://console.aws.amazon.com">https://console.aws.amazon.com</a> in an incognito window</li>
-<li>Leave &ldquo;Root user&rdquo; selected</li>
-<li>Enter the email address of the account
-<ul>
-<li>If you&rsquo;re closing an account that <code>substrate-create-account</code> created, the email address is the same as you used for your management account with &ldquo;+<em>domain</em>-<em>environment</em>-<em>quality</em>&rdquo; appended to the local part</li>
-<li>If you&rsquo;re closing an account that <code>substrate-create-admin-account</code> created, the email address is the same as you used for your management account with &ldquo;+admin-<em>quality</em>&rdquo; appended to the local part</li>
-<li>If you&rsquo;re closing an account you invited into your organization, the email address is unchanged from what it was before it joined the organization</li>
-</ul></li>
-<li>Click <strong>Next</strong></li>
-<li>Click <strong>Forgot password?</strong></li>
-<li>Respond to the captcha and click <strong>Send email</strong></li>
-<li>Open the link emailed to you in an incognito window</li>
-<li>Reset the password and, after that&rsquo;s finished, click <strong>Sign in</strong></li>
-<li>Sign in using that same email address and the password you just set</li>
-<li>Visit <a href="https://console.aws.amazon.com/organizations/home?#/organization/overview">https://console.aws.amazon.com/organizations/home?#/organization/overview</a></li>
-<li>Click <strong>Leave organization</strong></li>
-<li>Confirm; click <strong>Leave organization</strong> again</li>
-<li>Click <strong>Complete the account sign-up steps</strong></li>
-<li>Provide payment information</li>
-<li>Verify your phone number</li>
-<li>Select the free support plan</li>
-<li>When returned to the AWS Organizations console, click <strong>Leave organization</strong> again and confirm</li>
-<li>Click on the name of your account, the rightmost option in the top row of the console</li>
-<li>Click <strong>Account</strong></li>
-<li>Scroll to the bottom of the page</li>
-<li>Read all four conditions and check all four checkboxes</li>
-<li>Click <strong>Close Account</strong></li>
-<li>Confirm; click <strong>Close Account</strong></li>
+<li>Note from <code>substrate.accounts.txt</code> the account number of the account you wish to close</li>
+<li><strong>Make super-duper sure this is the account you wish close</strong></li>
+<li><code>substrate assume-role -management -role="OrganizationAdministrator" aws organizations close-account --account-id <em>account-number-noted-above</em></code></li>
 </ol>
 
-<h2>References</h2>
-
-<ul>
-<li><a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_close.html">https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_close.html</a></li>
-<li><a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_access.html#orgs_manage_accounts_access-as-root">https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_access.html#orgs_manage_accounts_access-as-root</a></li>
-</ul>
+<p>See <a href="https://aws.amazon.com/blogs/mt/aws-organizations-now-provides-a-simple-scalable-and-more-secure-way-to-close-your-member-accounts/">AWS&rsquo; announcement</a> for more information on using this API, its limitations, and your options should you wish to reopen a closed account.</p>
 
         </section>
 
