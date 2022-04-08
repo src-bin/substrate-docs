@@ -8,24 +8,7 @@ Substrate helps you manage secure, reliable, and compliant cloud infrastructure 
 
 ## Installation
 
-<!--### From a binary release-->
-
-`tar xf substrate-VERSION-COMMIT-GOOS-GOARCH.tar.gz -C ~/bin` (substituting the filename where you've stored the binary release and the directory on your `PATH` where you want it installed)
-
-<!--
-### From source
-
-Additional prerequsites:
-
-- [Go 1.17](https://golang.org/dl/)
-- GNU Make
-
-Procedure:
-
-1. `git clone git@github.com:src-bin/substrate.git`
-2. `cd substrate`
-3. `make && make install` (or `make && make install GOBIN="..."` if you want to customize `GOBIN` where it's installed)
--->
+`tar xf substrate-VERSION-COMMIT-GOOS-GOARCH.tar.gz -C ~/bin --strip-components 1` (substituting the filename where you've stored the binary release and the directory on your `PATH` where you want it installed)
 
 ## Decide where you'll run Substrate commands
 
