@@ -1,14 +1,3 @@
-#!/bin/sh
-
-set -e -x
-
-find -name "*.md" |
-while read PATHNAME
-do
-    DIRNAME="$(dirname "$PATHNAME")/$(basename "$PATHNAME" ".md")"
-    mkdir -p "$DIRNAME"
-    {
-        cat <<EOF
 <!doctype HTML>
 <html lang="en">
     <meta charset="utf-8">
@@ -17,15 +6,15 @@ do
         <link href="/css/2022-03-03.css" rel="stylesheet">
         <meta property="og:description" content="A page from the Substrate manual">
         <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
-        <meta property="og:title" content="Source &amp; Binary / Substrate manual / $(head -n"1" "$PATHNAME" | sed "s/^# //")">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Autocomplete for Substrate commands">
         <meta property="og:type" content="website">
-        <meta property="og:url" content="https://src-bin.com/substrate/manual/${DIRNAME#"./"}/">
+        <meta property="og:url" content="https://src-bin.com/substrate/manual/autocomplete/">
         <meta name="twitter:card" content="summary">
         <meta name="twitter:description" content="A page from the Substrate manual">
         <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
         <meta name="twitter:site" content="@src_bin">
-        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / $(head -n"1" "$PATHNAME" | sed "s/^# //")">
-        <title>Source &amp; Binary / $(head -n"1" "$PATHNAME" | sed "s/^# //")</title>
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Autocomplete for Substrate commands">
+        <title>Source &amp; Binary / Autocomplete for Substrate commands</title>
     </head>
     <body>
         <header>
@@ -44,11 +33,21 @@ do
         </header>
 
         <section>
-EOF
-        echo
-        Markdown.pl --html4tags "$PATHNAME"
-        echo
-        cat <<EOF
+
+<h1>Autocomplete for Substrate commands</h1>
+
+<h2>Bash</h2>
+
+<pre><code>complete -C "substrate --shell-completion" substrate
+</code></pre>
+
+<h2>Z shell</h2>
+
+<pre><code>autoload bashcompinit
+bashcompinit
+complete -C "substrate --shell-completion" substrate
+</code></pre>
+
         </section>
 
         <footer>
@@ -56,13 +55,3 @@ EOF
         </footer>
     </body>
 </html>
-EOF
-    } >"$DIRNAME/index.html"
-    until diff "$DIRNAME/.index.html" "$DIRNAME/index.html" >"/dev/null"
-    do
-        cp "$DIRNAME/index.html" "$DIRNAME/.index.html"
-        sed -z "s/<pre>\(.*\)'\(.*\)<\\/pre>/<pre>\1\&apos;\2<\/pre>/g" <"$DIRNAME/.index.html" >"$DIRNAME/index.html"
-    done
-    rm -f "$DIRNAME/.index.html"
-    sed -i "s/'/\&rsquo;/g" "$DIRNAME/index.html"
-done

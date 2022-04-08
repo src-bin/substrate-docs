@@ -2,7 +2,7 @@
 
 The [getting started](/substrate/manual/getting-started/) guide ends once you have a fully configured AWS organization, one that should last you many years and weather all sorts of growth in infrastructure and team size. This manual exists to orient you within that organization so you know what you have and how to use it most effectively to achieve your company's goals.
 
-This is a distillation of the original [Substrate design](https://www.notion.so/srcbin/Substrate-design-616feb1d5f3042ccb0bd9e8ede6589c1) that better aligns with the rest of the manual and omits all the aspirational parts.
+<!--This is a distillation of the original [Substrate design](https://www.notion.so/srcbin/Substrate-design-616feb1d5f3042ccb0bd9e8ede6589c1) that better aligns with the rest of the manual and omits all the aspirational parts.-->
 
 ## Your Substrate directory
 

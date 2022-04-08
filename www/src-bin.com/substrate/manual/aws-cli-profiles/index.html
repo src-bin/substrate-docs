@@ -1,0 +1,63 @@
+<!doctype HTML>
+<html lang="en">
+    <meta charset="utf-8">
+    <head>
+        <!--<link href="https://src-bin.com/" rel="canonical">-->
+        <link href="/css/2022-03-03.css" rel="stylesheet">
+        <meta property="og:description" content="A page from the Substrate manual">
+        <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Using AWS CLI profiles">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://src-bin.com/substrate/manual/aws-cli-profiles/">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:description" content="A page from the Substrate manual">
+        <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta name="twitter:site" content="@src_bin">
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Using AWS CLI profiles">
+        <title>Source &amp; Binary / Using AWS CLI profiles</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1>
+            <p><a href="mailto:hello@src-bin.com">hello@src-bin.com</a></p>
+            <aside>Purveyors&nbsp;of&nbsp;secure,&nbsp;reliable,&nbsp;and&nbsp;compliant&nbsp;cloud&nbsp;infrastructure&nbsp;since&nbsp;2020</aside>
+            <nav>
+                <ul>
+                    <li><a href="/">Benefits</a></li>
+                    <li><a href="/substrate/">Features</a></li>
+                    <li><a href="/substrate/manual/">Documentation</a></li>
+                    <li><a href="/pricing/">Pricing</a></li>
+                    <!--<li><a href="/compliance/">Compliance Workshop</a></li>-->
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+
+<h1>Using AWS CLI profiles</h1>
+
+<p>The AWS CLI is deceptively powerful and ubiquitous but can be tough to configure in a multi-account organization and the most obvious way to configure it &mdash; using an access key ID and secret access key &mdash; is far and away the most risky.</p>
+
+<p>Fortunately, there are two less-well-known configurations that can help you address both: Profiles and the <code>credential_process</code> directive.</p>
+
+<p>Define one or more profiles in <code>~/.aws/config</code>, naming them whatever you like, that defer credential management to Substrate via <code>substrate assume-role</code>:</p>
+
+<pre><code>[profile <em>whatever-you-want-to-call-it</em>]
+credential\_process = substrate assume-role -format="json" -quiet -domain="<em>domain</em>" -environment="<em>environment</em>" -quality="<em>quality</em>"</code></pre>
+
+<p>Note well that, in order for this to succeed, you&apos;ll need to have already run <code>eval $(substrate credentials)</code> to prime the environment to have any access to AWS at all.</p>
+
+<p>A downside of using profiles is that they&apos;re not shared amongst you and your teammates the way domains, environments, and qualities are but they can save a bit of typing and you will arrive at the same point so use whichever tool suits you in every situation &mdash; there&apos;s no need to commit to one exclusively.</p>
+
+<p>Use your profile thus:</p>
+
+<pre><code>eval $(substrate credentials)
+aws sts get-caller-identity --profile <em>whatever-you-want-to-call-it</em></code></pre>
+
+        </section>
+
+        <footer>
+            <p class="fine-print">&copy; 2020-2022 &mdash; Source <span class="fancy">&amp;</span> Binary&nbsp;LLC</p>
+        </footer>
+    </body>
+</html>
