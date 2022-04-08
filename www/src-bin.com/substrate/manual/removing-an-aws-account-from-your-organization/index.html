@@ -1,0 +1,81 @@
+<!doctype HTML>
+<html lang="en">
+    <meta charset="utf-8">
+    <head>
+        <!--<link href="https://src-bin.com/" rel="canonical">-->
+        <link href="/css/2022-03-03.css" rel="stylesheet">
+        <meta property="og:description" content="A page from the Substrate manual">
+        <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Removing an AWS account from your organization">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://src-bin.com/substrate/manual/removing-an-aws-account-from-your-organization/">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:description" content="A page from the Substrate manual">
+        <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta name="twitter:site" content="@src_bin">
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Removing an AWS account from your organization">
+        <title>Source &amp; Binary / Removing an AWS account from your organization</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1>
+            <p><a href="mailto:hello@src-bin.com">hello@src-bin.com</a></p>
+            <aside>Purveyors&nbsp;of&nbsp;secure,&nbsp;reliable,&nbsp;and&nbsp;compliant&nbsp;cloud&nbsp;infrastructure&nbsp;since&nbsp;2020</aside>
+            <nav>
+                <ul>
+                    <li><a href="/">Benefits</a></li>
+                    <li><a href="/substrate/">Features</a></li>
+                    <li><a href="/substrate/manual/">Documentation</a></li>
+                    <li><a href="/pricing/">Pricing</a></li>
+                    <!--<li><a href="/compliance/">Compliance Workshop</a></li>-->
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+
+<h1>Removing an AWS account from your organization</h1>
+
+<p>From time to time you may have a reason to remove an AWS account from your organization. The process is unfortunately tedious.</p>
+
+<p>Before you begin this process, note well that AWS enforces a waiting period of "a few days" (which they really do neglect to specify more precisely) between an account joining an organization, whether by invitation or creation, and that account leaving the organization. If you&rsquo;re met with this error (or you know you will be), do what it says and try again in a few days and possibly up to a full week.</p>
+
+<ol>
+<li>Visit <a href="https://console.aws.amazon.com">https://console.aws.amazon.com</a> in an incognito window</li>
+<li>Leave &ldquo;Root user&rdquo; selected</li>
+<li>Enter the email address of the account
+<ul>
+<li>If you&rsquo;re closing an account that <code>substrate-create-account</code> created, the email address is the same as you used for your management account with &ldquo;+<em>domain</em>-<em>environment</em>-<em>quality</em>&rdquo; appended to the local part</li>
+<li>If you&rsquo;re closing an account that <code>substrate-create-admin-account</code> created, the email address is the same as you used for your management account with &ldquo;+admin-<em>quality</em>&rdquo; appended to the local part</li>
+<li>If you&rsquo;re closing an account you invited into your organization, the email address is unchanged from what it was before it joined the organization</li>
+</ul></li>
+<li>Click <strong>Next</strong></li>
+<li>Click <strong>Forgot password?</strong></li>
+<li>Respond to the captcha and click <strong>Send email</strong></li>
+<li>Open the link emailed to you in an incognito window</li>
+<li>Reset the password and, after that&rsquo;s finished, click <strong>Sign in</strong></li>
+<li>Sign in using that same email address and the password you just set</li>
+<li>Visit <a href="https://console.aws.amazon.com/organizations/home?#/organization/overview">https://console.aws.amazon.com/organizations/home?#/organization/overview</a></li>
+<li>Click <strong>Leave organization</strong></li>
+<li>Confirm; click <strong>Leave organization</strong> again</li>
+<li>Click <strong>Complete the account sign-up steps</strong></li>
+<li>Provide payment information</li>
+<li>Verify your phone number</li>
+<li>Select the free support plan</li>
+<li>When returned to the AWS Organizations console, click <strong>Leave organization</strong> again and confirm</li>
+</ol>
+
+<h2>References</h2>
+
+<ul>
+<li><a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_close.html">https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_close.html</a></li>
+<li><a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_access.html#orgs_manage_accounts_access-as-root">https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_access.html#orgs_manage_accounts_access-as-root</a></li>
+</ul>
+
+        </section>
+
+        <footer>
+            <p class="fine-print">&copy; 2020-2022 &mdash; Source <span class="fancy">&amp;</span> Binary&nbsp;LLC</p>
+        </footer>
+    </body>
+</html>
