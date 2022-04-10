@@ -37,7 +37,7 @@ do
                     <li><a href="/">Benefits</a></li>
                     <li><a href="/substrate/">Features</a></li>
                     <li><a href="/substrate/manual/">Documentation</a></li>
-                    <li><a href="/pricing/">Pricing</a></li>
+                    <li><a href="/substrate/pricing/">Pricing</a></li>
                     <!--<li><a href="/compliance/">Compliance Workshop</a></li>-->
                 </ul>
             </nav>
