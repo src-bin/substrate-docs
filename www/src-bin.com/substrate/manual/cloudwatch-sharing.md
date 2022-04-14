@@ -1,4 +1,4 @@
-# CloudWatch sharing
+# Sharing CloudWatch data between accounts
 
 AWS paves the way for the CloudWatch console to view metrics cross-account and cross-region which is very handy in a multi-account and potentially multi-region deployment managed by Substrate. Substrate does the majority of the work of managing IAM roles and configuration to make this easy.
 

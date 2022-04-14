@@ -1,5 +1,20 @@
 # Substrate release notes
 
+<!--<h2 id="2022.04">2022.04</h2>-->
+
+<!--
+* Substrate now ships with a rudimentary autocomplete mechanism for Bash, Z shell, and other shells with compatibility for Bash completion.
+* Substrate can now be used to drive the `--profile` option to the standard AWS CLI. See [using AWS CLI profiles] for details.
+* Enforce, via organization-wide Service Control Policy, that EC2 instances must be launched with access to IMDSv2 and not IMDSv1.
+* Upgrade the AWS Terraform provider to version 4.9.0 or (slightly) newer.
+* Remove the dependency on the AWS CLI in the generated `modules/substrate` Terraform code.
+* Bug fix: Lessen the possibility of a `TooManyRequestsException` from AWS Organizations during Terraform runs.
+* Bug fix: Update the `SubstrateVersion` tag on your AWS accounts themselves when Substrate tries to create them and finds that they already exist.
+* Bug fix: This time Substrate _actually_ asks if it may post [telemetry](../telemetry/) to Source &amp; Binary as promised in the previous release.
+* Bug fix: Remove a slight crash risk when trying to post tememetry early so commands can exit earlier.
+* Bug fix: Use Terraform resource references in root-modules/deploy to avoid a race during `substrate bootstrap-deploy-account`.
+-->
+
 <h2 id="2022.03">2022.03</h2>
 
 * Substrate now asks if it may post [telemetry](../telemetry/) to Source &amp; Binary. The data will be used to better understand how Substrate is being used and how it can be improved.
@@ -312,6 +327,14 @@ You must upgrade to Terraform 0.13.6 in order to use Substrate 2021.02. Terrafor
 * <https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_linux_amd64.zip>
 * <https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_linux_arm64.zip>
 
-## 2021.01 and prior releases
+<h2 id="2021.01">2021.01</h2>
+
+You must run `substrate-create-admin-account` for each of your admin accounts before you'll be able to use `eval $(substrate-credentials)` to streamline your use of the Credential Factory.
+
+<h2 id="2020.12">2020.12</h2>
+
+You must run `substrate-bootstrap-management-account` in order to re-tag your former master account as your management account. (This rename follows AWS' own renaming.)
+
+## 2020.11 and prior releases
 
 Contact <hello@src-bin.com> for prior release notes.

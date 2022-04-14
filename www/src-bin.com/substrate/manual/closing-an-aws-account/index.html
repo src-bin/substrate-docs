@@ -43,7 +43,7 @@
 <ol>
 <li>Note from <code>substrate.accounts.txt</code> the account number of the account you wish to close</li>
 <li><strong>Make super-duper sure this is the account you wish close</strong></li>
-<li><code>substrate assume-role -management -role="OrganizationAdministrator" aws organizations close-account --account-id <em>account-number-noted-above</em></code></li>
+<li><code>substrate assume-role -management aws organizations close-account --account-id <em>account-number-noted-above</em></code></li>
 </ol>
 
 <p>See <a href="https://aws.amazon.com/blogs/mt/aws-organizations-now-provides-a-simple-scalable-and-more-secure-way-to-close-your-member-accounts/">AWS&rsquo; announcement</a> for more information on using this API, its limitations, and your options should you wish to reopen a closed account.</p>

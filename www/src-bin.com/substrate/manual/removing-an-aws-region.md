@@ -8,11 +8,11 @@ First and foremost, if you're going to remove a region and all the infrastructur
 
 ## Remove the region from Substrate
 
-Run `substrate-bootstrap-network-account` and edit remove the region from your list of regions. After it completes its run you'll have a great many directories in `root-modules` that reference the region which will no longer be managed by any Substrate tools.
+Run `substrate bootstrap-network-account -fully-interactive`. When prompted if your region list is accurate, respond "no", and remove the region from your list of regions. When this command exits, you'll have a great many directories in `root-modules` that reference the region which will no longer be managed by any Substrate tools.
 
 ## Destroy admin and service infrastructure in the region
 
-<code>find root-modules -name <em>region</em></code> to list all the root modules that run in the region. Starting with your service accounts, run `terraform destroy` in each one and then `rm -f -r` that directory.
+<code>find root-modules -name <em>region</em></code> to list all the root modules that run in the region. Starting with your admin and service accounts, run `terraform destroy` in each one and then `rm -f -r` that directory.
 
 ## Destroy network peering relationships
 

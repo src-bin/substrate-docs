@@ -1,4 +1,4 @@
-# SOC 2 criteria met by using Substrate
+# Addressing SOC 2 criteria with Substrate
 
 ## CC6.1
 

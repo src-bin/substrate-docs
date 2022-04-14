@@ -6,15 +6,15 @@
         <link href="/css/2022-03-03.css" rel="stylesheet">
         <meta property="og:description" content="A page from the Substrate manual">
         <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
-        <meta property="og:title" content="Source &amp; Binary / Substrate manual / AWS Support">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Subscribing to AWS Support plans">
         <meta property="og:type" content="website">
         <meta property="og:url" content="https://src-bin.com/substrate/manual/aws-support/">
         <meta name="twitter:card" content="summary">
         <meta name="twitter:description" content="A page from the Substrate manual">
         <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
         <meta name="twitter:site" content="@src_bin">
-        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / AWS Support">
-        <title>Source &amp; Binary / AWS Support</title>
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Subscribing to AWS Support plans">
+        <title>Source &amp; Binary / Subscribing to AWS Support plans</title>
     </head>
     <body>
         <header>
@@ -34,7 +34,7 @@
 
         <section>
 
-<h1>AWS Support</h1>
+<h1>Subscribing to AWS Support plans</h1>
 
 <p>You may wish to purchase an AWS Support plan for one or more of your AWS accounts. Doing so can get you access to phone support, more urgent SLAs, and more. AWS Support is annoyingly account-centric rather than organization-centric which makes it potentially a lot more expensive and much harder to purchase.</p>
 
@@ -43,20 +43,23 @@
 <ol>
 <li>Visit <a href="https://console.aws.amazon.com">https://console.aws.amazon.com</a> in an incognito window</li>
 <li>Leave &ldquo;Root user&rdquo; selected</li>
-<li>Enter the email address of the account
+<li>Enter the email address of the account (which you can find in <code>substrate.accounts.txt</code> or by the rules below)
 <ul>
 <li>If you&rsquo;re purchasing for the management account, the email address is the one you used when you first signed up for AWS</li>
-<li>If you&rsquo;re purchasing for an account that <code>substrate-create-account</code> created, the email address is the same as you used for your management account with &ldquo;+<em>domain</em>-<em>environment</em>-<em>quality</em>&rdquo; appended to the local part</li>
-<li>If you&rsquo;re purchasing for an account that <code>substrate-create-admin-account</code> created, the email address is the same as you used for your management account with &ldquo;+admin-<em>quality</em>&rdquo; appended to the local part</li>
+<li>If you&rsquo;re purchasing for an account that <code>substrate create-account</code> created, the email address is the same as you used for your management account with &ldquo;+<em>domain</em>-<em>environment</em>-<em>quality</em>&rdquo; appended to the local part</li>
+<li>If you&rsquo;re purchasing for an account that <code>substrate create-admin-account</code> created, the email address is the same as you used for your management account with &ldquo;+admin-<em>quality</em>&rdquo; appended to the local part</li>
 <li>If you&rsquo;re purchasing for an account you invited into your organization, the email address is unchanged from what it was before it joined the organization</li>
 </ul></li>
 <li>Click <strong>Next</strong></li>
 <li>Click <strong>Forgot password?</strong></li>
 <li>Respond to the captcha and click <strong>Send email</strong></li>
 <li>Open the link emailed to you in an incognito window</li>
-<li>Reset the password (change it to something truly outlandish and setup MFA in order to ensure the continuity of your organization&rsquo;s security) and, after that&rsquo;s finished, click <strong>Sign in</strong></li>
+<li>Reset the password and, after that&rsquo;s finished, click <strong>Sign in</strong></li>
 <li>Sign in using that same email address and the password you just set</li>
-<li>Visit <a href="https://console.aws.amazon.com/support/plans/home">https://console.aws.amazon.com/support/plans/home</a></li>
+<li>Visit <a href="https://console.aws.amazon.com/iam/home#/security_credentials">https://console.aws.amazon.com/iam/home#/security_credentials</a></li>
+<li>Click <strong>Multi-factor authentication (MFA)</strong></li>
+<li>Click <strong>Activate MFA</strong> and follow the steps (this is very important because, now that this account has a password, it&rsquo;s no longer protected by two-factor authentication in your email provider)</li>
+<li>Back on topic, visit <a href="https://console.aws.amazon.com/support/plans/home">https://console.aws.amazon.com/support/plans/home</a></li>
 <li>Click <strong>Change plan</strong></li>
 <li>Select the plan you intend to purchase</li>
 <li>Click <strong>Change plan</strong> again (or, if you&rsquo;re purchasing Enterprise Support, follow the flow to contact AWS as they&rsquo;re going to want to speak to you)</li>
