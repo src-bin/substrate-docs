@@ -12,33 +12,33 @@ Use multiple environments to protect your customersâ€™ data from code that hasnâ
 
 An AWS account in your organization is a member of exactly one environment and can only access the networks assigned to that environment.
 
-### Example
+### Examples
 
-Organizations typically define environments like _development_, _staging_, and _production_ though the names and number is entirely up to them. Add more environments to support more different kinds of testing with greater parallelism.
+Organizations typically define environments like _development_, _staging_, and _production_ though the names and number is entirely up to you. Add more environments to, for example, support more different kinds of testing with greater parallelism.
 
 ## Qualities
 
-Highly reliable services almost always implement changes gradually to give their operators a chance to detect and mitigate failures when the impact is small. Qualities help make gradual change possible for many AWS resources like load balancers and security groups, even within a single service.
+Highly reliable services almost always implement changes gradually to give their operators a chance to detect and mitigate failures when the impact is small. Qualities help make gradual change possible for  AWS resources that would otherwise be difficult to incrementally change like load balancers, autoscaling groups, security groups, DNS zones, IAM roles, and more, even within a single service.
 
 Use multiple qualities to protect any one service from changes that affect that whole service immediately.
 
-An AWS account in your organization is associated with exactly one quality but can access and use resources in any AWS account that shares its environment.
+An AWS account in your organization is associated with exactly one quality but can access and use resources in AWS account of any quality so long as they share the same environment.
 
-### Example
+### Examples
 
-Suppose your organization defined the qualities _alpha_, _beta_, and _gamma_ (which is one set of qualities that Substrate recommends). You could run 1% of your production environment in your alpha accounts, 9% in your beta accounts, and the remaining 90% in your gamma accounts. This isn't as smooth as routing a slowly increasing percentage of traffic to your new software as it's being deployed (and you should strongly consider doing that, too) but this strategy works even for AWS resources like load balancers and security groups.
+Suppose your organization defined the qualities _alpha_, _beta_, and _gamma_ (which is one set of qualities that Substrate recommends). You could run 1% of your production environment in your alpha accounts, 9% in your beta accounts, and the remaining 90% in your gamma accounts. This isn't as smooth as routing a slowly increasing percentage of traffic to your new software as it's being deployed (and you should strongly consider doing that, too, eventually) but this strategy works when it's an AWS resource you want to change incrementally.
 
 You could also decide to name your qualities _blue_ and _green_ and swing traffic back and forth between them. The slight disadvantage to this architecture is that the one that's not receiving any traffic is not, at that moment, proving that its configuration is functional and thus the first trickle of traffic that comes to it when you start to swing back to it is slightly higher risk.
 
-You could also decide to name your only quality _default_. Later, when you need it, you can add a _canary_ quality that your deploy to first and that takes a small fraction of your traffic. You might also add an _enterprise_ or _proven_ quality that you deploy to last where your highest-paying or most-risk-averse customers are routed.
+Or you could decide name your only quality _default_. (Most folks using Substrate do this at first.) Later, when you need it, you can add a _canary_ quality that your deploy to first and that takes a small fraction of your traffic. You might also add an _enterprise_ or _proven_ quality that you deploy to last where your highest-paying or most-risk-averse customers are routed.
 
 ## Domains
 
-Domains are collections of one or more software services that form an isolated failure domain (pun very much intended). The software may be that which you've written yourself, hosted in any serverless or serverful manner, or an AWS-managed service.
+Domains are groups of one or more software services that form an isolated failure domain (pun very much intended). The software may be that which you've written yourself, hosted in any serverless or serverful manner, an AWS-managed service, something you bought from the AWS Marketplace, or a SaaS product that manages infrastructure in one of your AWS accounts.
 
-Use multiple domains to protect services in any one domain from changes in all other domains. 
+Use multiple domains to protect services in any one domain from changes in all other domains. Group services into a single domain when they're tightly coupled, share the same level of access to AWS or other services, or are developed and deployed together.
 
-An AWS account in your organization is associated with exactly one domain but can access and use resources in any AWS account that shares its environment. There may be multiple AWS accounts within a domain, each of a different quality.
+An AWS account in your organization is associated with exactly one domain but can access network services in any AWS account that shares its environment. There may be multiple AWS accounts within a domain, each in a different environment or of a different quality.
 
 ### Example
 
@@ -49,5 +49,3 @@ It is intended that every AWS account that shares the same domain also shares th
 - Domain: _example_, Environment: _production_, Quality: _gamma_
 
 They all refer back to the same modules, parameterized according to their domain, environment, and quality plus the appropriate VPC and subnet IDs. The difference between them, then, is _when_ changes are deployed.
-
-Because domains are made out of AWS accounts, and because AWS accounts are notoriously awkward to delete, you should try to create domains that you believe will be (nearly) permanent. Thus, consider naming them after stable architectural or business units not e.g. speculative skunkworks projects.

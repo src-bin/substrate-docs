@@ -1,0 +1,53 @@
+<!doctype HTML>
+<html lang="en">
+    <meta charset="utf-8">
+    <head>
+        <!--<link href="https://src-bin.com/" rel="canonical">-->
+        <link href="/css/2022-03-03.css" rel="stylesheet">
+        <meta property="og:description" content="A page from the Substrate manual">
+        <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Deciding where to host internal tools">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://src-bin.com/substrate/manual/internal-tools/">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:description" content="A page from the Substrate manual">
+        <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta name="twitter:site" content="@src_bin">
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Deciding where to host internal tools">
+        <title>Source &amp; Binary / Deciding where to host internal tools</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1>
+            <p><a href="mailto:hello@src-bin.com">hello@src-bin.com</a></p>
+            <aside>Purveyors&nbsp;of&nbsp;secure,&nbsp;reliable,&nbsp;and&nbsp;compliant&nbsp;cloud&nbsp;infrastructure&nbsp;since&nbsp;2020</aside>
+            <nav>
+                <ul>
+                    <li><a href="/">Benefits</a></li>
+                    <li><a href="/substrate/">Features</a></li>
+                    <li><a href="/substrate/manual/">Documentation</a></li>
+                    <li><a href="/substrate/pricing/">Pricing</a></li>
+                    <!--<li><a href="/compliance/">Compliance Workshop</a></li>-->
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+
+<h1>Deciding where to host internal tools</h1>
+
+<p>It&rsquo;s easy to put all internal tools into one basket but, if you look closely, they can typically be cleanly put into two smaller groups. Some tools are, for lack of a better word, devops tools; they&rsquo;re concerned with cluster management, deployment, and the like. Other tools are part of your product; they understand and interact with your data model and your services. You should put devops tools in your admin accounts and you should put product tools in the appropriate domain accounts.</p>
+
+<p>If you like, you can expose them all via your Intranet DNS domain name, though you&rsquo;ll want to namespace product tool URLs with an environment e.g. <a href="https://example.com/production/user/123">https://example.com/production/user/123</a>.</p>
+
+<p>Finally, you are likely to encounter many situations in which tools running in your admin accounts need to access either control plane services or EC2 instances in service accounts. To facilitate this, admin accounts are guaranteed to use networks in the 192.168.0.0/16 RFC 1918 address space, which means that security groups in your service accounts can feel free to allow access from 192.168.0.0/16 without any risk they&rsquo;re unknowingly allowing other service accounts a back door.</p>
+
+<p>You should almost certainly <a href="../protecting-internal-websites/">protect your internal tools</a> using your Intranet and identity provider.</p>
+
+        </section>
+
+        <footer>
+            <p class="fine-print">&copy; 2020-2022 &mdash; Source <span class="fancy">&amp;</span> Binary&nbsp;LLC</p>
+        </footer>
+    </body>
+</html>

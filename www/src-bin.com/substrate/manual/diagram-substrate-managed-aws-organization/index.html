@@ -1,0 +1,60 @@
+<!doctype HTML>
+<html lang="en">
+    <meta charset="utf-8">
+    <head>
+        <!--<link href="https://src-bin.com/" rel="canonical">-->
+        <link href="/css/2022-03-03.css" rel="stylesheet">
+        <meta property="og:description" content="A page from the Substrate manual">
+        <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Diagram of a Substrate-managed AWS organization">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://src-bin.com/substrate/manual/diagram-substrate-managed-aws-organization/">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:description" content="A page from the Substrate manual">
+        <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta name="twitter:site" content="@src_bin">
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Diagram of a Substrate-managed AWS organization">
+        <title>Source &amp; Binary / Diagram of a Substrate-managed AWS organization</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1>
+            <p><a href="mailto:hello@src-bin.com">hello@src-bin.com</a></p>
+            <aside>Purveyors&nbsp;of&nbsp;secure,&nbsp;reliable,&nbsp;and&nbsp;compliant&nbsp;cloud&nbsp;infrastructure&nbsp;since&nbsp;2020</aside>
+            <nav>
+                <ul>
+                    <li><a href="/">Benefits</a></li>
+                    <li><a href="/substrate/">Features</a></li>
+                    <li><a href="/substrate/manual/">Documentation</a></li>
+                    <li><a href="/substrate/pricing/">Pricing</a></li>
+                    <!--<li><a href="/compliance/">Compliance Workshop</a></li>-->
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+
+<h1>Diagram of a Substrate-managed AWS organization</h1>
+
+<p><a href="https://src-bin.com/img/substrate.png"><img src="https://src-bin.com/img/substrate.png" width="800"></a></p>
+
+<p>A Substrate-managed AWS organization is comprised of half-a-dozen or more AWS accounts all working together. Briefly, since these accounts are all discussed in detail elsewhere:</p>
+
+<ul>
+<li>Management account: Creates the AWS organization and organization-wide CloudTrail. Receives your bill.</li>
+<li>Audit account: Stores the organization-wide CloudTrail.</li>
+<li>Deploy account: Facilitates moving objects between accounts via S3. Useful as part of CI/CD processes.</li>
+<li>Network account: Creates VPCs and shares them into all the right service accounts.</li>
+<li>Admin account: Integrates with an identity provider, serves the Intranet, and helps authorized humans get into AWS.</li>
+<li>Service accounts: Contain all the rest of the AWS resources, serve your production traffic, and protect customers&rsquo; data.</li>
+</ul>
+
+<p>Go deeper and take a look at a <a href="../diagram-multi-quality-multi-region-service/">diagram of a multi-quality, multi-region service</a> provisioned within two service accounts, as highlighted in grey at the top of this diagram.</p>
+
+        </section>
+
+        <footer>
+            <p class="fine-print">&copy; 2020-2022 &mdash; Source <span class="fancy">&amp;</span> Binary&nbsp;LLC</p>
+        </footer>
+    </body>
+</html>

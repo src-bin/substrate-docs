@@ -1,0 +1,171 @@
+<!doctype HTML>
+<html lang="en">
+    <meta charset="utf-8">
+    <head>
+        <!--<link href="https://src-bin.com/" rel="canonical">-->
+        <link href="/css/2022-03-03.css" rel="stylesheet">
+        <meta property="og:description" content="A page from the Substrate manual">
+        <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Substrate filesystem hierarchy">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://src-bin.com/substrate/manual/substrate-filesystem-hierarchy/">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:description" content="A page from the Substrate manual">
+        <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta name="twitter:site" content="@src_bin">
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Substrate filesystem hierarchy">
+        <title>Source &amp; Binary / Substrate filesystem hierarchy</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1>
+            <p><a href="mailto:hello@src-bin.com">hello@src-bin.com</a></p>
+            <aside>Purveyors&nbsp;of&nbsp;secure,&nbsp;reliable,&nbsp;and&nbsp;compliant&nbsp;cloud&nbsp;infrastructure&nbsp;since&nbsp;2020</aside>
+            <nav>
+                <ul>
+                    <li><a href="/">Benefits</a></li>
+                    <li><a href="/substrate/">Features</a></li>
+                    <li><a href="/substrate/manual/">Documentation</a></li>
+                    <li><a href="/substrate/pricing/">Pricing</a></li>
+                    <!--<li><a href="/compliance/">Compliance Workshop</a></li>-->
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+
+<h1>Substrate filesystem hierarchy</h1>
+
+<p>The directory in which you first run <code>substrate bootstrap-management-account</code> becomes the root of your Substrate repository. The tools will read and write many files in this directory tree, all of which should be committed to version control. (Substrate manages <code>.gitignore</code> files in certain subdirectories to keep your commits tidy.)</p>
+
+<p>You are free to create a repository specifically for Substrate, to add Substrate to the root of an existing repository, or to add Substrate in a subdirectory of a new or existing repository. If you&rsquo;re already a Terraform user, we find it convenient for Substrate to be committed to the same repository in which you store your existing Terraform modules.</p>
+
+<p>The following index describes the contents and purpose of all the files the various Substrate tools create in your Substrate repository on your behalf.</p>
+
+<ul>
+<li><strong><code>modules</code></strong> <br>
+A tree of Terraform modules, the ones listed below to support your network and admin accounts, one module for each domain you define, and all the modules you define to encapsulate your own code. Substrate-managed files include a header identifying them as such and declaring whether you may edit them.
+<ul>
+<li><strong><code>intranet</code></strong> <br>
+Your Intranet, which runs in your admin account, and serves the Credential and Instance Factories, the Accounts page used to access the AWS Console, and potentially more. (Managed by <code>substrate create-admin-account</code>.)</li>
+<li><strong><code>lambda-function</code></strong> <br>
+An abstraction used by <code>modules/intranet</code> and that you&rsquo;re free to use if it works for you. (Managed by <code>substrate create-admin-account</code>.)</li>
+<li><strong><code>peering-connection</code></strong> <br>
+An abstraction used by <code>root-modules/network/peering</code>. (Managed by <code>substrate create-admin-account</code>.)</li>
+<li><strong><code>substrate</code></strong> <br>
+A convenience for making domain, environment, and quality plus network configuration easy to access from your modules. (Managed by <code>substrate create-account</code> and <code>substrate create-admin-account</code>.)</li>
+<li><strong><code><em>domain</em></code></strong>
+<ul>
+<li><strong><code>global</code></strong>
+<ul>
+<li><strong><code>main.tf</code></strong> <br>
+A blank slate, ready for you to add your global Terraform resources. (Managed by <code>substrate create-account</code>.)</li>
+<li><strong><code>substrate.tf</code></strong> <br>
+A reference to <code>modules/substrate/global</code>, which makes <code>module.substrate.tags</code> work in this module. (Managed by <code>substrate create-account</code>.)</li>
+<li><strong><code>versions.tf</code></strong> <br>
+Configuration of Terraform and provider versions, etc. (Managed by <code>substrate create-account</code>.)</li>
+</ul></li>
+<li><strong><code>regional</code></strong>
+<ul>
+<li><strong><code>main.tf</code></strong> <br>
+A blank slate, ready for you to add your regional Terraform resources. (Managed by <code>substrate create-account</code>.)</li>
+<li><strong><code>substrate.tf</code></strong> <br>
+A reference to <code>modules/substrate/regional</code>, which makes <code>module.substrate.tags</code>, <code>module.substrate.vpc_id</code>, etc. work in this module. (Managed by <code>substrate create-account</code>.)</li>
+<li><strong><code>versions.tf</code></strong> <br>
+Configuration of Terraform and provider versions, etc. (Managed by <code>substrate create-account</code>.)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong><code>root-modules</code></strong> <br>
+A tree of Terraform root modules, each with a correctly configured state file stored in DynamoDB and S3. The tree is organized by domain, environment, quality, and region with some additional complexity for network peering arrangements. Substrate-managed files include a header identifying them as such and declaring whether you may edit them.
+<ul>
+<li><strong><code>admin</code></strong> <br>
+Your admin account, especially a reference to <code>modules/intranet</code>. (Managed by <code>substrate create-admin-account</code>.)</li>
+<li><strong><code>deploy</code></strong> <br>
+Your deploy account, managing S3 buckets and also a good place to put e.g. AWS ECR resources. (Managed by `substrate bootstrap-deploy-account.)</li>
+<li><strong><code>network</code></strong> <br>
+Your network, where VPCs are defined before being shared. (Managed by <code>substrate bootstrap-network-account</code>.)
+<ul>
+<li><strong><code>peering</code></strong> <br>
+VPC peering relationships between regions and qualities within the same environment. (Managed by <code>substrate bootstrap-network-account</code>.)</li>
+</ul></li>
+<li><strong><code><em>domain</em></code></strong>
+<ul>
+<li><strong><code><em>environment</em></code></strong>
+<ul>
+<li><strong><code><em>quality</em></code></strong> <br>
+Each of your domains has root Terraform modules in each environment, quality, and region which configure Terraform and refer to <code>modules/<em>domain</em></code>. (Managed by <code>substrate create-account</code>.)
+<ul>
+<li><strong><code>global</code></strong>
+<ul>
+<li><strong><code>main.tf</code></strong> <br>
+A reference to <code>modules/<em>domain</em>/global</code> plus a place to put global, non-environmental Terraform resources. (Managed by <code>substrate create-account</code>.)</li>
+<li><strong><code>Makefile</code></strong> <br>
+A convenience that allows running Terraform commands in this directory from another, like the more recently added <code>terraform -chdir</code> does. (Managed by <code>substrate create-account</code>.)</li>
+<li><strong><code>providers.tf</code></strong> <br>
+Terraform provider declarations. (Managed by <code>substrate create-account</code>.)</li>
+<li><strong><code>terraform.tf</code></strong> <br>
+S3- and DynamoDB-backed Terraform state file configuration. (Managed by <code>substrate create-account</code>.)</li>
+<li><strong><code>versions.tf</code></strong> <br>
+Configuration of Terraform and provider versions, etc. (Managed by <code>substrate create-account</code>.)</li>
+</ul></li>
+<li><strong><code><em>region</em></code></strong>
+<ul>
+<li><strong><code>main.tf</code></strong> <br>
+A reference to <code>modules/<em>domain</em>/regional</code> plus a place to put regional, non-environmental Terraform resources. (Managed by <code>substrate create-account</code>.)</li>
+<li><strong><code>Makefile</code></strong> <br>
+A convenience that allows running Terraform commands in this directory from another, like the more recently added <code>terraform -chdir</code> does. (Managed by <code>substrate create-account</code>.)</li>
+<li><strong><code>network.tf</code></strong> <br>
+Sharing and tagging the correct VPC from the network account into this account.</li>
+<li><strong><code>providers.tf</code></strong> <br>
+Terraform provider declarations. (Managed by <code>substrate create-account</code>.)</li>
+<li><strong><code>terraform.tf</code></strong> <br>
+S3- and DynamoDB-backed Terraform state file configuration. (Managed by <code>substrate create-account</code>.)</li>
+<li><strong><code>versions.tf</code></strong> <br>
+Configuration of Terraform and provider versions, etc. (Managed by <code>substrate create-account</code>.)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong><code>substrate.accounts.txt</code></strong> <br>
+A convenient listing of all your AWS accounts and the IAM roles to assume when you need to access them. (Managed by all the programs that potentially create AWS accounts.)</li>
+<li><strong><code>substrate.admin-networks.json</code></strong> <br>
+Allocator for CIDR blocks used by VPCs and subnets for your admin accounts. (Managed by <code>substrate bootstrap-network-account</code>.)</li>
+<li><strong><code>substrate.default-region</code></strong> <br>
+The AWS region where CloudTrail logs and other global resources are located. (Managed by <code>substrate bootstrap-management-account</code>.)</li>
+<li><strong><code>substrate.environments</code></strong> <br>
+Logically ordered list of all your environments. (Managed by <code>substrate bootstrap-network-account</code>.)</li>
+<li><strong><code>substrate.intranet-dns-domain-name</code></strong> <br>
+DNS domain name that&rsquo;s owned by, or at least hosted in, your admin account. (Managed by <code>substrate create-admin-account</code>.)</li>
+<li><strong><code>substrate.networks.json</code></strong> <br>
+Allocator for CIDR blocks used by VPCs and subnets for your non-admin accounts. (Managed by <code>substrate bootstrap-network-account</code>.)</li>
+<li><strong><code>substrate.oauth-oidc-client-id</code></strong> <br>
+OAuth OIDC client ID from your identity provider. (Managed by <code>substrate create-admin-account</code>.)</li>
+<li><strong><code>substrate.oauth-oidc-client-secret-timestamp</code></strong> <br>
+Timestamp of the AWS Secrets Manager secret version that&rsquo;s storing the OAuth OIDC client secret from your identity provider. (Managed by <code>substrate create-admin-account</code>.)</li>
+<li><strong><code>substrate.okta-hostname</code></strong> <br>
+Hostname of your Okta-hosted identity provider, if you&rsquo;re using Okta. (Managed by <code>substrate create-admin-account</code>.)</li>
+<li><strong><code>substrate.nat-gateways</code></strong> <br>
+"yes" or "no" to indicate whether NAT Gateways will be provisioned with your private subnets. (Managed by <code>substrate bootstrap-network-account</code>.)</li>
+<li><strong><code>substrate.prefix</code></strong> <br>
+Prefix to use for the names of global resources like S3 buckets. (Managed by <code>substrate bootstrap-management-account</code>.)</li>
+<li><strong><code>substrate.qualities</code></strong> <br>
+Logically ordered list of all your qualities. (Managed by <code>substrate bootstrap-network-account</code>.)</li>
+<li><strong><code>substrate.regions</code></strong> <br>
+List of AWS regions you&rsquo;re using. (Managed by <code>substrate bootstrap-network-account</code>.)</li>
+<li><strong><code>substrate.saml-metadata.xml</code></strong> <br>
+Legacy configuration for a SAML integration that early Substrate installations have for getting into the AWS Console. (Not created for new installations.)</li>
+<li><strong><code>substrate.telemetry</code></strong> <br>
+"yes" or "no" to indicate whether telemetry may be sent to Source &amp; Binary. (Managed by all Substrate tools.)</li>
+<li><strong><code>substrate.valid-environment-quality-pairs.json</code></strong> <br>
+Pairings you&rsquo;ve declared as valid. Used to avoid creating VPCs you&rsquo;ll never use to spare your service quotas. (Managed by <code>substrate bootstrap-network-account</code>.)</li>
+</ul>
+
+        </section>
+
+        <footer>
+            <p class="fine-print">&copy; 2020-2022 &mdash; Source <span class="fancy">&amp;</span> Binary&nbsp;LLC</p>
+        </footer>
+    </body>
+</html>
