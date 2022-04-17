@@ -1,6 +1,6 @@
 # Adding non-Administrator (and non-Auditor) roles for humans
 
-In order to set the `RoleName` attribute on any of your IdP users to any value except &ldquo;Administrator&rdquo; or &ldquo;Auditor&rdquo;, you'll need to define a role in your admin account and possibly some (or all) of your service accounts.
+In order to set the `RoleName` attribute on any of your users in your identity provider to any value except &ldquo;Administrator&rdquo; or &ldquo;Auditor&rdquo;, you'll need to define a role in your admin account and possibly some (or all) of your service accounts.
 
 ## In your admin account(s)
 
@@ -57,7 +57,7 @@ In a new file in `modules/intranet/global`, add code like this:
 
 This role is called &ldquo;Developer&rdquo; but of course you can call yours whatever you like and have as many as you like.
 
-Run `substrate-create-admin-account -quality="..."` to create this role, then update the `RoleName` attribute in your IdP to assign it to whichever users you like.
+Run <code>substrate create-admin-account -quality <em>quality</em></code> to create this role, then update the `RoleName` attribute in your identity provider to assign it to whichever users you like.
 
 # In your service accounts
 
@@ -104,4 +104,4 @@ In each service account, code like this in a new file in <code>modules/<em>domai
       role       = aws_iam_role.developer.name
     }
 
-Run `substrate-create-account -domain="..." -environment="..." -quality="..."` to create this role.
+Run <code>substrate create-account -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em></code> to create this role.

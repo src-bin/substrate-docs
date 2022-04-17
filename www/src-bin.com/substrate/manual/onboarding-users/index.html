@@ -36,31 +36,23 @@
 
 <h1>Onboarding users</h1>
 
-<p>When new folks join your company they&rsquo;re probably going to need access to AWS. Here&rsquo;s a quick guide for granting it, depending on which IdP you use.</p>
+<p>When new folks join your company they&rsquo;re probably going to need access to AWS. Here&rsquo;s a quick guide for granting it, depending on which identity provider you use.</p>
+
+<p>After you&rsquo;ve added folks to the identity provider per your usual onboarding process for all employees, do the following for each user who needs access to AWS.</p>
 
 <h2>Google Workspace</h2>
 
 <ol>
 <li>Visit <a href="https://admin.google.com/ac/users">https://admin.google.com/ac/users</a> (or visit <a href="https://admin.google.com">https://admin.google.com</a> and click <strong>Users</strong>)</li>
-<li>For each of your new folks:
-<ol>
 <li>Click the user&rsquo;s name</li>
 <li>Click <strong>User information</strong></li>
 <li>In the <em>AWS</em> section, click <strong>Add RoleName</strong> and paste the name (not the ARN) of the IAM role they should assume in your admin account (if it&rsquo;s not &ldquo;Administrator&rdquo; or &ldquo;Auditor&rdquo;, ensure you&rsquo;ve followed <a href="../adding-non-administrator-roles-for-humans/">adding non-Administrator roles for humans</a> first)</li>
 <li>Click <strong>SAVE</strong></li>
-</ol></li>
 </ol>
 
 <h2>Okta</h2>
 
 <ol>
-<li>Add the new folks to Okta per your usual onboarding process</li>
-<li>Open the configuration screen for your &ldquo;AWS Account Federation&rdquo; app</li>
-<li>Click <strong>Assign</strong> and then <strong>Assign to People</strong></li>
-<li>Select your new folks</li>
-<li>Click <strong>Next</strong></li>
-<li>For each one, choose the AWS IAM role(s) they&rsquo;re allowed to assume</li>
-<li>Click <strong>Assign</strong></li>
 <li>Open the configuration screen for your &ldquo;Intranet&rdquo; app</li>
 <li>Click the <strong>Assignments</strong> tab</li>
 <li>Click <strong>Assign</strong> and then <strong>Assign to People</strong></li>

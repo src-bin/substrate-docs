@@ -36,7 +36,7 @@
 
 <h1>Adding non-Administrator (and non-Auditor) roles for humans</h1>
 
-<p>In order to set the <code>RoleName</code> attribute on any of your IdP users to any value except &ldquo;Administrator&rdquo; or &ldquo;Auditor&rdquo;, you&rsquo;ll need to define a role in your admin account and possibly some (or all) of your service accounts.</p>
+<p>In order to set the <code>RoleName</code> attribute on any of your users in your identity provider to any value except &ldquo;Administrator&rdquo; or &ldquo;Auditor&rdquo;, you&rsquo;ll need to define a role in your admin account and possibly some (or all) of your service accounts.</p>
 
 <h2>In your admin account(s)</h2>
 
@@ -94,7 +94,7 @@ resource "aws_iam_role_policy_attachment" "developer" {
 
 <p>This role is called &ldquo;Developer&rdquo; but of course you can call yours whatever you like and have as many as you like.</p>
 
-<p>Run <code>substrate-create-admin-account -quality="..."</code> to create this role, then update the <code>RoleName</code> attribute in your IdP to assign it to whichever users you like.</p>
+<p>Run <code>substrate create-admin-account -quality <em>quality</em></code> to create this role, then update the <code>RoleName</code> attribute in your identity provider to assign it to whichever users you like.</p>
 
 <h1>In your service accounts</h1>
 
@@ -142,7 +142,7 @@ resource "aws_iam_role_policy_attachment" "developer" {
 }
 </code></pre>
 
-<p>Run <code>substrate-create-account -domain="..." -environment="..." -quality="..."</code> to create this role.</p>
+<p>Run <code>substrate create-account -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em></code> to create this role.</p>
 
         </section>
 
