@@ -2,7 +2,9 @@
 
 The directory in which you first run `substrate bootstrap-management-account` becomes the root of your Substrate repository. The tools will read and write many files in this directory tree, all of which should be committed to version control. (Substrate manages `.gitignore` files in certain subdirectories to keep your commits tidy.)
 
-You are free to create a repository specifically for Substrate, to add Substrate to the root of an existing repository, or to add Substrate in a subdirectory of a new or existing repository. If you're already a Terraform user, we find it convenient for Substrate to be committed to the same repository in which you store your existing Terraform modules.
+You can create a Git (or other version control) repository specifically for Substrate, add Substrate to the root of an existing repository, or add Substrate in a subdirectory of a new or existing repository. If you're already a Terraform user, we find it convenient for Substrate to be committed to the same repository in which you store your existing Terraform modules.
+
+Many Substrate commands tolerate being run in subdirectories of your Substrate repository. If you want even greater freedom to run Substrate commands from anywhere, set `SUBSTRATE_ROOT` in your environment (permanently via your `~/.profile`, even) to the fully-qualified directory where you initially ran Substrate. All Substrate tools will change to this working directory if this environment variable is set.
 
 The following index describes the contents and purpose of all the files the various Substrate tools create in your Substrate repository on your behalf.
 

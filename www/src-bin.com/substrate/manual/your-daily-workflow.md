@@ -2,30 +2,6 @@
 
 You've reached the end of the [getting started](/substrate/manual/getting-started/) guide and [you understand your Substrate-managed AWS organization](/substrate/manual/your-aws-organization). Now what? Now you get to work. Here's how.
 
-To make it easy to move around your directory tree, consider setting `SUBSTRATE_ROOT` in your environment (permanently via your `~/.profile`, even) to the fully-qualified directory where you initially ran Substrate. All Substrate tools will change to this working directory if this environment variable is set.
-
-## Getting into AWS
-
-For most tasks, you're going to need AWS credentials. Substrate strongly discourages the creation of personal IAM users with long-lived access keys; these are highly likely to be stolen in case of a laptop compromise and misuse can be difficult to detect. It's best not to have them at all. Instead, Substrate helps you get very short-lived AWS credentials in one of three ways:
-
-Run `eval $(substrate-credentials)` in your terminal and follow its instructions. This will work from instances in the cloud or a laptop, though the flow is a smoothest on a laptop where a web browser can be opened from the command line. This is the best choice for most folks.
-
-If for some reason `eval $(substrate-credentials)` doesn't work for you, visit [https://example.com/credential-factory](https://example.com/credential-factory) (substituting your Intranet DNS domain name), then paste the `export` command into your terminal. This makes the most sense for folks who like to work from their laptop, regardless of what the rest of their toolchain looks like.
-
-You can also visit [https://example.com/instance-factory](https://example.com/instance-factory) (substituting your Intranet DNS domain name) and follow the steps to provision an EC2 instance to use for your administrative work. This makes the most sense for folks who use a terminal-based text editor and like to work &ldquo;in the cloud.&rdquo;
-
-In all three cases, the temporary credentials are going to put you in the `Administrator` role in (one of) your admin account(s). From here you'll be able to go anywhere you need to go.
-
-## Navigating your AWS organization
-
-There isn't usually much to do in your admin account. Instead, you'll be assuming roles in other accounts where your real work happens. There are three ways this happens:
-
-Ad-hoc movement throughout your organization is made easy by the `substrate-assume-role` tool. It understands the layout and can convert domains, environments, and qualities into the appropriate AWS account numbers for you. Thus, to get temporary credentials in your _example staging alpha_ account (once you've created such an account), you'd run `substrate-assume-role -domain=example -environment=staging -quality=alpha` and paste the resulting environment variables into your terminal. Or, if you had a specific command you needed to run, tack it onto the end thus: `substrate-assume-role -domain=example -environment=staging -quality=alpha aws ec2 describe-security-groups`. When you're finished, you can `unassume-role` to revert to the credentials previously stored in your environment. (This is analogous to the `cd` builtin's use of the `OLDPWD` environment variable.)
-
-Exploration aside, most work on your AWS organization happens in Terraform. `substrate-create-account` creates a root Terraform module for you with providers configured to assume the appropriate role so you don't have to think about matching credentials in your environment with directories in which you invoke `terraform apply`. All you'll ever need to invoke Terraform are those `Administrator` credentials you get from the Credential and Instance Factories.
-
-Finally, there is also `substrate.accounts.txt` in your Substrate directory. With the account numbers and roles in this file you can use the Switch Role feature in the AWS Console or any number of other tools built expecting IAM role ARNs.
-
 ### Networks
 
 Your networks, all in your network account, are tagged according to their environment and quality. Unfortunately, those tags aren't visible outside the network account, so in order to see those, you'll need to assume the `Auditor` or `NetworkAdministrator` role in your network account.

@@ -32,7 +32,7 @@ Decide and change to that directory before proceeding.
 
 Substrate is designed to manage your entire AWS organization. As such it is highly recommended that you start using Substrate in a brand new AWS account. Later you'll have opportunities to bring preexisting AWS accounts into the fold.
 
-You should strongly consider creating a mailing list or alias like <aws@example.com> to own your AWS organization as it provides your company flexibility later as personnel and roles change. If you're using Google Groups, ensure that your group allows _External_ users to _Publish posts_.
+You should strongly consider creating a mailing list or alias like `aws@example.com` to own your AWS organization as it provides your company flexibility later as personnel and roles change. If you're using Google Groups, ensure that your group allows _External_ users to _Publish posts_.
 
 Visit [https://portal.aws.amazon.com/billing/signup](https://portal.aws.amazon.com/billing/signup#/start) to begin. Sign up for a new account, provide payment information, and verify your phone number. This account will remain nearly devoid of activity once the rest of the Substrate organization is configured.
 

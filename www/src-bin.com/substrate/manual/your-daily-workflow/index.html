@@ -38,30 +38,6 @@
 
 <p>You&rsquo;ve reached the end of the <a href="/substrate/manual/getting-started/">getting started</a> guide and <a href="/substrate/manual/your-aws-organization">you understand your Substrate-managed AWS organization</a>. Now what? Now you get to work. Here&rsquo;s how.</p>
 
-<p>To make it easy to move around your directory tree, consider setting <code>SUBSTRATE_ROOT</code> in your environment (permanently via your <code>~/.profile</code>, even) to the fully-qualified directory where you initially ran Substrate. All Substrate tools will change to this working directory if this environment variable is set.</p>
-
-<h2>Getting into AWS</h2>
-
-<p>For most tasks, you&rsquo;re going to need AWS credentials. Substrate strongly discourages the creation of personal IAM users with long-lived access keys; these are highly likely to be stolen in case of a laptop compromise and misuse can be difficult to detect. It&rsquo;s best not to have them at all. Instead, Substrate helps you get very short-lived AWS credentials in one of three ways:</p>
-
-<p>Run <code>eval $(substrate-credentials)</code> in your terminal and follow its instructions. This will work from instances in the cloud or a laptop, though the flow is a smoothest on a laptop where a web browser can be opened from the command line. This is the best choice for most folks.</p>
-
-<p>If for some reason <code>eval $(substrate-credentials)</code> doesn&rsquo;t work for you, visit <a href="https://example.com/credential-factory">https://example.com/credential-factory</a> (substituting your Intranet DNS domain name), then paste the <code>export</code> command into your terminal. This makes the most sense for folks who like to work from their laptop, regardless of what the rest of their toolchain looks like.</p>
-
-<p>You can also visit <a href="https://example.com/instance-factory">https://example.com/instance-factory</a> (substituting your Intranet DNS domain name) and follow the steps to provision an EC2 instance to use for your administrative work. This makes the most sense for folks who use a terminal-based text editor and like to work &ldquo;in the cloud.&rdquo;</p>
-
-<p>In all three cases, the temporary credentials are going to put you in the <code>Administrator</code> role in (one of) your admin account(s). From here you&rsquo;ll be able to go anywhere you need to go.</p>
-
-<h2>Navigating your AWS organization</h2>
-
-<p>There isn&rsquo;t usually much to do in your admin account. Instead, you&rsquo;ll be assuming roles in other accounts where your real work happens. There are three ways this happens:</p>
-
-<p>Ad-hoc movement throughout your organization is made easy by the <code>substrate-assume-role</code> tool. It understands the layout and can convert domains, environments, and qualities into the appropriate AWS account numbers for you. Thus, to get temporary credentials in your <em>example staging alpha</em> account (once you&rsquo;ve created such an account), you&rsquo;d run <code>substrate-assume-role -domain=example -environment=staging -quality=alpha</code> and paste the resulting environment variables into your terminal. Or, if you had a specific command you needed to run, tack it onto the end thus: <code>substrate-assume-role -domain=example -environment=staging -quality=alpha aws ec2 describe-security-groups</code>. When you&rsquo;re finished, you can <code>unassume-role</code> to revert to the credentials previously stored in your environment. (This is analogous to the <code>cd</code> builtin&rsquo;s use of the <code>OLDPWD</code> environment variable.)</p>
-
-<p>Exploration aside, most work on your AWS organization happens in Terraform. <code>substrate-create-account</code> creates a root Terraform module for you with providers configured to assume the appropriate role so you don&rsquo;t have to think about matching credentials in your environment with directories in which you invoke <code>terraform apply</code>. All you&rsquo;ll ever need to invoke Terraform are those <code>Administrator</code> credentials you get from the Credential and Instance Factories.</p>
-
-<p>Finally, there is also <code>substrate.accounts.txt</code> in your Substrate directory. With the account numbers and roles in this file you can use the Switch Role feature in the AWS Console or any number of other tools built expecting IAM role ARNs.</p>
-
 <h3>Networks</h3>
 
 <p>Your networks, all in your network account, are tagged according to their environment and quality. Unfortunately, those tags aren&rsquo;t visible outside the network account, so in order to see those, you&rsquo;ll need to assume the <code>Auditor</code> or <code>NetworkAdministrator</code> role in your network account.</p>

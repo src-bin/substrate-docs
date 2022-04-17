@@ -2,11 +2,11 @@
 
 One of the very first things Substrate does is to configure AWS CloudTrail with a single trail that covers all organization accounts in all regions. To access this wealth of data, assume the `Auditor` role in your audit account.
 
-On the command line: `substrate-assume-role -special="audit" -role="Auditor"`
+On the command line: `substrate assume-role -special audit`
 
-Or you can assume the role in the AWS Console. The audit account number is listed in `substrate.accounts.txt` for use with the AWS Console's **Switch Role** feature.
+Or you can assume the role in the AWS Console via your Intranet's Accounts page.
 
-In either case, the data you seek is in the `PREFIX-cloudtrail` (substituting your chosen prefix as stored in `substrate.prefix`) S3 bucket. You can download it to analyze locally or [query it with Amazon Athena](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html). The most straightforward way to proceed is by creating Athena tables for each AWS account; partition projection to cover the entire organization is unsolved.
+In either case, the data you seek is in the <code><em>prefix</em>-cloudtrail</code> (substituting your chosen prefix as stored in `substrate.prefix`) S3 bucket. You can download it to analyze locally or [query it with Amazon Athena](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html). The most straightforward way to proceed is by creating Athena tables for each AWS account; partition projection to cover the entire organization is unsolved.
 
 ## Allowing third-parties to audit your Substrate-managed AWS organization
 
@@ -27,6 +27,6 @@ Many tools have grown the ability to assume an IAM role in your AWS account to p
 
 You can include as many principals as you'd like and they can be IAM role ARNs (recommended) or AWS account numbers (as JSON strings).
 
-Every time you update this file, you'll need to re-run whichever of `substrate-bootstrap-management-account`, `substrate-bootstrap-deploy-account`, `substrate-bootstrap-network-account`, `substrate-create-admin-account` (for each of your admin accounts), and/or `substrate-create-account` (for each of your service accounts) are relevant to your situation.
+Every time you update this file, you'll need to re-run whichever of `substrate bootstrap-management-account`, `substrate bootstrap-deploy-account`, `substrate bootstrap-network-account`, `substrate create-admin-account` (for each of your admin accounts), and/or `substrate create-account` (for each of your service accounts) are relevant to your situation.
 
 This will authorize third-party principals to `sts:AssumeRole` using the ARN of one of your Auditor roles and operate as you would there.

@@ -36,7 +36,17 @@
 
 <h1>Root Terraform modules</h1>
 
-<p>TODO</p>
+<p>Terraform modules are just directories. You&rsquo;ve learned about how Substrate organizes <a href="../global-and-regional-terraform-modules/">global and regional Terraform modules</a> already. Substrate organizes root Terraform modules similarly, within the <code>root-modules</code> directory tree, with some having a leaf directory name of <code>global</code> and others having a leaf directory name of a particular AWS region.</p>
+
+<p>Root Terraform modules aren&rsquo;t just different because their regional modules name actual regions, though. Root Terraform modules include extra configuration that declares how each and every <code>provider</code> is configured &mdash; which role to assume in which AWS account &mdash; and how Terraform state is stored. (Substrate always arranges to store Terraform state in S3 and DynamoDB.)</p>
+
+<p>Root Terraform modules are where you actually invoke Terraform commands. You can do so in one of three ways (and using any Terraform subcommand, not just <code>plan</code>):</p>
+
+<ul>
+<li><code>cd</code> into the root Terraform module and run <code>terraform plan</code></li>
+<li><code>terraform -chdir=<em>root-modules/...</em> plan</code></li>
+<li><code>make -C<em>root-modules/...</em> plan</code> (for compatibility with Substrate before Terraform introduced <code>-chdir</code>)</li>
+</ul>
 
         </section>
 

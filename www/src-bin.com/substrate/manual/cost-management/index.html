@@ -36,13 +36,13 @@
 
 <h1>Cost management</h1>
 
-<p>AWS Cost Explorer often gets a bad rap but, in a well-structured AWS organization such as one managed by Substrate, it can get the job done easily.</p>
+<p>Substrate makes it standard operating procedure to use multiple AWS accounts. Each of those AWS accounts is an unavoidable cost allocation bucket. If you choose your domains reasonably well, cost allocation and management in a Substrate-managed AWS organization is an almost trivial problem. In such an AWS organization, AWS Cost Explorer, which usually gets a bad rap, is more than up to the task of helping you explore and manage costs.</p>
 
 <p>To use Cost Explorer, first ensure you&rsquo;ve followed the steps to <strong>Delegate access to billing data</strong> in the <a href="/substrate/manual/getting-started/">getting started</a> guide. Then, alas, you&rsquo;ll have to wait up to 24 hours for AWS to get you enrolled in Cost Explorer. From that second day onward, though, it&rsquo;ll be up and running.</p>
 
 <p>The most important facet to use when dissecting your bill is AWS account. If you&rsquo;re using <a href="/substrate/manual/domains-environments-qualities/">domains, environments, and qualities</a> effectively, you won&rsquo;t need to stress greatly over tagging strategies in order to quickly derive meaningful insights on your cloud infrastructure costs.</p>
 
-<p>Be mindful, though, that Cost Explorer works for all accounts in your AWS organization. This can be useful, of course, because it allows domain owners to dissect their own costs endlessly without being distracted by costs associated with other domains. To get a view of the entire organization, though, assume a role like <code>OrganizationAdministrator</code> in your master account.</p>
+<p>Be mindful, though, that Cost Explorer works for all accounts in your AWS organization. This can be useful, of course, because it allows domain owners to dissect their own costs endlessly without being distracted by costs associated with other domains. To get a view of the entire organization, though, assume a role like OrganizationAdministrator in your master account.</p>
 
 <p>Once Cost Explorer is enabled, you may consider additionally setting up Cost Anomaly Detection. See their <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/getting-started-ad.html">getting started</a> guide for more information and instructions.</p>
 
