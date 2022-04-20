@@ -36,7 +36,7 @@
 
 <h1>Google SAML setup</h1>
 
-<p>These steps must be completed by a Google Super Admin. Be mindful, too, of which Google account you&rsquo;re using if you&rsquo;re signed into more than one in the same browser profile. Google has a habit of switching accounts when you least expect it.</p>
+<p>These steps must be completed by a Google Super Admin. Be mindful, too, of which Google account you&rsquo;re using if you&rsquo;re signed into more than one in the same browser profile. Google has a habit of switching accounts when you least expect&nbsp;it.</p>
 
 <ol>
 <li>Visit <a href="https://admin.google.com/ac/customschema">https://admin.google.com/ac/customschema</a> in a browser (or visit <a href="https://admin.google.com">https://admin.google.com</a>, click <strong>Users</strong>, click <strong>More</strong>, and click <strong>Manage custom attributes</strong>)</li>
@@ -47,33 +47,33 @@
 <li>Click <strong>ADD</strong></li>
 <li>Visit <a href="https://admin.google.com/ac/apps/unified">https://admin.google.com/ac/apps/unified</a> in the same browser (or visit <a href="https://admin.google.com">https://admin.google.com</a>, click <strong>Apps</strong>, and click <strong>Web and mobile apps</strong>)</li>
 <li>Click <strong>Add App</strong> and select <strong>Search for apps</strong></li>
-<li>Enter &ldquo;Amazon Web Services&rdquo;</li>
-<li>Click <strong>Select</strong> in the Amazon Web Services row</li>
-<li>Take option 1 by clicking the <strong>DOWNLOAD METADATA</strong> button</li>
+<li>Enter &ldquo;Amazon Web&nbsp;Services&rdquo;</li>
+<li>Click <strong>Select</strong> in the Amazon Web Services&nbsp;row</li>
+<li>Take option 1 by clicking the <strong>DOWNLOAD METADATA</strong>&nbsp;button</li>
 <li>In a terminal, run <code>substrate-create-admin-account -quality="..."</code></li>
-<li>Paste the contents of the IDP metadata XML file downloaded above when prompted</li>
-<li>Back in your browser, click <strong>CONTINUE</strong> twice</li>
-<li>Select &ldquo;Basic Information / Primary email&rdquo; under <em>Google Directory attributes</em> in the first row, to the left of &ldquo;https://aws.amazon.com/SAML/Attributes/RoleSessionName&rdquo;</li>
-<li>Select &ldquo;AWS / Role&rdquo; under <em>Google Directory attributes</em> in the second row, to the left of &ldquo;https://aws.amazon.com/SAML/Attributes/Role&rdquo;</li>
+<li>Paste the contents of the IDP metadata XML file downloaded above when&nbsp;prompted</li>
+<li>Back in your browser, click <strong>CONTINUE</strong>&nbsp;twice</li>
+<li>Select &ldquo;Basic Information / Primary email&rdquo; under <em>Google Directory attributes</em> in the first row, to the left of&nbsp;&ldquo;https://aws.amazon.com/SAML/Attributes/RoleSessionName&rdquo;</li>
+<li>Select &ldquo;AWS / Role&rdquo; under <em>Google Directory attributes</em> in the second row, to the left of&nbsp;&ldquo;https://aws.amazon.com/SAML/Attributes/Role&rdquo;</li>
 <li>Click <strong>ADD MAPPING</strong></li>
 <li>In the new third row, select &ldquo;AWS / SessionDuration&rdquo; under <em>Google Directory attributes</em> and enter &ldquo;https://aws.amazon.com/SAML/Attributes/SessionDuration&rdquo; under <em>App attributes</em>.</li>
 <li>Click <strong>FINISH</strong></li>
 <li>Click <strong>User access</strong></li>
-<li>Select &ldquo;ON for everyone&rdquo; (noting that this doesn&rsquo;t actually grant anyone in your organization access to AWS on its own)</li>
+<li>Select &ldquo;ON for everyone&rdquo; (noting that this doesn&rsquo;t actually grant anyone in your organization access to AWS on its&nbsp;own)</li>
 <li>Click <strong>SAVE</strong></li>
 <li>Visit <a href="https://admin.google.com/ac/users">https://admin.google.com/ac/users</a> in the same browser (or visit <a href="https://admin.google.com">https://admin.google.com</a> and click <strong>Users</strong>)</li>
 <li>For every user who needs AWS console access:
 <ol>
-<li>Click the user&rsquo;s name</li>
+<li>Click the user&rsquo;s&nbsp;name</li>
 <li>Click <strong>User information</strong></li>
 <li>In the <em>AWS</em> section, click <strong>Add Role</strong> and paste the ARN of your Administrator role e.g. <code>arn:aws:iam::944106955638:role/Administrator,arn:aws:iam::944106955638:saml-provider/Google</code> but use your IAM role and SAML provider ARNs provided by <code>substrate-create-admin-account</code></li>
-<li>In the <em>AWS</em> section, click <strong>Add SessionDuration</strong> and enter &ldquo;43200&rdquo; (representing 12-hour maximum session duration in the AWS Console)</li>
+<li>In the <em>AWS</em> section, click <strong>Add SessionDuration</strong> and enter &ldquo;43200&rdquo; (representing 12-hour maximum session duration in the AWS&nbsp;Console)</li>
 <li>Click <strong>SAVE</strong></li>
 </ol></li>
 <li>Back in your terminal, press enter to continue <code>substrate-create-admin-account</code></li>
 </ol>
 
-<p>Your authorized users can now access the AWS Console by finding <em>Amazon Web Services</em> in the grid menu in the top right corner of any Google page.</p>
+<p>Your authorized users can now access the AWS Console by finding <em>Amazon Web Services</em> in the grid menu in the top right corner of any Google&nbsp;page.</p>
 
 <h2>References</h2>
 
