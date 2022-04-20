@@ -36,31 +36,31 @@
 
 <h1>Moving between AWS accounts</h1>
 
-<p>There isn&rsquo;t usually much to do in your admin account(s). Instead, you&rsquo;ll be assuming roles in other accounts where your real work happens. There are three ways this happens:</p>
+<p>There isn&rsquo;t usually much to do in your admin account(s). Instead, you&rsquo;ll be assuming roles in other accounts where your real work happens. There are three ways this&nbsp;happens:</p>
 
 <h2><code>substrate assume-role</code></h2>
 
-<p>Ad-hoc movement throughout your organization is made easy by the <code>substrate assume-role</code> command. It understands the layout and can convert domains, environments, and qualities into the appropriate AWS account numbers for you.</p>
+<p>Ad-hoc movement throughout your organization is made easy by the <code>substrate assume-role</code> command. It understands the layout and can convert domains, environments, and qualities into the appropriate AWS account numbers for&nbsp;you.</p>
 
-<p>To get temporary credentials in your <em>example development default</em> account (once you&rsquo;ve created such an account), you&rsquo;d run <code>substrate assume-role -domain example -environment development -quality default</code>. Without any additional arguments, <code>substrate assume-role</code> prints shell environment variables so you should wrap it in <code>eval</code>. It will also feed the shell an <code>unassume-role</code> alias you can use to pop back into your admin account:</p>
+<p>To get temporary credentials in your <em>example development default</em> account (once you&rsquo;ve created such an account), you&rsquo;d run <code>substrate assume-role -domain example -environment development -quality default</code>. Without any additional arguments, <code>substrate assume-role</code> prints shell environment variables so you should wrap it in <code>eval</code>. It will also feed the shell an <code>unassume-role</code> alias you can use to pop back into your admin&nbsp;account:</p>
 
 <pre><code>eval $(substrate assume-role -domain example -environment development -quality default)
 # do whatever you like
 unassume-role
 </code></pre>
 
-<p>If you have a specific command you need to run, tack it onto the end thus:</p>
+<p>If you have a specific command you need to run, tack it onto the end&nbsp;thus:</p>
 
 <pre><code>substrate-assume-role -domain example -environment development -quality default aws ec2 describe-security-groups
 </code></pre>
 
 <h2>Terraform</h2>
 
-<p>A lot of work in your AWS organization hopefully happens in Terraform and not ad-hoc shell sessions. <code>substrate create-account</code> creates a root Terraform module for you with providers configured to assume the appropriate role so you don&rsquo;t have to think about matching credentials in your environment with directories in which you invoke <code>terraform apply</code>. All you&rsquo;ll ever need to invoke Terraform are those Administrator you get from the Credential and Instance Factories.</p>
+<p>A lot of work in your AWS organization hopefully happens in Terraform and not ad-hoc shell sessions. <code>substrate create-account</code> creates a root Terraform module for you with providers configured to assume the appropriate role so you don&rsquo;t have to think about matching credentials in your environment with directories in which you invoke <code>terraform apply</code>. All you&rsquo;ll ever need to invoke Terraform are those Administrator you get from the Credential and Instance&nbsp;Factories.</p>
 
 <h2>AWS Console</h2>
 
-<p>The AWS Console includes a &ldquo;switch role&rdquo; feature that you&rsquo;re welcome to use but, <a href="../accessing-the-aws-console/">accessing the AWS Console</a> shows that you probably won&rsquo;t need it. In your Substrate-managed AWS organization, access to the AWS Console feels less like switching roles and more like going straight into the account you need to access.</p>
+<p>The AWS Console includes a &ldquo;switch role&rdquo; feature that you&rsquo;re welcome to use but <a href="../accessing-the-aws-console/">accessing the AWS Console</a> shows that you probably won&rsquo;t need it. In your Substrate-managed AWS organization, access to the AWS Console feels less like switching roles and more like going straight into the account you need to&nbsp;access.</p>
 
         </section>
 

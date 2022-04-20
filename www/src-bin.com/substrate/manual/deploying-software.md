@@ -6,11 +6,11 @@ The first and most basic thing Substrate does is create its deploy account. When
 
 ## S3
 
-A great many organizations use Amazon S3 as a repository for software artifacts - tarballs, Debian packages, RPMs, etc. - and Substrate takes the liberty of creating S3 buckets for you to use to distribute these artifacts. The buckets named `PREFIX-deploy-artifacts-REGION` (substituting your chosen prefix as stored in `substrate.prefix` and the name of each region you're using) are ready and waiting for whatever you want to store there (but be sure to set the `bucket-owner-full-control` canned ACL). Every account in your organization has access to read and write objects in these versioned buckets. Where you go from there is up to you.
+A great many organizations use Amazon S3 as a repository for software artifacts - tarballs, Debian packages, RPMs, etc. - and Substrate takes the liberty of creating S3 buckets for you to use to distribute these artifacts. The buckets named <code><em>prefix</em>-deploy-artifacts-<em>region</em></code> (substituting your chosen prefix as stored in `substrate.prefix` and the name of each region you're using) are ready and waiting for whatever you want to store there (but be sure to set the `bucket-owner-full-control` canned ACL). Every account in your organization has access to read and write objects in these versioned buckets. Where you go from there is up to you.
 
 ## ECR
 
-Some organizations use higher-level repositories, too, as offered by AWS ECR. We recommend these repositories be created in your deploy account by, for example, placing the following in `root-modules/deploy/REGION/ecr.tf`:
+Some organizations use higher-level repositories, too, as offered by AWS ECR. We recommend these repositories be created in your deploy account by, for example, placing the following in <code>root-modules/deploy/<em>region</em>/ecr.tf</code>:
 
     data "aws_iam_policy_document" "organization" {
       statement {

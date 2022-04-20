@@ -36,9 +36,9 @@
 
 <h1>Enumerating all your AWS accounts</h1>
 
-<p>Substrate will maintain <code>substrate.accounts.txt</code> in your Substrate repository as you create new admin and service accounts, providing a reference that&rsquo;s close at hand and even committed to version control (in case AWS is well and truly broken). The <code>substrate accounts</code> command updates that file and then prints it out. But it accepts a <code>-format</code> option, too.</p>
+<p>Substrate will maintain <code>substrate.accounts.txt</code> in your Substrate repository as you create new admin and service accounts, providing a reference that&rsquo;s close at hand and even committed to version control (in case AWS is well and truly broken). The <code>substrate accounts</code> command updates that file and then prints it out. But it accepts a <code>-format</code> option,&nbsp;too.</p>
 
-<p><code>substrate accounts -format json</code> makes it easy to program against your list of accounts. It&rsquo;s equivalent to the <code>organizations:ListAccounts</code> API with each account decorated with its tags, making domain, environment, and quality accessible, too.</p>
+<p><code>substrate accounts -format json</code> makes it easy to program against your list of accounts. It&rsquo;s equivalent to the <code>organizations:ListAccounts</code> API with each account decorated with its tags, making domain, environment, and quality accessible,&nbsp;too.</p>
 
 <p><code>substrate accounts -format shell</code> prints a shell program that will run the appropriate Substrate command against every account in your organization. This is mighty convenient during Substrate upgrades or in CI/CD systems, especially when combined with the environment variable <code>TF_CLI_ARGS="-auto-approve"</code>.</p>
 

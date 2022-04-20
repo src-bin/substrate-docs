@@ -36,11 +36,11 @@
 
 <h1>Adding non-Administrator (and non-Auditor) roles for humans</h1>
 
-<p>In order to set the <code>RoleName</code> attribute on any of your users in your identity provider to any value except &ldquo;Administrator&rdquo; or &ldquo;Auditor&rdquo;, you&rsquo;ll need to define a role in your admin account and possibly some (or all) of your service accounts.</p>
+<p>In order to set the <code>RoleName</code> attribute on any of your users in your identity provider to any value except &ldquo;Administrator&rdquo; or &ldquo;Auditor&rdquo;, you&rsquo;ll need to define a role in your admin account and possibly some (or all) of your service&nbsp;accounts.</p>
 
 <h2>In your admin account(s)</h2>
 
-<p>In a new file in <code>modules/intranet/global</code>, add code like this:</p>
+<p>In a new file in <code>modules/intranet/global</code>, add code like&nbsp;this:</p>
 
 <pre><code>data "aws_iam_policy_document" "developer" {
   statement {
@@ -92,15 +92,15 @@ resource "aws_iam_role_policy_attachment" "developer" {
 }
 </code></pre>
 
-<p>This role is called &ldquo;Developer&rdquo; but of course you can call yours whatever you like and have as many as you like.</p>
+<p>This role is called &ldquo;Developer&rdquo; but of course you can call yours whatever you like and have as many as you&nbsp;like.</p>
 
-<p>Run <code>substrate create-admin-account -quality <em>quality</em></code> to create this role, then update the <code>RoleName</code> attribute in your identity provider to assign it to whichever users you like.</p>
+<p>Run <code>substrate create-admin-account -quality <em>quality</em></code> to create this role, then update the <code>RoleName</code> attribute in your identity provider to assign it to whichever users you&nbsp;like.</p>
 
 <h1>In your service accounts</h1>
 
-<p>In order for users assigned this role to assume roles in other AWS accounts, your service accounts, you&apos;ll need to create roles in those accounts, too, and authorize this role to assume them. You do this on each account individually.</p>
+<p>In order for users assigned this role to assume roles in other AWS accounts, your service accounts, you&rsquo;ll need to create roles in those accounts, too, and authorize this role to assume them. You do this on each account&nbsp;individually.</p>
 
-<p>In each service account, code like this in a new file in <code>modules/<em>domain</em>/global</code> or <code>root-modules/<em>domain</em>/<em>environment</em>/<em>quality</em>/global</code> will allow these new non-Administrator users to assume a role in that account:</p>
+<p>In each service account, code like this in a new file in <code>modules/<em>domain</em>/global</code> or <code>root-modules/<em>domain</em>/<em>environment</em>/<em>quality</em>/global</code> will allow these new non-Administrator users to assume a role in that&nbsp;account:</p>
 
 <pre><code>data "aws_iam_policy_document" "developer" {
   statement {
@@ -142,7 +142,7 @@ resource "aws_iam_role_policy_attachment" "developer" {
 }
 </code></pre>
 
-<p>Run <code>substrate create-account -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em></code> to create this role.</p>
+<p>Run <code>substrate create-account -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em></code> to create this&nbsp;role.</p>
 
         </section>
 

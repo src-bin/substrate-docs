@@ -36,20 +36,20 @@
 
 <h1>Using AWS CLI profiles</h1>
 
-<p>The AWS CLI is deceptively powerful and ubiquitous but can be tough to configure in a multi-account organization and the most obvious way to configure it &mdash; using an access key ID and secret access key &mdash; is far and away the most risky.</p>
+<p>The AWS CLI is deceptively powerful and ubiquitous but can be tough to configure in a multi-account organization and the most obvious way to configure it &mdash; using an access key ID and secret access key &mdash; is far and away the most&nbsp;risky.</p>
 
-<p>Fortunately, there are two less-well-known configurations that can help you address both: Profiles and the <code>credential_process</code> directive.</p>
+<p>Fortunately, there are two less-well-known configurations that can help you address both: Profiles and the <code>credential_process</code>&nbsp;directive.</p>
 
 <p>Define one or more profiles in <code>~/.aws/config</code>, naming them whatever you like, that defer credential management to Substrate via <code>substrate assume-role</code>:</p>
 
 <pre><code>[profile <em>whatever-you-want-to-call-it</em>]
 credential\_process = substrate assume-role -format="json" -quiet -domain="<em>domain</em>" -environment="<em>environment</em>" -quality="<em>quality</em>"</code></pre>
 
-<p>Note well that, in order for this to succeed, you&apos;ll need to have already run <code>eval $(substrate credentials)</code> to prime the environment to have any access to AWS at all.</p>
+<p>Note well that, in order for this to succeed, you&rsquo;ll need to have already run <code>eval $(substrate credentials)</code> to prime the environment to have any access to AWS at&nbsp;all.</p>
 
-<p>A downside of using profiles is that they&apos;re not shared amongst you and your teammates the way domains, environments, and qualities are but they can save a bit of typing and you will arrive at the same point so use whichever tool suits you in every situation &mdash; there&apos;s no need to commit to one exclusively.</p>
+<p>A downside of using profiles is that they&rsquo;re not shared amongst you and your teammates the way domains, environments, and qualities are but they can save a bit of typing and you will arrive at the same point so use whichever tool suits you in every situation &mdash; there&rsquo;s no need to commit to one&nbsp;exclusively.</p>
 
-<p>Use your profile thus:</p>
+<p>Use your profile&nbsp;thus:</p>
 
 <pre><code>eval $(substrate credentials)
 aws sts get-caller-identity --profile <em>whatever-you-want-to-call-it</em></code></pre>

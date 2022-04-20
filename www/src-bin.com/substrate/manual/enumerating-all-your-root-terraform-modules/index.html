@@ -36,17 +36,17 @@
 
 <h1>Enumerating all your root Terraform modules</h1>
 
-<p><code>substrate root-modules</code> prints the relative pathname to all your root Terraform modules to standard output. Their order is as follows:</p>
+<p><code>substrate root-modules</code> prints the relative pathname to all your root Terraform modules to standard output. Their order is as&nbsp;follows:</p>
 
 <ol>
-<li>Deploy account, global before regional</li>
-<li>Network account, global before regional</li>
-<li>Network peering, in order of <code>substrate.environments</code> and alphabetical order of regions</li>
+<li>Deploy account, global before&nbsp;regional</li>
+<li>Network account, global before&nbsp;regional</li>
+<li>Network peering, in order of <code>substrate.environments</code> and alphabetical order of&nbsp;regions</li>
 <li>Admin accounts, in order of <code>substrate.qualities</code></li>
 <li>Service accounts, in alphabetical order of domain, then in order of <code>substrate.environments</code>, then in order of <code>substrate.qualities</code></li>
 </ol>
 
-<p>You can use this list to generate CI/CD configurations that run Terraform directly, though do consider using <code>substrate accounts -format shell</code> instead to run Substrate, too.</p>
+<p>You can use this list to generate CI/CD configurations that run Terraform directly, though do consider using <code>substrate accounts -format shell</code> instead to run Substrate,&nbsp;too.</p>
 
         </section>
 

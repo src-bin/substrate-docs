@@ -36,13 +36,13 @@
 
 <h1>Protecting internal websites</h1>
 
-<p>The tools Substrate manages under your Intranet (the Accounts page that facilitates logging into the AWS Console, the Credential Factory, and the Instance Factory) are far from the only internal tools you&rsquo;re going to operate as a part of your business. You should take advantage of your Intranet to protect your other internal tools with SSO, HTTP Strict Transport Security, a separate cookie scope, and a robust serverless exterior courtesy of AWS API Gateway.</p>
+<p>The tools Substrate manages under your Intranet (the Accounts page that facilitates logging into the AWS Console, the Credential Factory, and the Instance Factory) are far from the only internal tools you&rsquo;re going to operate as a part of your business. You should take advantage of your Intranet to protect your other internal tools with SSO, HTTP Strict Transport Security, a separate cookie scope, and a robust serverless exterior courtesy of AWS API&nbsp;Gateway.</p>
 
-<p>There are two main strategies for adding new features to your Intranet which should serve use cases as wide-ranging as Lambda functions in your admin account to load-balanced EC2 deployments in a service account.</p>
+<p>There are two main strategies for adding new features to your Intranet which should serve use cases as wide-ranging as Lambda functions in your admin account to load-balanced EC2 deployments in a service account. These strategies are both available to you after <a href="../internal-tools">deciding where to host</a> each particular internal&nbsp;tool.</p>
 
 <h2>Integrating with API Gateway and Lambda in <code>modules/intranet/regional</code></h2>
 
-<p>The easiest place to put Intranet extensions is in <code>modules/intranet/regional</code> because all the scaffolding is already present and it&rsquo;ll transparently handle multiple regions. Add resources such as these to a new file (and not <code>main.tf</code>, which is overwritten per the comment on its first line):</p>
+<p>The easiest place to put Intranet extensions is in <code>modules/intranet/regional</code> because all the scaffolding is already present and it&rsquo;ll transparently handle multiple regions. Add resources such as these to a new file (and not <code>main.tf</code>, which is overwritten per the comment on its first&nbsp;line):</p>
 
 <pre><code>resource "aws_api_gateway_integration" "POST-wildcard" {
   credentials             = data.aws_iam_role.apigateway.arn
@@ -87,11 +87,11 @@ resource "aws_lambda_permission" "example" {
 }
 </code></pre>
 
-<p>It is also possible to put the Lambda function in another AWS account but you&apos;ll need to grant your admin account(s) permission to invoke it with additional <code>aws_lambda_permission</code> resources.</p>
+<p>It is also possible to put the Lambda function in another AWS account but you&rsquo;ll need to grant your admin account(s) permission to invoke it with additional <code>aws_lambda_permission</code>&nbsp;resources.</p>
 
 <h2>Integrating with API Gateway and Lambda in your own module</h2>
 
-<p>If you&apos;d prefer to stay out of <code>modules/intranet</code>, you can create your own module (using <code>substrate-create-terraform-module</code>, if you like) and reference it from <code>root-modules/admin/*/*</code> (except <code>global</code>) thus:</p>
+<p>If you&rsquo;d prefer to stay out of <code>modules/intranet</code>, you can create your own module (using <code>substrate-create-terraform-module</code>, if you like) and reference it from <code>root-modules/admin/*/*</code> (except <code>global</code>)&nbsp;thus:</p>
 
 <pre><code>module "intranet-extensions" {
   authorizer_id           = module.intranet.authorizer_id
@@ -107,7 +107,7 @@ resource "aws_lambda_permission" "example" {
 
 <h2>Proxying to internal websites</h2>
 
-<p>Not everything is, can be, or should be a Lambda function, though, and these internal services are just as worthy of protection. Substrate ships a proxy that makes it easy to create secure network paths to anything running in your AWS organization. In a new file in <code>modules/intranet/regional</code>, add a resource like this for each internal service you&apos;re protecting and proxying.</p>
+<p>Not everything is, can be, or should be a Lambda function, though, and these internal services are just as worthy of protection. Substrate ships a proxy that makes it easy to create secure network paths to anything running in your AWS organization. In a new file in <code>modules/intranet/regional</code>, add a resource like this for each internal service you&rsquo;re protecting and&nbsp;proxying.</p>
 
 <pre><code>module "proxy-example" {
   apigateway_execution_arn = aws_api_gateway_deployment.intranet.execution_arn
@@ -126,17 +126,17 @@ resource "aws_lambda_permission" "example" {
 }
 </code></pre>
 
-<p>The majority of the input variables are just about how the proxy is wired into the Intranet&rsquo;s API Gateway. You must provide a <code>proxy_destination_url</code> (where requests are proxied) and <code>proxy_path_prefix</code> (the first path component of the Intranet URLs that are proxied). You probably want to provide <code>security_group_ids</code> and <code>subnet_ids</code> in order to place the proxy Lambda function in a network position that&rsquo;s actually able to reach the internal service. (After all, if it&rsquo;s reachable from the Internet, making it <em>also</em> accessible via your Intranet doesn&rsquo;t offer much in the way of additional protection.)</p>
+<p>The majority of the input variables are just about how the proxy is wired into the Intranet&rsquo;s API Gateway. You must provide a <code>proxy_destination_url</code> (where requests are proxied) and <code>proxy_path_prefix</code> (the first path component of the Intranet URLs that are proxied). You probably want to provide <code>security_group_ids</code> and <code>subnet_ids</code> in order to place the proxy Lambda function in a network position that&rsquo;s actually able to reach the internal service. (After all, if it&rsquo;s reachable from the Internet, making it <em>also</em> accessible via your Intranet doesn&rsquo;t offer much in the way of additional&nbsp;protection.)</p>
 
 <h2>Identifying users on websites protected by the Intranet</h2>
 
 <p>When the Intranet passes a request to a Lambda function as an event, the identity of the authenticated user is available in <code>event.requestContext.authorizer.principalId</code>.</p>
 
-<p>That same identity is made available to internal websites in the <code>X-Substrate-Intranet-Proxy-Principal</code> header.</p>
+<p>That same identity is made available to internal websites in the <code>X-Substrate-Intranet-Proxy-Principal</code>&nbsp;header.</p>
 
-<p>In most cases, the principal is given as an email address though its exact format depends on your identity provider and its configuration.</p>
+<p>In most cases, the principal is given as an email address though its exact format depends on your identity provider and its&nbsp;configuration.</p>
 
-<p>Jenkins users can use the <a href="https://plugins.jenkins.io/reverse-proxy-auth-plugin/">Reverse Proxy Auth Plugin</a> to accept the <code>X-Substrate-Intranet-Proxy-Principal</code> header. If you take this path you <em>must</em> set both Header User Name and Header Groups Name to <code>X-Substrate-Intranet-Proxy-Principal</code> to avoid introducing a security vulnerability and you must be OK with not being able to use Jenkins groups in any meaningful sense.</p>
+<p>Jenkins users can use the <a href="https://plugins.jenkins.io/reverse-proxy-auth-plugin/">Reverse Proxy Auth Plugin</a> to accept the <code>X-Substrate-Intranet-Proxy-Principal</code> header. If you take this path you <em>must</em> set both Header User Name and Header Groups Name to <code>X-Substrate-Intranet-Proxy-Principal</code> to avoid introducing a security vulnerability and you must be OK with not being able to use Jenkins groups in any meaningful&nbsp;sense.</p>
 
         </section>
 

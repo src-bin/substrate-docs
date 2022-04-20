@@ -52,6 +52,7 @@
 
             <h2 id="concepts-and-terms">Concepts and terms</h2>
             <ul>
+                <li><a href="accounts/">Accounts in a Substrate-managed AWS organization</a></li>
                 <li><a href="domains-environments-qualities/">Domains, environments, and qualities</a></li>
                 <li><a href="networking/">Networking</a></li>
                 <li><a href="diagram-substrate-managed-aws-organization/">Diagram of a Substrate-managed AWS organization</a></li>
@@ -62,10 +63,11 @@
 
             <h2 id="architectural-guidance">Architectural guidance</h2>
             <ul>
+                <li><a href="technology-choices/">Technology choices</a></li>
+                <li><a href="multi-tenancy/">Multi-tenancy</a></li>
+                <li><a href="multi-region-strategy/">Multi-region strategy</a></li>
                 <li><a href="diagram-multi-quality-multi-region-service/">Diagram of a multi-quality, multi-region service</a></li>
                 <li><a href="internal-tools/">Deciding where to host internal tools</a></li>
-                <li><a href="multi-tenancy/">Multi-tenancy</a></li>
-                <li><a href="technology-choices/">Technology choices</a></li>
             </ul>
 
             <h2 id="working">Working in your Substrate-managed AWS organization</h2>
@@ -75,11 +77,10 @@
                 <li><a href="moving-between-aws-accounts/">Moving between AWS accounts</a></li>
                 <li><a href="aws-cli-profiles/">Using AWS CLI profiles</a></li>
                 <li><a href="writing-terraform-code/">Writing Terraform code with an assist from Substrate</a></li>
-                <li><a href="referencing-substrate-parameters-in-terraform/">Referencing Substrate parameters in Terraform</a></li>
                 <li><a href="additional-terraform-providers/">Additional Terraform providers</a></li>
+                <li><a href="adding-a-domain/">Adding a domain</a></li>
+                <li><a href="adding-an-environment-or-quality/">Adding an environment or quality</a></li>
                 <li><a href="adding-a-region/">Adding a region</a></li>
-                <li><a href="adding-a-service-account/">Adding a service account</a></li>
-                <li><a href="adding-domains-environments-qualities/">Adding domains, environments, and qualities</a></li>
                 <li><a href="deploying-software/">Deploying software</a></li>
                 <li><a href="protecting-internal-websites/">Protecting internal websites</a></li>
             </ul>
@@ -95,14 +96,19 @@
             <ul>
                 <li><a href="onboarding-users/">Onboarding</a> and <a href="offboarding-users/">offboarding</a> users</li>
                 <li><a href="adding-non-administrator-roles-for-humans/">Adding non-Administrator (and non-Auditor) roles for humans</a></li>
+                <li><a href="allowing-third-parties-to-access-your-aws-organization/">Allowing third parties to access your AWS organization</a></li>
                 <li><a href="cost-management/">Cost management</a></li>
+            </ul>
+
+            <h2 id="compliance">Compliance</h2>
+            <ul>
+                <li><a href="addressing-soc-2-criteria-with-substrate/">Addressing SOC 2 criteria with Substrate</a></li>
+                <li><a href="recommended-soc-2-controls/">Recommended SOC 2 controls</a></li>
                 <li><a href="auditing/">Auditing your Substrate-managed AWS organization</a></li>
-                <li><a href="recommended-soc-2-controls/"></a></li>
             </ul>
 
             <h2 id="runbooks">Runbooks for emergency and once-in-a-blue-moon operations</h2>
             <ul>
-                <li><a href="addressing-soc-2-criteria-with-substrate/">Addressing SOC 2 criteria with Substrate</a></li>
                 <li><a href="aws-support/">Subscribing to AWS Support plans</a></li>
                 <li><a href="closing-an-aws-account/">Closing an AWS account</a></li>
                 <li><a href="removing-an-aws-account-from-your-organization/">Removing an AWS account from your organization (without closing it)</a></li>
@@ -110,13 +116,19 @@
                 <li><a href="changing-identity-providers/">Changing identity providers</a></li>
                 <li><a href="cloudwatch-sharing/">Sharing CloudWatch data between accounts</a></li>
                 <li><a href="regaining-access/">Regaining access in case the Credential and Instance Factories are broken</a></li>
-                <li><a href="telemetry/">Telemetry Substrate posts to Source <span class="fancy">&amp;</span> Binary</a></li>
             </ul>
 
             <h2 id="releases">Release notes and upgrading</h2>
             <ul>
                 <li><a href="releases/">Release notes</a></li>
                 <li><a href="upgrading/">Upgrading Substrate</a></li>
+            </ul>
+
+            <h2 id="src-bin">Source <span class="fancy">&amp;</span> Binary</h2>
+            <ul>
+                <li><a href="../../about/">About Source <span class="fancy">&amp;</span> Binary</a></li>
+                <li><a href="../license/">Source <span class="fancy">&amp;</span> Binary Software License and Subscription Terms</a></li>
+                <li><a href="telemetry/">Telemetry Substrate posts to Source <span class="fancy">&amp;</span> Binary</a></li>
             </ul>
 
         </section>

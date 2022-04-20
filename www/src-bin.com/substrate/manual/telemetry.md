@@ -12,4 +12,4 @@ The data collected were specifically chosen to avoid disclosing sensitive inform
 * `IsEC2`: Boolean true if the Substrate command is being executed in EC2 (or another AWS service built on EC2 and exposing the Instance Metadata Service) or boolean false if not. This reveals the prevelance of remote and CI/CD workflows.
 * `Format`: The `-format` flag, where applicable. This reveals a bit about how folks are integrating Substrate with other tools. (JSON? Shell environment variables?)
 
-The Telemetry is posted to <https://src-bin.com/telemetry/>, an endpoint hosted in AWS and Honeycomb. If at any time you want to change whether your organization opts into or out of telemetry, delete `substrate.telemetry`, run any Substrate command, and answer differently.
+The Telemetry is posted to <https://src-bin.com/telemetry/>, an endpoint hosted in AWS and Honeycomb. If at any time you want to change whether your organization opts into or out of telemetry, change the contents of `substrate.telemetry` to &ldquo;<code>no\n</code>&rdquo; (that is, the word &ldquo;no&rdquo; followed by a newline) and commit the change.

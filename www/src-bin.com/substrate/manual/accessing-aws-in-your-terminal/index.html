@@ -36,7 +36,7 @@
 
 <h1>Accessing AWS in your terminal</h1>
 
-<p>For most tasks, you&rsquo;re going to need AWS credentials. Substrate strongly discourages the creation of personal IAM users with long-lived access keys; these are highly likely to be stolen in case of a laptop compromise and misuse can be difficult to detect. It&rsquo;s best not to have them at all. Instead, Substrate helps you get very short-lived AWS credentials in one of three ways:</p>
+<p>For most tasks, you&rsquo;re going to need AWS credentials. Substrate strongly discourages the creation of personal IAM users with long-lived access keys; these are highly likely to be stolen in case of a laptop compromise and misuse can be difficult to detect. It&rsquo;s best not to have them at all. Instead, Substrate helps you get very short-lived AWS credentials in one of three&nbsp;ways:</p>
 
 <ol>
 <li><p>Run <code>eval $(substrate credentials)</code> in your terminal and follow its instructions. This will work from instances in the cloud or a laptop, though the flow is a smoothest on a laptop where a web browser can be opened from the command line. This is the best choice for most folks.</p></li>
@@ -44,7 +44,7 @@
 <li><p>If for some reason <code>eval $(substrate credentials)</code> doesn&rsquo;t work for you, visit <a href="https://example.com/credential-factory">https://example.com/credential-factory</a> (substituting your Intranet DNS domain name), then paste the <code>export</code> command into your terminal. This choice will work in the widest variety of places but is the most cumbersome.</p></li>
 </ol>
 
-<p>In all three cases, the temporary credentials are going to assume the role you&rsquo;re assigned in your identity provider (Administrator, most likely) in (one of) your admin account(s). From here you&rsquo;ll be able to use <code>substrate assume-role</code> to move into other accounts as needed. They will be valid for 12 hours, which gives you a full day&rsquo;s work without reauthenticating while still being decidedly temporary.</p>
+<p>In all three cases, the temporary credentials are going to assume the role you&rsquo;re assigned in your identity provider (Administrator, most likely) in (one of) your admin account(s). From here you&rsquo;ll be able to use <code>substrate assume-role</code> to move into other accounts as needed. They will be valid for 12 hours, which gives you a full day&rsquo;s work without reauthenticating while still being decidedly&nbsp;temporary.</p>
 
 <p>You may also be interested in <a href="../accessing-the-aws-console/">accessing the AWS Console</a>.</p>
 

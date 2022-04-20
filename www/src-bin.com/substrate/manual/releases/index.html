@@ -54,29 +54,29 @@
 <h2 id="2022.03">2022.03</h2>
 
 <ul>
-<li>Substrate now asks if it may post <a href="../telemetry/">telemetry</a> to Source &amp; Binary. The data will be used to better understand how Substrate is being used and how it can be improved.</li>
+<li>Substrate now asks if it may post <a href="../telemetry/">telemetry</a> to Source &amp; Binary. The data will be used to better understand how Substrate is being used and how it can be&nbsp;improved.</li>
 <li>Address deprecation warnings from the AWS Terraform provider by refactoring <code>root-modules/deploy</code>.</li>
-<li>Bug fix: Correctly pass an AWS access key to Terraform even if that access key is from an IAM user. This situation is unlikely but can come up during bootstrapping in brownfield environments.</li>
+<li>Bug fix: Correctly pass an AWS access key to Terraform even if that access key is from an IAM user. This situation is unlikely but can come up during bootstrapping in brownfield&nbsp;environments.</li>
 <li>Bug fix: Display environments and qualities in the order they&rsquo;re defined in <code>substrate.environments</code> and <code>substrate.qualities</code> on the Intranet&rsquo;s Accounts page and in the output of <code>substrate accounts</code> and <code>substrate root-modules</code>.</li>
 </ul>
 
-<p>After upgrading Substrate:</p>
+<p>After upgrading&nbsp;Substrate:</p>
 
 <ol>
 <li><code>substrate bootstrap-deploy-account</code></li>
-<li><code>substrate-create-admin-account -quality="..."</code> for each of your admin accounts</li>
+<li><code>substrate-create-admin-account -quality="..."</code> for each of your admin&nbsp;accounts</li>
 </ol>
 
 <h2 id="2022.02">2022.02</h2>
 
 <ul>
-<li>Upgrade to Terraform 1.1.6.</li>
-<li>Manage L-29A0C5DF, the AWS service limit on the number of accounts in an AWS organization, so that <code>substrate-create-admin-account</code> and <code>substrate-create-account</code> can proceed smoothly when you create your 11th account.</li>
-<li>Remove the <code>SubstrateVersion</code> tag from Terraform-managed resources. It hasn&rsquo;t been as helpful here as it is on Substrate-managed resources. Plus, Terraform plans are much easier to read without it.</li>
-<li>Bug fix: Pin the Terraform AWS provider to versions less than 4.0 which contains breaking changes that will be addressed in a subsequent Substrate release.</li>
+<li>Upgrade to Terraform&nbsp;1.1.6.</li>
+<li>Manage L-29A0C5DF, the AWS service limit on the number of accounts in an AWS organization, so that <code>substrate-create-admin-account</code> and <code>substrate-create-account</code> can proceed smoothly when you create your 11th&nbsp;account.</li>
+<li>Remove the <code>SubstrateVersion</code> tag from Terraform-managed resources. It hasn&rsquo;t been as helpful here as it is on Substrate-managed resources. Plus, Terraform plans are much easier to read without&nbsp;it.</li>
+<li>Bug fix: Pin the Terraform AWS provider to versions less than 4.0 which contains breaking changes that will be addressed in a subsequent Substrate&nbsp;release.</li>
 </ul>
 
-<p>You must upgrade to Terraform 1.1.6 in order to use Substrate 2022.02. Terraform 1.1.6 may be found here:</p>
+<p>You must upgrade to Terraform 1.1.6 in order to use Substrate 2022.02. Terraform 1.1.6 may be found&nbsp;here:</p>
 
 <ul>
 <li><a href="https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_darwin_amd64.zip">https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_darwin_amd64.zip</a></li>
@@ -85,13 +85,13 @@
 <li><a href="https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_linux_arm64.zip">https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_linux_arm64.zip</a></li>
 </ul>
 
-<p>After upgrading Substrate, do the following to land the Terraform upgrade and remove the <code>SubstrateVersion</code> tags:</p>
+<p>After upgrading Substrate, do the following to land the Terraform upgrade and remove the <code>SubstrateVersion</code>&nbsp;tags:</p>
 
 <ol>
 <li><code>substrate-bootstrap-network-account</code></li>
 <li><code>substrate-bootstrap-deploy-account</code></li>
-<li><code>substrate-create-admin-account -quality="..."</code> for each of your admin accounts</li>
-<li><code>substrate-create-account -domain="..." -environment="..." -quality="..."</code> for each of your service accounts</li>
+<li><code>substrate-create-admin-account -quality="..."</code> for each of your admin&nbsp;accounts</li>
+<li><code>substrate-create-account -domain="..." -environment="..." -quality="..."</code> for each of your service&nbsp;accounts</li>
 </ol>
 
 <!--If you&rsquo;re feeling bold, `substrate-accounts -format="shell" | TF_CLI_ARGS="-auto-approve" sh` will run Substrate and Terraform everywhere without any further input.-->
@@ -99,28 +99,28 @@
 <h2 id="2022.01">2022.01</h2>
 
 <ul>
-<li>The <code>-role="..."</code> option to <code>substrate-assume-role</code> now defaults to OrganizationAdministrator, Auditor, DeployAdministrator, or NetworkAdministrator for the special accounts and Administrator for admin and service accounts (or Auditor pretty much across the board, if you begin in the Auditor role). This should save a great deal of typing.</li>
-<li>Add a navigational header to the Intranet to help folks get around.</li>
-<li>Allow the Auditor role in the audit account to use Amazon Athena to query the CloudTrail logs stored in S3 there. See <a href="../auditing/">auditing your Substrate-managed AWS organization</a> for more details.</li>
-<li>Bug fix: Substrate 2021.12 inadvertantly stopped accepting EC2 instance profile credentials on Instance Factory instances. (The instances are still assigned the correct role, Substrate programs just wouldn&rsquo;t use it.) Substrate programs once again use EC2 instance profile credentials when available.</li>
+<li>The <code>-role="..."</code> option to <code>substrate-assume-role</code> now defaults to OrganizationAdministrator, Auditor, DeployAdministrator, or NetworkAdministrator for the special accounts and Administrator for admin and service accounts (or Auditor pretty much across the board, if you begin in the Auditor role). This should save a great deal of&nbsp;typing.</li>
+<li>Add a navigational header to the Intranet to help folks get&nbsp;around.</li>
+<li>Allow the Auditor role in the audit account to use Amazon Athena to query the CloudTrail logs stored in S3 there. See <a href="../auditing/">auditing your Substrate-managed AWS organization</a> for more&nbsp;details.</li>
+<li>Bug fix: Substrate 2021.12 inadvertantly stopped accepting EC2 instance profile credentials on Instance Factory instances. (The instances are still assigned the correct role, Substrate programs just wouldn&rsquo;t use it.) Substrate programs once again use EC2 instance profile credentials when&nbsp;available.</li>
 </ul>
 
-<p>After upgrading Substrate:</p>
+<p>After upgrading&nbsp;Substrate:</p>
 
 <ol>
 <li><code>substrate-create-admin-account -quality="..."</code></li>
-<li>Upgrade Substrate in your Instance Factory instances, if you install it there</li>
+<li>Upgrade Substrate in your Instance Factory instances, if you install it&nbsp;there</li>
 </ol>
 
 <h2 id="2021.12">2021.12</h2>
 
 <ul>
-<li>Substate now uses your default region (the one you chose to host your organization&rsquo;s CloudTrail logs, among other things) when it executes global root modules. This allows you to more completely decouple yourself from us-east-1 if you so choose.</li>
-<li>Bug fix: Allow the Instance Factory to pass any IAM role configured in your IdP on to EC2 instances your non-Administrator users provision.</li>
-<li>Safety feature: No longer read <code>~/.aws/credentials</code> under any circumstances. Since we never use this file in a Substrate-managed AWS organization, reading this file can only serve to &ldquo;cross the streams&rdquo; with a legacy AWS account.</li>
+<li>Substate now uses your default region (the one you chose to host your organization&rsquo;s CloudTrail logs, among other things) when it executes global root modules. This allows you to more completely decouple yourself from us-east-1 if you so&nbsp;choose.</li>
+<li>Bug fix: Allow the Instance Factory to pass any IAM role configured in your IdP on to EC2 instances your non-Administrator users&nbsp;provision.</li>
+<li>Safety feature: No longer read <code>~/.aws/credentials</code> under any circumstances. Since we never use this file in a Substrate-managed AWS organization, reading this file can only serve to &ldquo;cross the streams&rdquo; with a legacy AWS&nbsp;account.</li>
 </ul>
 
-<p>The upgrade process this month is much more involved that most. As such, we&rsquo;ll talk in Slack about when you&rsquo;re going to perform the upgrade to ensure support&rsquo;s available in the moment.</p>
+<p>The upgrade process this month is much more involved that most. As such, we&rsquo;ll talk in Slack about when you&rsquo;re going to perform the upgrade to ensure support&rsquo;s available in the&nbsp;moment.</p>
 
 <p>Before upgrading Substrate, audit your Terraform modules for resources in global modules that aren&rsquo;t from global AWS serivces by copying the following program to <code>audit.sh</code> in your Substrate repository and running <code>sh audit.sh</code>.</p>
 
@@ -138,7 +138,7 @@ do
 done
 </code></pre>
 
-<p>Every resource this program identifies needs to be modified before proceeding. The most likely modification is to add <code>provider = aws.us-east-1</code> to resources in the Terraform code that manages them.</p>
+<p>Every resource this program identifies needs to be modified before proceeding. The most likely modification is to add <code>provider = aws.us-east-1</code> to resources in the Terraform code that manages&nbsp;them.</p>
 
 <p>Block all your coworkers from making Terraform changes however you usually do (announcing in Slack, deactivating CI/CD jobs, taking state file locks, etc.) and move your global state files from us-east-1 to your default region by copying the following program to <code>mv-state.sh</code> in your Substrate repository and running <code>sh mv-state.sh</code>.</p>
 
@@ -164,7 +164,7 @@ do
 done
 </code></pre>
 
-<p>Once you&rsquo;ve run this program, there&rsquo;s a provider to thread through the tree of Terraform modules before you can upgrade to Substrate 2021.12.</p>
+<p>Once you&rsquo;ve run this program, there&rsquo;s a provider to thread through the tree of Terraform modules before you can upgrade to Substrate&nbsp;2021.12.</p>
 
 <ul>
 <li><p>Add the following four lines in the domain module stanzas in <code>root-modules/*/*/*/global/main.tf</code>:</p>
@@ -174,7 +174,7 @@ done
   aws.us-east-1 = aws.us-east-1
 }
 </code></pre></li>
-<li><p>Add the following three lines below <code>aws = {</code> in <code>modules/*/global/versions.tf</code> except <code>modules/lambda-function/global/versions.tf</code>, <code>modules/substrate/global/versions.tf</code>, and your own modules:</p>
+<li><p>Add the following three lines below <code>aws = {</code> in <code>modules/*/global/versions.tf</code> except <code>modules/lambda-function/global/versions.tf</code>, <code>modules/substrate/global/versions.tf</code>, and your own&nbsp;modules:</p>
 
 <pre><code>configuration_aliases = [
   aws.us-east-1,
@@ -182,35 +182,35 @@ done
 </code></pre></li>
 </ul>
 
-<p>(I regret not being able to provide a <code>patch</code>(1) file for these operations but the contents of <code>versions.tf</code> post-Terraform 1.0 are too unpredictable to do so safely.)</p>
+<p>(I regret not being able to provide a <code>patch</code>(1) file for these operations but the contents of <code>versions.tf</code> post-Terraform 1.0 are too unpredictable to do so&nbsp;safely.)</p>
 
-<p>Now you can upgrade Substrate. Don&rsquo;t release your block just yet, though.</p>
+<p>Now you can upgrade Substrate. Don&rsquo;t release your block just yet,&nbsp;though.</p>
 
-<p>After upgrading Substrate:</p>
+<p>After upgrading&nbsp;Substrate:</p>
 
 <ol>
 <li><code>substrate-bootstrap-deploy-account</code></li>
-<li><code>substrate-create-admin-account -quality="..."</code> for each of your admin accounts</li>
-<li><code>substrate-create-account -domain="..." -environment="..." -quality="..."</code> for each of your service accounts</li>
+<li><code>substrate-create-admin-account -quality="..."</code> for each of your admin&nbsp;accounts</li>
+<li><code>substrate-create-account -domain="..." -environment="..." -quality="..."</code> for each of your service&nbsp;accounts</li>
 </ol>
 
-<p>Once all of these have run successfully, ensure all your coworkers upgrade Substrate and unblock Terraform changes.</p>
+<p>Once all of these have run successfully, ensure all your coworkers upgrade Substrate and unblock Terraform&nbsp;changes.</p>
 
-<p>I regret the complexity of this upgrade process but feel it is, on balance, less risky than attempting to hide all this motion behind automation. Thanks for your patience.</p>
+<p>I regret the complexity of this upgrade process but feel it is, on balance, less risky than attempting to hide all this motion behind automation. Thanks for your&nbsp;patience.</p>
 
 <h2 id="2021.11">2021.11</h2>
 
 <ul>
-<li>New installations no longer configure a SAML provider. Instead, all AWS API and Console access is brokered by OAuth OIDC and your Intranet. Existing SAML providers are not removed.</li>
-<li>For those using Google as their IdP, read the name of the role to assume in the Credential and Instance Factories and the AWS Console from custom attributes on Google Workspace users. (For Okta users, Administrator is still the default.)</li>
-<li>Forward <code>Cookie</code> headers to HTTP(S) services wired into the Intranet by the experimental new <code>modules/intranet/regional/proxy</code> module. The theoretical security benefit of not exposing raw cookies (and instead exposing identity) is not remotely worth the loss in functionality it cost.</li>
-<li>Reduce the chance of Intranet misconfiguration by limiting which API Gateways can forward to the <code>substrate-intranet</code> Lambda function.</li>
-<li>Bug fix: The links to other parts of the Intranet from the page that <code>substrate-credentials</code> opens in your browser are relative links and were missing the <code>../</code> prefix, which has now been added.</li>
-<li>Removed version pinning of the long-unused Terraform <code>archive</code> provider.</li>
-<li>Removed <code>-no-cloudwatch</code> from <code>substrate-bootstrap-management-account</code>, <code>substrate-create-admin-account</code>, and <code>substrate-create-account</code> in favor of just actually detecting when it&rsquo;s necessary and not doing it when it&rsquo;s not.</li>
+<li>New installations no longer configure a SAML provider. Instead, all AWS API and Console access is brokered by OAuth OIDC and your Intranet. Existing SAML providers are not&nbsp;removed.</li>
+<li>For those using Google as their IdP, read the name of the role to assume in the Credential and Instance Factories and the AWS Console from custom attributes on Google Workspace users. (For Okta users, Administrator is still the&nbsp;default.)</li>
+<li>Forward <code>Cookie</code> headers to HTTP(S) services wired into the Intranet by the experimental new <code>modules/intranet/regional/proxy</code> module. The theoretical security benefit of not exposing raw cookies (and instead exposing identity) is not remotely worth the loss in functionality it&nbsp;cost.</li>
+<li>Reduce the chance of Intranet misconfiguration by limiting which API Gateways can forward to the <code>substrate-intranet</code> Lambda&nbsp;function.</li>
+<li>Bug fix: The links to other parts of the Intranet from the page that <code>substrate-credentials</code> opens in your browser are relative links and were missing the <code>../</code> prefix, which has now been&nbsp;added.</li>
+<li>Removed version pinning of the long-unused Terraform <code>archive</code>&nbsp;provider.</li>
+<li>Removed <code>-no-cloudwatch</code> from <code>substrate-bootstrap-management-account</code>, <code>substrate-create-admin-account</code>, and <code>substrate-create-account</code> in favor of just actually detecting when it&rsquo;s necessary and not doing it when it&rsquo;s&nbsp;not.</li>
 </ul>
 
-<p>Before upgrading Substrate, if you&rsquo;re using Google as your IdP:</p>
+<p>Before upgrading Substrate, if you&rsquo;re using Google as your&nbsp;IdP:</p>
 
 <ol>
 <li>Add an additional custom attribute as follows:
@@ -220,107 +220,107 @@ done
 <li>In the blank bottom row, enter &ldquo;RoleName&rdquo; for <em>Name</em>, select &ldquo;Text&rdquo; for <em>Info type</em>, select &ldquo;Visible to user and admin&rdquo; for <em>Visibility</em>, select &ldquo;Single Value&rdquo; for <em>No. of values</em></li>
 <li>Click <strong>SAVE</strong></li>
 </ol></li>
-<li>Visit <a href="https://admin.google.com/ac/users">https://admin.google.com/ac/users</a> and set the <em>RoleName</em> attribute in the <em>AWS</em> category to &ldquo;Administrator&rdquo; for every user authorized to use AWS.</li>
+<li>Visit <a href="https://admin.google.com/ac/users">https://admin.google.com/ac/users</a> and set the <em>RoleName</em> attribute in the <em>AWS</em> category to &ldquo;Administrator&rdquo; for every user authorized to use&nbsp;AWS.</li>
 <li>Visit <a href="https://console.cloud.google.com/apis/library/admin.googleapis.com">https://console.cloud.google.com/apis/library/admin.googleapis.com</a>, confirm the selected project is the one that contains your Intranet&rsquo;s OAuth OIDC configuration (its name will be listed next to "Google Cloud Platform" in the header), and click <strong>ENABLE</strong>.</li>
 </ol>
 
-<p>After upgrading Substrate:</p>
+<p>After upgrading&nbsp;Substrate:</p>
 
 <ol>
-<li>Run <code>substrate-create-admin-account -quality="..."</code> to upgrade your Intranet.</li>
+<li>Run <code>substrate-create-admin-account -quality="..."</code> to upgrade your&nbsp;Intranet.</li>
 </ol>
 
 <h2 id="2021.10">2021.10</h2>
 
 <ul>
-<li>The Intranet&rsquo;s <code>/accounts</code> page now logs you into the AWS Console and assumes the specified role without requiring you to have already been logged in.</li>
-<li>The <code>-console</code> option to <code>substrate-assume-role</code> likewise now logs into the AWS Console and assumes the specified role without requiring you to have already been logged in.</li>
-<li>Auditor roles can now assume other Auditor roles, making it possible for Auditor to move throughout the organization while retaining its read-only status.</li>
+<li>The Intranet&rsquo;s <code>/accounts</code> page now logs you into the AWS Console and assumes the specified role without requiring you to have already been logged&nbsp;in.</li>
+<li>The <code>-console</code> option to <code>substrate-assume-role</code> likewise now logs into the AWS Console and assumes the specified role without requiring you to have already been logged&nbsp;in.</li>
+<li>Auditor roles can now assume other Auditor roles, making it possible for Auditor to move throughout the organization while retaining its read-only&nbsp;status.</li>
 <li>The lists of principals that can assume the <code>Administrator</code> and <code>Auditor</code> roles may now be augmented by adding a JSON-encoded assume role policy in <code>substrate.Administrator.assume-role-policy.json</code> and/or <code>substrate.Auditor.assume-role-policy.json</code>.</li>
-<li>Enforce the use of IMDSv2 on instances from the Instance Factory. This is a prerequisite for organization-wide enforcement of using IMDSv2, which is an important default that reduces the potential impact of SSRF vulnerabilities.</li>
-<li><code>substrate-whoami</code> output now also includes your IAM role ARN.</li>
-<li>Prompt folks to <code>cd</code> or set <code>SUBSTRATE_ROOT</code> when they try to <code>eval $(substrate-credentials)</code> from outside the Substrate repository.</li>
-<li>Allow all accounts in the organization, not just admin accounts, to read shared CloudWatch metrics.</li>
-<li>Added experimental <code>modules/intranet/regional/proxy</code> that makes it easy to put SSO in front of internal websites and HTTP APIs. See <a href="../protecting-internal-websites/">protecting internal websites</a> for more information and an example.</li>
-<li>Bug fix: Grant <code>s3:PutObjectAcl</code> so that it&rsquo;s possible for all authorized principals to upload objects with the <code>bucket-owner-full-control</code> canned ACL.</li>
-<li>Bug fix: Extract <code>substrate-intranet.zip</code> from the <code>substrate</code> binary during Terraform runs in <code>root-modules/admin/*/*</code> instead of only during <code>substrate-create-admin-account</code>. This makes it far less painful for mulitple teammates to work in the same Substrate repository and for CI/CD systems to apply Terraform changes.</li>
-<li>Bug fix: Prevent a race between VPC sharing and tagging that caused <code>substrate-create-admin-account</code> and <code>substrate-create-account</code> to fail every time they were used to actually create an account.</li>
-<li>Added <code>-no-cloudwatch</code> to <code>substrate-bootstrap-management-account</code>, <code>substrate-create-admin-account</code>, and <code>substrate-create-account</code> that skips the slow process of managing all the roles necessary for cross-account CloudWatch sharing. (Useful if you&rsquo;re certain you&rsquo;ve not created a new account and you&rsquo;re in a hurry.)</li>
+<li>Enforce the use of IMDSv2 on instances from the Instance Factory. This is a prerequisite for organization-wide enforcement of using IMDSv2, which is an important default that reduces the potential impact of SSRF&nbsp;vulnerabilities.</li>
+<li><code>substrate-whoami</code> output now also includes your IAM role&nbsp;ARN.</li>
+<li>Prompt folks to <code>cd</code> or set <code>SUBSTRATE_ROOT</code> when they try to <code>eval $(substrate-credentials)</code> from outside the Substrate&nbsp;repository.</li>
+<li>Allow all accounts in the organization, not just admin accounts, to read shared CloudWatch&nbsp;metrics.</li>
+<li>Added experimental <code>modules/intranet/regional/proxy</code> that makes it easy to put SSO in front of internal websites and HTTP APIs. See <a href="../protecting-internal-websites/">protecting internal websites</a> for more information and an&nbsp;example.</li>
+<li>Bug fix: Grant <code>s3:PutObjectAcl</code> so that it&rsquo;s possible for all authorized principals to upload objects with the <code>bucket-owner-full-control</code> canned&nbsp;ACL.</li>
+<li>Bug fix: Extract <code>substrate-intranet.zip</code> from the <code>substrate</code> binary during Terraform runs in <code>root-modules/admin/*/*</code> instead of only during <code>substrate-create-admin-account</code>. This makes it far less painful for mulitple teammates to work in the same Substrate repository and for CI/CD systems to apply Terraform&nbsp;changes.</li>
+<li>Bug fix: Prevent a race between VPC sharing and tagging that caused <code>substrate-create-admin-account</code> and <code>substrate-create-account</code> to fail every time they were used to actually create an&nbsp;account.</li>
+<li>Added <code>-no-cloudwatch</code> to <code>substrate-bootstrap-management-account</code>, <code>substrate-create-admin-account</code>, and <code>substrate-create-account</code> that skips the slow process of managing all the roles necessary for cross-account CloudWatch sharing. (Useful if you&rsquo;re certain you&rsquo;ve not created a new account and you&rsquo;re in a&nbsp;hurry.)</li>
 </ul>
 
-<p>After upgrading Substrate:</p>
+<p>After upgrading&nbsp;Substrate:</p>
 
 <ol>
-<li>Run <code>substrate-bootstrap-deploy-account</code> to fix the bucket policy so that all authorized principals in the organization can upload to the deploy artifact bucket(s).</li>
-<li>Run <code>substrate-create-admin-account -quality="..."</code> to upgrade your Intranet and Auditor roles. Note well this will produce a fair number of new resources; this is step one in a multi-month process of brining some naming consistency to Substrate-managed resources in IAM, Lambda, and other AWS services.</li>
+<li>Run <code>substrate-bootstrap-deploy-account</code> to fix the bucket policy so that all authorized principals in the organization can upload to the deploy artifact&nbsp;bucket(s).</li>
+<li>Run <code>substrate-create-admin-account -quality="..."</code> to upgrade your Intranet and Auditor roles. Note well this will produce a fair number of new resources; this is step one in a multi-month process of brining some naming consistency to Substrate-managed resources in IAM, Lambda, and other AWS&nbsp;services.</li>
 </ol>
 
 <h2 id="2021.09.28">2021.09.28</h2>
 
 <ul>
-<li>Bug fix: Properly detect when Substrate tools are invoked via symbolic links (i.e. in their original <code>substrate-assume-role</code> form rather than their new <code>substrate assume-role</code> form) on MacOS.</li>
+<li>Bug fix: Properly detect when Substrate tools are invoked via symbolic links (i.e. in their original <code>substrate-assume-role</code> form rather than their new <code>substrate assume-role</code> form) on&nbsp;MacOS.</li>
 </ul>
 
-<p>If you&rsquo;re upgrading from 2021.08, follow the upgrade instructions from 2021.09. If you already upgraded to 2021.09, there are no further upgrade steps.</p>
+<p>If you&rsquo;re upgrading from 2021.08, follow the upgrade instructions from 2021.09. If you already upgraded to 2021.09, there are no further upgrade&nbsp;steps.</p>
 
 <h2 id="2021.09">2021.09</h2>
 
-<p>This release changes the interactive interface to <code>substrate-bootstrap-network-account</code> and <code>substrate-create-admin-account</code> to make them easier to run in CI. <strong>If you are automating these commands by providing <code>yes</code> and <code>no</code> answers on standard input, this release will break your automation; you should run these commands interactively first to see what&rsquo;s changed.</strong> The details of what&rsquo;s changed are listed in the usual format below.</p>
+<p>This release changes the interactive interface to <code>substrate-bootstrap-network-account</code> and <code>substrate-create-admin-account</code> to make them easier to run in CI. <strong>If you are automating these commands by providing <code>yes</code> and <code>no</code> answers on standard input, this release will break your automation; you should run these commands interactively first to see what&rsquo;s changed.</strong> The details of what&rsquo;s changed are listed in the usual format&nbsp;below.</p>
 
 <ul>
-<li>Move all Substrate commands into the <code>substrate</code> binary with symbolic links replacing the <code>substrate-*</code> binaries from previous releases. This can mostly be considered a no-op but note that now Substrate commands may be also be invoked as <code>substrate <em>subcommand</em></code>. This is not a deprecation notice for the original invocation style.</li>
-<li>Added <code>-fully-interactive</code>, <code>-minimally-interactive</code>, and <code>-non-interactive</code> to all Substrate commands. <code>-fully-interactive</code> is almost identical (see below) to the behavior of 2021.08 and earlier releases. <code>-minimally-interactive</code> is the new default and removes the incessant &ldquo;is this correct? (yes/no)&rdquo; dialogs, which I thought would be welcome but turned out to be annoying. <code>-non-interactive</code> will never prompt for input and will instead exit with a non-zero status if input is required.</li>
+<li>Move all Substrate commands into the <code>substrate</code> binary with symbolic links replacing the <code>substrate-*</code> binaries from previous releases. This can mostly be considered a no-op but note that now Substrate commands may be also be invoked as <code>substrate <em>subcommand</em></code>. This is not a deprecation notice for the original invocation&nbsp;style.</li>
+<li>Added <code>-fully-interactive</code>, <code>-minimally-interactive</code>, and <code>-non-interactive</code> to all Substrate commands. <code>-fully-interactive</code> is almost identical (see below) to the behavior of 2021.08 and earlier releases. <code>-minimally-interactive</code> is the new default and removes the incessant &ldquo;is this correct? (yes/no)&rdquo; dialogs, which I thought would be welcome but turned out to be annoying. <code>-non-interactive</code> will never prompt for input and will instead exit with a non-zero status if input is&nbsp;required.</li>
 <li>Changed the interactive prompts concerning Google and Okta configuration to make them less bothersome and (in the Okta case) less prone to unintentional changes. <strong>If you are automating <code>substrate-create-admin-account</code> by providing <code>yes</code> and <code>no</code> answers on standard input, this change will break your automation; you should run this command interactively first to see what&rsquo;s changed.</strong></li>
-<li>Added a confirmation to <code>substrate-create-admin-account</code> and <code>substrate-create-account</code> to prevent errant creation of new AWS accounts (which are tedious to delete in case creation was a mistake) plus a new <code>-create</code> option to suppress that confirmation.</li>
-<li>Updated the Substrate-managed Service Control Policy attached to your organization to deny access to the <code>cloudtrail:CreateTrail</code> API. Substrate creates a multi-region, organization-wide trail early in its initialization. This policy prevents additional trails from being created because they are excessively expensive and redundant.</li>
-<li>Added e-mail address columns to tables of AWS accounts in <code>substrate.accounts.txt</code>, <code>substrate-accounts</code>, and the Intranet&rsquo;s <code>/accounts</code> page.</li>
-<li>Added <code>-format=shell</code> to <code>substrate-accounts</code>, which enumerates AWS accounts as shell commands to the various <code>substrate-bootstrap-*</code> and <code>substrate-create-*</code> commands. This is useful for driving CI/CD of Terraform changes. It&rsquo;s also useful for automating Substrate upgrades.</li>
-<li>Added <code>substrate-root-modules</code>, which enumerates every Substrate-managed Terraform root module in a sensible order. This, too, is useful for driving CI/CD of Terraform changes.</li>
-<li>Added a new <code>root-modules/deploy/global</code> root module under the management of <code>substrate-bootstrap-deploy-account</code>. Substrate doesn&rsquo;t manage any resources there but you&rsquo;re free to.</li>
-<li>Bug fix: Ensure that objects put into the deploy buckets in S3 by any account in your organization may actually be fetched by other accounts in your organization. Requires objects be uploaded with the <code>bucket-owner-full-control</code> canned ACL.</li>
+<li>Added a confirmation to <code>substrate-create-admin-account</code> and <code>substrate-create-account</code> to prevent errant creation of new AWS accounts (which are tedious to delete in case creation was a mistake) plus a new <code>-create</code> option to suppress that&nbsp;confirmation.</li>
+<li>Updated the Substrate-managed Service Control Policy attached to your organization to deny access to the <code>cloudtrail:CreateTrail</code> API. Substrate creates a multi-region, organization-wide trail early in its initialization. This policy prevents additional trails from being created because they are excessively expensive and&nbsp;redundant.</li>
+<li>Added e-mail address columns to tables of AWS accounts in <code>substrate.accounts.txt</code>, <code>substrate-accounts</code>, and the Intranet&rsquo;s <code>/accounts</code>&nbsp;page.</li>
+<li>Added <code>-format=shell</code> to <code>substrate-accounts</code>, which enumerates AWS accounts as shell commands to the various <code>substrate-bootstrap-*</code> and <code>substrate-create-*</code> commands. This is useful for driving CI/CD of Terraform changes. It&rsquo;s also useful for automating Substrate&nbsp;upgrades.</li>
+<li>Added <code>substrate-root-modules</code>, which enumerates every Substrate-managed Terraform root module in a sensible order. This, too, is useful for driving CI/CD of Terraform&nbsp;changes.</li>
+<li>Added a new <code>root-modules/deploy/global</code> root module under the management of <code>substrate-bootstrap-deploy-account</code>. Substrate doesn&rsquo;t manage any resources there but you&rsquo;re free&nbsp;to.</li>
+<li>Bug fix: Ensure that objects put into the deploy buckets in S3 by any account in your organization may actually be fetched by other accounts in your organization. Requires objects be uploaded with the <code>bucket-owner-full-control</code> canned&nbsp;ACL.</li>
 <li>Bug fix: Avoid a fork bomb in case <code>substrate-whoami</code> is invoked with a <code>/</code> in the pathname (i.e. as <code>~/bin/substrate-whoami</code>).</li>
 </ul>
 
-<p>After upgrading Substrate:</p>
+<p>After upgrading&nbsp;Substrate:</p>
 
 <ol>
-<li>Run <code>substrate-bootstrap-management-account</code> to update your organization&rsquo;s Service Control Policy.</li>
-<li>Run <code>substrate-bootstrap-deploy-account</code> to reconfigure the deploy buckets in S3 and generate the <code>global</code> root module.</li>
-<li>Run <code>substrate-create-admin-account -quality="..."</code> to add the e-mail address column to your Intranet&rsquo;s <code>/accounts</code> page.</li>
+<li>Run <code>substrate-bootstrap-management-account</code> to update your organization&rsquo;s Service Control&nbsp;Policy.</li>
+<li>Run <code>substrate-bootstrap-deploy-account</code> to reconfigure the deploy buckets in S3 and generate the <code>global</code> root&nbsp;module.</li>
+<li>Run <code>substrate-create-admin-account -quality="..."</code> to add the e-mail address column to your Intranet&rsquo;s <code>/accounts</code>&nbsp;page.</li>
 </ol>
 
 <h2 id="2021.08">2021.08</h2>
 
 <ul>
-<li>Roll <code>substrate-apigateway-authorizer</code>, <code>substrate-credential-factory</code>, and <code>substrate-instance-factory</code> into <code>substrate-intranet</code>. This is a no-op listed here for transparency. It&rsquo;s a prerequisite step towards unifying all the Substrate tools as subcommands of <code>substrate</code>, thereby reducing the size and complexity of the Substrate distribution.</li>
-<li>Stop using the <code>archive</code> and <code>external</code> Terraform providers by embedding <code>substrate-intranet.zip</code> directly in <code>substrate-create-admin-account</code>. Dependence on these providers will be made optional in a subsequent release.</li>
-<li>VPCs are no longer shared organization-wide, leaving the fine-grained VPC sharing introduced in 2021.07 to maintain each service account&rsquo;s access to its intended VPCs.</li>
-<li>The Instance Factory now supports ARM instances (i.e. the a1, c6g, m6g, r6g, and t4g families).</li>
-<li>Bug fix: Switch back to the original working directory in <code>substrate-assume-role</code> (which will have changed if invoked with <code>SUBSTRATE_ROOT</code> set) before forking and executing a child process.</li>
-<li>Added <code>substrate-whoami</code> to make it easy to learn the domain, environment, and quality of the AWS account your current credentials operate on.</li>
-<li>Added <code>-format=json</code> to <code>substrate-accounts</code> to make it easier to enumerate and act programatically on every AWS account in your organization. See <a href="../enumerating-all-your-aws-accounts/">enumerating all your AWS accounts</a> for an example.</li>
+<li>Roll <code>substrate-apigateway-authorizer</code>, <code>substrate-credential-factory</code>, and <code>substrate-instance-factory</code> into <code>substrate-intranet</code>. This is a no-op listed here for transparency. It&rsquo;s a prerequisite step towards unifying all the Substrate tools as subcommands of <code>substrate</code>, thereby reducing the size and complexity of the Substrate&nbsp;distribution.</li>
+<li>Stop using the <code>archive</code> and <code>external</code> Terraform providers by embedding <code>substrate-intranet.zip</code> directly in <code>substrate-create-admin-account</code>. Dependence on these providers will be made optional in a subsequent&nbsp;release.</li>
+<li>VPCs are no longer shared organization-wide, leaving the fine-grained VPC sharing introduced in 2021.07 to maintain each service account&rsquo;s access to its intended&nbsp;VPCs.</li>
+<li>The Instance Factory now supports ARM instances (i.e. the a1, c6g, m6g, r6g, and t4g&nbsp;families).</li>
+<li>Bug fix: Switch back to the original working directory in <code>substrate-assume-role</code> (which will have changed if invoked with <code>SUBSTRATE_ROOT</code> set) before forking and executing a child&nbsp;process.</li>
+<li>Added <code>substrate-whoami</code> to make it easy to learn the domain, environment, and quality of the AWS account your current credentials operate&nbsp;on.</li>
+<li>Added <code>-format=json</code> to <code>substrate-accounts</code> to make it easier to enumerate and act programatically on every AWS account in your organization. See <a href="../enumerating-all-your-aws-accounts/">enumerating all your AWS accounts</a> for an&nbsp;example.</li>
 </ul>
 
-<p>After upgrading Substrate:</p>
+<p>After upgrading&nbsp;Substrate:</p>
 
 <ol>
-<li>Run <code>substrate-bootstrap-management-account</code> to grant <code>substrate-whoami</code> the permissions it needs.</li>
-<li>Run <code>substrate-bootstrap-network-account</code> to remove coarse-grained organization-wide VPC sharing.</li>
-<li>Run <code>substrate-create-admin-account -quality="..."</code> to upgrade your Intranet.</li>
+<li>Run <code>substrate-bootstrap-management-account</code> to grant <code>substrate-whoami</code> the permissions it&nbsp;needs.</li>
+<li>Run <code>substrate-bootstrap-network-account</code> to remove coarse-grained organization-wide VPC&nbsp;sharing.</li>
+<li>Run <code>substrate-create-admin-account -quality="..."</code> to upgrade your&nbsp;Intranet.</li>
 </ol>
 
 <h2 id="2021.07">2021.07</h2>
 
 <ul>
-<li>The Intranet&rsquo;s <code>/accounts</code> page now opens the AWS Console in new browser tabs as it probably always should have.</li>
-<li>Substrate now only manages the version constraint on the <code>archive</code>, <code>aws</code>, and <code>external</code> providers rather than all of <code>versions.tf</code>. This opens the door to Substrate users adding (and version constraining) additional providers. See <a href="../additional-terraform-providers/">additional Terraform providers</a> for an example.</li>
-<li>Upgrade to and pin Terraform 1.0.2 and the <code>aws</code> provider >= 3.49.0.</li>
+<li>The Intranet&rsquo;s <code>/accounts</code> page now opens the AWS Console in new browser tabs as it probably always should&nbsp;have.</li>
+<li>Substrate now only manages the version constraint on the <code>archive</code>, <code>aws</code>, and <code>external</code> providers rather than all of <code>versions.tf</code>. This opens the door to Substrate users adding (and version constraining) additional providers. See <a href="../additional-terraform-providers/">additional Terraform providers</a> for an&nbsp;example.</li>
+<li>Upgrade to and pin Terraform 1.0.2 and the <code>aws</code> provider >=&nbsp;3.49.0.</li>
 <li>Tag many more AWS resources with <code>Manager</code> and <code>SubstrateVersion</code> using the <code>default_tags</code> facility of the AWS provider. If you encounter the following error, remove <code>Manager</code> and <code>SubstrateVersion</code> (if present) from the indicated resources and re-run.<br><pre>Error: "tags" are identical to those in the "default_tags" configuration block of the provider: please de-duplicate and try again</pre></li>
-<li>All Substrate tools will now change their working directory to the value of the <code>SUBSTRATE_ROOT</code> environment variable, if set, rather than always proceeding in whatever the working directory was when invoked.</li>
-<li>Share VPCs specifically with accounts that match their environment and quality. This is a no-op that enables a future release to remove organization-wide VPC sharing.</li>
+<li>All Substrate tools will now change their working directory to the value of the <code>SUBSTRATE_ROOT</code> environment variable, if set, rather than always proceeding in whatever the working directory was when&nbsp;invoked.</li>
+<li>Share VPCs specifically with accounts that match their environment and quality. This is a no-op that enables a future release to remove organization-wide VPC&nbsp;sharing.</li>
 </ul>
 
-<p>You must upgrade to Terraform 1.0.2 in order to use Substrate 2021.07. Terraform 1.0.2 may be found here:</p>
+<p>You must upgrade to Terraform 1.0.2 in order to use Substrate 2021.07. Terraform 1.0.2 may be found&nbsp;here:</p>
 
 <ul>
 <li><a href="https://releases.hashicorp.com/terraform/1.0.2/terraform_1.0.2_darwin_amd64.zip">https://releases.hashicorp.com/terraform/1.0.2/terraform_1.0.2_darwin_amd64.zip</a></li>
@@ -329,23 +329,23 @@ done
 <li><a href="https://releases.hashicorp.com/terraform/1.0.2/terraform_1.0.2_linux_arm64.zip">https://releases.hashicorp.com/terraform/1.0.2/terraform_1.0.2_linux_arm64.zip</a></li>
 </ul>
 
-<p>After upgrading Terraform and Substrate:</p>
+<p>After upgrading Terraform and&nbsp;Substrate:</p>
 
 <ol>
-<li>Run <code>substrate-bootstrap-network-account</code> and <code>substrate-bootstrap-deploy-account</code> to complete the Terraform 1.0.2 upgrade there. Note well that <code>tags</code> and <code>tags_all</code> output will be somewhat confusing but will ultimately do the right thing.</li>
-<li>Run <code>substrate-create-admin-account</code> and <code>substrate-create-account</code> to complete the Terraform 1.0.2 upgrade for each of your admin and service accounts. Here, too, note well that <code>tags</code> and <code>tags_all</code> output will be somewhat confusing but will ultimately do the right thing.</li>
+<li>Run <code>substrate-bootstrap-network-account</code> and <code>substrate-bootstrap-deploy-account</code> to complete the Terraform 1.0.2 upgrade there. Note well that <code>tags</code> and <code>tags_all</code> output will be somewhat confusing but will ultimately do the right&nbsp;thing.</li>
+<li>Run <code>substrate-create-admin-account</code> and <code>substrate-create-account</code> to complete the Terraform 1.0.2 upgrade for each of your admin and service accounts. Here, too, note well that <code>tags</code> and <code>tags_all</code> output will be somewhat confusing but will ultimately do the right&nbsp;thing.</li>
 </ol>
 
 <h2 id="2021.06">2021.06</h2>
 
 <ul>
-<li>List all the Intranet resources on the Intranet homepage, not just top-level resources.</li>
-<li>Roll <code>substrate-apigateway-authenticator</code> and <code>substrate-apigateway-index</code> into <code>substrate-intranet</code>. This is a no-op listed here for transparency.</li>
-<li>Tag shared VPCs in service accounts to clearly indicate in the AWS Console which one you should be using. This lays the groundwork for finer-grained VPC sharing in a future release.</li>
-<li>Upgrade to and pin Terraform 0.15.5 and newer providers with relaxed <code>&gt;=</code> version constraints on providers (but not Terraform itself).</li>
+<li>List all the Intranet resources on the Intranet homepage, not just top-level&nbsp;resources.</li>
+<li>Roll <code>substrate-apigateway-authenticator</code> and <code>substrate-apigateway-index</code> into <code>substrate-intranet</code>. This is a no-op listed here for&nbsp;transparency.</li>
+<li>Tag shared VPCs in service accounts to clearly indicate in the AWS Console which one you should be using. This lays the groundwork for finer-grained VPC sharing in a future&nbsp;release.</li>
+<li>Upgrade to and pin Terraform 0.15.5 and newer providers with relaxed <code>&gt;=</code> version constraints on providers (but not Terraform&nbsp;itself).</li>
 </ul>
 
-<p>You must upgrade to Terraform 0.15.5 in order to use Substrate 2021.06. Terraform 0.15.5 may be found here:</p>
+<p>You must upgrade to Terraform 0.15.5 in order to use Substrate 2021.06. Terraform 0.15.5 may be found&nbsp;here:</p>
 
 <ul>
 <li><a href="https://releases.hashicorp.com/terraform/0.15.5/terraform_0.15.5_darwin_amd64.zip">https://releases.hashicorp.com/terraform/0.15.5/terraform_0.15.5_darwin_amd64.zip</a></li>
@@ -353,54 +353,54 @@ done
 <li><a href="https://releases.hashicorp.com/terraform/0.15.5/terraform_0.15.5_linux_arm64.zip">https://releases.hashicorp.com/terraform/0.15.5/terraform_0.15.5_linux_arm64.zip</a></li>
 </ul>
 
-<p>After upgrading Terraform and Substrate:</p>
+<p>After upgrading Terraform and&nbsp;Substrate:</p>
 
 <ol>
-<li>Run <code>substrate-bootstrap-network-account</code> and <code>substrate-bootstrap-deploy-account</code> to complete the Terraform 0.15.5 upgrade there.</li>
-<li>Run <code>substrate-create-admin-account -quality="..."</code> to update your Intranet.</li>
-<li>Run <code>substrate-create-account -domain="..." -environment="..." -quality="..."</code> for all your service accounts to tag your shared VPCs.</li>
+<li>Run <code>substrate-bootstrap-network-account</code> and <code>substrate-bootstrap-deploy-account</code> to complete the Terraform 0.15.5 upgrade&nbsp;there.</li>
+<li>Run <code>substrate-create-admin-account -quality="..."</code> to update your&nbsp;Intranet.</li>
+<li>Run <code>substrate-create-account -domain="..." -environment="..." -quality="..."</code> for all your service accounts to tag your shared&nbsp;VPCs.</li>
 </ol>
 
-<p>If you&rsquo;ve added any stub <code>provider</code> blocks to your modules, leave them in place for now and accept the deprecation warning. Terraform only allows one <code>required_providers</code> block and that is now managed by Substrate. A future release will accommodate these additional providers.</p>
+<p>If you&rsquo;ve added any stub <code>provider</code> blocks to your modules, leave them in place for now and accept the deprecation warning. Terraform only allows one <code>required_providers</code> block and that is now managed by Substrate. A future release will accommodate these additional&nbsp;providers.</p>
 
 <h2 id="2021.05">2021.05</h2>
 
 <ul>
-<li>Bug fix: S3 traffic from private subnets is now correctly routed via the VPC Endpoint and not through the NAT Gateway.</li>
-<li>Bug fix: Allow outbound IPv6 traffic from Instance Factory instances to match IPv4 and enable use of the IPv6 Internet.</li>
-<li>Bug fix: Instance Factory instances now have 100GB disks instead of whatever the AMI happened to request, which recently shrank from 8GB to 2GB.</li>
-<li>Bug fix: The Instance Factory now only lists instances which belong to you. It previously listed all instances for all your users.</li>
-<li>By popular request, authorize admin accounts to directly access CloudWatch logs and metrics from all your accounts.</li>
+<li>Bug fix: S3 traffic from private subnets is now correctly routed via the VPC Endpoint and not through the NAT&nbsp;Gateway.</li>
+<li>Bug fix: Allow outbound IPv6 traffic from Instance Factory instances to match IPv4 and enable use of the IPv6&nbsp;Internet.</li>
+<li>Bug fix: Instance Factory instances now have 100GB disks instead of whatever the AMI happened to request, which recently shrank from 8GB to&nbsp;2GB.</li>
+<li>Bug fix: The Instance Factory now only lists instances which belong to you. It previously listed all instances for all your&nbsp;users.</li>
+<li>By popular request, authorize admin accounts to directly access CloudWatch logs and metrics from all your&nbsp;accounts.</li>
 </ul>
 
-<p>After upgrading:</p>
+<p>After&nbsp;upgrading:</p>
 
 <ul>
-<li>Run <code>substrate-bootstrap-network-account</code> to fix S3 routes.</li>
-<li>Run <code>substrate-create-admin-account -quality="..."</code> to enable direct CloudWatch access and make Instance Factory improvements.</li>
+<li>Run <code>substrate-bootstrap-network-account</code> to fix S3&nbsp;routes.</li>
+<li>Run <code>substrate-create-admin-account -quality="..."</code> to enable direct CloudWatch access and make Instance Factory&nbsp;improvements.</li>
 </ul>
 
 <h2 id="2021.04">2021.04</h2>
 
 <ul>
-<li>Added <code>/accounts</code> to the Intranet with links to assume the Administrator and Auditor roles in all your accounts in the AWS Console.</li>
-<li>Added <code>-console</code> to <code>substrate-assume-role</code> which attempts to open the AWS Console&rsquo;s role switching screen in your web browser with all the values filled in.</li>
-<li>Added <code>substrate-create-terraform-module</code> which creates the directory structure (with the <code>global</code> and <code>regional</code> pattern), providers, and Substrate metadata for a new Terraform module.</li>
-<li>Now building for M1 Macs, too.</li>
+<li>Added <code>/accounts</code> to the Intranet with links to assume the Administrator and Auditor roles in all your accounts in the AWS&nbsp;Console.</li>
+<li>Added <code>-console</code> to <code>substrate-assume-role</code> which attempts to open the AWS Console&rsquo;s role switching screen in your web browser with all the values filled&nbsp;in.</li>
+<li>Added <code>substrate-create-terraform-module</code> which creates the directory structure (with the <code>global</code> and <code>regional</code> pattern), providers, and Substrate metadata for a new Terraform&nbsp;module.</li>
+<li>Now building for M1 Macs,&nbsp;too.</li>
 </ul>
 
-<p>After upgrading, run <code>substrate-create-admin-account -quality="..."</code> to add <code>/accounts</code> to your Intranet.</p>
+<p>After upgrading, run <code>substrate-create-admin-account -quality="..."</code> to add <code>/accounts</code> to your&nbsp;Intranet.</p>
 
 <h2 id="2021.03">2021.03</h2>
 
 <ul>
-<li>Extended AWS Console sessions to 12 hours for organizations using Google as their IdP.</li>
-<li>Upgrade to and pin Terraform 0.14.7.</li>
-<li><code>substrate-bootstrap-network-account</code> now creates peering connections between all VPCs in all regions for each environment across all valid qualities.</li>
-<li>Fixed a bug in the <code>Administrator</code> role in admin accounts that prevented Instance Factory instances from seamlessly assuming the role.</li>
+<li>Extended AWS Console sessions to 12 hours for organizations using Google as their&nbsp;IdP.</li>
+<li>Upgrade to and pin Terraform&nbsp;0.14.7.</li>
+<li><code>substrate-bootstrap-network-account</code> now creates peering connections between all VPCs in all regions for each environment across all valid&nbsp;qualities.</li>
+<li>Fixed a bug in the <code>Administrator</code> role in admin accounts that prevented Instance Factory instances from seamlessly assuming the&nbsp;role.</li>
 </ul>
 
-<p>You must upgrade to Terraform 0.14.7 in order to use Substrate 2021.03. Terraform 0.14.7 may be found here:</p>
+<p>You must upgrade to Terraform 0.14.7 in order to use Substrate 2021.03. Terraform 0.14.7 may be found&nbsp;here:</p>
 
 <ul>
 <li><a href="https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_darwin_amd64.zip">https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_darwin_amd64.zip</a></li>
@@ -408,27 +408,27 @@ done
 <li><a href="https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_arm64.zip">https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_arm64.zip</a></li>
 </ul>
 
-<p>After upgrading:</p>
+<p>After&nbsp;upgrading:</p>
 
 <ol>
-<li><code>rm -f -r root-modules/network/*/peering</code> and remove these files from version control.</li>
-<li><code>substrate-bootstrap-network-account</code> to peer all your VPCs that should be peered.</li>
-<li><code>substrate-create-admin-account -quality="..."</code> to fix Instance Factory IAM roles, following the <a href="https://src-bin.com/substrate/manual/getting-started/google-saml/">Google SAML setup</a> guide if Google is your IdP to also get 12-hour AWS Console sessions.</li>
+<li><code>rm -f -r root-modules/network/*/peering</code> and remove these files from version&nbsp;control.</li>
+<li><code>substrate-bootstrap-network-account</code> to peer all your VPCs that should be&nbsp;peered.</li>
+<li><code>substrate-create-admin-account -quality="..."</code> to fix Instance Factory IAM roles, following the <a href="https://src-bin.com/substrate/manual/getting-started/google-saml/">Google SAML setup</a> guide if Google is your IdP to also get 12-hour AWS Console&nbsp;sessions.</li>
 </ol>
 
 <h2 id="2021.02">2021.02</h2>
 
 <ul>
-<li>Added <code>-format</code> from <code>substrate-credentials</code> to <code>substrate-assume-role</code> per request from a customer. Now credentials can be had with or without the <code>export</code> prefix or as JSON a la <code>aws sts assume-role</code> itself.</li>
-<li>Removed <code>root-modules/admin/*</code>&rsquo;s awkward dependency on finding <code>GOBIN</code> in the environment. The generated <code>Makefile</code> in each root module remains, however.</li>
-<li>Upgrade to and pin Terraform 0.13.6 and the Terraform AWS provider 3.26.0.</li>
-<li><code>substrate-assume-role</code> and <code>substrate-credentials</code> now (better) tolerate being invoked from subdirectories of your Substrate repository.</li>
-<li>Fix a bug in Terraform module generation in which the <code>aws.network</code> provider was incorrectly added to global modules and thus should have been expected in module stanzas.</li>
-<li>Stop printing the <code>export AWS_ACCESS_KEY_ID=...</code> line when <code>substrate-assume-role</code> is given a command to execute directly.</li>
-<li>Provide the Intranet&rsquo;s REST API ID, root resource ID, and a few other necessities as outputs from the <code>intranet/regional</code> module to facilitate adding more resources to these APIs.</li>
+<li>Added <code>-format</code> from <code>substrate-credentials</code> to <code>substrate-assume-role</code> per request from a customer. Now credentials can be had with or without the <code>export</code> prefix or as JSON a la <code>aws sts assume-role</code>&nbsp;itself.</li>
+<li>Removed <code>root-modules/admin/*</code>&rsquo;s awkward dependency on finding <code>GOBIN</code> in the environment. The generated <code>Makefile</code> in each root module remains,&nbsp;however.</li>
+<li>Upgrade to and pin Terraform 0.13.6 and the Terraform AWS provider&nbsp;3.26.0.</li>
+<li><code>substrate-assume-role</code> and <code>substrate-credentials</code> now (better) tolerate being invoked from subdirectories of your Substrate&nbsp;repository.</li>
+<li>Fix a bug in Terraform module generation in which the <code>aws.network</code> provider was incorrectly added to global modules and thus should have been expected in module&nbsp;stanzas.</li>
+<li>Stop printing the <code>export AWS_ACCESS_KEY_ID=...</code> line when <code>substrate-assume-role</code> is given a command to execute&nbsp;directly.</li>
+<li>Provide the Intranet&rsquo;s REST API ID, root resource ID, and a few other necessities as outputs from the <code>intranet/regional</code> module to facilitate adding more resources to these&nbsp;APIs.</li>
 </ul>
 
-<p>You must upgrade to Terraform 0.13.6 in order to use Substrate 2021.02. Terraform 0.13.6 may be found here:</p>
+<p>You must upgrade to Terraform 0.13.6 in order to use Substrate 2021.02. Terraform 0.13.6 may be found&nbsp;here:</p>
 
 <ul>
 <li><a href="https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_darwin_amd64.zip">https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_darwin_amd64.zip</a></li>
@@ -438,15 +438,15 @@ done
 
 <h2 id="2021.01">2021.01</h2>
 
-<p>You must run <code>substrate-create-admin-account</code> for each of your admin accounts before you&rsquo;ll be able to use <code>eval $(substrate-credentials)</code> to streamline your use of the Credential Factory.</p>
+<p>You must run <code>substrate-create-admin-account</code> for each of your admin accounts before you&rsquo;ll be able to use <code>eval $(substrate-credentials)</code> to streamline your use of the Credential&nbsp;Factory.</p>
 
 <h2 id="2020.12">2020.12</h2>
 
-<p>You must run <code>substrate-bootstrap-management-account</code> in order to re-tag your former master account as your management account. (This rename follows AWS&rsquo; own renaming.)</p>
+<p>You must run <code>substrate-bootstrap-management-account</code> in order to re-tag your former master account as your management account. (This rename follows AWS&rsquo; own&nbsp;renaming.)</p>
 
 <h2>2020.11 and prior releases</h2>
 
-<p>Contact <a href="&#x6D;&#x61;&#x69;&#108;&#x74;&#x6F;:&#104;&#x65;&#108;&#x6C;&#111;&#64;&#x73;&#114;&#99;&#x2D;bi&#110;&#x2E;&#x63;o&#x6D;">&#104;&#x65;&#108;&#x6C;&#111;&#64;&#x73;&#114;&#99;&#x2D;bi&#110;&#x2E;&#x63;o&#x6D;</a> for prior release notes.</p>
+<p>Contact <a href="&#x6D;&#97;&#105;&#x6C;&#116;&#111;:&#x68;&#x65;&#108;&#x6C;&#111;&#64;&#x73;&#x72;&#x63;&#45;&#x62;&#x69;&#110;&#x2E;&#99;&#x6F;&#109;">&#x68;&#x65;&#108;&#x6C;&#111;&#64;&#x73;&#x72;&#x63;&#45;&#x62;&#x69;&#110;&#x2E;&#99;&#x6F;&#109;</a> for prior release&nbsp;notes.</p>
 
         </section>
 

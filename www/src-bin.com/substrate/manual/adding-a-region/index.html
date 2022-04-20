@@ -36,26 +36,27 @@
 
 <h1>Adding a region</h1>
 
-<p>Substrate keeps you prepared for the day when you need to tolerate the failure of an AWS region. Everything is built with this in mind, even if such capabilities aren&rsquo;t used from day one. When you need to add a second (or third) region, it&rsquo;s a simple matter of expanding your network and running your existing Terraform code to start using it.</p>
+<p>Substrate is designed to accommodate multi-region infrastructures from day one and is ready at a moment&rsquo;s notice if you start with one region but decide suddenly to add&nbsp;more.</p>
 
-<p>Regions are added by <code>substrate-bootstrap-network-account</code>. To add a new one (or two), simply respond as follows to its prompts:</p>
+<p>As a prerequisite to adding a new region, it&rsquo;s critical that you follow the advice on <a href="../global-and-regional-terraform-modules/">global and regional Terraform modules</a> so that additional regional modules don&rsquo;t introduce conflicts during your Terraform&nbsp;runs.</p>
+
+<p>Regions are added by <code>substrate bootstrap-network-account</code>. To add a new one (or two), simply respond as follows to its&nbsp;prompts:</p>
 
 <ol>
-<li>Run <code>substrate-bootstrap-network-account -fully-interactive</code></li>
-<li>Answer &ldquo;no&rdquo; when asked if your list of regions is correct</li>
-<li>Add your new one in the text editor that was opened for you, paying attention to the order you want your qualities presented</li>
-<li>Save and exit the text editor</li>
-<li>Unfortunately, if your changes cause sufficiently many VPCs to be created, the tools will open support cases on your behalf to have service quotas for VPCs and related resources raised
+<li>Run <code>substrate bootstrap-network-account -fully-interactive</code></li>
+<li>Answer &ldquo;no&rdquo; when asked if your list of regions is&nbsp;correct</li>
+<li>Add your new one in the text editor that was opened for you, paying attention to the order you want your qualities&nbsp;presented</li>
+<li>Save and exit the text&nbsp;editor</li>
+<li>If your changes cause sufficiently many VPCs to be created, the tools will open support cases on your behalf to have service quotas for VPCs and related resources raised
 <ul>
-<li>If AWS gives you a hard time it is likely because they don&rsquo;t want to give you additional Elastic IPs; tell them you&rsquo;re trying to create VPCs to share to all your AWS accounts with three private subnets and zonal NAT Gateways and they&rsquo;ll hopefully let you get on with your life but if they don&rsquo;t, feel free to escalate to Source &amp; Binary</li>
-<li>These support cases sometimes take hours or even days to be resolved</li>
-<li>If the tool exits or is interrupted it may simply be re-run</li>
-<li>You can say &ldquo;no&rdquo; to applying Terraform changes in certain root modules so as to e.g. avoid actually instantiating your network in some regions that you want to keep around only as cold standbys</li>
+<li>If AWS gives you a hard time it is likely because they don&rsquo;t want to give you additional Elastic IPs; tell them you&rsquo;re trying to create VPCs to share to all your AWS accounts with three private subnets and zonal NAT Gateways and they&rsquo;ll hopefully let you get on with your life but if they don&rsquo;t, feel free to escalate to Source &amp;&nbsp;Binary</li>
+<li>These support cases sometimes take hours or even days to be&nbsp;resolved</li>
+<li>If the tool exits or is interrupted it may simply be&nbsp;re-run</li>
 </ul></li>
-<li>When <code>substrate-bootstrap-network-account</code> exits successfully, your network is ready for use in the added region(s)</li>
-<li>Run <code>substrate-bootstrap-deploy-account</code></li>
-<li>Run <code>substrate-create-admin-account</code> for all your admin accounts</li>
-<li>Run <code>substrate-create-account</code> for all your domain, environment, quality accounts</li>
+<li>When <code>substrate bootstrap-network-account</code> exits successfully, your network is ready for use in the added&nbsp;region(s)</li>
+<li>Run <code>substrate bootstrap-deploy-account</code></li>
+<li>Run <code>substrate create-admin-account</code> for all your admin&nbsp;accounts</li>
+<li>Run <code>substrate create-account</code> for all your domain, environment, quality&nbsp;accounts</li>
 </ol>
 
         </section>

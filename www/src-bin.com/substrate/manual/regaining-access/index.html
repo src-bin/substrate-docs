@@ -36,19 +36,19 @@
 
 <h1>Regaining access in case the Credential and Instance Factories are broken</h1>
 
-<p>If for some reason your Credential and Instance Factories are both broken, which could in fact be because the API Gateway authenticator and/or authorizer that ties them to your identity provider are broken, you&rsquo;ll find yourself feeling pretty locked out.</p>
+<p>If for some reason your Credential and Instance Factories are both broken, which could in fact be because the API Gateway authenticator and/or authorizer that ties them to your identity provider are broken, you&rsquo;ll find yourself feeling pretty locked&nbsp;out.</p>
 
-<p>If you happen to have credentials in your shell environment that are still valid, you can run <code>substrate create-admin-account -quality <em>quality</em></code> to remedy the situation.</p>
+<p>If you happen to have credentials in your shell environment that are still valid, you can run <code>substrate create-admin-account -quality <em>quality</em></code> to remedy the&nbsp;situation.</p>
 
-<p>More likely, though, you&rsquo;ll need to follow these steps:</p>
+<p>More likely, though, you&rsquo;ll need to follow these&nbsp;steps:</p>
 
 <ol>
-<li>Login to the AWS Console using the root email address, password, and second factor for your organization&rsquo;s management account</li>
+<li>Login to the AWS Console using the root email address, password, and second factor for your organization&rsquo;s management&nbsp;account</li>
 <li>Visit <a href="https://console.aws.amazon.com/iam/home#/security_credentials">https://console.aws.amazon.com/iam/home#/security_credentials</a></li>
-<li>Open the <strong>Access keys (access key ID and secret access key)</strong> section</li>
+<li>Open the <strong>Access keys (access key ID and secret access key)</strong>&nbsp;section</li>
 <li>Click <strong>Create New Access Key</strong></li>
 <li>Provide the resulting access key ID and secret access key to <code>substrate create-admin-account -quality <em>quality</em></code></li>
-<li>When your Credential and Instance Factories return to service, delete the access key you created in step 4</li>
+<li>When your Credential and Instance Factories return to service, delete the access key you created in step&nbsp;4</li>
 </ol>
 
         </section>

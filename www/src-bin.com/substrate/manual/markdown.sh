@@ -46,7 +46,8 @@ do
         <section>
 EOF
         echo
-        Markdown.pl --html4tags "$PATHNAME"
+        Markdown.pl --html4tags "$PATHNAME" |
+        sed -E "s/'/\\&rsquo;/g; s/ ([^ >]+<\/[a-z]+>)$/\\&nbsp;\\1/"
         echo
         cat <<EOF
         </section>
@@ -64,5 +65,4 @@ EOF
         sed -z "s/<pre>\(.*\)'\(.*\)<\\/pre>/<pre>\1\&apos;\2<\/pre>/g" <"$DIRNAME/.index.html" >"$DIRNAME/index.html"
     done
     rm -f "$DIRNAME/.index.html"
-    sed -i "s/'/\&rsquo;/g" "$DIRNAME/index.html"
 done

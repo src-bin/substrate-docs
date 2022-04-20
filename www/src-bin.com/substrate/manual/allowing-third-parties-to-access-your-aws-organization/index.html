@@ -1,0 +1,83 @@
+<!doctype HTML>
+<html lang="en">
+    <meta charset="utf-8">
+    <head>
+        <!--<link href="https://src-bin.com/" rel="canonical">-->
+        <link href="/css/2022-03-03.css" rel="stylesheet">
+        <meta property="og:description" content="A page from the Substrate manual">
+        <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Allowing third parties to access your AWS organization">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://src-bin.com/substrate/manual/allowing-third-parties-to-access-your-aws-organization/">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:description" content="A page from the Substrate manual">
+        <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta name="twitter:site" content="@src_bin">
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Allowing third parties to access your AWS organization">
+        <title>Source &amp; Binary / Allowing third parties to access your AWS organization</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1>
+            <p><a href="mailto:hello@src-bin.com">hello@src-bin.com</a></p>
+            <aside>Purveyors&nbsp;of&nbsp;secure,&nbsp;reliable,&nbsp;and&nbsp;compliant&nbsp;cloud&nbsp;infrastructure&nbsp;since&nbsp;2020</aside>
+            <nav>
+                <ul>
+                    <li><a href="/">Benefits</a></li>
+                    <li><a href="/substrate/">Features</a></li>
+                    <li><a href="/substrate/manual/">Documentation</a></li>
+                    <li><a href="/substrate/pricing/">Pricing</a></li>
+                    <!--<li><a href="/compliance/">Compliance Workshop</a></li>-->
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+
+<h1>Allowing third parties to access your AWS organization</h1>
+
+<p>Most modern business use hundreds of SaaS products to get the job done. In organizations that deliver software services themselves, many of these third parties are integrated into the development and operation of the software and that often means they need some amount of access to AWS. Here are several ways to give them&nbsp;access.</p>
+
+<p>The best strategies use IAM roles to avoid the need for long-lived access keys. If available, choose these over strategies that use IAM&nbsp;users.</p>
+
+<h2>Special-purpose IAM roles in certain accounts</h2>
+
+<p>Simplistic integrations with AWS will require you to create an IAM role in each account the third party needs to access. This can be tedious for you, having many AWS accounts, but it&rsquo;s perhaps the best security story because everything is very explicit. The pattern is just like <a href="../adding-non-administrator-roles-for-humans/">adding non-Administrator (and non-Auditor) roles for humans</a> (the &ldquo;in your service accounts&rdquo; section), trusting the third party&rsquo;s AWS account number or IAM role ARN instead of your admin&nbsp;account.</p>
+
+<h2>Special-purpose IAM role that can assume roles</h2>
+
+<p>More advanced integrations with AWS, ones that are aware of AWS Organizations, may be able to use <code>sts:AssumeRole</code> to move around your organization automatically. For these cases, act like you&rsquo;re <a href="../adding-non-administrator-roles-for-humans/">adding non-Administrator (and non-Auditor) roles for humans</a>, following every step. Trust the third party&rsquo;s account number or IAM role ARN to assume the role in your admin account; trust that role to assume the role in all your service&nbsp;accounts.</p>
+
+<h2>Reusing the Substrate-managed Auditor role</h2>
+
+<p>A great many integrations can be trusted with read-only access (specifically, the kind of read-only access that Substrate manages, without blanket <code>s3:GetObject</code>). In those cases, the <code>substrate.Auditor.assume-role-policy.json</code> file discussed along with <a href="../auditing/">auditing your Substrate-managed AWS organization</a> offers a shortcut into both specifc accounts and the whole&nbsp;organization.</p>
+
+<h2>Creating an IAM user</h2>
+
+<p>If no better option exists, you can create an IAM user for a third party. Here, due to the riskier credential management story, we recommend granting absolutely minimal permissions. In the example, we&rsquo;ll use Circle CI, a service that (at the time of this writing) only supported AWS integration via IAM&nbsp;user.</p>
+
+<ol>
+<li><code>root-modules/admin/<em>quality</em>/global/<em>circle-ci</em>.tf</code>: Add an IAM user in your admin account; allow it to <code>sts:AssumeRole</code>, constraining which roles it&rsquo;s allowed to assume as you see&nbsp;fit</li>
+<li><code>root-modules/<em>domain</em>/<em>environment</em>/<em>quality</em>/global/admin-providers.tf</code>: Add a provider referencing your admin account with <code>alias = "admin"</code> so that the IAM user in your admin account may assume roles in this other account
+<ul>
+<li>This isn&rsquo;t strictly necessary &mdash; IAM users can of course be created in any AWS account &mdash; but it&rsquo;s more convenient to centralize credential management in your admin accounts so it&rsquo;s easier to manage multiple domains, environments, and/or&nbsp;qualities</li>
+</ul></li>
+<li><code>root-modules/<em>domain</em>/<em>environment</em>/<em>quality</em>/global/main.tf</code>: Add <code>aws.admin = aws.admin</code> to the <code>providers</code> map passed to <code>module "<em>domain</em>"</code> so that the IAM role in step 6 may reference the IAM user from step 1 (substituting the domain, environment, and quality of the account in&nbsp;question)</li>
+<li><code>modules/<em>domain</em>/global/admin-providers.tf</code>: Add <code>provider "aws" { alias = "admin" }</code> to tell Terraform to expect an <code>aws.admin</code>&nbsp;provider</li>
+<li><code>modules/<em>domain</em>/global/main.tf</code>: Add a data source that looks up the Circle CI user in the admin account using the <code>aws.admin</code> provider so that the IAM role in step 6 may reference the IAM user from step 1 (substituting the domain of the account in&nbsp;question)</li>
+<li><code>modules/<em>domain</em>/global/main.tf</code>: Add an IAM role that may be assumed by the Circle CI user in your admin&nbsp;account</li>
+<li><code>modules/<em>domain</em>/global/main.tf</code>: Attach policies, inline or managed, to allow the service account to perform its&nbsp;duties</li>
+<li><code>substrate-create-admin-account -quality <em>quality</em></code></li>
+<li><code>substrate-create-account -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em></code></li>
+<li><code>aws iam create-access-key --user-name <em>circle-ci</em></code> and give the resulting access key to Circle&nbsp;CI</li>
+</ol>
+
+<p>Again, this is risky, because you&rsquo;re about to let this access key out of your control. Be sure you trust the third party. If you&rsquo;ve established a SOC 2 compliance program (or are even considering it), this third party is now a subprocessor and you should be reviewing their security practices and, ideally, their SOC 2&nbsp;report.</p>
+
+        </section>
+
+        <footer>
+            <p class="fine-print">&copy; 2020-2022 &mdash; Source <span class="fancy">&amp;</span> Binary&nbsp;LLC</p>
+        </footer>
+    </body>
+</html>
