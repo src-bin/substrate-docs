@@ -1,0 +1,26 @@
+# Installing Substrate and Terraform
+
+## Substrate
+
+Substrate is distributed directly to customers. You'll have access to a feed of releases which includes links to download tarballs. Download the latest one for your platform. Then extract it by running a command like this from your downloads directory:
+
+<pre><code>tar xf substrate-<em>version</em>-<em>commit</em>-<em>GOOS</em>-<em>GOARCH</em>.tar.gz -C ~/bin --strip-components 1</code></pre>
+
+_`GOOS`_ is one of &ldquo;darwin&rdquo; or &ldquo;linux&rdquo; and _`GOARCH`_ is one of &ldquo;amd64&rdquo; or &ldquo;arm64&rdquo;.
+
+You can install Substrate wherever you like, if `~/bin` doesn't suit you, just ensure that directory is on your `PATH`.
+
+## Terraform
+
+Substrate currently requires _exactly_ Terraform 1.1.6. (Substrate asks for Terraform to be upgraded every few releases to stay nearly current with Terraform.)
+
+You can download [Terraform 1.1.6](https://releases.hashicorp.com/terraform/1.1.6/) from Hashicorp, with the filenames being parameterized with _`GOOS`_ and _`GOARCH`_ the same as Substrate itself. Download and `unzip` the appropriate build. Move `terraform` into a directory on your `PATH`. (It doesn't have to be the same directory where you placed `substrate`.)
+
+<section class="table">
+    <section id="previous">
+        <p>Previous:<br><a href="../opening-a-fresh-aws-account/">Opening a fresh AWS account</a></p>
+    </section>
+    <section id="next">
+        <p>Next:<br><a href="../shell-completion/">Configuring Substrate shell completion</a></p>
+    </section>
+</section>

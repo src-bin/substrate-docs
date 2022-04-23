@@ -1,0 +1,112 @@
+<!doctype HTML>
+<html lang="en">
+    <meta charset="utf-8">
+    <head>
+        <!--<link href="https://src-bin.com/" rel="canonical">-->
+        <link href="/css/2022-03-03.css" rel="stylesheet">
+        <meta property="og:description" content="A page from the Substrate manual">
+        <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Integrating your original AWS account(s)">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://src-bin.com/substrate/manual/getting-started/integrating-your-original-aws-account/">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:description" content="A page from the Substrate manual">
+        <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta name="twitter:site" content="@src_bin">
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Integrating your original AWS account(s)">
+        <title>Source &amp; Binary / Integrating your original AWS account(s)</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1>
+            <p><a href="mailto:hello@src-bin.com">hello@src-bin.com</a></p>
+            <aside>Purveyors&nbsp;of&nbsp;secure,&nbsp;reliable,&nbsp;and&nbsp;compliant&nbsp;cloud&nbsp;infrastructure&nbsp;since&nbsp;2020</aside>
+            <nav>
+                <ul>
+                    <li><a href="/">Benefits</a></li>
+                    <li><a href="/substrate/">Features</a></li>
+                    <li><a href="/substrate/manual/">Documentation</a></li>
+                    <li><a href="/substrate/pricing/">Pricing</a></li>
+                    <!--<li><a href="/compliance/">Compliance Workshop</a></li>-->
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+
+<h1>Integrating your original AWS account(s)</h1>
+
+<p>TODO review and&nbsp;update</p>
+
+<p>Inviting your original AWS account(s), those you opened before adopting Substrate, into your new Substrate-managed AWS organization is a good idea for a few&nbsp;reasons:</p>
+
+<ul>
+<li>It can quickly improve your security posture if you create an <code>Administrator</code> role there that can be assumed by the <code>Administrator</code> role in your admin account(s), thus allowing you to delete long-lived access keys and uncontrolled IAM users&nbsp;there.</li>
+<li>It may simplify some migrations by allowing policies written using the <code>aws:PrincipalOrgID</code> condition key to interoperate with this&nbsp;account.</li>
+<li>Integrating access to its billing data will give you better visibility into the state of migration into Substrate-managed&nbsp;accounts.</li>
+</ul>
+
+<p>To begin, you&rsquo;ll need root login credentials for the AWS Console for the account you wish to invite into your organization. When you&rsquo;re ready,&nbsp;proceed:</p>
+
+<ol>
+<li>Open the AWS Console via your identity provider; assume the <code>Administrator</code>&nbsp;role</li>
+<li>Assume the <code>OrganizationAdministrator</code> role in your management account via your Intranet&rsquo;s accounts&nbsp;page</li>
+<li>Visit <a href="https://console.aws.amazon.com/organizations/home?#/accounts">https://console.aws.amazon.com/organizations/home?#/accounts</a></li>
+<li>Click <strong>Add account</strong></li>
+<li>Click <strong>Invite account</strong></li>
+<li>Enter the email address attached to the account you&rsquo;re inviting into your organization (or its account number, if you have that&nbsp;handy)</li>
+<li>Click <strong>Invite</strong></li>
+<li>In an incognito window, sign into the AWS Console using your root credentials for the account you just invited into your&nbsp;organization</li>
+<li>In that incognito window, visit <a href="https://console.aws.amazon.com/cloudtrail/home#/dashboard">https://console.aws.amazon.com/cloudtrail/home#/dashboard</a> and delete any existing trails (to avoid very expensive surprises in your consolidated AWS&nbsp;bills)</li>
+<li>In that incognito window, visit <a href="https://console.aws.amazon.com/organizations/home#/invites">https://console.aws.amazon.com/organizations/home#/invites</a></li>
+<li>Click <strong>Accept</strong></li>
+<li>Click <strong>Confirm</strong></li>
+</ol>
+
+<p>If you stop here, you&rsquo;ll have integrated billing data from your legacy account into your organization and you&rsquo;ll have the ability to constrain your legacy account using service control&nbsp;policies.</p>
+
+<p>To allow your admin accounts to access this legacy account,&nbsp;proceed:</p>
+
+<ol>
+<li>Note all the role ARNs in the table listing your admin accounts in <code>substrate.accounts.txt</code></li>
+<li><p>Create a new role named <code>Administrator</code> in your legacy account with the following assume role policy, substituting your admin account number for <code>ADMIN_ACCOUNT_NUMBER</code> (and adding additional elements to that list if you have multiple admin&nbsp;accounts):</p>
+
+<pre><code>{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::ADMIN_ACCOUNT_NUMBER:role/Administrator",
+          "arn:aws:iam::ADMIN_ACCOUNT_NUMBER:role/Intranet"
+        ]
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+</code></pre></li>
+<li><p>Attach the managed <code>AdministratorAccess</code> policy to this new role</p></li>
+</ol>
+
+<p>You can follow those steps in the AWS Console or implement this policy using your legacy account&rsquo;s CloudFormation or Terraform infrastructure. Once you&rsquo;ve done so, reap the security benefits of disabling any long-lived access keys your legacy account&rsquo;s IAM users&nbsp;have.</p>
+
+<p>After you&rsquo;ve completed these steps, your legacy account is part of your Substrate-managed AWS organization. It&rsquo;s not presumed to be totally interoperable, though, so Substrate will not take any actions against it&nbsp;automatically.</p>
+
+<p><section class="table">
+    <section id="previous">
+        <p>Previous:<br><a href="../bootstrapping/">Bootstrapping your Substrate-managed AWS organization</a></p>
+    </section>
+    <section id="next">
+        <p>Next:<br><a href="../integrating-your-identity-provider/">Integrating your identity provider</a></p>
+    </section>
+</section></p>
+
+        </section>
+
+        <footer>
+            <p class="fine-print">&copy; 2020-2022 &mdash; Source <span class="fancy">&amp;</span> Binary&nbsp;LLC</p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype HTML>
+<html lang="en">
+    <meta charset="utf-8">
+    <head>
+        <!--<link href="https://src-bin.com/" rel="canonical">-->
+        <link href="/css/2022-03-03.css" rel="stylesheet">
+        <meta property="og:description" content="A page from the Substrate manual">
+        <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Managing your infrastructure in service accounts">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://src-bin.com/substrate/manual/getting-started/managing-your-infrastructure-in-service-accounts/">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:description" content="A page from the Substrate manual">
+        <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta name="twitter:site" content="@src_bin">
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Managing your infrastructure in service accounts">
+        <title>Source &amp; Binary / Managing your infrastructure in service accounts</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1>
+            <p><a href="mailto:hello@src-bin.com">hello@src-bin.com</a></p>
+            <aside>Purveyors&nbsp;of&nbsp;secure,&nbsp;reliable,&nbsp;and&nbsp;compliant&nbsp;cloud&nbsp;infrastructure&nbsp;since&nbsp;2020</aside>
+            <nav>
+                <ul>
+                    <li><a href="/">Benefits</a></li>
+                    <li><a href="/substrate/">Features</a></li>
+                    <li><a href="/substrate/manual/">Documentation</a></li>
+                    <li><a href="/substrate/pricing/">Pricing</a></li>
+                    <!--<li><a href="/compliance/">Compliance Workshop</a></li>-->
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+
+<h1>Managing your infrastructure in service accounts</h1>
+
+<p>TODO this file is&nbsp;terrible</p>
+
+<h2>Building your staging environment</h2>
+
+<p>If you&rsquo;re like most modern teams, the vast majority of your development work is happening on folks&rsquo; laptops. Thus, it probably makes the most sense for the first cloud infrastructure to be something more like a staging environment for a service which demands high&nbsp;reliability.</p>
+
+<h3><code>substrate create-account -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em></code></h3>
+
+<p>This is the first of probably many accounts that&rsquo;ll be created in your organization. This command creates an empty root Terraform module that&rsquo;s ready to hold whatever you need it to. Here, for the first time, you&rsquo;re being asked to name a domain, as well as an environment and quality. A domain is a collection of one or more applications/services, often owned by the same group of people, that run in an AWS account of their own to protect them from changes in other&nbsp;domains.</p>
+
+<p>When this program exits, you should commit the generated files to version control as instructed. It is safe to re-run this program at any&nbsp;time.</p>
+
+<p><section class="table">
+    <section id="previous">
+        <p>Previous:<br><a href="../integrating-your-identity-provider/">Integrating your identity provider</a></p>
+    </section>
+    <section id="next">
+        <p>Next:<br><a href="../../#working">Working in your Substrate-managed AWS organization</a></p>
+    </section>
+</section></p>
+
+        </section>
+
+        <footer>
+            <p class="fine-print">&copy; 2020-2022 &mdash; Source <span class="fancy">&amp;</span> Binary&nbsp;LLC</p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype HTML>
+<html lang="en">
+    <meta charset="utf-8">
+    <head>
+        <!--<link href="https://src-bin.com/" rel="canonical">-->
+        <link href="/css/2022-03-03.css" rel="stylesheet">
+        <meta property="og:description" content="A page from the Substrate manual">
+        <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Installing Substrate and Terraform">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://src-bin.com/substrate/manual/getting-started/installing/">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:description" content="A page from the Substrate manual">
+        <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta name="twitter:site" content="@src_bin">
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Installing Substrate and Terraform">
+        <title>Source &amp; Binary / Installing Substrate and Terraform</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1>
+            <p><a href="mailto:hello@src-bin.com">hello@src-bin.com</a></p>
+            <aside>Purveyors&nbsp;of&nbsp;secure,&nbsp;reliable,&nbsp;and&nbsp;compliant&nbsp;cloud&nbsp;infrastructure&nbsp;since&nbsp;2020</aside>
+            <nav>
+                <ul>
+                    <li><a href="/">Benefits</a></li>
+                    <li><a href="/substrate/">Features</a></li>
+                    <li><a href="/substrate/manual/">Documentation</a></li>
+                    <li><a href="/substrate/pricing/">Pricing</a></li>
+                    <!--<li><a href="/compliance/">Compliance Workshop</a></li>-->
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+
+<h1>Installing Substrate and Terraform</h1>
+
+<h2>Substrate</h2>
+
+<p>Substrate is distributed directly to customers. You&rsquo;ll have access to a feed of releases which includes links to download tarballs. Download the latest one for your platform. Then extract it by running a command like this from your downloads&nbsp;directory:</p>
+
+<pre><code>tar xf substrate-<em>version</em>-<em>commit</em>-<em>GOOS</em>-<em>GOARCH</em>.tar.gz -C ~/bin --strip-components 1</code></pre>
+
+<p><em><code>GOOS</code></em> is one of &ldquo;darwin&rdquo; or &ldquo;linux&rdquo; and <em><code>GOARCH</code></em> is one of &ldquo;amd64&rdquo; or&nbsp;&ldquo;arm64&rdquo;.</p>
+
+<p>You can install Substrate wherever you like, if <code>~/bin</code> doesn&rsquo;t suit you, just ensure that directory is on your <code>PATH</code>.</p>
+
+<h2>Terraform</h2>
+
+<p>Substrate currently requires <em>exactly</em> Terraform 1.1.6. (Substrate asks for Terraform to be upgraded every few releases to stay nearly current with&nbsp;Terraform.)</p>
+
+<p>You can download <a href="https://releases.hashicorp.com/terraform/1.1.6/">Terraform 1.1.6</a> from Hashicorp, with the filenames being parameterized with <em><code>GOOS</code></em> and <em><code>GOARCH</code></em> the same as Substrate itself. Download and <code>unzip</code> the appropriate build. Move <code>terraform</code> into a directory on your <code>PATH</code>. (It doesn&rsquo;t have to be the same directory where you placed <code>substrate</code>.)</p>
+
+<p><section class="table">
+    <section id="previous">
+        <p>Previous:<br><a href="../opening-a-fresh-aws-account/">Opening a fresh AWS account</a></p>
+    </section>
+    <section id="next">
+        <p>Next:<br><a href="../shell-completion/">Configuring Substrate shell completion</a></p>
+    </section>
+</section></p>
+
+        </section>
+
+        <footer>
+            <p class="fine-print">&copy; 2020-2022 &mdash; Source <span class="fancy">&amp;</span> Binary&nbsp;LLC</p>
+        </footer>
+    </body>
+</html>

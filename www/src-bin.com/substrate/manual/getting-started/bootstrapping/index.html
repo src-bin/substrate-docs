@@ -1,0 +1,111 @@
+<!doctype HTML>
+<html lang="en">
+    <meta charset="utf-8">
+    <head>
+        <!--<link href="https://src-bin.com/" rel="canonical">-->
+        <link href="/css/2022-03-03.css" rel="stylesheet">
+        <meta property="og:description" content="A page from the Substrate manual">
+        <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Bootstrapping your Substrate-managed AWS organization">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://src-bin.com/substrate/manual/getting-started/bootstrapping/">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:description" content="A page from the Substrate manual">
+        <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta name="twitter:site" content="@src_bin">
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Bootstrapping your Substrate-managed AWS organization">
+        <title>Source &amp; Binary / Bootstrapping your Substrate-managed AWS organization</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1>
+            <p><a href="mailto:hello@src-bin.com">hello@src-bin.com</a></p>
+            <aside>Purveyors&nbsp;of&nbsp;secure,&nbsp;reliable,&nbsp;and&nbsp;compliant&nbsp;cloud&nbsp;infrastructure&nbsp;since&nbsp;2020</aside>
+            <nav>
+                <ul>
+                    <li><a href="/">Benefits</a></li>
+                    <li><a href="/substrate/">Features</a></li>
+                    <li><a href="/substrate/manual/">Documentation</a></li>
+                    <li><a href="/substrate/pricing/">Pricing</a></li>
+                    <!--<li><a href="/compliance/">Compliance Workshop</a></li>-->
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+
+<h1>Bootstrapping your Substrate-managed AWS organization</h1>
+
+<p>TODO I&rsquo;m sure this is pretty&nbsp;rough</p>
+
+<h2>Bootstrapping your management account</h2>
+
+<h3><code>substrate bootstrap-management-account</code></h3>
+
+<p>When you run this program, you&rsquo;ll be prompted several times for input. As much as is possible, this input is all saved to the local filesystem and referenced on subsequent&nbsp;runs.</p>
+
+<p>The first of these inputs is an access key from the root of your new AWS account. It is never saved to disk (for security reasons) so keep it handy until later in this guide when it you&rsquo;re told it&rsquo;s safe to delete it. To create a root access&nbsp;key:</p>
+
+<ol>
+<li>Visit <a href="https://console.aws.amazon.com/iam/home#/security_credentials">https://console.aws.amazon.com/iam/home#/security_credentials</a></li>
+<li>Open the <em>Access keys (access key ID and secret access key)</em>&nbsp;section</li>
+<li>Click <strong>Create New Access Key</strong></li>
+<li>Click <strong>Show Access Key</strong></li>
+<li>Save these values in your password manager for&nbsp;now</li>
+</ol>
+
+<p>This program creates your AWS organization, creates the audit account and enables CloudTrail, creates the deploy and network accounts, configures a basic service control policy, and creates the necessary roles and policies to allow your administrators to move relatively&nbsp;freely.</p>
+
+<p>When this program exits, you should commit <code>substrate.*</code> to version control. Do not forget your root access key yet. It is safe to re-run this program at any&nbsp;time.</p>
+
+<h3>Delegate access to billing data</h3>
+
+<p>While you&rsquo;re logged into your management account using the root credentials, follow these steps to delegate access to billing data to people and tools assuming IAM&nbsp;roles.</p>
+
+<ol>
+<li>Visit <a href="https://console.aws.amazon.com/billing/home?#/account">https://console.aws.amazon.com/billing/home?#/account</a></li>
+<li>Open the <em>IAM User and Role Access to Billing Information</em>&nbsp;section</li>
+<li>Check &ldquo;Activate IAM&nbsp;Access&rdquo;</li>
+<li>Click <strong>Update</strong></li>
+<li>Visit <a href="https://console.aws.amazon.com/billing/home#/costexplorer">https://console.aws.amazon.com/billing/home#/costexplorer</a></li>
+<li>Click <strong>Enable Cost Explorer</strong></li>
+</ol>
+
+<h2>Bootstrapping your deploy and network accounts</h2>
+
+<p>The previous step created the three special AWS accounts - audit, deploy, and network - but neglected to complete the configuration of the deploy and network accounts. The reason for this is because both of these accounts are managed by Terraform code. The bootstrapping steps generate some code while leaving room for you to add more&nbsp;later.</p>
+
+<h3><code>substrate bootstrap-network-account</code></h3>
+
+<p>Here, too, during your first run you&rsquo;ll be prompted for your root access&nbsp;key.</p>
+
+<p>This program additionally asks for the names of your environments, the release qualities you want to use, and the specific combinations that are valid. Environments typically have names like &ldquo;development&rdquo; and &ldquo;production&rdquo; - they identify a set of data and all the infrastructure that may access it. Qualities are names given to independent copies of your infrastructure <em>within an environment</em> that make it possible to gradually deploy changes to AWS resources just like you might gradually deploy changes to your&nbsp;software.</p>
+
+<p>It also asks which AWS regions you want to use. Your answers inform how it lays out your networks to strike a balance between security, reliability, ergonomics, and cost. Substrate recommends starting with 2-4 regions that make geographic sense to your&nbsp;customers.</p>
+
+<p>This program may attempt to programmatically raise the limit on some specific AWS service quotas. Depending on the regions you chose, how many environments and qualities you specified, and how the AWS support staff are feeling, this may block you for a long time. It&rsquo;s recommended to start slow by, for instance, only specifying &ldquo;admin&rdquo; and &ldquo;staging&rdquo; environments, expecting to add more&nbsp;later.</p>
+
+<p>When this program exits, you should commit <code>substrate.*</code> and <code>root-modules/network/</code> to version control. It is safe to re-run this program at any time and during those runs you can add additional environments and qualities if you so&nbsp;choose.</p>
+
+<h3><code>substrate bootstrap-deploy-account</code></h3>
+
+<p>This program doesn&rsquo;t need any input except during its first run in which you&rsquo;ll be prompted for your root access&nbsp;key.</p>
+
+<p>When this program exits, you should commit <code>root-modules/deploy/</code> to version control. It is safe to re-run this program at any&nbsp;time.</p>
+
+<p><section class="table">
+    <section id="previous">
+        <p>Previous:<br><a href="../shell-completion/">Configuring Substrate shell completion</a></p>
+    </section>
+    <section id="next">
+        <p>Next:<br><a href="../integrating-your-original-aws-account/">Integrating your original AWS account</a></p>
+    </section>
+</section></p>
+
+        </section>
+
+        <footer>
+            <p class="fine-print">&copy; 2020-2022 &mdash; Source <span class="fancy">&amp;</span> Binary&nbsp;LLC</p>
+        </footer>
+    </body>
+</html>
