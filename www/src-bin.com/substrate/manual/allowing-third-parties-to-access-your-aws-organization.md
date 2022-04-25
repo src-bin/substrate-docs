@@ -28,8 +28,8 @@ If no better option exists, you can create an IAM user for a third party. Here, 
 5. <code>modules/<em>domain</em>/global/main.tf</code>: Add a data source that looks up the Circle CI user in the admin account using the `aws.admin` provider so that the IAM role in step 6 may reference the IAM user from step 1 (substituting the domain of the account in question)
 6. <code>modules/<em>domain</em>/global/main.tf</code>: Add an IAM role that may be assumed by the Circle CI user in your admin account
 7. <code>modules/<em>domain</em>/global/main.tf</code>: Attach policies, inline or managed, to allow the service account to perform its duties
-8. <code>substrate-create-admin-account -quality <em>quality</em></code>
-9. <code>substrate-create-account -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em></code>
+8. <code>substrate create-admin-account -quality <em>quality</em></code>
+9. <code>substrate create-account -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em></code>
 10. <code>aws iam create-access-key --user-name <em>circle-ci</em></code> and give the resulting access key to Circle CI
 
 Again, this is risky, because you're about to let this access key out of your control. Be sure you trust the third party. If you've established a SOC 2 compliance program (or are even considering it), this third party is now a subprocessor and you should be reviewing their security practices and, ideally, their SOC 2 report.

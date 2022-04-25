@@ -6,15 +6,15 @@
         <link href="/css/2022-03-03.css" rel="stylesheet">
         <meta property="og:description" content="A page from the Substrate manual">
         <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
-        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Okta OAuth OIDC setup">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Integrating your Okta identity provider">
         <meta property="og:type" content="website">
-        <meta property="og:url" content="https://src-bin.com/substrate/manual/getting-started/okta-oauth-oidc/">
+        <meta property="og:url" content="https://src-bin.com/substrate/manual/getting-started/integrating-your-okta-identity-provider/">
         <meta name="twitter:card" content="summary">
         <meta name="twitter:description" content="A page from the Substrate manual">
         <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
         <meta name="twitter:site" content="@src_bin">
-        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Okta OAuth OIDC setup">
-        <title>Source &amp; Binary / Okta OAuth OIDC setup</title>
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Integrating your Okta identity provider">
+        <title>Source &amp; Binary / Integrating your Okta identity provider</title>
     </head>
     <body>
         <header>
@@ -34,7 +34,9 @@
 
         <section>
 
-<h1>Okta OAuth OIDC setup</h1>
+<h1>Integrating your Okta identity provider</h1>
+
+<p><code>substrate create-admin-account -quality <em>quality</em></code> will ask for several inputs, which this page will help you provide from your Okta identity&nbsp;provider.</p>
 
 <ol>
 <li>Visit your Okta admin panel in a&nbsp;browser</li>
@@ -45,12 +47,21 @@
 <li>Select &ldquo;Web&nbsp;Application&rdquo;</li>
 <li>Click <strong>Next</strong></li>
 <li>Customize <em>App integration name</em></li>
-<li>Change the first/only item in <em>Sign-in redirect URIs</em> to &ldquo;<a href="https://example.com/login">https://example.com/login</a>&rdquo; (substituting your intranet DNS domain&nbsp;name)</li>
+<li>Change the first/only item in <em>Sign-in redirect URIs</em> to &ldquo;<a href="https://example.com/login">https://example.com/login</a>&rdquo; (substituting your Intranet DNS domain&nbsp;name)</li>
 <li>Remove all <em>Sign-out redirect URIs</em></li>
 <li>Select &ldquo;Limit access to selected groups&rdquo; and select the groups that are authorized to use AWS (or choose another option; this can always be&nbsp;reconfigured)</li>
 <li>Click <strong>Save</strong></li>
-<li>Paste the <em>Client ID</em>, <em>Client secret</em>, and <em>Okta domain</em> in response to <code>substrate-create-admin-account</code>&rsquo;s&nbsp;prompts</li>
+<li>Paste the <em>Client ID</em>, <em>Client secret</em>, and <em>Okta domain</em> in response to <code>substrate create-admin-account</code>&rsquo;s&nbsp;prompts</li>
 </ol>
+
+<p><section class="table">
+    <section id="previous">
+        <p>Previous:<br><a href="../integrating-your-identity-provider/">Integrating your identity provider to control access to AWS</a></p>
+    </section>
+    <section id="next">
+        <p>Next:<br><a href="../deleting-unnecessary-root-access-keys/">Deleting unnecessary root access keys</a></p>
+    </section>
+</section></p>
 
         </section>
 

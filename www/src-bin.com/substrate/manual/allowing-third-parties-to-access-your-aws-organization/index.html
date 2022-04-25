@@ -67,8 +67,8 @@
 <li><code>modules/<em>domain</em>/global/main.tf</code>: Add a data source that looks up the Circle CI user in the admin account using the <code>aws.admin</code> provider so that the IAM role in step 6 may reference the IAM user from step 1 (substituting the domain of the account in&nbsp;question)</li>
 <li><code>modules/<em>domain</em>/global/main.tf</code>: Add an IAM role that may be assumed by the Circle CI user in your admin&nbsp;account</li>
 <li><code>modules/<em>domain</em>/global/main.tf</code>: Attach policies, inline or managed, to allow the service account to perform its&nbsp;duties</li>
-<li><code>substrate-create-admin-account -quality <em>quality</em></code></li>
-<li><code>substrate-create-account -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em></code></li>
+<li><code>substrate create-admin-account -quality <em>quality</em></code></li>
+<li><code>substrate create-account -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em></code></li>
 <li><code>aws iam create-access-key --user-name <em>circle-ci</em></code> and give the resulting access key to Circle&nbsp;CI</li>
 </ol>
 

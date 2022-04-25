@@ -14,7 +14,7 @@ To get temporary credentials in your _example development default_ account (once
 
 If you have a specific command you need to run, tack it onto the end thus:
 
-    substrate-assume-role -domain example -environment development -quality default aws ec2 describe-security-groups
+    substrate assume-role -domain example -environment development -quality default aws ec2 describe-security-groups
 
 ## Terraform
 

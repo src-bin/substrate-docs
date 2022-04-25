@@ -1,5 +1,7 @@
 # Installing Substrate and Terraform
 
+Most steps in the getting started guide only need to be performed once. This step is the exception. Everyone who's going to be running Substrate commands, writing Terraform code, or really interacting with AWS in any but the most superficial ways, should follow these steps.
+
 ## Substrate
 
 Substrate is distributed directly to customers. You'll have access to a feed of releases which includes links to download tarballs. Download the latest one for your platform. Then extract it by running a command like this from your downloads directory:

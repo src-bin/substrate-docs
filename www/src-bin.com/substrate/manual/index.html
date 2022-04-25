@@ -35,60 +35,102 @@
         <section>
 
             <h1>Substrate manual</h1>
-            <p>Substrate manages secure, reliable, and compliant cloud infrastructure in AWS. It&rsquo;s offered only as part of an engagement with Source <span class="fancy">&amp;</span> Binary.</p>
+            <p>Substrate manages secure, reliable, and compliant cloud infrastructure in AWS. Email <a href="mailto:hello@src-bin.com">hello@src-bin.com</a> for a demo or to subscribe!</p>
 
-            <h2>Installation and tutorial</h2>
-            <p>Follow these sections to install and configure Substrate and then use it to provision a toy service.</p>
+            <h2 id="getting-started">Getting started</h2>
             <ol>
-                <li><a href="getting-started/">Getting started with Substrate</a></li>
-                <!--<li><a href="autocomplete/">Autocomplete for Substrate commands</a></li>-->
-                <li><a href="demo-service-in-staging/">Provision the demo service in staging</a></li>
-                <li><a href="demo-service-in-production/">Provision the demo service in production</a></li>
+                <li><a href="getting-started/overview/">Overview</a></li>
+                <li><a href="getting-started/opening-a-fresh-aws-account/">Opening a fresh AWS account</a></li>
+                <li><a href="getting-started/installing/">Installing Substrate and Terraform</a></li>
+                <li><a href="getting-started/shell-completion/">Configuring Substrate shell completion</a></li>
+                <li><a href="getting-started/bootstrapping/">Bootstrapping your Substrate-managed AWS organization</a></li>
+                <!--<li><a href="getting-started/grafting/">Grafting Substrate into an existing AWS organization</a></li>-->
+                <li><a href="getting-started/integrating-your-identity-provider/">Integrating your identity provider to control access to AWS</a></li>
+                <li><a href="getting-started/deleting-unnecessary-root-access-keys/">Deleting unnecessary root access keys</a></li>
+                <li><a href="getting-started/integrating-your-original-aws-account/">Integrating your original AWS account(s)</a></li>
+                <li><a href="getting-started/managing-your-infrastructure-in-service-accounts/">Managing your infrastructure in service accounts</a></li>
             </ol>
 
-            <h2>Concepts and definitions</h2>
-            <p>Substrate layers a few new concepts on top of tried and true Terraform. These sections will help you master them.</p>
-            <ol>
-                <li><a href="diagrams/">Diagrams of your Substrate-managed AWS organization</a></li>
+            <h2 id="concepts-and-terms">Concepts and terms</h2>
+            <ul>
+                <li><a href="accounts/">Accounts in a Substrate-managed AWS organization</a></li>
                 <li><a href="domains-environments-qualities/">Domains, environments, and qualities</a></li>
-                <li><a href="architecture/">Architecture within your Substrate-managed AWS organization</a></li>
-                <li><a href="global-vs-regional-modules/">Global versus regional modules</a></li>
-                <li><a href="your-aws-organization/">Your Substrate-managed AWS organization</a></li>
-                <li><a href="your-repository/">Your Substrate repository</a></li>
-            </ol>
+                <li><a href="networking/">Networking</a></li>
+                <li><a href="diagram-substrate-managed-aws-organization/">Diagram of a Substrate-managed AWS organization</a></li>
+                <li><a href="global-and-regional-terraform-modules/">Global and regional Terraform modules</a></li>
+                <li><a href="root-terraform-modules/">Root Terraform modules</a></li>
+                <li><a href="substrate-filesystem-hierarchy/">Substrate filesystem hierarchy</a></li>
+            </ul>
 
-            <h2>References for frequent tasks</h2>
-            <p>Substrate will become a part of your daily workflow. Some days, it&rsquo;s merely a conduit into various AWS accounts. Other days, it&rsquo;s a powerful code and resource generator that expands your AWS infrastructure in security-preserving and reliability-improving ways. These sections walk you through the tasks you&rsquo;re likely to perform frequently.</p>
-            <ol>
-                <li><a href="your-daily-workflow/">Your daily workflow in your Substrate-managed AWS organization</a></li>
-                <li><a href="referencing-substrate-parameters-in-terraform/">Referencing Substrate parameters in Terraform</a></li>
-                <li><a href="adding-a-service-account/">Adding a service account</a></li>
-                <li><a href="adding-domains-environments-qualities/">Adding domains, environments, and qualities</a></li>
-                <li><a href="enumerating-all-your-aws-accounts/">Enumerating all your AWS accounts</a></li>
-                <li><a href="adding-a-region/">Adding a region</a></li>
+            <h2 id="architectural-guidance">Architectural guidance</h2>
+            <ul>
+                <li><a href="technology-choices/">Technology choices</a></li>
+                <li><a href="multi-tenancy/">Multi-tenancy</a></li>
+                <li><a href="multi-region-strategy/">Multi-region strategy</a></li>
+                <li><a href="diagram-multi-quality-multi-region-service/">Diagram of a multi-quality, multi-region service</a></li>
+                <li><a href="internal-tools/">Deciding where to host internal tools</a></li>
+            </ul>
+
+            <h2 id="working">Working in your Substrate-managed AWS organization</h2>
+            <ul>
+                <li><a href="accessing-aws-in-your-terminal/">Accessing AWS in your terminal</a></li>
+                <li><a href="accessing-the-aws-console/">Accessing the AWS Console</a></li>
+                <li><a href="moving-between-aws-accounts/">Moving between AWS accounts</a></li>
+                <li><a href="aws-cli-profiles/">Using AWS CLI profiles</a></li>
+                <li><a href="writing-terraform-code/">Writing Terraform code with an assist from Substrate</a></li>
                 <li><a href="additional-terraform-providers/">Additional Terraform providers</a></li>
+                <li><a href="adding-a-domain/">Adding a domain</a></li>
+                <li><a href="adding-an-environment-or-quality/">Adding an environment or quality</a></li>
+                <li><a href="adding-a-region/">Adding a region</a></li>
                 <li><a href="deploying-software/">Deploying software</a></li>
                 <li><a href="protecting-internal-websites/">Protecting internal websites</a></li>
-                <li><a href="adding-non-administrator-roles-for-humans/">Adding non-Administrator (and non-Auditor) roles for humans</a>
-                <li><a href="onboarding-users/">Onboarding</a> and <a href="offboarding-users/">offboarding</a> users</li>
-                <li><a href="auditing/">Auditing your Substrate-managed AWS organization</a></li>
-                <li><a href="cost-management/">Cost management</a></li>
-                <li><a href="releases/">Substrate release notes</a></li>
-                <li><a href="upgrading/">Upgrading Substrate</a></li>
-            </ol>
+            </ul>
 
-            <h2>Topics for a rainy day</h2>
-            <p>You may never need to open any of these sections. If you do, they&rsquo;ll save you time and stress.</p>
-            <ol>
-                <li><a href="aws-support/">AWS support</a></li>
-                <li><a href="cloudwatch-sharing/">CloudWatch sharing</a></li>
-                <li><a href="changing-identity-providers/">Changing identity providers</a></li>
+            <h2 id="automating">Automating operations with Substrate</h2>
+            <ul>
+                <li><a href="enumerating-all-your-aws-accounts/">Enumerating all your AWS accounts</a></li>
+                <li><a href="enumerating-all-your-root-terraform-modules/">Enumerating all your root Terraform modules</a></li>
+                <!--<li><a href="applying-terraform-changes-in-ci-cd/">Applying Terraform changes in CI/CD systems</a></li>-->
+            </ul>
+
+            <h2 id="working">Administering your Substrate-managed AWS organization</h2>
+            <ul>
+                <li><a href="onboarding-users/">Onboarding</a> and <a href="offboarding-users/">offboarding</a> users</li>
+                <li><a href="adding-non-administrator-roles-for-humans/">Adding non-Administrator (and non-Auditor) roles for humans</a></li>
+                <li><a href="allowing-third-parties-to-access-your-aws-organization/">Allowing third parties to access your AWS organization</a></li>
+                <li><a href="cost-management/">Cost management</a></li>
+            </ul>
+
+            <h2 id="compliance">Compliance</h2>
+            <ul>
+                <li><a href="addressing-soc-2-criteria-with-substrate/">Addressing SOC 2 criteria with Substrate</a></li>
+                <li><a href="recommended-soc-2-controls/">Recommended SOC 2 controls</a></li>
+                <li><a href="auditing/">Auditing your Substrate-managed AWS organization</a></li>
+            </ul>
+
+            <h2 id="runbooks">Runbooks for emergency and once-in-a-blue-moon operations</h2>
+            <ul>
+                <li><a href="aws-support/">Subscribing to AWS Support plans</a></li>
                 <li><a href="closing-an-aws-account/">Closing an AWS account</a></li>
-                <li><a href="removing-an-aws-account-from-your-organization/">Removing an AWS account from your organization</a></li>
+                <li><a href="removing-an-aws-account-from-your-organization/">Removing an AWS account from your organization (without closing it)</a></li>
                 <li><a href="removing-an-aws-region/">Removing an AWS region</a></li>
-                <li><a href="regaining-access/">Regaining access if Credential and Instance Factories are broken</a></li>
-                <li><a href="telemetry/">Telemetry in Substrate</a></li>
-            </ol>
+                <li><a href="changing-identity-providers/">Changing identity providers</a></li>
+                <li><a href="cloudwatch-sharing/">Sharing CloudWatch data between accounts</a></li>
+                <li><a href="regaining-access/">Regaining access in case the Credential and Instance Factories are broken</a></li>
+            </ul>
+
+            <h2 id="releases">Release notes and upgrading</h2>
+            <ul>
+                <li><a href="releases/">Release notes</a></li>
+                <li><a href="upgrading/">Upgrading Substrate</a></li>
+            </ul>
+
+            <h2 id="meta">Meta</h2>
+            <ul>
+                <li><a href="../../about/">About Source <span class="fancy">&amp;</span> Binary</a></li>
+                <li><a href="../license/">Source <span class="fancy">&amp;</span> Binary Software License and Subscription Terms</a></li>
+                <li><a href="telemetry/">Telemetry Substrate posts to Source <span class="fancy">&amp;</span> Binary</a></li>
+            </ul>
 
         </section>
 

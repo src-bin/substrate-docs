@@ -6,15 +6,15 @@
         <link href="/css/2022-03-03.css" rel="stylesheet">
         <meta property="og:description" content="A page from the Substrate manual">
         <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
-        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Integrating your identity provider">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Integrating your identity provider to control access to AWS">
         <meta property="og:type" content="website">
         <meta property="og:url" content="https://src-bin.com/substrate/manual/getting-started/integrating-your-identity-provider/">
         <meta name="twitter:card" content="summary">
         <meta name="twitter:description" content="A page from the Substrate manual">
         <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
         <meta name="twitter:site" content="@src_bin">
-        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Integrating your identity provider">
-        <title>Source &amp; Binary / Integrating your identity provider</title>
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Integrating your identity provider to control access to AWS">
+        <title>Source &amp; Binary / Integrating your identity provider to control access to AWS</title>
     </head>
     <body>
         <header>
@@ -34,66 +34,26 @@
 
         <section>
 
-<h1>Integrating your identity provider</h1>
+<h1>Integrating your identity provider to control access to AWS</h1>
 
-<p>TODO review and incorporate the Google/Okta files more&nbsp;nicely</p>
+<p>Substrate uses an OAuth OIDC identity provider to broker all your human access to AWS. Substrate supports <a href="https://workspace.google.com">Google Workspace</a> and <a href="https://www.okta.com">Okta</a>. You almost certainly already have one but, on the off chance you don&rsquo;t: Which one should you&nbsp;choose?</p>
 
-<h3>Sign up for Google Workspace or Okta</h3>
+<p>Your organization probably already uses Google to host your mail and calendars. Why not use it to broker access to the AWS Console and your Intranet? It&rsquo;s perfectly capable. You&rsquo;ll find, however, that Okta&rsquo;s strength is in scale. In Google Workspace, each user that&rsquo;s granted access to AWS must have a role assigned specifically to them. Okta&rsquo;s integration with AWS IAM roles is much better when you&rsquo;re managing even dozens of&nbsp;users.</p>
 
-<p>You&rsquo;ll need an identity provider to broker access to the AWS Console and to Intranet tools (some of which Substrate brings but others which you may eventually develop yourself). Substrate supports <a href="https://workspace.google.com">Google Workspace</a> and <a href="https://www.okta.com">Okta</a>. Which one should you&nbsp;choose?</p>
+<p>Feel free to try them both. Whichever you choose, take comfort in knowing your decision isn&rsquo;t permanent. <a href="../../changing-identity-providers/">Changing identity providers</a> documents how to move from one to&nbsp;another.</p>
 
-<p>Your organization probably already uses Google to host your mail and calendars. Why not use it to broker access to the AWS Console and your Intranet? It&rsquo;s perfectly capable. You&rsquo;ll find, however, that Okta&rsquo;s strength is in scale. In Google Workspace, each user that&rsquo;s granted access to the AWS Console must have a specific and very long string attached to a custom attribute in their account. Okta&rsquo;s integration with AWS IAM roles is much better when you&rsquo;re managing even dozens of&nbsp;users.</p>
+<p>The next section, whichever identity provider you choose, you&rsquo;ll run <code>substrate create-admin-account -quality <em>quality</em></code> and the documentation will help you respond to its&nbsp;prompts.</p>
 
-<p>Feel free to try them both. Whichever you choose, take comfort in knowing your decision isn&rsquo;t permanent. You can switch an admin account from one to the other by re-running the command in the next section and answering the prompts&nbsp;differently.</p>
+<p>One of those prompts concerns buying or transferring a DNS domain name or delegating a DNS zone from elsewhere into this new account. If you&rsquo;re at a loss for inspiration, consider using your company&rsquo;s name with the <code>.company</code> or <code>.tools</code> TLD.  <strong>Be sure to respond to the emails sent by Route 53 (which Google often flags as suspicious) to avoid your domain being suspended in a few days.</strong> This is the domain where Substrate will arrange to serve your Credential Factory for minting AWS access keys, your Instance Factory for provisioning personal EC2 instances, your account listing which also gets you into the AWS Console, and any tools you choose to add to your Intranet&nbsp;later.</p>
 
-<h3><code>substrate-create-admin-account -quality="default"</code></h3>
-
-<p>As is the custom, you&rsquo;ll be prompted for input, this time concerning your identity provider and the Intranet this command constructs. After the account is created, this program will create and configure the Intranet hosted in AWS API Gateway and&nbsp;Lambda.</p>
-
-<p>You&rsquo;ll be prompted to buy or transfer a DNS domain name or delegate a DNS zone from elsewhere into this new account. If you&rsquo;re at a loss for inspiration, consider using your company&rsquo;s name with the <code>.company</code> or <code>.tools</code> TLD.  Note well: The domain must end up owned by or delegated to the admin account being created by this step. <strong>Be sure to respond to the emails sent by Route 53 (which Google often flags as suspicious) to avoid your domain being suspended in a few days.</strong></p>
-
-<p>We&rsquo;ll use <a href="http://example.com">example.com</a> as a placeholder for this domain throughout the rest of this guide. With that domain in hand, this program configures API Gateway and Lambda to serve authenticated and authorized web pages that serve up short-lived administrative AWS credentials, on-demand EC2 instances, and access to the AWS Console. You&rsquo;ll be prompted for OAuth OIDC credentials from your identity provider, which can be created as&nbsp;follows:</p>
-
-<ul>
-<li><a href="/substrate/manual/getting-started/google-oauth-oidc/">Google OAuth OIDC setup</a></li>
-<li><a href="/substrate/manual/getting-started/okta-oauth-oidc/">Okta OAuth OIDC setup</a></li>
-</ul>
-
-<p>When this program exits, you should commit <code>substrate.*</code>, <code>root-modules/admin/default</code>, and <code>modules</code> to version control. It is safe to re-run this program at any time. It is also safe to have multiple admin accounts of various&nbsp;qualities.</p>
-
-<h3>Accessing the AWS Console</h3>
-
-<p>Visit the <code>/accounts</code> page of your new Intranet (at a URL like <a href="https://example.com/accounts">https://example.com/accounts</a> but on the domain you just purchased) or provide the <code>-console</code> option to <code>substrate-assume-role</code>.</p>
-
-<h3>Using the Credential Factory</h3>
-
-<p>Run <code>eval $(substrate-credentials)</code> in your terminal and follow its instructions. You&rsquo;ll be asked to login via your identity&nbsp;provider.</p>
-
-<p>Or visit <a href="https://example.com/credential-factory">https://example.com/credential-factory</a>, login, and paste the <code>export</code> command into your&nbsp;terminal.</p>
-
-<h3>Using the Instance Factory</h3>
-
-<p>Visit <a href="https://example.com/instance-factory">https://example.com/instance-factory</a> and follow the steps to provision an EC2 instance to use for your administrative&nbsp;work.</p>
-
-<h2>Deleting your root credentials</h2>
-
-<p>Once you have credentials from the Credential Factory or are logged into an EC2 instance from the Instance Factory, verify that you can run <code>substrate-assume-role -special="management" -role="OrganizationAdministrator"</code>. If so, you can finally delete your root and <code>OrganizationAdministrator</code> access keys. They&rsquo;re simply security liabilities. Let&rsquo;s delete&nbsp;them:</p>
-
-<ol>
-<li>Run <code>substrate-delete-static-access-keys</code> to delete access keys for the <code>OrganizationAdministrator</code> IAM user in your management&nbsp;account</li>
-<li>Visit <a href="https://console.aws.amazon.com/iam/home#/security_credentials">https://console.aws.amazon.com/iam/home#/security_credentials</a> (as also prompted by the tool&nbsp;above)</li>
-<li>Open the <em>Access keys (access key ID and secret access key)</em>&nbsp;section</li>
-<li>Click <strong>Delete</strong> next to your root access&nbsp;key</li>
-</ol>
-
-<p>From now on, the Credential and Instance Factories are how you access your organization via the command&nbsp;line.</p>
+<!--TODO It is also safe to have multiple admin accounts of various qualities.-->
 
 <p><section class="table">
     <section id="previous">
-        <p>Previous:<br><a href="../integrating-your-original-aws-account/">Integrating your original AWS account</a></p>
+        <p>Previous:<br><a href="../bootstrapping/">Bootstrapping your Substrate-managed AWS organization</a></p>
     </section>
     <section id="next">
-        <p>Next:<br><a href="../managing-your-infrastructure-in-service-accounts/">Managing your infrastructure in service accounts</a></p>
+        <p>Next:<br><a href="../integrating-your-google-identity-provider/">Integrating your Google identity provider</a><br>or<br><a href="../integrating-your-okta-identity-provider/">Integrating your Okta identity provider</a></p>
     </section>
 </section></p>
 

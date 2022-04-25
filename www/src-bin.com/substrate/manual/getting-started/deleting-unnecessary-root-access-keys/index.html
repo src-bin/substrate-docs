@@ -1,0 +1,65 @@
+<!doctype HTML>
+<html lang="en">
+    <meta charset="utf-8">
+    <head>
+        <!--<link href="https://src-bin.com/" rel="canonical">-->
+        <link href="/css/2022-03-03.css" rel="stylesheet">
+        <meta property="og:description" content="A page from the Substrate manual">
+        <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Deleting unnecessary root access keys">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://src-bin.com/substrate/manual/getting-started/deleting-unnecessary-root-access-keys/">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:description" content="A page from the Substrate manual">
+        <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta name="twitter:site" content="@src_bin">
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Deleting unnecessary root access keys">
+        <title>Source &amp; Binary / Deleting unnecessary root access keys</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1>
+            <p><a href="mailto:hello@src-bin.com">hello@src-bin.com</a></p>
+            <aside>Purveyors&nbsp;of&nbsp;secure,&nbsp;reliable,&nbsp;and&nbsp;compliant&nbsp;cloud&nbsp;infrastructure&nbsp;since&nbsp;2020</aside>
+            <nav>
+                <ul>
+                    <li><a href="/">Benefits</a></li>
+                    <li><a href="/substrate/">Features</a></li>
+                    <li><a href="/substrate/manual/">Documentation</a></li>
+                    <li><a href="/substrate/pricing/">Pricing</a></li>
+                    <!--<li><a href="/compliance/">Compliance Workshop</a></li>-->
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+
+<h1>Deleting unnecessary root access keys</h1>
+
+<p>Once you have credentials from the Credential Factory or are logged into an EC2 instance from the Instance Factory, verify that you can run <code>substrate assume-role -management</code>. If so, you can finally delete your root and OrganizationAdministrator access keys. They&rsquo;re simply security liabilities. Let&rsquo;s delete&nbsp;them:</p>
+
+<ol>
+<li>Run <code>substrate delete-static-access-keys</code> to delete access keys for the OrganizationAdministrator IAM user in your management&nbsp;account</li>
+<li>Visit <a href="https://console.aws.amazon.com/iam/home#/security_credentials">https://console.aws.amazon.com/iam/home#/security_credentials</a> while signed in using the root email address, password, and second factor on your management&nbsp;account</li>
+<li>Open the <em>Access keys (access key ID and secret access key)</em>&nbsp;section</li>
+<li>Click <strong>Delete</strong> next to your root access&nbsp;key</li>
+</ol>
+
+<p>From now on, the Credential and Instance Factories are how you access your organization via the command&nbsp;line.</p>
+
+<p><section class="table">
+    <section id="previous">
+        <p>Previous:<br><a href="../integrating-your-identity-provider/">Integrating your identity provider to control access to AWS</a></p>
+    </section>
+    <section id="next">
+        <p>Next:<br><a href="../integrating-your-original-aws-account/">Integrating your original AWS account(s)</a></p>
+    </section>
+</section></p>
+
+        </section>
+
+        <footer>
+            <p class="fine-print">&copy; 2020-2022 &mdash; Source <span class="fancy">&amp;</span> Binary&nbsp;LLC</p>
+        </footer>
+    </body>
+</html>

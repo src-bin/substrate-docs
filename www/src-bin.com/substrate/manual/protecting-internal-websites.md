@@ -54,7 +54,7 @@ It is also possible to put the Lambda function in another AWS account but you'll
 
 ## Integrating with API Gateway and Lambda in your own module
 
-If you'd prefer to stay out of `modules/intranet`, you can create your own module (using `substrate-create-terraform-module`, if you like) and reference it from `root-modules/admin/*/*` (except `global`) thus:
+If you'd prefer to stay out of `modules/intranet`, you can create your own module (using `substrate create-terraform-module`, if you like) and reference it from `root-modules/admin/*/*` (except `global`) thus:
 
     module "intranet-extensions" {
       authorizer_id           = module.intranet.authorizer_id
@@ -75,7 +75,7 @@ Not everything is, can be, or should be a Lambda function, though, and these int
       apigateway_execution_arn = aws_api_gateway_deployment.intranet.execution_arn
       apigateway_role_arn      = data.aws_iam_role.apigateway.arn
       authorizer_id            = aws_api_gateway_authorizer.substrate.id
-      lambda_role_arn          = data.aws_iam_role.substrate-intranet.arn
+      lambda_role_arn          = data.aws_iam_role.intranet.arn
       parent_resource_id       = aws_api_gateway_rest_api.intranet.root_resource_id
       proxy_destination_url    = "http://TODO"
       proxy_path_prefix        = "example"

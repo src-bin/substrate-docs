@@ -91,7 +91,7 @@ resource "aws_lambda_permission" "example" {
 
 <h2>Integrating with API Gateway and Lambda in your own module</h2>
 
-<p>If you&rsquo;d prefer to stay out of <code>modules/intranet</code>, you can create your own module (using <code>substrate-create-terraform-module</code>, if you like) and reference it from <code>root-modules/admin/*/*</code> (except <code>global</code>)&nbsp;thus:</p>
+<p>If you&rsquo;d prefer to stay out of <code>modules/intranet</code>, you can create your own module (using <code>substrate create-terraform-module</code>, if you like) and reference it from <code>root-modules/admin/*/*</code> (except <code>global</code>)&nbsp;thus:</p>
 
 <pre><code>module "intranet-extensions" {
   authorizer_id           = module.intranet.authorizer_id
@@ -113,7 +113,7 @@ resource "aws_lambda_permission" "example" {
   apigateway_execution_arn = aws_api_gateway_deployment.intranet.execution_arn
   apigateway_role_arn      = data.aws_iam_role.apigateway.arn
   authorizer_id            = aws_api_gateway_authorizer.substrate.id
-  lambda_role_arn          = data.aws_iam_role.substrate-intranet.arn
+  lambda_role_arn          = data.aws_iam_role.intranet.arn
   parent_resource_id       = aws_api_gateway_rest_api.intranet.root_resource_id
   proxy_destination_url    = "http://TODO"
   proxy_path_prefix        = "example"

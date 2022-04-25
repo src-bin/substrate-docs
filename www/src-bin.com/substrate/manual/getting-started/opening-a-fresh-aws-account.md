@@ -1,4 +1,4 @@
-# Signing up for a fresh AWS account
+# Opening a fresh AWS account
 
 Substrate manages secure, reliable, and compliant cloud infrastructure in AWS. It's only natural, then, that you need an AWS account to start using Substrate. In fact, in service of all of those goals, Substrate manages many AWS accounts via AWS Organizations. But it has to start with one.
 
