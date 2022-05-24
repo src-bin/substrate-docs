@@ -36,20 +36,48 @@
 
 <h1>Substrate release notes</h1>
 
-<!--<h2 id="2022.04">2022.04</h2>-->
+<h2 id="2022.05">2022.05</h2>
 
-<!--
-* Substrate now ships with a rudimentary autocomplete mechanism for Bash, Z shell, and other shells with compatibility for Bash completion.
-* Substrate can now be used to drive the `--profile` option to the standard AWS CLI. See [using AWS CLI profiles] for details.
-* Enforce, via organization-wide Service Control Policy, that EC2 instances must be launched with access to IMDSv2 and not IMDSv1.
-* Upgrade the AWS Terraform provider to version 4.9.0 or (slightly) newer.
-* Remove the dependency on the AWS CLI in the generated `modules/substrate` Terraform code.
-* Bug fix: Lessen the possibility of a `TooManyRequestsException` from AWS Organizations during Terraform runs.
-* Bug fix: Update the `SubstrateVersion` tag on your AWS accounts themselves when Substrate tries to create them and finds that they already exist.
-* Bug fix: This time Substrate _actually_ asks if it may post [telemetry](../telemetry/) to Source &amp; Binary as promised in the previous release.
-* Bug fix: Remove a slight crash risk when trying to post tememetry early so commands can exit earlier.
-* Bug fix: Use Terraform resource references in root-modules/deploy to avoid a race during `substrate bootstrap-deploy-account`.
--->
+<ul>
+<li>Allow customization of EC2 instances from the Instance Factory by using a launch template named <code>InstanceFactory-arm64</code> or <code>InstanceFactory-x86_64</code>, if the one matching the requested instance type is defined. See <a href="../customizing-instance-factory/">customizing EC2 instances from the Instance Factory</a> for details and an&nbsp;example.</li>
+<li>Add <code>cloudtrail:DeleteTrail</code> to the (short) list of APIs that are denied by the Substrate-managed service control policy on your management&nbsp;account.</li>
+<li>Remove verion constraints from Terraform modules in the <code>modules/</code> tree, instead letting all the version constraints come from the root&nbsp;module.</li>
+<li>Upgrade the Terraform AWS provider to at least&nbsp;4.12.</li>
+<li>Remove dormant copies of various parts of the Intranet, which were deprecated as their functionality was moved into the monolithic Intranet IAM role and Lambda&nbsp;function.</li>
+<li>Bug fix: Add <code>organizations:DescribeOrganization</code> to the IAM policy attached to the CredentialFactory IAM user so that it can orient itself&nbsp;fully.</li>
+<li>Bug fix: Sort Terraform resources by their type and label as has always been intended. This will result in differences in source code but not in Terraform&nbsp;plans.</li>
+</ul>
+
+<p>After upgrading&nbsp;Substrate:</p>
+
+<ol>
+<li><code>substrate bootstrap-management-account</code></li>
+<li><code>substrate create-admin-account -quality <em>quality</em></code> for each of your admin&nbsp;accounts</li>
+</ol>
+
+<h2 id="2022.04">2022.04</h2>
+
+<ul>
+<li>Enforce, via organization-wide Service Control Policy, that EC2 instances must be launched with access to IMDSv2 and not IMDSv1. The Instance Factory has been launching compatible instances since 2021.10. If for some reason you need to roll this step back, use your Intranet&rsquo;s Accounts page to open the AWS Console in your management account with the OrganizationAdministrator role, visit <a href="https://console.aws.amazon.com/organizations/v2/home/policies/service-control-policy">https://console.aws.amazon.com/organizations/v2/home/policies/service-control-policy</a>, and delete SubstrateServiceControlPolicy. When you&rsquo;ve migrated whatever needed IMDSv1 to use IMDSv2, re-run <code>substrate bootstrap-management-account</code>.</li>
+<li>Substrate now ships with a rudimentary autocomplete mechanism for Bash, Z shell, and other shells with compatibility for Bash&nbsp;completion.</li>
+<li>Substrate can now be used to drive the <code>--profile</code> option to the standard AWS CLI. See <a href="../aws-cli-profiles/">using AWS CLI profiles</a> for&nbsp;details.</li>
+<li>Upgrade the AWS Terraform provider to version 4.9.0 or (slightly)&nbsp;newer.</li>
+<li>Remove the dependency on the AWS CLI in the generated <code>modules/substrate</code> Terraform&nbsp;code.</li>
+<li>Bug fix: Lessen the possibility of a <code>TooManyRequestsException</code> from AWS Organizations during Terraform&nbsp;runs.</li>
+<li>Bug fix: Update the <code>SubstrateVersion</code> tag on your AWS accounts themselves when Substrate tries to create them and finds that they already&nbsp;exist.</li>
+<li>Bug fix: This time Substrate <em>actually</em> asks if it may post <a href="../telemetry/">telemetry</a> to Source &amp; Binary as promised in the previous&nbsp;release.</li>
+<li>Bug fix: Prevent a rare crash when trying to post tememetry early so commands can exit&nbsp;earlier.</li>
+<li>Bug fix: Use Terraform resource references in <code>root-modules/deploy</code> to avoid a race during <code>substrate bootstrap-deploy-account</code>.</li>
+<li>Bug fix: Properly support older instance types, especially t2, in the Instance&nbsp;Factory.</li>
+</ul>
+
+<p>After upgrading&nbsp;Substrate:</p>
+
+<ol>
+<li><a href="../getting-started/shell-completion/">Configure Substrate shell completion</a></li>
+<li><code>substrate bootstrap-management-account</code></li>
+<li><code>substrate create-admin-account -quality <em>quality</em></code> for each of your admin&nbsp;accounts</li>
+</ol>
 
 <h2 id="2022.03">2022.03</h2>
 
@@ -116,7 +144,7 @@
 
 <ul>
 <li>Substate now uses your default region (the one you chose to host your organization&rsquo;s CloudTrail logs, among other things) when it executes global root modules. This allows you to more completely decouple yourself from us-east-1 if you so&nbsp;choose.</li>
-<li>Bug fix: Allow the Instance Factory to pass any IAM role configured in your IdP on to EC2 instances your non-Administrator users&nbsp;provision.</li>
+<li>Bug fix: Allow the Instance Factory to pass any IAM role configured in your IdP on to EC2 instances your non-Administrator users&nbsp;launch.</li>
 <li>Safety feature: No longer read <code>~/.aws/credentials</code> under any circumstances. Since we never use this file in a Substrate-managed AWS organization, reading this file can only serve to &ldquo;cross the streams&rdquo; with a legacy AWS&nbsp;account.</li>
 </ul>
 
@@ -446,7 +474,7 @@ done
 
 <h2>2020.11 and prior releases</h2>
 
-<p>Contact <a href="&#109;&#97;&#x69;&#x6C;&#x74;&#111;:&#104;&#101;l&#x6C;&#x6F;&#64;&#x73;&#x72;&#99;&#x2D;b&#105;&#110;&#46;&#99;&#111;m">&#104;&#101;l&#x6C;&#x6F;&#64;&#x73;&#x72;&#99;&#x2D;b&#105;&#110;&#46;&#99;&#111;m</a> for prior release&nbsp;notes.</p>
+<p>Contact <a href="&#x6D;a&#x69;&#108;&#116;&#x6F;:&#104;e&#108;&#108;o&#64;&#115;&#114;&#x63;-&#98;&#105;&#110;&#x2E;&#99;&#x6F;m">&#104;e&#108;&#108;o&#64;&#115;&#114;&#x63;-&#98;&#105;&#110;&#x2E;&#99;&#x6F;m</a> for prior release&nbsp;notes.</p>
 
         </section>
 

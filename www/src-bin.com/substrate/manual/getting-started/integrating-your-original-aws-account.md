@@ -13,7 +13,7 @@ In fact, integrating your original AWS account(s) into your new Substrate-manage
 
 You can invite as many AWS accounts as you like into your new Substrate-managed AWS organization but only if you have _not_ configured AWS Organizations manually in those accounts. If you have and you would still like to adopt Substrate, ask us at <hello@src-bin.com> and we'll work with you to make everything right.
 
-To begin, you'll need root (not IAM user) login credentials for the AWS Console for the account you wish to invite into your organization. If you don't have them now or you just don't want to do this now, feel free to skip this section and combe back to it later. When you're ready, proceed:
+To begin, you'll need root (not IAM user) login credentials for the AWS Console for the account you wish to invite into your organization. If you don't have them now or you just don't want to do this now, feel free to skip this section and come back to it later. When you're ready, proceed:
 
 1. Open the Accounts page of your Intranet
 2. Assume the OrganizationAdministrator role in your management account

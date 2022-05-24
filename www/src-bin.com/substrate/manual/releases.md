@@ -1,19 +1,39 @@
 # Substrate release notes
 
-<!--<h2 id="2022.04">2022.04</h2>-->
+<h2 id="2022.05">2022.05</h2>
 
-<!--
+* Allow customization of EC2 instances from the Instance Factory by using a launch template named `InstanceFactory-arm64` or `InstanceFactory-x86_64`, if the one matching the requested instance type is defined. See [customizing EC2 instances from the Instance Factory](../customizing-instance-factory/) for details and an example.
+* Add `cloudtrail:DeleteTrail` to the (short) list of APIs that are denied by the Substrate-managed service control policy on your management account.
+* Remove verion constraints from Terraform modules in the `modules/` tree, instead letting all the version constraints come from the root module.
+* Upgrade the Terraform AWS provider to at least 4.12.
+* Remove dormant copies of various parts of the Intranet, which were deprecated as their functionality was moved into the monolithic Intranet IAM role and Lambda function.
+* Bug fix: Add `organizations:DescribeOrganization` to the IAM policy attached to the CredentialFactory IAM user so that it can orient itself fully.
+* Bug fix: Sort Terraform resources by their type and label as has always been intended. This will result in differences in source code but not in Terraform plans.
+
+After upgrading Substrate:
+
+1. `substrate bootstrap-management-account`
+2. <code>substrate create-admin-account -quality <em>quality</em></code> for each of your admin accounts
+
+<h2 id="2022.04">2022.04</h2>
+
+* Enforce, via organization-wide Service Control Policy, that EC2 instances must be launched with access to IMDSv2 and not IMDSv1. The Instance Factory has been launching compatible instances since 2021.10. If for some reason you need to roll this step back, use your Intranet's Accounts page to open the AWS Console in your management account with the OrganizationAdministrator role, visit <https://console.aws.amazon.com/organizations/v2/home/policies/service-control-policy>, and delete SubstrateServiceControlPolicy. When you've migrated whatever needed IMDSv1 to use IMDSv2, re-run `substrate bootstrap-management-account`.
 * Substrate now ships with a rudimentary autocomplete mechanism for Bash, Z shell, and other shells with compatibility for Bash completion.
-* Substrate can now be used to drive the `--profile` option to the standard AWS CLI. See [using AWS CLI profiles] for details.
-* Enforce, via organization-wide Service Control Policy, that EC2 instances must be launched with access to IMDSv2 and not IMDSv1.
+* Substrate can now be used to drive the `--profile` option to the standard AWS CLI. See [using AWS CLI profiles](../aws-cli-profiles/) for details.
 * Upgrade the AWS Terraform provider to version 4.9.0 or (slightly) newer.
 * Remove the dependency on the AWS CLI in the generated `modules/substrate` Terraform code.
 * Bug fix: Lessen the possibility of a `TooManyRequestsException` from AWS Organizations during Terraform runs.
 * Bug fix: Update the `SubstrateVersion` tag on your AWS accounts themselves when Substrate tries to create them and finds that they already exist.
 * Bug fix: This time Substrate _actually_ asks if it may post [telemetry](../telemetry/) to Source &amp; Binary as promised in the previous release.
-* Bug fix: Remove a slight crash risk when trying to post tememetry early so commands can exit earlier.
-* Bug fix: Use Terraform resource references in root-modules/deploy to avoid a race during `substrate bootstrap-deploy-account`.
--->
+* Bug fix: Prevent a rare crash when trying to post tememetry early so commands can exit earlier.
+* Bug fix: Use Terraform resource references in `root-modules/deploy` to avoid a race during `substrate bootstrap-deploy-account`.
+* Bug fix: Properly support older instance types, especially t2, in the Instance Factory.
+
+After upgrading Substrate:
+
+1. [Configure Substrate shell completion](../getting-started/shell-completion/)
+2. `substrate bootstrap-management-account`
+3. <code>substrate create-admin-account -quality <em>quality</em></code> for each of your admin accounts
 
 <h2 id="2022.03">2022.03</h2>
 
@@ -65,7 +85,7 @@ After upgrading Substrate:
 <h2 id="2021.12">2021.12</h2>
 
 * Substate now uses your default region (the one you chose to host your organization&rsquo;s CloudTrail logs, among other things) when it executes global root modules. This allows you to more completely decouple yourself from us-east-1 if you so choose.
-* Bug fix: Allow the Instance Factory to pass any IAM role configured in your IdP on to EC2 instances your non-Administrator users provision.
+* Bug fix: Allow the Instance Factory to pass any IAM role configured in your IdP on to EC2 instances your non-Administrator users launch.
 * Safety feature: No longer read `~/.aws/credentials` under any circumstances. Since we never use this file in a Substrate-managed AWS organization, reading this file can only serve to &ldquo;cross the streams&rdquo; with a legacy AWS account.
 
 The upgrade process this month is much more involved that most. As such, we&rsquo;ll talk in Slack about when you&rsquo;re going to perform the upgrade to ensure support&rsquo;s available in the moment.

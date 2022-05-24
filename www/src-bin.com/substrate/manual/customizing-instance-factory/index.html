@@ -1,0 +1,99 @@
+<!doctype HTML>
+<html lang="en">
+    <meta charset="utf-8">
+    <head>
+        <!--<link href="https://src-bin.com/" rel="canonical">-->
+        <link href="/css/2022-04-24.css" rel="stylesheet">
+        <meta property="og:description" content="A page from the Substrate manual">
+        <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Customizing EC2 instances from the Instance Factory">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://src-bin.com/substrate/manual/customizing-instance-factory/">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:description" content="A page from the Substrate manual">
+        <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta name="twitter:site" content="@src_bin">
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Customizing EC2 instances from the Instance Factory">
+        <title>Source &amp; Binary / Customizing EC2 instances from the Instance Factory</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1>
+            <p><a href="mailto:hello@src-bin.com">hello@src-bin.com</a></p>
+            <aside>Purveyors&nbsp;of&nbsp;secure,&nbsp;reliable,&nbsp;and&nbsp;compliant&nbsp;cloud&nbsp;infrastructure&nbsp;since&nbsp;2020</aside>
+            <nav>
+                <ul>
+                    <li><a href="/">Benefits</a></li>
+                    <li><a href="/substrate/">Features</a></li>
+                    <li><a href="/substrate/manual/">Documentation</a></li>
+                    <li><a href="/substrate/pricing/">Pricing</a></li>
+                    <!--<li><a href="/compliance/">Compliance Workshop</a></li>-->
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+
+<h1>Customizing EC2 instances from the Instance Factory</h1>
+
+<p>The Substrate-managed Instance Factory launches EC2 instances with the latest Amazon Linux 2 AMI by default. This is a good default. You should consider, if you&rsquo;re just getting started, always using Amazon Linux 2 as the base operating system for your EC2 instances. If you&rsquo;d rather use Ubuntu or something else, however, that&rsquo;s perfectly reasonable and Substrate will help you do so. In fact, Substrate will help you customize EC2 instances from the Instance Factory however you see&nbsp;fit.</p>
+
+<p>Define a launch template in your admin account(s) called <code>InstanceFactory-arm64</code> and another called <code>InstanceFactory-x86_64</code>. Specifically, define these Terraform resources in <code>modules/intranet/regional/launch-templates.tf</code> (or another new file in that directory). Configure all your customizations there. Substrate will choose the appropriate launch template based on the instance type users choose in the Instance&nbsp;Factory.</p>
+
+<h2>Customizing via user data</h2>
+
+<p>If you define launch templates that does not include the <code>image_id</code> argument, Substrate will fill in the gap with its usual Amazon Linux 2 AMI. At first thought this might seem useless but it isn&rsquo;t &mdash; you can customize almost anything you can imagine by providing an executable program to the <code>user_data</code> argument to the launch&nbsp;template:</p>
+
+<pre><code>resource "aws_launch_template" "instance-factory" {
+  for_each = ["arm64", "x86_64"]
+
+  name = "InstanceFactory-${each.value}"
+  user_data = base64encode(&lt;&lt;EOF
+#!/bin/sh
+# TODO configure whatever you like
+EOF
+  )
+}
+</code></pre>
+
+<p>This gives you enough to e.g. install custom software or configure an SSH CA. The sky&rsquo;s the&nbsp;limit!</p>
+
+<h2>Customizing the AMI itself</h2>
+
+<p>If you define launch templates that <em>do</em> include the <code>image_id</code> argument, Substrate (well, AWS) will dutifully launch instances from your AMI of choice. And beyond that you can still go wild with user data and other possibilities opened by using a launch template. Here&rsquo;s an example configuring the Instance Factory to use Ubuntu instead of Amazon Linux&nbsp;2:</p>
+
+<pre><code>data "aws_ami" "ubuntu" {
+  for_each = toset(["arm64", "x86_64"])
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-${each.value == "x86_64" ? "amd64" : each.value}-server-*"]
+  }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+  most_recent = true
+  owners      = ["099720109477"] # Canonical
+}
+
+resource "aws_launch_template" "instance-factory" {
+  for_each = toset(["arm64", "x86_64"])
+
+  image_id = data.aws_ami.ubuntu[each.value].id
+  name     = "InstanceFactory-${each.value}"
+  user_data = base64encode(&lt;&lt;EOF
+#!/bin/sh
+# TODO configure whatever you like
+EOF
+  )
+}
+</code></pre>
+
+        </section>
+
+        <footer>
+            <p class="fine-print">&copy; 2020-2022 &mdash; Source <span class="fancy">&amp;</span> Binary&nbsp;LLC</p>
+        </footer>
+    </body>
+</html>

@@ -4,7 +4,7 @@ For most tasks, you're going to need AWS credentials. Substrate strongly discour
 
 1. Run `eval $(substrate credentials)` in your terminal and follow its instructions. This will work from instances in the cloud or a laptop, though the flow is a smoothest on a laptop where a web browser can be opened from the command line. This is the best choice for most folks.
 
-2. You can also visit <https://example.com/instance-factory> (substituting your Intranet DNS domain name) and follow the steps to provision an EC2 instance to use for your administrative work. This makes the most sense for folks who use a terminal-based text editor and like to work &ldquo;in the cloud.&rdquo;
+2. You can also visit <https://example.com/instance-factory> (substituting your Intranet DNS domain name) and follow the steps to launch an EC2 instance to use for your administrative work. This makes the most sense for folks who use a terminal-based text editor and like to work &ldquo;in the cloud.&rdquo;
 
 3. If for some reason `eval $(substrate credentials)` doesn't work for you, visit <https://example.com/credential-factory> (substituting your Intranet DNS domain name), then paste the `export` command into your terminal. This choice will work in the widest variety of places but is the most cumbersome.
 
