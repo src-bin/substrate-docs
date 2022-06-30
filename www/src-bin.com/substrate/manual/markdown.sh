@@ -15,16 +15,17 @@ do
     <head>
         <!--<link href="https://src-bin.com/" rel="canonical">-->
         <link href="/css/2022-04-24.css" rel="stylesheet">
-        <meta property="og:description" content="A page from the Substrate manual">
-        <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
-        <meta property="og:title" content="Source &amp; Binary / Substrate manual / $(head -n"1" "$PATHNAME" | sed "s/^# //")">
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="https://src-bin.com/substrate/manual/${DIRNAME#"./"}/">
         <meta name="twitter:card" content="summary">
         <meta name="twitter:description" content="A page from the Substrate manual">
         <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
         <meta name="twitter:site" content="@src_bin">
         <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / $(head -n"1" "$PATHNAME" | sed "s/^# //")">
+        <!--<meta name="viewport" content="width=device-width,initial-scale=1">-->
+        <meta property="og:description" content="A page from the Substrate manual">
+        <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / $(head -n"1" "$PATHNAME" | sed "s/^# //")">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://src-bin.com/substrate/manual/${DIRNAME#"./"}/">
         <title>Source &amp; Binary / $(head -n"1" "$PATHNAME" | sed "s/^# //")</title>
     </head>
     <body>
