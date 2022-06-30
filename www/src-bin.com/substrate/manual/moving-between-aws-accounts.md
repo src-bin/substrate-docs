@@ -16,6 +16,10 @@ If you have a specific command you need to run, tack it onto the end thus:
 
     substrate assume-role -domain example -environment development -quality default aws ec2 describe-security-groups
 
+In addition to the forms above that allow specifying a domain, environment, and quality, `substrate assume-role` can select your management account with `-management`, your deploy or network account with `-special deploy` or `-special network`, and an admin account with <code>-admin -quality <em>quality</em></code>. Or you can go completely off-road and specify any arbitrary AWS account with <code>-number <em>number</em></code>.
+
+By default, `substrate assume-role` will carry on with the same role name &mdash; Administrator (or OrganizationAdministrator, etc. as appropriate) when you're Administrator, Auditor when you're Auditor, and so on. You can specify a different role name using <code>-role <em>role</em></code>.
+
 ## Terraform
 
 A lot of work in your AWS organization hopefully happens in Terraform and not ad-hoc shell sessions. `substrate create-account` creates a root Terraform module for you with providers configured to assume the appropriate role so you don't have to think about matching credentials in your environment with directories in which you invoke `terraform apply`. All you'll ever need to invoke Terraform are those Administrator you get from the Credential and Instance Factories.
