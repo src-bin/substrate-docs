@@ -8,10 +8,6 @@ In order to add a new provider, add it to `versions.tf` with a version constrain
 
 <pre>terraform {
   required_providers {
-    archive = {
-      source  = "hashicorp/archive"
-      version = ">= 2.2.0"
-    }
     aws = {
       configuration_aliases = [
         aws.network,
@@ -28,7 +24,7 @@ In order to add a new provider, add it to `versions.tf` with a version constrain
       version = "= 1.9.9"
     }</strong>
   }
-  required_version = "= 1.1.6"
+  required_version = "= 1.2.3"
 }</pre>
 
 Then add a `provider` block to the root modules that need to use this provider and pass it to your module via its `providers` attribute:

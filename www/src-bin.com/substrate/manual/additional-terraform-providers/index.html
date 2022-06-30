@@ -45,10 +45,6 @@
 
 <pre>terraform {
   required_providers {
-    archive = {
-      source  = "hashicorp/archive"
-      version = ">= 2.2.0"
-    }
     aws = {
       configuration_aliases = [
         aws.network,
@@ -65,7 +61,7 @@
       version = "= 1.9.9"
    &nbsp;}</strong>
   }
-  required_version = "= 1.1.6"
+  required_version = "= 1.2.3"
 }</pre>
 
 <p>Then add a <code>provider</code> block to the root modules that need to use this provider and pass it to your module via its <code>providers</code>&nbsp;attribute:</p>

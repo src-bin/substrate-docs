@@ -1,5 +1,25 @@
 # Substrate release notes
 
+<h2 id="2022.06">2022.06</h2>
+
+* Substrate subcommands that create AWS accounts or apply Terraform code (`substrate bootstrap-*` and `substrate create-*account`) now prevent Substrate downgrades by checking the tags on the accounts themselves.
+* POST requests to the Instance Factory have long-overdue CSRF mitigations in place.
+* Upgrade Terraform to version 1.2.3 and the Terraform AWS provider to at least version 4.20.0.
+* Address deprecation warnings about `aws_subnet_ids` everywhere except in the generated `modules/peering-connection` directory, which will take a little more time.
+* Make the OAuth OIDC flow in your Intranet a little more debuggable in case of IdP misconfiguration or a Substrate bug.
+* Bug fix: Don't give up too early waiting for IAM credentials to become usable. This caused `substrate credentials` to occasionally hang forever in 2022.05.
+
+After upgrading Substrate:
+
+1. Upgrade to [Terraform 1.2.3](https://releases.hashicorp.com/terraform/1.2.3/)
+2. `substrate bootstrap-management-account`
+3. `substrate bootstrap-network-account`
+4. `substrate bootstrap-deploy-account`
+5. <code>substrate create-admin-account -quality <em>quality</em></code> for each of your admin accounts
+6. <code>substrate create-account -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em></code> for each of your service accounts
+
+If your shell supports process substitution, you can upgrade Terraform and then run `sh <(substrate accounts -format shell)` to run all of these, in the proper order, in one command.
+
 <h2 id="2022.05">2022.05</h2>
 
 * Allow customization of EC2 instances from the Instance Factory by using a launch template named `InstanceFactory-arm64` or `InstanceFactory-x86_64`, if the one matching the requested instance type is defined. See [customizing EC2 instances from the Instance Factory](../customizing-instance-factory/) for details and an example.
@@ -8,7 +28,9 @@
 * Upgrade the Terraform AWS provider to at least 4.12.
 * Remove dormant copies of various parts of the Intranet, which were deprecated as their functionality was moved into the monolithic Intranet IAM role and Lambda function.
 * Bug fix: Add `organizations:DescribeOrganization` to the IAM policy attached to the CredentialFactory IAM user so that it can orient itself fully.
+* Bug fix: Submit your Intranet URL to AWS so that when you're logged out of the AWS Console it links you to how you get back in instead of to the Substrate product page.
 * Bug fix: Sort Terraform resources by their type and label as has always been intended. This will result in differences in source code but not in Terraform plans.
+* Bug fix: Print prompts to standard error so they don't corrupt parseable output.
 
 After upgrading Substrate:
 

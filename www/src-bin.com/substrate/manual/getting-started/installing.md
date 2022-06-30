@@ -14,9 +14,9 @@ You can install Substrate wherever you like, if `~/bin` doesn't suit you, just e
 
 ## Terraform
 
-Substrate currently requires _exactly_ Terraform 1.1.6. (Substrate asks for Terraform to be upgraded every few releases to stay nearly current with Terraform.)
+Substrate currently requires _exactly_ Terraform 1.2.3. (Substrate asks for Terraform to be upgraded every few releases to stay nearly current with Terraform.)
 
-You can download [Terraform 1.1.6](https://releases.hashicorp.com/terraform/1.1.6/) from Hashicorp, with the filenames being parameterized with _`GOOS`_ and _`GOARCH`_ the same as Substrate itself. Download and `unzip` the appropriate build. Move `terraform` into a directory on your `PATH`. (It doesn't have to be the same directory where you placed `substrate`.)
+You can download [Terraform 1.2.3](https://releases.hashicorp.com/terraform/1.2.3/) from Hashicorp, with the filenames being parameterized with _`GOOS`_ and _`GOARCH`_ the same as Substrate itself. Download and `unzip` the appropriate build. Move `terraform` into a directory on your `PATH`. (It doesn't have to be the same directory where you placed `substrate`.)
 
 <section class="table">
     <section id="previous">
