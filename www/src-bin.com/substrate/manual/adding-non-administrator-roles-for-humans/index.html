@@ -37,6 +37,8 @@
 
 <h1>Adding non-Administrator (and non-Auditor) roles for humans</h1>
 
+<p><em>This feature is currently only supported when using Google as your identity provider.</em></p>
+
 <p>In order to set the <code>RoleName</code> attribute on any of your users in your identity provider to any value except &ldquo;Administrator&rdquo; or &ldquo;Auditor&rdquo;, you&rsquo;ll need to define a role in your admin account and possibly some (or all) of your service&nbsp;accounts.</p>
 
 <h2>In your admin account(s)</h2>
@@ -144,6 +146,10 @@ resource "aws_iam_role_policy_attachment" "developer" {
 </code></pre>
 
 <p>Run <code>substrate create-account -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em></code> to create this&nbsp;role.</p>
+
+<h2>In your identity provider</h2>
+
+<p>Visit <a href="https://admin.google.com/ac/users">https://admin.google.com/ac/users</a> in a browser (or visit <a href="https://admin.google.com">https://admin.google.com</a> and click <strong>Users</strong>) and modify the <em>RoleName</em> attribute in the <em>AWS</em> section for whomever you want to assume this new&nbsp;role.</p>
 
         </section>
 
