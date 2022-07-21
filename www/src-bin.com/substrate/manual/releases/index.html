@@ -37,6 +37,44 @@
 
 <h1>Substrate release notes</h1>
 
+<h2 id="2022.07">2022.07</h2>
+
+<ul>
+<li>Restructure the Substrate distribution to:
+<ul>
+<li>Separate the <code>substrate</code> program in <code>bin/</code> from optional extra programs in <code>opt/bin/</code>.</li>
+<li>Remove deprecated symbolic links from the distribution (though the functionality has not been and will not be removed from <code>substrate</code> so previously installed symbolic links will continue to&nbsp;function).</li>
+<li>Include source code in release tarballs to obviate the need to micromanage GitHub&nbsp;collaborators.</li>
+</ul></li>
+<li>Always prefix <code>substrate accounts -format shell</code> output with <code>set -e -x</code> so the shell will stop on error and print the commands as they&rsquo;re&nbsp;executed.</li>
+<li>Add <code>-auto-approve</code> to <code>substrate accounts -format shell</code> to enable one-command, non-interactive upgrades for the most daring among&nbsp;us.</li>
+<li>Add <code>module.substrate.cidr_prefix</code> to the other outputs of the convenience <code>module.substrate</code> that&rsquo;s automatically available in domain&nbsp;modules.</li>
+<li>Bug fix: <code>substrate create-account</code> in 2022.06 failed to create accounts but now it&rsquo;s back. (It had one&nbsp;job!)</li>
+<li>Bug fix: Substrate shell completion never fully worked in Z shell but now it&nbsp;does.</li>
+</ul>
+
+<p>Upgrade Substrate as in the <a href="../getting-started/installing/">updated installation manual</a>:</p>
+
+<blockquote>
+<pre><code>tar xf substrate-<em>version</em>-<em>commit</em>-<em>GOOS</em>-<em>GOARCH</em>.tar.gz -C ~/bin --strip-components 2 substrate-<em>version</em>-<em>commit</em>-<em>GOOS</em>-<em>GOARCH</em>/bin/substrate</code></pre>
+  
+  <p>Each released <em>version</em> and <em>commit</em> is offered in four binary formats; choose the appropriate one for your system. <em><code>GOOS</code></em> is one of &ldquo;<code>darwin</code>&rdquo; or &ldquo;<code>linux</code>&rdquo; and <em><code>GOARCH</code></em> is one of &ldquo;<code>amd64</code>&rdquo; or &ldquo;<code>arm64</code>&rdquo;.</p>
+  
+  <p>You can install Substrate wherever you like. If <code>~/bin</code> doesn&rsquo;t suit you, just ensure the directory where you install it is on your <code>PATH</code>.</p>
+</blockquote>
+
+<p>After upgrading&nbsp;Substrate:</p>
+
+<ol>
+<li><code>substrate bootstrap-management-account</code></li>
+<li><code>substrate bootstrap-network-account</code></li>
+<li><code>substrate bootstrap-deploy-account</code></li>
+<li><code>substrate create-admin-account -quality <em>quality</em></code> for each of your admin&nbsp;accounts</li>
+<li><code>substrate create-account -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em></code> for each of your service&nbsp;accounts</li>
+</ol>
+
+<p>If your shell supports process substitution, you can run <code>sh &lt;(substrate accounts -format shell)</code> to run all of these, in the proper order, in one command. As of this release you can make this non-interactive as <code>sh &lt;(substrate accounts -auto-approve -format shell)</code> but this is not recommended as it forgoes your opportunity to object before Terraform applies&nbsp;changes.</p>
+
 <h2 id="2022.06">2022.06</h2>
 
 <ul>
@@ -501,7 +539,7 @@ done
 
 <h2>2020.11 and prior releases</h2>
 
-<p>Contact <a href="&#109;&#97;&#x69;l&#x74;&#111;:&#104;&#101;&#108;&#108;&#111;&#64;&#x73;&#114;&#99;&#x2D;&#98;&#105;&#x6E;.&#99;&#x6F;&#x6D;">&#104;&#101;&#108;&#108;&#111;&#64;&#x73;&#114;&#99;&#x2D;&#98;&#105;&#x6E;.&#99;&#x6F;&#x6D;</a> for prior release&nbsp;notes.</p>
+<p>Contact <a href="m&#x61;&#105;&#x6C;&#116;o:&#104;&#101;&#108;&#x6C;&#111;&#64;&#x73;&#114;&#x63;&#x2D;&#x62;&#105;&#110;&#46;&#x63;&#111;&#x6D;">&#104;&#101;&#108;&#x6C;&#111;&#64;&#x73;&#114;&#x63;&#x2D;&#x62;&#105;&#110;&#46;&#x63;&#111;&#x6D;</a> for prior release&nbsp;notes.</p>
 
         </section>
 

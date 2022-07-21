@@ -29,7 +29,7 @@ These steps must be completed by a Google Super Admin. Be mindful, too, of which
 13. Select &ldquo;Web application&rdquo; for _Application type_
 14. Enter a _Name_, if desired
 15. Click **ADD URI** in the _Authorized redirect URIs_ section
-16. Enter &ldquo;<https://example.com/login>&rdquo; (substituting your Intranet DNS domain name)
+16. Enter &ldquo;<https://example.com/login>&rdquo; (substituting your just-purchased or just-transferred Intranet DNS domain name)
 17. Click **CREATE**
 18. Use the credentials to respond to `substrate create-admin-account`'s prompts
 19. Visit <https://console.cloud.google.com/apis/library/admin.googleapis.com> in a browser

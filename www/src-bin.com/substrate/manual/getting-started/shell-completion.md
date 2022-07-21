@@ -10,6 +10,8 @@ Shell completion makes using Substrate interactively much more pleasant. We reco
 
 ## Z shell
 
+    autoload compinit
+    compinit
     autoload bashcompinit
     bashcompinit
     complete -C "substrate --shell-completion" substrate

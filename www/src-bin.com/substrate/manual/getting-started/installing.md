@@ -6,11 +6,11 @@ Most steps in the getting started guide only need to be performed once. This ste
 
 Substrate is distributed directly to customers. You'll have access to a feed of releases which includes links to download tarballs. Download the latest one for your platform. Then extract it by running a command like this from your downloads directory:
 
-<pre><code>tar xf substrate-<em>version</em>-<em>commit</em>-<em>GOOS</em>-<em>GOARCH</em>.tar.gz -C ~/bin --strip-components 1</code></pre>
+<pre><code>tar xf substrate-<em>version</em>-<em>commit</em>-<em>GOOS</em>-<em>GOARCH</em>.tar.gz -C ~/bin --strip-components 2 substrate-<em>version</em>-<em>commit</em>-<em>GOOS</em>-<em>GOARCH</em>/bin/substrate</code></pre>
 
-_`GOOS`_ is one of &ldquo;darwin&rdquo; or &ldquo;linux&rdquo; and _`GOARCH`_ is one of &ldquo;amd64&rdquo; or &ldquo;arm64&rdquo;.
+Each released _version_ and _commit_ is offered in four binary formats; choose the appropriate one for your system. _`GOOS`_ is one of &ldquo;`darwin`&rdquo; or &ldquo;`linux`&rdquo; and _`GOARCH`_ is one of &ldquo;`amd64`&rdquo; or &ldquo;`arm64`&rdquo;.
 
-You can install Substrate wherever you like, if `~/bin` doesn't suit you, just ensure that directory is on your `PATH`.
+You can install Substrate wherever you like. If `~/bin` doesn't suit you, just ensure the directory where you install it is on your `PATH`.
 
 ## Terraform
 

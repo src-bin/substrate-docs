@@ -1,5 +1,35 @@
 # Substrate release notes
 
+<h2 id="2022.07">2022.07</h2>
+
+* Restructure the Substrate distribution to:
+    * Separate the `substrate` program in `bin/` from optional extra programs in `opt/bin/`.
+    * Remove deprecated symbolic links from the distribution (though the functionality has not been and will not be removed from `substrate` so previously installed symbolic links will continue to function).
+    * Include source code in release tarballs to obviate the need to micromanage GitHub collaborators.
+* Always prefix `substrate accounts -format shell` output with `set -e -x` so the shell will stop on error and print the commands as they're executed.
+* Add `-auto-approve` to `substrate accounts -format shell` to enable one-command, non-interactive upgrades for the most daring among us.
+* Add `module.substrate.cidr_prefix` to the other outputs of the convenience `module.substrate` that's automatically available in domain modules.
+* Bug fix: `substrate create-account` in 2022.06 failed to create accounts but now it's back. (It had one job!)
+* Bug fix: Substrate shell completion never fully worked in Z shell but now it does.
+
+Upgrade Substrate as in the [updated installation manual](../getting-started/installing/):
+
+> <pre><code>tar xf substrate-<em>version</em>-<em>commit</em>-<em>GOOS</em>-<em>GOARCH</em>.tar.gz -C ~/bin --strip-components 2 substrate-<em>version</em>-<em>commit</em>-<em>GOOS</em>-<em>GOARCH</em>/bin/substrate</code></pre>
+>
+> Each released _version_ and _commit_ is offered in four binary formats; choose the appropriate one for your system. _`GOOS`_ is one of &ldquo;`darwin`&rdquo; or &ldquo;`linux`&rdquo; and _`GOARCH`_ is one of &ldquo;`amd64`&rdquo; or &ldquo;`arm64`&rdquo;.
+>
+> You can install Substrate wherever you like. If `~/bin` doesn't suit you, just ensure the directory where you install it is on your `PATH`.
+
+After upgrading Substrate:
+
+1. `substrate bootstrap-management-account`
+2. `substrate bootstrap-network-account`
+3. `substrate bootstrap-deploy-account`
+4. <code>substrate create-admin-account -quality <em>quality</em></code> for each of your admin accounts
+5. <code>substrate create-account -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em></code> for each of your service accounts
+
+If your shell supports process substitution, you can run `sh <(substrate accounts -format shell)` to run all of these, in the proper order, in one command. As of this release you can make this non-interactive as `sh <(substrate accounts -auto-approve -format shell)` but this is not recommended as it forgoes your opportunity to object before Terraform applies changes.
+
 <h2 id="2022.06">2022.06</h2>
 
 * Substrate subcommands that create AWS accounts or apply Terraform code (`substrate bootstrap-*` and `substrate create-*account`) now prevent Substrate downgrades by checking the tags on the accounts themselves.

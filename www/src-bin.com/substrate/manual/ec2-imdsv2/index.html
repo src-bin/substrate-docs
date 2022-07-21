@@ -1,0 +1,130 @@
+<!doctype HTML>
+<html lang="en">
+    <meta charset="utf-8">
+    <head>
+        <!--<link href="https://src-bin.com/" rel="canonical">-->
+        <link href="/css/2022-04-24.css" rel="stylesheet">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:description" content="A page from the Substrate manual">
+        <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta name="twitter:site" content="@src_bin">
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Using Amazon EC2 when IMDSv2 is required">
+        <!--<meta name="viewport" content="width=device-width,initial-scale=1">-->
+        <meta property="og:description" content="A page from the Substrate manual">
+        <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Using Amazon EC2 when IMDSv2 is required">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://src-bin.com/substrate/manual/ec2-imdsv2/">
+        <title>Source &amp; Binary / Using Amazon EC2 when IMDSv2 is required</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1>
+            <p><a href="mailto:hello@src-bin.com">hello@src-bin.com</a></p>
+            <aside>Purveyors&nbsp;of&nbsp;secure,&nbsp;reliable,&nbsp;and&nbsp;compliant&nbsp;cloud&nbsp;infrastructure&nbsp;since&nbsp;2020</aside>
+            <nav>
+                <ul>
+                    <li><a href="/">Benefits</a></li>
+                    <li><a href="/substrate/">Features</a></li>
+                    <li><a href="/substrate/manual/">Documentation</a></li>
+                    <li><a href="/substrate/pricing/">Pricing</a></li>
+                    <!--<li><a href="/compliance/">Compliance Workshop</a></li>-->
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+
+<h1>Using Amazon EC2 when IMDSv2 is required</h1>
+
+<p>Substrate configures your AWS organization to prevent you from using Amazon EC2 in a way that&rsquo;s vulnerable to server-side request forgery attacks against the instance metadata service (IMDS, which you probably better know as 169.254.169.254) by requiring you to use IMDSv2. All of the AWS SDKs have long used this new method of fetching instance metadata including temporary IAM role credentials, instance identity documents, and the instance&rsquo;s public SSH&nbsp;key.</p>
+
+<p>The rest of this page offers pointers on using EC2 in the face of this important security&nbsp;measure.</p>
+
+<h2>Instance Factory</h2>
+
+<p>Every instance provisioned by your Instance Factory requires the use of IMDSv2 without you doing anything&nbsp;special.</p>
+
+<h2>AWS Console</h2>
+
+<p>When using the AWS Console to launch an instance, almost every option remains open to however you want to configure it. There is one exception. In the launch&nbsp;wizard:</p>
+
+<ol>
+<li>Scroll down to the bottom of the&nbsp;page</li>
+<li>Click <strong>Advanced details</strong> to reveal the rest of the&nbsp;options</li>
+<li>Change <em>Metadata version</em> to &ldquo;V2 only (token&nbsp;required)&rdquo;</li>
+<li>Click <strong>Launch instance</strong></li>
+</ol>
+
+<h2>AWS CLI</h2>
+
+<p>If you&rsquo;re launching EC2 instances directly using the AWS CLI, provide the <code>--metadata-options</code> option&nbsp;thus:</p>
+
+<pre><code>aws ec2 run-instances ... --metadata-options HttpEndpoint=enabled,HttpProtocolIpv6=enabled,HttpTokens=required,InstanceMetadataTags=enabled ...
+</code></pre>
+
+<h2>EC2 API</h2>
+
+<p>Similarly, if you&rsquo;re calling the EC2 API directly, include the following key and value in the request&nbsp;body:</p>
+
+<pre><code>"MetadataOptions": {
+    "HttpEndpoint":"enabled",
+    "HttpProtocolIpv6":"enabled",
+    "HttpTokens":"required",
+    "InstanceMetadataTags":"enabled"
+}
+</code></pre>
+
+<p>If you&rsquo;re using a language SDK (as you most likely are), translate this structure into your language&rsquo;s syntax and provide it alongside the rest of the options to <code>ec2:RunInstances</code>.</p>
+
+<h2>EC2 via Terraform</h2>
+
+<p>Almost the same structure applies if you&rsquo;re using Terraform&rsquo;s <code>aws_instance</code> resource (though for reasons unknown it doesn&rsquo;t expose the IPv6 option&nbsp;yet):</p>
+
+<pre><code>resource "aws_instance" "example" {
+  # ...
+  metadata_options {
+    http_endpoint          = "enabled"
+    #http_protocol_ipv6     = "enabled" # Terraform doesn&rsquo;t support this for EC2 yet
+    http_tokens            = "required"
+    instance_metadata_tags = "enabled"
+  }
+  # ...
+}
+</code></pre>
+
+<h2>EC2 Launch Templates API</h2>
+
+<p>If you&rsquo;re creating a launch template, ensure that it sets the same <code>MetadataOptions</code> in the EC2 API as the prior&nbsp;strategies:</p>
+
+<pre><code>"MetadataOptions": {
+    "HttpEndpoint":"enabled",
+    "HttpProtocolIpv6":"enabled",
+    "HttpTokens":"required",
+    "InstanceMetadataTags":"enabled"
+}
+</code></pre>
+
+<h2>EC2 Launch Templates via Terraform</h2>
+
+<p>And, no surprise, you can specify the same options in Terraform (including the IPv6&nbsp;option):</p>
+
+<pre><code>resource "aws_launch_template" "example" {
+  # ...
+  metadata_options {
+    http_endpoint          = "enabled"
+    http_protocol_ipv6     = "enabled"
+    http_tokens            = "required"
+    instance_metadata_tags = "enabled"
+  }
+  # ...
+}
+</code></pre>
+
+        </section>
+
+        <footer>
+            <p class="fine-print">&copy; 2020-2022 &mdash; Source <span class="fancy">&amp;</span> Binary&nbsp;LLC</p>
+        </footer>
+    </body>
+</html>
