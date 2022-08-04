@@ -1,5 +1,15 @@
 # Substrate release notes
 
+<!--
+<h2 id="2022.08">2022.08</h2>
+-->
+
+<!--
+* Add `-no-apply` to `substrate accounts -format shell` to enable you to review all the changes Terraform is planning to make across all your accounts at once. (After you review, you could swap `-no-apply` for `-auto-approve` or run `terraform apply` in each root module directly.)
+* Enforce a one-hour time limit for invocations of `substrate credentials`. There's a theoretical security benefit to doing so but mostly this prevents forgotten shells from running up your Lambda and CloudWatch bill while muddling your Intranet's logs.
+* Bug fix: Prevent pathologically long email addresses from breaking Credential Factory by exceeding the allowed length of `RoleSessionName` in the `sts:AssumeRole` API.
+-->
+
 <h2 id="2022.07">2022.07</h2>
 
 * Restructure the Substrate distribution to:
