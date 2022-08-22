@@ -1,0 +1,82 @@
+<!doctype HTML>
+<html lang="en">
+    <meta charset="utf-8">
+    <head>
+        <!--<link href="https://src-bin.com/" rel="canonical">-->
+        <link href="/css/2022-04-24.css" rel="stylesheet">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:description" content="A page from the Substrate manual">
+        <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta name="twitter:site" content="@src_bin">
+        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Adding administrators to your AWS organization">
+        <!--<meta name="viewport" content="width=device-width,initial-scale=1">-->
+        <meta property="og:description" content="A page from the Substrate manual">
+        <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
+        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Adding administrators to your AWS organization">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://src-bin.com/substrate/manual/adding-administrators/">
+        <title>Source &amp; Binary / Adding administrators to your AWS organization</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1>
+            <p><a href="mailto:hello@src-bin.com">hello@src-bin.com</a></p>
+            <aside>Purveyors&nbsp;of&nbsp;secure,&nbsp;reliable,&nbsp;and&nbsp;compliant&nbsp;cloud&nbsp;infrastructure&nbsp;since&nbsp;2020</aside>
+            <nav>
+                <ul>
+                    <li><a href="/">Benefits</a></li>
+                    <li><a href="/substrate/">Features</a></li>
+                    <li><a href="/substrate/manual/">Documentation</a></li>
+                    <li><a href="/substrate/pricing/">Pricing</a></li>
+                    <!--<li><a href="/compliance/">Compliance Workshop</a></li>-->
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+
+<h1>Adding administrators to your AWS organization</h1>
+
+<p>The Administrator role in all your Substrate-managed AWS accounts is managed outside of Terraform because Substrate configures Terraform to assume the Administrator role during Terraform runs. A classing chicken-and-egg problem. By default, the Administrator role in your admin account(s) can assume the Administrator role in all your service accounts and human users with the <code>RoleName</code> attribute set to &ldquo;Administrator&rdquo; in your identity provider can assume the Administrator role in your admin account(s). And while that&rsquo;s very often enough, there are plenty of reasons you might want to extend&nbsp;this.</p>
+
+<p>You may have additional human users that can&rsquo;t, for whatever reason, be granted accounts in your identity provider. You may choose to grant these folks access via an IAM user (with two-factor authentication, of course!), via a separate AWS account to which they already have access, or by using Terraform to configure a parallel identity provider they can access. In all of these cases, these users will will need to assume the Administrator&nbsp;role.</p>
+
+<p>You similarly may wish to grant a third-party SaaS CI/CD product access to run <code>terraform apply</code> (or <code>substate create-account</code>) on your behalf. If you&rsquo;re using GitHub Actions, you can follow their guide to <a href="https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services">configuring OpenID Connect in Amazon Web Services</a> to arrange for GitHub Actions to assume roles in your AWS accounts without managing an IAM user (which can&rsquo;t have two-factor authentication!) and a handing long-lived and very privileged access key to a third party. If you&rsquo;re not using GitHub Actions and the third party can&rsquo;t be configured to assume a role then you might have to create an IAM user and access key. In all of these cases, too, these principals will need to assume the Administrator&nbsp;role.</p>
+
+<p>To allow additional principals, whether IAM user or roles and whether they&rsquo;re coming from AWS accounts you control or don&rsquo;t, and regardless of whether they came directly or via an integration with another identity provider, you can populate the <code>substrate.Administrator.assume-role-policy.json</code> file in your Substrate&nbsp;repository.</p>
+
+<p>The contents of <code>substrate.Administrator.assume-role-policy.json</code> must be a well-formed JSON document in the structure of an AWS IAM assume role policy. Statements in this file must specify <code>"Action"</code> as one or more of the <code>sts:AssumeRole</code> family of actions, must <em>not</em> specify a <code>"Resource"</code>, and must specify one or more <code>"Principal"</code> identifiers (most likely IAM user or role&nbsp;ARNs).</p>
+
+<p>The simplest <code>substrate.Administrator.assume-role-policy.json</code> looks like&nbsp;this:</p>
+
+<pre><code>{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::ACCOUNT_NUMBER:role/ROLE_NAME"
+        ]
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+</code></pre>
+
+<p>You can include as many principals as you&rsquo;d like in the innermost&nbsp;list.</p>
+
+<p>Every time you update this file, you&rsquo;ll need to re-run <code>substrate create-admin-account -quality <em>quality</em></code> in order to update the Administrator role in all the relevant accounts. This policy will be merged with the policy Substrate generates for the Administrator role (since roles may only have a single assume-role&nbsp;policy).</p>
+
+<p>Once successfully applied, your additional administrators will be able to assume the Administrator role in all your&nbsp;accounts.</p>
+
+<p>Note, too, that this pattern can be applied to the Auditor role using the <code>substrate.Auditor.assume-role-policy.json</code> file per <a href="../auditing/">auditing your Substrate-managed AWS organization</a>.</p>
+
+        </section>
+
+        <footer>
+            <p class="fine-print">&copy; 2020-2022 &mdash; Source <span class="fancy">&amp;</span> Binary&nbsp;LLC</p>
+        </footer>
+    </body>
+</html>

@@ -51,7 +51,11 @@
 
 <h2>Reusing the Substrate-managed Auditor role</h2>
 
-<p>A great many integrations can be trusted with read-only access (specifically, the kind of read-only access that Substrate manages, without blanket <code>s3:GetObject</code>). In those cases, the <code>substrate.Auditor.assume-role-policy.json</code> file discussed along with <a href="../auditing/">auditing your Substrate-managed AWS organization</a> offers a shortcut into both specifc accounts and the whole&nbsp;organization.</p>
+<p>A great many integrations can be trusted with read-only access (specifically, the kind of read-only access that Substrate manages, without blanket <code>s3:GetObject</code>). In those cases, the <code>substrate.Auditor.assume-role-policy.json</code> file discussed along with <a href="../auditing/">auditing your Substrate-managed AWS organization</a> offers a simple&nbsp;solution.</p>
+
+<h2>Reusing the Substrate-managed Administrator role</h2>
+
+<p>Sometimes you will want to grant third-parties administrative access (e.g. to allow a CI/CD system to <code>terraform apply</code>). In those cases, the <code>substrate.Administrator.assume-role-policy.json</code> file discussed in <a href="../adding-administrators/">adding administrators to your AWS organization</a> offers a simple&nbsp;solution.</p>
 
 <h2>Creating an IAM user</h2>
 
