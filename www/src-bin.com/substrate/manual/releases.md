@@ -1,14 +1,23 @@
 # Substrate release notes
 
-<!--
 <h2 id="2022.08">2022.08</h2>
--->
 
-<!--
 * Add `-no-apply` to `substrate accounts -format shell` to enable you to review all the changes Terraform is planning to make across all your accounts at once. (After you review, you could swap `-no-apply` for `-auto-approve` or run `terraform apply` in each root module directly.)
 * Enforce a one-hour time limit for invocations of `substrate credentials`. There's a theoretical security benefit to doing so but mostly this prevents forgotten shells from running up your Lambda and CloudWatch bill while muddling your Intranet's logs.
 * Bug fix: Prevent pathologically long email addresses from breaking Credential Factory by exceeding the allowed length of `RoleSessionName` in the `sts:AssumeRole` API.
--->
+* Bug fix: Prevent a rare crash when submitting telemetry to Source &amp; Binary.
+
+Upgrade Substrate as in the [updated installation manual](../getting-started/installing/):
+
+> <pre><code>tar xf substrate-<em>version</em>-<em>commit</em>-<em>OS</em>-<em>ARCH</em>.tar.gz -C ~/bin --strip-components 2 substrate-<em>version</em>-<em>commit</em>-<em>OS</em>-<em>ARCH</em>/bin/substrate</code></pre>
+>
+> Each released _version_ and _commit_ is offered in four binary formats; choose the appropriate one for your system. _`OS`_ is one of &ldquo;`darwin`&rdquo; or &ldquo;`linux`&rdquo; and _`ARCH`_ is one of &ldquo;`amd64`&rdquo; or &ldquo;`arm64`&rdquo;.
+>
+> You can install Substrate wherever you like. If `~/bin` doesn't suit you, just ensure the directory where you install it is on your `PATH`.
+
+There are no specific upgrade requirements this month. It's still a good idea to run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform proposes to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to ensure your code and your AWS organization don't diverge.
+
+**Advance notice of an upcoming change**: Next month's release will delete an old EC2 security group that was used by the Instance Factory until late 2021. Beware that, if you have any Instance Factory instances from 2021 or earlier, you'll have to change their security group or terminate them before upgrading next month.
 
 <h2 id="2022.07">2022.07</h2>
 
@@ -21,12 +30,13 @@
 * Add `module.substrate.cidr_prefix` to the other outputs of the convenience `module.substrate` that's automatically available in domain modules.
 * Bug fix: `substrate create-account` in 2022.06 failed to create accounts but now it's back. (It had one job!)
 * Bug fix: Substrate shell completion never fully worked in Z shell but now it does.
+* Bug fix: Running Lambda function processes could corrupt themselves with environment variables for the CredentialFactory user, losing access to the Intranet role until the process ends.
 
 Upgrade Substrate as in the [updated installation manual](../getting-started/installing/):
 
-> <pre><code>tar xf substrate-<em>version</em>-<em>commit</em>-<em>GOOS</em>-<em>GOARCH</em>.tar.gz -C ~/bin --strip-components 2 substrate-<em>version</em>-<em>commit</em>-<em>GOOS</em>-<em>GOARCH</em>/bin/substrate</code></pre>
+> <pre><code>tar xf substrate-<em>version</em>-<em>commit</em>-<em>OS</em>-<em>ARCH</em>.tar.gz -C ~/bin --strip-components 2 substrate-<em>version</em>-<em>commit</em>-<em>OS</em>-<em>ARCH</em>/bin/substrate</code></pre>
 >
-> Each released _version_ and _commit_ is offered in four binary formats; choose the appropriate one for your system. _`GOOS`_ is one of &ldquo;`darwin`&rdquo; or &ldquo;`linux`&rdquo; and _`GOARCH`_ is one of &ldquo;`amd64`&rdquo; or &ldquo;`arm64`&rdquo;.
+> Each released _version_ and _commit_ is offered in four binary formats; choose the appropriate one for your system. _`OS`_ is one of &ldquo;`darwin`&rdquo; or &ldquo;`linux`&rdquo; and _`ARCH`_ is one of &ldquo;`amd64`&rdquo; or &ldquo;`arm64`&rdquo;.
 >
 > You can install Substrate wherever you like. If `~/bin` doesn't suit you, just ensure the directory where you install it is on your `PATH`.
 

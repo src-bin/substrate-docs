@@ -37,19 +37,28 @@
 
 <h1>Substrate release notes</h1>
 
-<!--
+<h2 id="2022.08">2022.08</h2>
 
+<ul>
+<li>Add <code>-no-apply</code> to <code>substrate accounts -format shell</code> to enable you to review all the changes Terraform is planning to make across all your accounts at once. (After you review, you could swap <code>-no-apply</code> for <code>-auto-approve</code> or run <code>terraform apply</code> in each root module&nbsp;directly.)</li>
+<li>Enforce a one-hour time limit for invocations of <code>substrate credentials</code>. There&rsquo;s a theoretical security benefit to doing so but mostly this prevents forgotten shells from running up your Lambda and CloudWatch bill while muddling your Intranet&rsquo;s&nbsp;logs.</li>
+<li>Bug fix: Prevent pathologically long email addresses from breaking Credential Factory by exceeding the allowed length of <code>RoleSessionName</code> in the <code>sts:AssumeRole</code>&nbsp;API.</li>
+<li>Bug fix: Prevent a rare crash when submitting telemetry to Source &amp;&nbsp;Binary.</li>
+</ul>
 
-6b5a8b8e774f819d0384e851468aef2a
+<p>Upgrade Substrate as in the <a href="../getting-started/installing/">updated installation manual</a>:</p>
 
+<blockquote>
+<pre><code>tar xf substrate-<em>version</em>-<em>commit</em>-<em>OS</em>-<em>ARCH</em>.tar.gz -C ~/bin --strip-components 2 substrate-<em>version</em>-<em>commit</em>-<em>OS</em>-<em>ARCH</em>/bin/substrate</code></pre>
+  
+  <p>Each released <em>version</em> and <em>commit</em> is offered in four binary formats; choose the appropriate one for your system. <em><code>OS</code></em> is one of &ldquo;<code>darwin</code>&rdquo; or &ldquo;<code>linux</code>&rdquo; and <em><code>ARCH</code></em> is one of &ldquo;<code>amd64</code>&rdquo; or &ldquo;<code>arm64</code>&rdquo;.</p>
+  
+  <p>You can install Substrate wherever you like. If <code>~/bin</code> doesn&rsquo;t suit you, just ensure the directory where you install it is on your <code>PATH</code>.</p>
+</blockquote>
 
--->
+<p>There are no specific upgrade requirements this month. It&rsquo;s still a good idea to run <code>sh &lt;(substrate accounts -format shell -no-apply)</code>, review what Terraform proposes to do, and then run <code>sh &lt;(substrate accounts -auto-approve -format shell)</code> to ensure your code and your AWS organization don&rsquo;t&nbsp;diverge.</p>
 
-<!--
-* Add `-no-apply` to `substrate accounts -format shell` to enable you to review all the changes Terraform is planning to make across all your accounts at once. (After you review, you could swap `-no-apply` for `-auto-approve` or run `terraform apply` in each root module directly.)
-* Enforce a one-hour time limit for invocations of `substrate credentials`. There&rsquo;s a theoretical security benefit to doing so but mostly this prevents forgotten shells from running up your Lambda and CloudWatch bill while muddling your Intranet&rsquo;s logs.
-* Bug fix: Prevent pathologically long email addresses from breaking Credential Factory by exceeding the allowed length of `RoleSessionName` in the `sts:AssumeRole` API.
--->
+<p><strong>Advance notice of an upcoming change</strong>: Next month&rsquo;s release will delete an old EC2 security group that was used by the Instance Factory until late 2021. Beware that, if you have any Instance Factory instances from 2021 or earlier, you&rsquo;ll have to change their security group or terminate them before upgrading next&nbsp;month.</p>
 
 <h2 id="2022.07">2022.07</h2>
 
@@ -65,14 +74,15 @@
 <li>Add <code>module.substrate.cidr_prefix</code> to the other outputs of the convenience <code>module.substrate</code> that&rsquo;s automatically available in domain&nbsp;modules.</li>
 <li>Bug fix: <code>substrate create-account</code> in 2022.06 failed to create accounts but now it&rsquo;s back. (It had one&nbsp;job!)</li>
 <li>Bug fix: Substrate shell completion never fully worked in Z shell but now it&nbsp;does.</li>
+<li>Bug fix: Running Lambda function processes could corrupt themselves with environment variables for the CredentialFactory user, losing access to the Intranet role until the process&nbsp;ends.</li>
 </ul>
 
 <p>Upgrade Substrate as in the <a href="../getting-started/installing/">updated installation manual</a>:</p>
 
 <blockquote>
-<pre><code>tar xf substrate-<em>version</em>-<em>commit</em>-<em>GOOS</em>-<em>GOARCH</em>.tar.gz -C ~/bin --strip-components 2 substrate-<em>version</em>-<em>commit</em>-<em>GOOS</em>-<em>GOARCH</em>/bin/substrate</code></pre>
+<pre><code>tar xf substrate-<em>version</em>-<em>commit</em>-<em>OS</em>-<em>ARCH</em>.tar.gz -C ~/bin --strip-components 2 substrate-<em>version</em>-<em>commit</em>-<em>OS</em>-<em>ARCH</em>/bin/substrate</code></pre>
   
-  <p>Each released <em>version</em> and <em>commit</em> is offered in four binary formats; choose the appropriate one for your system. <em><code>GOOS</code></em> is one of &ldquo;<code>darwin</code>&rdquo; or &ldquo;<code>linux</code>&rdquo; and <em><code>GOARCH</code></em> is one of &ldquo;<code>amd64</code>&rdquo; or &ldquo;<code>arm64</code>&rdquo;.</p>
+  <p>Each released <em>version</em> and <em>commit</em> is offered in four binary formats; choose the appropriate one for your system. <em><code>OS</code></em> is one of &ldquo;<code>darwin</code>&rdquo; or &ldquo;<code>linux</code>&rdquo; and <em><code>ARCH</code></em> is one of &ldquo;<code>amd64</code>&rdquo; or &ldquo;<code>arm64</code>&rdquo;.</p>
   
   <p>You can install Substrate wherever you like. If <code>~/bin</code> doesn&rsquo;t suit you, just ensure the directory where you install it is on your <code>PATH</code>.</p>
 </blockquote>
@@ -553,7 +563,7 @@ done
 
 <h2>2020.11 and prior releases</h2>
 
-<p>Contact <a href="&#x6D;&#x61;&#105;&#x6C;&#116;&#111;:&#x68;e&#x6C;&#x6C;&#111;&#64;&#x73;&#114;&#99;&#x2D;&#x62;&#x69;&#x6E;&#46;&#99;&#x6F;&#109;">&#x68;e&#x6C;&#x6C;&#111;&#64;&#x73;&#114;&#99;&#x2D;&#x62;&#x69;&#x6E;&#46;&#99;&#x6F;&#109;</a> for prior release&nbsp;notes.</p>
+<p>Contact <a href="&#x6D;&#x61;&#105;&#x6C;&#116;&#x6F;:&#104;&#x65;l&#108;&#x6F;&#64;&#115;&#114;&#x63;&#x2D;&#x62;&#105;&#110;&#x2E;&#x63;&#x6F;&#109;">&#104;&#x65;l&#108;&#x6F;&#64;&#115;&#114;&#x63;&#x2D;&#x62;&#105;&#110;&#x2E;&#x63;&#x6F;&#109;</a> for prior release&nbsp;notes.</p>
 
         </section>
 

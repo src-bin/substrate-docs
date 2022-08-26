@@ -6,9 +6,15 @@ Most steps in the getting started guide only need to be performed once. This ste
 
 Substrate is distributed directly to customers. You'll have access to a feed of releases which includes links to download tarballs. Download the latest one for your platform. Then extract it by running a command like this from your downloads directory:
 
-<pre><code>tar xf substrate-<em>version</em>-<em>commit</em>-<em>GOOS</em>-<em>GOARCH</em>.tar.gz -C ~/bin --strip-components 2 substrate-<em>version</em>-<em>commit</em>-<em>GOOS</em>-<em>GOARCH</em>/bin/substrate</code></pre>
+<pre><code>tar xf substrate-<em>version</em>-<em>commit</em>-<em>OS</em>-<em>ARCH</em>.tar.gz</code></pre>
 
-Each released _version_ and _commit_ is offered in four binary formats; choose the appropriate one for your system. _`GOOS`_ is one of &ldquo;`darwin`&rdquo; or &ldquo;`linux`&rdquo; and _`GOARCH`_ is one of &ldquo;`amd64`&rdquo; or &ldquo;`arm64`&rdquo;.
+This will create <code>substrate-<em>version</em>-<em>commit</em>-<em>OS</em>-<em>ARCH</em></code>, which contains `bin/substrate` (typically all you need), `opt/bin/` with some optional extra programs that are part of the Substrate distribution, and `src/` with the complete source code for this release of Substrate.
+
+To simply install Substrate in `~/bin` in a single command, run a command like this:
+
+<pre><code>tar xf substrate-<em>version</em>-<em>commit</em>-<em>OS</em>-<em>ARCH</em>.tar.gz -C ~/bin --strip-components 2 substrate-<em>version</em>-<em>commit</em>-<em>OS</em>-<em>ARCH</em>/bin/substrate</code></pre>
+
+Each released _version_ and _commit_ is offered in four binary formats; choose the appropriate one for your system. _`OS`_ is one of &ldquo;`darwin`&rdquo; or &ldquo;`linux`&rdquo; and _`ARCH`_ is one of &ldquo;`amd64`&rdquo; or &ldquo;`arm64`&rdquo;.
 
 You can install Substrate wherever you like. If `~/bin` doesn't suit you, just ensure the directory where you install it is on your `PATH`.
 
@@ -16,7 +22,7 @@ You can install Substrate wherever you like. If `~/bin` doesn't suit you, just e
 
 Substrate currently requires _exactly_ Terraform 1.2.3. (Substrate asks for Terraform to be upgraded every few releases to stay nearly current with Terraform.)
 
-You can download [Terraform 1.2.3](https://releases.hashicorp.com/terraform/1.2.3/) from Hashicorp, with the filenames being parameterized with _`GOOS`_ and _`GOARCH`_ the same as Substrate itself. Download and `unzip` the appropriate build. Move `terraform` into a directory on your `PATH`. (It doesn't have to be the same directory where you placed `substrate`.)
+You can download [Terraform 1.2.3](https://releases.hashicorp.com/terraform/1.2.3/) from Hashicorp, with the filenames being parameterized with _`OS`_ and _`ARCH`_ the same as Substrate itself. Download and `unzip` the appropriate build. Move `terraform` into a directory on your `PATH`. (It doesn't have to be the same directory where you placed `substrate`.)
 
 <section class="table">
     <section id="previous">
