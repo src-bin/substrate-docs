@@ -2,9 +2,12 @@
 
 <h2 id="2022.08">2022.08</h2>
 
+* Automate the tedious step of logging out of the AWS Console before logging in again in a different account. The window that opens will now briefly display the AWS homepage before redirecting to the AWS Console. (This marks the first introduction of JavaScript in the Intranet but, having exhausted all other options, this seems a worthwhile cause. Note, however, that this enhancement does not cover the `-console` option to `substrate assume-role` in order to keep that command completely decoupled from the Intranet.)
 * Add `-no-apply` to `substrate accounts -format shell` to enable you to review all the changes Terraform is planning to make across all your accounts at once. (After you review, you could swap `-no-apply` for `-auto-approve` or run `terraform apply` in each root module directly.)
 * Enforce a one-hour time limit for invocations of `substrate credentials`. There's a theoretical security benefit to doing so but mostly this prevents forgotten shells from running up your Lambda and CloudWatch bill while muddling your Intranet's logs.
+* Add a new `substrate upgrade` command, to be put into service with the 2022.09 release. (More details and updated documentation will accompany that release.)
 * Bug fix: Prevent pathologically long email addresses from breaking Credential Factory by exceeding the allowed length of `RoleSessionName` in the `sts:AssumeRole` API.
+* Bug fix: Don't fail spuriously when trying to create an account that already exists when the organization is at its limit for accounts.
 * Bug fix: Prevent a rare crash when submitting telemetry to Source &amp; Binary.
 
 Upgrade Substrate as in the [updated installation manual](../getting-started/installing/):
@@ -15,7 +18,7 @@ Upgrade Substrate as in the [updated installation manual](../getting-started/ins
 >
 > You can install Substrate wherever you like. If `~/bin` doesn't suit you, just ensure the directory where you install it is on your `PATH`.
 
-There are no specific upgrade requirements this month. It's still a good idea to run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform proposes to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to ensure your code and your AWS organization don't diverge.
+After upgrading Substrate, the best idea is to run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform proposes to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to ensure your code and your AWS organization don't diverge. If you need a minimal upgrade process, it's <code>substrate create-admin-account -quality <em>quality</em></code> to update your Intranet.
 
 **Advance notice of an upcoming change**: Next month's release will delete an old EC2 security group that was used by the Instance Factory until late 2021. Beware that, if you have any Instance Factory instances from 2021 or earlier, you'll have to change their security group or terminate them before upgrading next month.
 

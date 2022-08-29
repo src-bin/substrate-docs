@@ -1,20 +1,19 @@
 <!doctype HTML>
 <html lang="en">
-    <meta charset="utf-8">
     <head>
-        <!--<link href="https://src-bin.com/" rel="canonical">-->
-        <link href="/css/2022-04-24.css" rel="stylesheet">
-        <meta name="twitter:card" content="summary">
-        <meta name="twitter:description" content="A page from the Substrate manual">
-        <meta name="twitter:image" content="https://src-bin.com/img/apple-touch-icon.png">
-        <meta name="twitter:site" content="@src_bin">
-        <meta name="twitter:title" content="Source &amp; Binary / Substrate manual / Substrate release notes">
-        <!--<meta name="viewport" content="width=device-width,initial-scale=1">-->
-        <meta property="og:description" content="A page from the Substrate manual">
-        <meta property="og:image" content="https://src-bin.com/img/apple-touch-icon.png">
-        <meta property="og:title" content="Source &amp; Binary / Substrate manual / Substrate release notes">
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="https://src-bin.com/substrate/manual/releases/">
+        <link href="/css/2022-08-29.css" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta content="summary" name="twitter:card">
+        <meta content="A page from the Substrate manual" name="twitter:description">
+        <meta content="https://src-bin.com/img/apple-touch-icon.png" name="twitter:image">
+        <meta content="@src_bin" name="twitter:site">
+        <meta content="Source &amp; Binary / Substrate manual / Substrate release notes" name="twitter:title">
+        <meta content="width=device-width,initial-scale=1" name="viewport">
+        <meta content="A page from the Substrate manual" property="og:description">
+        <meta content="https://src-bin.com/img/apple-touch-icon.png" property="og:image">
+        <meta content="Source &amp; Binary / Substrate manual / Substrate release notes" property="og:title">
+        <meta content="website" property="og:type">
+        <meta content="https://src-bin.com/substrate/manual/releases/" property="og:url">
         <title>Source &amp; Binary / Substrate release notes</title>
     </head>
     <body>
@@ -40,9 +39,12 @@
 <h2 id="2022.08">2022.08</h2>
 
 <ul>
+<li>Automate the tedious step of logging out of the AWS Console before logging in again in a different account. The window that opens will now briefly display the AWS homepage before redirecting to the AWS Console. (This marks the first introduction of JavaScript in the Intranet but, having exhausted all other options, this seems a worthwhile cause. Note, however, that this enhancement does not cover the <code>-console</code> option to <code>substrate assume-role</code> in order to keep that command completely decoupled from the&nbsp;Intranet.)</li>
 <li>Add <code>-no-apply</code> to <code>substrate accounts -format shell</code> to enable you to review all the changes Terraform is planning to make across all your accounts at once. (After you review, you could swap <code>-no-apply</code> for <code>-auto-approve</code> or run <code>terraform apply</code> in each root module&nbsp;directly.)</li>
 <li>Enforce a one-hour time limit for invocations of <code>substrate credentials</code>. There&rsquo;s a theoretical security benefit to doing so but mostly this prevents forgotten shells from running up your Lambda and CloudWatch bill while muddling your Intranet&rsquo;s&nbsp;logs.</li>
+<li>Add a new <code>substrate upgrade</code> command, to be put into service with the 2022.09 release. (More details and updated documentation will accompany that&nbsp;release.)</li>
 <li>Bug fix: Prevent pathologically long email addresses from breaking Credential Factory by exceeding the allowed length of <code>RoleSessionName</code> in the <code>sts:AssumeRole</code>&nbsp;API.</li>
+<li>Bug fix: Don&rsquo;t fail spuriously when trying to create an account that already exists when the organization is at its limit for&nbsp;accounts.</li>
 <li>Bug fix: Prevent a rare crash when submitting telemetry to Source &amp;&nbsp;Binary.</li>
 </ul>
 
@@ -56,7 +58,7 @@
   <p>You can install Substrate wherever you like. If <code>~/bin</code> doesn&rsquo;t suit you, just ensure the directory where you install it is on your <code>PATH</code>.</p>
 </blockquote>
 
-<p>There are no specific upgrade requirements this month. It&rsquo;s still a good idea to run <code>sh &lt;(substrate accounts -format shell -no-apply)</code>, review what Terraform proposes to do, and then run <code>sh &lt;(substrate accounts -auto-approve -format shell)</code> to ensure your code and your AWS organization don&rsquo;t&nbsp;diverge.</p>
+<p>After upgrading Substrate, the best idea is to run <code>sh &lt;(substrate accounts -format shell -no-apply)</code>, review what Terraform proposes to do, and then run <code>sh &lt;(substrate accounts -auto-approve -format shell)</code> to ensure your code and your AWS organization don&rsquo;t diverge. If you need a minimal upgrade process, it&rsquo;s <code>substrate create-admin-account -quality <em>quality</em></code> to update your&nbsp;Intranet.</p>
 
 <p><strong>Advance notice of an upcoming change</strong>: Next month&rsquo;s release will delete an old EC2 security group that was used by the Instance Factory until late 2021. Beware that, if you have any Instance Factory instances from 2021 or earlier, you&rsquo;ll have to change their security group or terminate them before upgrading next&nbsp;month.</p>
 
@@ -563,7 +565,7 @@ done
 
 <h2>2020.11 and prior releases</h2>
 
-<p>Contact <a href="&#x6D;&#x61;&#105;&#x6C;&#116;&#x6F;:&#104;&#x65;l&#108;&#x6F;&#64;&#115;&#114;&#x63;&#x2D;&#x62;&#105;&#110;&#x2E;&#x63;&#x6F;&#109;">&#104;&#x65;l&#108;&#x6F;&#64;&#115;&#114;&#x63;&#x2D;&#x62;&#105;&#110;&#x2E;&#x63;&#x6F;&#109;</a> for prior release&nbsp;notes.</p>
+<p>Contact <a href="&#x6D;ai&#x6C;&#116;&#x6F;:&#104;&#x65;&#108;&#x6C;&#x6F;&#64;&#115;&#114;&#x63;&#x2D;&#98;&#105;&#110;.&#x63;&#x6F;&#109;">&#104;&#x65;&#108;&#x6C;&#x6F;&#64;&#115;&#114;&#x63;&#x2D;&#98;&#105;&#110;.&#x63;&#x6F;&#109;</a> for prior release&nbsp;notes.</p>
 
         </section>
 
