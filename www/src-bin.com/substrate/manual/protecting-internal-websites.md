@@ -8,10 +8,10 @@ There are two main strategies for adding new features to your Intranet which sho
 
 The easiest place to put Intranet extensions is in `modules/intranet/regional` because all the scaffolding is already present and it'll transparently handle multiple regions. Add resources such as these to a new file (and not `main.tf`, which is overwritten per the comment on its first line):
 
-    resource "aws_api_gateway_integration" "POST-wildcard" {
+    resource "aws_api_gateway_integration" "GET-wildcard" {
       credentials             = data.aws_iam_role.apigateway.arn
       http_method             = aws_api_gateway_method.GET-example.http_method
-      integration_http_method = "POST" # always "POST" even if you specify "GET" below
+      integration_http_method = "POST" # always "POST" even if you specify "GET" everywhere else
       passthrough_behavior    = "NEVER"
       resource_id             = aws_api_gateway_resource.example.id
       rest_api_id             = aws_api_gateway_rest_api.intranet.id
@@ -23,7 +23,7 @@ The easiest place to put Intranet extensions is in `modules/intranet/regional` b
       authorization = "CUSTOM"
       authorizer_id = aws_api_gateway_authorizer.substrate.id
       http_method   = "GET"
-      resource_id   = aws_api_gateway_resource.proxy.id
+      resource_id   = aws_api_gateway_resource.example.id
       rest_api_id   = aws_api_gateway_rest_api.intranet.id
     }
 
