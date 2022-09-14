@@ -13,7 +13,7 @@ In a new file in `modules/intranet/global`, add code like this:
         actions = [
           "ec2:DescribeVpcs",                   # an example for demonstration purposes; could be anything, including wildcards
           "organizations:DescribeOrganization", # required to use Substrate command-line tools
-          "sts:AssumeRole",                     # required to use /accounts and the AWS Console
+          "sts:AssumeRole",                     # required to use Substrate command-line tools and the Intranet's Accounts page
         ]
         resources = ["*"]
       }
@@ -72,6 +72,7 @@ In each service account, code like this in a new file in <code>modules/<em>domai
         actions = [
           "ec2:DescribeVpcs",                   # an example for demonstration purposes; could be anything, including wildcards
           "organizations:DescribeOrganization", # required to use Substrate command-line tools
+          "sts:AssumeRole",                     # required to use Substrate command-line tools
         ]
         resources = ["*"]
       }
