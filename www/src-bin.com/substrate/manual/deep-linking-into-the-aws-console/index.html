@@ -1,0 +1,66 @@
+<!doctype HTML>
+<html lang="en">
+    <head>
+        <link href="/css/2022-08-29.css" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta content="summary" name="twitter:card">
+        <meta content="A page from the Substrate manual" name="twitter:description">
+        <meta content="https://src-bin.com/img/apple-touch-icon.png" name="twitter:image">
+        <meta content="@src_bin" name="twitter:site">
+        <meta content="Source &amp; Binary / Substrate manual / Deep-linking into the AWS Console" name="twitter:title">
+        <meta content="width=device-width,initial-scale=1" name="viewport">
+        <meta content="A page from the Substrate manual" property="og:description">
+        <meta content="https://src-bin.com/img/apple-touch-icon.png" property="og:image">
+        <meta content="Source &amp; Binary / Substrate manual / Deep-linking into the AWS Console" property="og:title">
+        <meta content="website" property="og:type">
+        <meta content="https://src-bin.com/substrate/manual/deep-linking-into-the-aws-console/" property="og:url">
+        <title>Source &amp; Binary / Deep-linking into the AWS Console</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Source <span class="fancy">&amp;</span> Binary</a></h1>
+            <p><a href="mailto:hello@src-bin.com">hello@src-bin.com</a></p>
+            <aside>Purveyors&nbsp;of&nbsp;secure,&nbsp;reliable,&nbsp;and&nbsp;compliant&nbsp;cloud&nbsp;infrastructure&nbsp;since&nbsp;2020</aside>
+            <nav>
+                <ul>
+                    <li><a href="/">Benefits</a></li>
+                    <li><a href="/substrate/">Features</a></li>
+                    <li><a href="/substrate/manual/">Documentation</a></li>
+                    <li><a href="/substrate/pricing/">Pricing</a></li>
+                    <!--<li><a href="/compliance/">Compliance Workshop</a></li>-->
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+
+<h1>Deep-linking into the AWS Console</h1>
+
+<p>As of Substrate 2022.09, you can deep-link into the AWS Console via your Intranet. You should try to take this extra step whenever you&rsquo;re presenting your coworkers with links into the AWS Console to avoid two points of&nbsp;friction:</p>
+
+<ol>
+<li>They might not be logged in and the AWS Console isn&rsquo;t very aware of outside identity providers like the ones you integrate via&nbsp;Substrate.</li>
+<li>They might be logged into a different AWS account, which will almost certainly result in something akin to a 404 Not Found within the AWS&nbsp;Console.</li>
+</ol>
+
+<p>By deep-linking via your Intranet, you can ensure folks will be logged in and to the appropriate AWS&nbsp;account.</p>
+
+<p>You must construct a URL like&nbsp;this:</p>
+
+<pre><code>&lt;code&gt;https://&lt;em&gt;example.com&lt;/em&gt;/accounts?next=https://console.aws.amazon.com/&lt;em&gt;some-service/some-resource?some-querystring&lt;/em&gt;&amp;number=&lt;em&gt;12-digit-AWS-account-number&lt;/em&gt;&amp;role=&lt;em&gt;role-name&lt;/em&gt;&lt;/code&gt;
+</code></pre>
+
+<ul>
+<li><code><em>example.com</em></code>: As is the convention in this documentation, replace <em>example.com</em> with your Intranet&rsquo;s DNS domain&nbsp;name.</li>
+<li><code>https://console.aws.amazon.com/<em>some-service/some-resource?some-querystring</em></code>: The <code>next</code> query parameter must contain a URL-encoded URL to a page on <code>console.aws.amazon.com</code> or a subdomain (which means that, yes, you can link to regional pages in the AWS&nbsp;Console).</li>
+<li><code><em>12-digit-AWS-account-number</em></code>: The <code>number</code> query parameter must contain the 12-digit AWS account number of the account that owns the resource(s) you&rsquo;re linking&nbsp;to.</li>
+<li><code><em>role-name</em></code>: The <code>role</code> query parameter must contain the name of an IAM role in that account. &ldquo;Auditor&rdquo; is a good choice here because most folks will be able to assume that role, which makes it reasonable to e.g. share the deep link in Slack, and because the resulting AWS Console session will be read-only, which makes it a little&nbsp;safer.</li>
+</ul>
+
+        </section>
+
+        <footer>
+            <p class="fine-print">&copy; 2020-2022 &mdash; Source <span class="fancy">&amp;</span> Binary&nbsp;LLC</p>
+        </footer>
+    </body>
+</html>

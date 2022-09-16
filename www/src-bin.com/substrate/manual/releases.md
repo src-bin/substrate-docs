@@ -1,5 +1,18 @@
 # Substrate release notes
 
+<h2 id="2022.09">2022.09</h2>
+
+* Ensure folks assigned non-Administrator roles in their identity provider can always get credentials and get into the AWS Console. This will manifest as Terraform changing an ARN to `"*"` in your admin account.
+* Expand the Intranet's logging to CloudWatch Logs to better help folks diagnose any `substrate credentials` failures they may encounter.
+* Tune retries and timeouts in the Credential Factory and `substrate credentials` to ensure we get more meaningful error messages and fewer 504 Gateway Timeout responses. This will manifest as Terraform lowering the Intranet Lambda functions' timeouts.
+* Remove the long-unnecessary attachment of `arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs` to your admin account's Administrator role. This will manifest as Terraform destroying `module.intranet.aws_iam_role_policy_attachment.admin-cloudwatch` in your admin account.
+* Bug fix: Garbage collect expired tokens that were never fetched by `substrate credentials` (whether due to bugs, the process being interrupted, or something else).
+* Bug fix: Hide JavaScript paths introduced in 2022.08 from the Intranet's index page.
+
+Get the 2022.09 release by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, this will be all you need to do to upgrade.
+
+After upgrading Substrate, you at least need to run <code>substrate create-admin-account -quality <em>quality</em></code> to update your Intranet. Even better would be to run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
+
 <h2 id="2022.08">2022.08</h2>
 
 * Automate the tedious step of logging out of the AWS Console before logging in again in a different account. The window that opens will now briefly display the AWS homepage before redirecting to the AWS Console. (This marks the first introduction of JavaScript in the Intranet but, having exhausted all other options, this seems a worthwhile cause. Note, however, that this enhancement does not cover the `-console` option to `substrate assume-role` in order to keep that command completely decoupled from the Intranet.)
