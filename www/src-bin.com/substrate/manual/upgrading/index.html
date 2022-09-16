@@ -36,7 +36,9 @@
 
 <h1>Upgrading Substrate</h1>
 
-<p>In general, upgrading Substrate is a matter of replacing the Substrate binary on your PATH and re-running certain of the bootstrapping and account creation commands. The most thorough upgrade requires that you run the following after replacing the&nbsp;binaries:</p>
+<p>In general, upgrading Substrate is a matter of running <code>substrate upgrade</code>. If your <code>substrate</code> binary is not writeable, <code>substrate upgrade</code> will produce the URL of the tarball you&rsquo;ll need to download and untar to get the new <code>substrate</code> binary. You should put this on your PATH, replacing the old&nbsp;version.</p>
+
+<p>After upgrading, you should re-run the bootstrapping and account creation commands. The most thorough upgrade requires that you run the following after replacing the&nbsp;binaries:</p>
 
 <ol>
 <li><code>substrate bootstrap-management-account</code></li>
@@ -46,7 +48,9 @@
 <li><code>substrate create-account -domain "..." -environment "..." -quality "..."</code> for each of your other&nbsp;accounts</li>
 </ol>
 
-<p>See the <a href="../releases/">release notes</a> for version-specific upgrade instructions. They will endeavor to call out which of these steps, and potentially additional steps, are necessary to gain access to new features. It is, however, good hygiene to regularly run all of these&nbsp;commands.</p>
+<p>As a convenience, <code>substrate accounts -format shell</code> will generate all of these commands and put them in the proper order. For the most streamlined workflow, run <code>sh &lt;(substrate accounts -format shell -no-apply)</code>, review what Terraform plans to do, and then run <code>sh &lt;(substrate accounts -auto-approve -format shell)</code> to apply the&nbsp;changes.</p>
+
+<p>See the <a href="../releases/">release notes</a> for version-specific upgrade instructions. They will endeavor to call out which of these steps, and potentially additional steps, are necessary to gain access to new&nbsp;features.</p>
 
 <p><strong>Upgrade compatibility is only guaranteed from one month to the next so it&rsquo;s important to stay up-to-date. Behavior of upgrading several versions in one step is undefined and may not function properly.</strong></p>
 
