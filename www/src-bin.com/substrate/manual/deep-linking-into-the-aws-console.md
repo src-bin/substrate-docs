@@ -9,9 +9,9 @@ By deep-linking via your Intranet, you can ensure folks will be logged in and to
 
 You must construct a URL like this:
 
-<code>https://<em>example.com</em>/accounts?next=https://console.aws.amazon.com/<em>some-service/some-resource?some-querystring</em>&number=<em>12-digit-AWS-account-number</em>&role=<em>role-name</em></code>
+<code>https://<em>example.com</em>/accounts?next=https%3A%2F%2Fconsole.aws.amazon.com%2F<em>some-service%2Fsome-resource%3Fsome-querystring</em>&number=<em>12-digit-AWS-account-number</em>&role=<em>role-name</em></code>
 
 * <code><em>example.com</em></code>: As is the convention in this documentation, replace _example.com_ with your Intranet's DNS domain name.
-* <code>https://console.aws.amazon.com/<em>some-service/some-resource?some-querystring</em></code>: The `next` query parameter must contain a URL-encoded URL to a page on `console.aws.amazon.com` or a subdomain (which means that, yes, you can link to regional pages in the AWS Console).
+* <code>https%3A%2F%2Fconsole.aws.amazon.com%2F<em>some-service%2Fsome-resource%3Fsome-querystring</em></code>: The `next` query parameter must contain a URL-encoded URL to a page on `console.aws.amazon.com` or a subdomain (which means that, yes, you can link to regional pages in the AWS Console).
 * <code><em>12-digit-AWS-account-number</em></code>: The `number` query parameter must contain the 12-digit AWS account number of the account that owns the resource(s) you're linking to.
 * <code><em>role-name</em></code>: The `role` query parameter must contain the name of an IAM role in that account. &ldquo;Auditor&rdquo; is a good choice here because most folks will be able to assume that role, which makes it reasonable to e.g. share the deep link in Slack, and because the resulting AWS Console session will be read-only, which makes it a little safer.
