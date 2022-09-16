@@ -9,7 +9,7 @@ By deep-linking via your Intranet, you can ensure folks will be logged in and to
 
 You must construct a URL like this:
 
-    <code>https://<em>example.com</em>/accounts?next=https://console.aws.amazon.com/<em>some-service/some-resource?some-querystring</em>&number=<em>12-digit-AWS-account-number</em>&role=<em>role-name</em></code>
+<code>https://<em>example.com</em>/accounts?next=https://console.aws.amazon.com/<em>some-service/some-resource?some-querystring</em>&number=<em>12-digit-AWS-account-number</em>&role=<em>role-name</em></code>
 
 * <code><em>example.com</em></code>: As is the convention in this documentation, replace _example.com_ with your Intranet's DNS domain name.
 * <code>https://console.aws.amazon.com/<em>some-service/some-resource?some-querystring</em></code>: The `next` query parameter must contain a URL-encoded URL to a page on `console.aws.amazon.com` or a subdomain (which means that, yes, you can link to regional pages in the AWS Console).
