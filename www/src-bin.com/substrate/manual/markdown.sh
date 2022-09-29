@@ -34,8 +34,7 @@ do
             <aside>Purveyors&nbsp;of&nbsp;secure,&nbsp;reliable,&nbsp;and&nbsp;compliant&nbsp;cloud&nbsp;infrastructure&nbsp;since&nbsp;2020</aside>
             <nav>
                 <ul>
-                    <li><a href="/">Benefits</a></li>
-                    <li><a href="/substrate/">Features</a></li>
+                    <li><a href="/substrate/">Substrate</a></li>
                     <li><a href="/substrate/manual/">Documentation</a></li>
                     <li><a href="/substrate/pricing/">Pricing</a></li>
                     <!--<li><a href="/compliance/">Compliance Workshop</a></li>-->
