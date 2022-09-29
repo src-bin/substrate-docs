@@ -57,7 +57,7 @@ Also, concerning your Intranet: Substrate ensures your Intranet is always served
 
 **The entity authorizes, designs, develops or acquires, configures, documents, tests, approves, and implements changes to infrastructure, data, software, and procedures to meet its objectives.**
 
-Substrate's insistence on using Terraform and multiple AWS pays dividends here by creating separation between environments and qualities, making it easy to demonstrate that changes are tested before they reach (all of) production.
+Substrate's insistence on using Terraform and multiple AWS accounts pays dividends here by creating separation between environments and qualities, making it easy to demonstrate that changes are tested before they reach (all of) production.
 
 Controls to consider:
 
