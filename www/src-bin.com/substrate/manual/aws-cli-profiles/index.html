@@ -51,14 +51,19 @@ credential_process = substrate assume-role -format json -quiet -domain <em>domai
 <pre><code>eval $(substrate credentials)
 aws sts get-caller-identity --profile <em>whatever-you-want-to-call-it</em></code></pre>
 
-<p>Or, if you so choose, use <a href="https://granted.dev/">Granted</a> to navigate the profiles you configure in <code>~/.aws/config</code>.</p>
-
-<p>A downside of using profiles is that they&rsquo;re not shared amongst you and your teammates the way domains, environments, and qualities are but they can save a bit of typing and you will arrive at the same point so use whichever tool suits you in every situation &mdash; there&rsquo;s no need to commit to one&nbsp;exclusively.</p>
+<p>This is considerably shorter than <code>substrate assume-role -format json -quiet -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em> aws sts get-caller-identity</code> but the profile is local to your machine and not shared amongst your teammates the way domains, environments, and qualities are which makes collaboration harder. Nonetheless, profiles are a part of the AWS CLI and SDK that Substrate supports so use whichever tool suits you in every situation &mdash; there&rsquo;s no need to commit to one exclusively. You can even check out <a href="https://granted.dev/">Granted</a> to navigate the profiles you configure in <code>~/.aws/config</code>.</p>
 
         </section>
 
         <footer>
             <p class="fine-print">&copy; 2020-2022 &mdash; Source <span class="fancy">&amp;</span> Binary&nbsp;LLC</p>
         </footer>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-T1M8F1RWMC"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-T1M8F1RWMC');
+        </script>
     </body>
 </html>
