@@ -71,7 +71,7 @@ When this program exits, you should commit `substrate.*` and `root-modules/netwo
 
 This program doesn't need any input except during its first run in which you'll be prompted for your root access key.
 
-When this program exits, you should commit `root-modules/deploy/` to version control. It is safe to re-run this program at any time.
+When this program exits, you should commit `modules/deploy/` and `root-modules/deploy/` to version control. It is safe to re-run this program at any time.
 
 <section class="table">
     <section id="previous">

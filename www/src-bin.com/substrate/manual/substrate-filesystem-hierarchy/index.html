@@ -47,6 +47,20 @@
 <li><strong><code>modules</code></strong> <br>
 A tree of Terraform modules, the ones listed below to support your network and admin accounts, one module for each domain you define, and all the modules you define to encapsulate your own code. Substrate-managed files include a header identifying them as such and declaring whether you may edit them.
 <ul>
+<li><strong><code>common</code></strong>
+<ul>
+<li><strong><code>global</code></strong> <br>
+A blank slate, where you can add global resources to all your service accounts. (Managed by <code>substrate create-account</code>.)</li>
+<li><strong><code>regional</code></strong> 
+A blank slate, where you can add regional resources to all your service accounts. (Managed by <code>substrate create-account</code>.)</li>
+</ul></li>
+<li><strong><code>deploy</code></strong>
+<ul>
+<li><strong><code>global</code></strong> <br>
+A blank slate, where you can add global resources (e.g. IAM roles) to your deploy account. (Managed by <code>substrate bootstrap-deploy-account</code>.)</li>
+<li><strong><code>regional</code></strong> <br>
+A blank slate, where you can add regional resources (e.g. ECR repositories) to your deploy account. (Managed by <code>substrate bootstrap-deploy-account</code>.)</li>
+</ul></li>
 <li><strong><code>intranet</code></strong> <br>
 Your Intranet, which runs in your admin account, and serves the Credential and Instance Factories, the Accounts page used to access the AWS Console, and potentially more. (Managed by <code>substrate create-admin-account</code>.)</li>
 <li><strong><code>lambda-function</code></strong> <br>
@@ -60,7 +74,7 @@ A convenience for making domain, environment, and quality plus network configura
 <li><strong><code>global</code></strong>
 <ul>
 <li><strong><code>main.tf</code></strong> <br>
-A blank slate, ready for you to add your global Terraform resources. (Managed by <code>substrate create-account</code>.)</li>
+A blank slate, where you can add your global Terraform resources. (Managed by <code>substrate create-account</code>.)</li>
 <li><strong><code>substrate.tf</code></strong> <br>
 A reference to <code>modules/substrate/global</code>, which makes <code>module.substrate.tags</code> work in this module. (Managed by <code>substrate create-account</code>.)</li>
 <li><strong><code>versions.tf</code></strong> <br>

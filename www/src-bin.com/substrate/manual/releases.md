@@ -1,5 +1,47 @@
 # Substrate release notes
 
+<h2 id="2022.10">2022.10</h2>
+
+* Change Substrate's internal use of AWS IAM roles to only assume a role if it's different than the role Substrate has already assumed. This ensures folks won't run afoul of the new, stricter evaluation of IAM roles' trust policies, as outlined in [Announcing an update to IAM role trust policy behavior](https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/) and set to take full effect February 15, 2023.
+* Allow the DeployAdministrator and NetworkAdministrator roles to assume themselves, explicitly allowing this after the new, stricter evaluation of IAM roles' trust policies (described above) takes full effect.
+* Add `modules/common/global` and `modules/common/regional` which will be instantiated in every new service account. See below for directions on opting existing service accounts into this new default behavior.
+* Add `modules/deploy/global` and `modules/deploy/regional` as blank slates so folks can add resources (e.g. AWS ECR repositories) to their deploy account in every region.
+* Change the schema of the output of `substrate credentials -format json` to be compatible with the AWS SDK's `credential_process` directive. Specifically, rename `AccessKeyID` to `AccessKeyId` and `Expires` to `Expiration`, as documented in [Sourcing credentials with an external process](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sourcing-external.html).
+* Add `substrate credentials -no-open` to give folks the opportunity to choose which browser window opens the Credential Factory authorization.
+* Memoize and parallelize listing accounts to improve performance.
+* Memoize OAuth OIDC signing keys in the Intranet to improve Intranet performance.
+* Bug fix: Avoid infinite recursion when using `substrate credentials` as a `credential_process` for the AWS CLI/SDK. Substrate never intended to read `~/.aws/config` or `~/.aws/credentials` but was doing so inadvertantly; it no longer reads either of these files.
+
+If you wish to instantiate the new common modules in your existing service accounts, take the following steps for each _domain_:
+
+1. Add the following block to <code>modules/<em>domain</em>/global/main.tf</code>:
+
+        module "common" {
+          providers = {
+            aws           = aws
+            aws.us-east-1 = aws.us-east-1
+          }
+          source = "../../common/global"
+        }
+
+2. Add the following block to <code>modules/<em>domain</em>/regional/main.tf</code>:
+
+        module "common" {
+          providers = {
+            aws         = aws
+            aws.network = aws.network
+          }
+          source = "../../common/regional"
+        }
+
+3. Run <code>substrate create-account -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em></code> for each _domain_ service account.
+
+These modules aren't being instantiated in existing service accounts automatically because Substrate can't guarantee that's safe.
+
+Upgrade Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, this will be all you need to do to upgrade.
+
+After upgrading Substrate, you should run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
+
 <h2 id="2022.09">2022.09</h2>
 
 * Ensure folks assigned non-Administrator roles in their identity provider can always get credentials and get into the AWS Console. This will manifest as Terraform changing an ARN to `"*"` in your admin account.

@@ -10,7 +10,7 @@ A great many organizations use Amazon S3 as a repository for software artifacts 
 
 ## ECR
 
-Some organizations use higher-level repositories, too, as offered by AWS ECR. We recommend these repositories be created in your deploy account by, for example, placing the following in <code>root-modules/deploy/<em>region</em>/ecr.tf</code>:
+Some organizations use higher-level repositories, too, as offered by AWS ECR. We recommend these repositories be created in your deploy account by, for example, placing the following in `modules/deploy/regional/main.tf`:
 
     data "aws_iam_policy_document" "organization" {
       statement {

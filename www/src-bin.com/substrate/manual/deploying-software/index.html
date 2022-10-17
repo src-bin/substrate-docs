@@ -45,7 +45,7 @@
 
 <h2>ECR</h2>
 
-<p>Some organizations use higher-level repositories, too, as offered by AWS ECR. We recommend these repositories be created in your deploy account by, for example, placing the following in <code>root-modules/deploy/<em>region</em>/ecr.tf</code>:</p>
+<p>Some organizations use higher-level repositories, too, as offered by AWS ECR. We recommend these repositories be created in your deploy account by, for example, placing the following in <code>modules/deploy/regional/main.tf</code>:</p>
 
 <pre><code>data "aws_iam_policy_document" "organization" {
   statement {

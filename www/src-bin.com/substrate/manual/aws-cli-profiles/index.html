@@ -39,7 +39,18 @@
 
 <p>Fortunately, there are two less-well-known configurations that can help you address both: Profiles and the <code>credential_process</code>&nbsp;directive.</p>
 
-<p>Define one or more profiles in <code>~/.aws/config</code>, naming them whatever you like, that defer credential management to Substrate via <code>substrate assume-role</code>:</p>
+<h2>Using Substrate as a &ldquo;credential process&rdquo;</h2>
+
+<p>When you use the AWS CLI or an SDK without any additional configuration, it&rsquo;ll read <code>~/.aws/config</code> and use the default profile it finds there. You can configure the default profile (or any other name by changing <em>default</em> to something else) to use Substrate to get credentials as&nbsp;follows:</p>
+
+<pre><code>[profile <em>default</em>]
+credential_process = substrate credentials -format json -quiet</code></pre>
+
+<p>This will save you having to run <code>eval $(substrate credentials)</code> yourself but will open a browser window each and every time you use the AWS CLI or SDK. Most users should prefer to use <code>eval $(substrate credentials)</code> to put AWS credentials that last 12 hours into environment&nbsp;variables.</p>
+
+<h2>Using Substrate to assume roles in named profiles</h2>
+
+<p>Once you have AWS credentials in your environment, you can choose to use profiles to save yourself some typing. Define profiles in <code>~/.aws/config</code>, naming them whatever you like, that defer credential management to Substrate via <code>substrate assume-role</code>:</p>
 
 <pre><code>[profile <em>whatever-you-want-to-call-it</em>]
 credential_process = substrate assume-role -format json -quiet -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em></code></pre>

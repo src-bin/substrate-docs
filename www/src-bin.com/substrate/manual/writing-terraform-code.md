@@ -15,6 +15,9 @@ Suppose you're responsible for a service called _example_ that you run in _stagi
 These will create the following directory trees, which you will should commit to version control:
 
 - `modules`
+    - `common`
+        - `global`
+        - `regional`
     - `example`
         - `global`
         - `regional`
@@ -40,6 +43,8 @@ What do you do next? And where do you do it?
 The vast majority of your work should happen in your domain's Terraform modules. In this _example_ domain those are `modules/example/global` and `modules/example/regional`. Put global resources like IAM roles and Route 53 records in `modules/example/global`. Put regional resources like autoscaling groups and EKS clusters in `modules/example/regional`. (Substrate has generated all the `module` blocks necessary to instantiate these modules with the right Terraform providers.)
 
 You selected some number of AWS regions when you configured your network but you may not want to run all your infrastructure in all those regions all the time (if for no other reason than cost control). You may edit `root-modules/*/*/*/*/main.tf` to customize which of your selected regions are actually in use. By default, all your selected regions are in use. If you don't want to provision your infrastructure in any of them, simply comment out the resources in `root-modules/*/*/*/*/main.tf` (substituting your domains, environments, qualities, and regions as desired).
+
+Every domain module automatically instantiates a common module, too. Here, `modules/example/global` instantiates `modules/common/global` and `modules/example/regional` instantiates `modules/common/regional`. These common modules, following the now-familiar pattern of [global and regional Terraform modules](../global-and-regional-terraform-modules/), are for resources that should exist in every service account. Note that the common modules are not instantiated in admin accounts or the audit, deploy, management, or network accounts.
 
 ## Testing and deploying Terraform changes
 

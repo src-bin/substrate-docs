@@ -35,6 +35,52 @@
 
 <h1>Substrate release notes</h1>
 
+<h2 id="2022.10">2022.10</h2>
+
+<ul>
+<li>Change Substrate&rsquo;s internal use of AWS IAM roles to only assume a role if it&rsquo;s different than the role Substrate has already assumed. This ensures folks won&rsquo;t run afoul of the new, stricter evaluation of IAM roles&rsquo; trust policies, as outlined in <a href="https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/">Announcing an update to IAM role trust policy behavior</a> and set to take full effect February 15,&nbsp;2023.</li>
+<li>Allow the DeployAdministrator and NetworkAdministrator roles to assume themselves, explicitly allowing this after the new, stricter evaluation of IAM roles&rsquo; trust policies (described above) takes full&nbsp;effect.</li>
+<li>Add <code>modules/common/global</code> and <code>modules/common/regional</code> which will be instantiated in every new service account. See below for directions on opting existing service accounts into this new default&nbsp;behavior.</li>
+<li>Add <code>modules/deploy/global</code> and <code>modules/deploy/regional</code> as blank slates so folks can add resources (e.g. AWS ECR repositories) to their deploy account in every&nbsp;region.</li>
+<li>Change the schema of the output of <code>substrate credentials -format json</code> to be compatible with the AWS SDK&rsquo;s <code>credential_process</code> directive. Specifically, rename <code>AccessKeyID</code> to <code>AccessKeyId</code> and <code>Expires</code> to <code>Expiration</code>, as documented in <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sourcing-external.html">Sourcing credentials with an external process</a>.</li>
+<li>Add <code>substrate credentials -no-open</code> to give folks the opportunity to choose which browser window opens the Credential Factory&nbsp;authorization.</li>
+<li>Memoize and parallelize listing accounts to improve&nbsp;performance.</li>
+<li>Memoize OAuth OIDC signing keys in the Intranet to improve Intranet&nbsp;performance.</li>
+<li>Bug fix: Avoid infinite recursion when using <code>substrate credentials</code> as a <code>credential_process</code> for the AWS CLI/SDK. Substrate never intended to read <code>~/.aws/config</code> or <code>~/.aws/credentials</code> but was doing so inadvertantly; it no longer reads either of these&nbsp;files.</li>
+</ul>
+
+<p>If you wish to instantiate the new common modules in your existing service accounts, take the following steps for each <em>domain</em>:</p>
+
+<ol>
+<li><p>Add the following block to <code>modules/<em>domain</em>/global/main.tf</code>:</p>
+
+<pre><code>module "common" {
+  providers = {
+    aws           = aws
+    aws.us-east-1 = aws.us-east-1
+  }
+  source = "../../common/global"
+}
+</code></pre></li>
+<li><p>Add the following block to <code>modules/<em>domain</em>/regional/main.tf</code>:</p>
+
+<pre><code>module "common" {
+  providers = {
+    aws         = aws
+    aws.network = aws.network
+  }
+  source = "../../common/regional"
+}
+</code></pre></li>
+<li><p>Run <code>substrate create-account -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em></code> for each <em>domain</em> service account.</p></li>
+</ol>
+
+<p>These modules aren&rsquo;t being instantiated in existing service accounts automatically because Substrate can&rsquo;t guarantee that&rsquo;s&nbsp;safe.</p>
+
+<p>Upgrade Substrate by running <code>substrate upgrade</code> and following its prompts. If your copy of <code>substrate</code> is writeable, this will be all you need to do to&nbsp;upgrade.</p>
+
+<p>After upgrading Substrate, you should run <code>sh &lt;(substrate accounts -format shell -no-apply)</code>, review what Terraform plans to do, and then run <code>sh &lt;(substrate accounts -auto-approve -format shell)</code> to apply the&nbsp;changes.</p>
+
 <h2 id="2022.09">2022.09</h2>
 
 <ul>
@@ -579,7 +625,7 @@ done
 
 <h2>2020.11 and prior releases</h2>
 
-<p>Contact <a href="&#109;&#97;&#105;&#108;&#x74;&#111;:h&#x65;&#x6C;&#108;&#x6F;&#64;&#x73;&#x72;&#x63;&#45;&#x62;i&#110;&#x2E;&#x63;&#x6F;&#x6D;">h&#x65;&#x6C;&#108;&#x6F;&#64;&#x73;&#x72;&#x63;&#45;&#x62;i&#110;&#x2E;&#x63;&#x6F;&#x6D;</a> for prior release&nbsp;notes.</p>
+<p>Contact <a href="&#x6D;&#x61;&#x69;&#x6C;&#116;&#111;:&#104;&#x65;&#108;&#x6C;&#x6F;&#64;&#115;&#x72;c&#45;&#x62;&#x69;&#110;&#x2E;&#99;&#x6F;&#x6D;">&#104;&#x65;&#108;&#x6C;&#x6F;&#64;&#115;&#x72;c&#45;&#x62;&#x69;&#110;&#x2E;&#99;&#x6F;&#x6D;</a> for prior release&nbsp;notes.</p>
 
         </section>
 

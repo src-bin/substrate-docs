@@ -10,6 +10,16 @@ The following index describes the contents and purpose of all the files the vari
 
 - **`modules`**  
   A tree of Terraform modules, the ones listed below to support your network and admin accounts, one module for each domain you define, and all the modules you define to encapsulate your own code. Substrate-managed files include a header identifying them as such and declaring whether you may edit them.
+    - **`common`**
+        - **`global`**  
+          A blank slate, where you can add global resources to all your service accounts. (Managed by `substrate create-account`.)
+        - **`regional`** 
+          A blank slate, where you can add regional resources to all your service accounts. (Managed by `substrate create-account`.)
+    - **`deploy`**
+        - **`global`**  
+          A blank slate, where you can add global resources (e.g. IAM roles) to your deploy account. (Managed by `substrate bootstrap-deploy-account`.)
+        - **`regional`**  
+          A blank slate, where you can add regional resources (e.g. ECR repositories) to your deploy account. (Managed by `substrate bootstrap-deploy-account`.)
     - **`intranet`**  
       Your Intranet, which runs in your admin account, and serves the Credential and Instance Factories, the Accounts page used to access the AWS Console, and potentially more. (Managed by `substrate create-admin-account`.)
     - **`lambda-function`**  
@@ -21,7 +31,7 @@ The following index describes the contents and purpose of all the files the vari
     - **<code><em>domain</em></code>**
         - **`global`**
             - **`main.tf`**  
-              A blank slate, ready for you to add your global Terraform resources. (Managed by `substrate create-account`.)
+              A blank slate, where you can add your global Terraform resources. (Managed by `substrate create-account`.)
             - **`substrate.tf`**  
               A reference to `modules/substrate/global`, which makes `module.substrate.tags` work in this module. (Managed by `substrate create-account`.)
             - **`versions.tf`**  
