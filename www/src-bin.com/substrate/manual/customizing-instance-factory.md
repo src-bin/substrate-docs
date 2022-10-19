@@ -53,7 +53,7 @@ You can use this technique to automatically enroll instances from the Instance F
 
     curl -o"$TMP/awscli.zip" -s "https://awscli.amazonaws.com/awscli-exe-linux-${each.key == "arm64" ? "aarch64" : each.key}.zip"
     unzip "$TMP/awscli.zip" -d "$TMP"
-    "$TMP/aws/install"
+    "$TMP/aws/install" --update
     which "aws"
 
     curl -L -o"$TMP/smallstep.bash" -s "https://files.smallstep.com/ssh-host.sh"
@@ -67,8 +67,6 @@ You can use this technique to automatically enroll instances from the Instance F
             jq -r ".SecretString"
         )"
     which "step"
-
-    exit 0
     EOF
       )
     }
