@@ -45,7 +45,7 @@ do
         <section>
 EOF
         echo
-        Markdown.pl --html4tags "$PATHNAME" |
+        perl -e 'require "/usr/bin/Markdown.pl"; srand(47); $m = Text::Markdown->new(empty_element_suffix => "\>"); print $m->markdown(join("", <>));' <"$PATHNAME" |
         sed -E "s/'/\\&rsquo;/g; s/ ([^ >]+<\/[a-z]+>)$/\\&nbsp;\\1/"
         echo
         cat <<EOF
