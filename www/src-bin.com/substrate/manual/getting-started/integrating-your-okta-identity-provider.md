@@ -10,7 +10,7 @@
 6. Select &ldquo;Web Application&rdquo;
 7. Click **Next**
 8. Customize _App integration name_
-8. Change the first/only item in _Sign-in redirect URIs_ to &ldquo;<https://example.com/login>&rdquo; (substituting your just-purchased or just-transferred Intranet DNS domain name)
+8. Change the first/only item in _Sign-in redirect URIs_ to &ldquo;https://<em>intranet-dns-domain-name</em>/login&rdquo; (substituting your just-purchased or just-transferred Intranet DNS domain name)
 9. Remove all _Sign-out redirect URIs_
 9. Select &ldquo;Limit access to selected groups&rdquo; and select the groups that are authorized to use AWS (or choose another option; this can always be reconfigured)
 10. Click **Save**

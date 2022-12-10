@@ -35,13 +35,11 @@
 
 <h1>Integrating your identity provider to control access to AWS</h1>
 
-<p>Substrate uses an OAuth OIDC identity provider to broker all your human access to AWS. Substrate supports <a href="https://workspace.google.com">Google Workspace</a> and <a href="https://www.okta.com">Okta</a>. You almost certainly already have one but, on the off chance you don&rsquo;t: Which one should you&nbsp;choose?</p>
+<p>Substrate uses an OAuth OIDC identity provider to broker all your human access to AWS. Substrate supports <a href="https://azure.microsoft.com/en-us/products/active-directory/">Azure Active Directory</a>, <a href="https://workspace.google.com/">Google Workspace</a> and <a href="https://www.okta.com/">Okta</a>. You almost certainly already have one already. It pays dividends to standardize on an identity provider early and configure every bit of SaaS your company uses to rely on&nbsp;it.</p>
 
-<p>Your organization probably already uses Google to host your mail and calendars. Why not use it to broker access to the AWS Console and your Intranet? It&rsquo;s perfectly capable. You&rsquo;ll find, however, that Okta&rsquo;s strength is in scale. In Google Workspace, each user that&rsquo;s granted access to AWS must have a role assigned specifically to them. Okta&rsquo;s integration with AWS IAM roles is much better when you&rsquo;re managing even dozens of&nbsp;users.</p>
+<p>Feel free to try them all. Whichever you choose, take comfort in knowing your decision isn&rsquo;t permanent. <a href="../../changing-identity-providers/">Changing identity providers</a> documents how to move from one to&nbsp;another.</p>
 
-<p>Feel free to try them both. Whichever you choose, take comfort in knowing your decision isn&rsquo;t permanent. <a href="../../changing-identity-providers/">Changing identity providers</a> documents how to move from one to&nbsp;another.</p>
-
-<p>The next section, whichever identity provider you choose, you&rsquo;ll run <code>substrate create-admin-account -quality <em>quality</em></code> and the documentation will help you respond to its&nbsp;prompts.</p>
+<p>In the next section, whichever identity provider you choose, you&rsquo;ll run <code>substrate create-admin-account -quality <em>quality</em></code> and the documentation will help you respond to its&nbsp;prompts.</p>
 
 <p>One of those prompts concerns purchasing or transferring a DNS domain name or delegating a DNS zone from elsewhere into this new account. If you&rsquo;re at a loss for inspiration, consider using your company&rsquo;s name with the <code>.company</code> or <code>.tools</code> TLD. Avoid overloading any domain you use for public-facing web services, especially those that set cookies, to reduce the impact of e.g. CSRF or XSS vulnerabilities. <strong>Be sure to respond to the emails sent by Route 53 (which Google often flags as suspicious) to avoid your domain being suspended in a few days.</strong> This is the domain where Substrate will arrange to serve your Credential Factory for minting temporary AWS credentials, your Instance Factory for launching personal EC2 instances, your account listing which also gets you into the AWS Console, and any tools you choose to add to your Intranet&nbsp;later.</p>
 
@@ -52,7 +50,11 @@
         <p>Previous:<br><a href="../bootstrapping/">Bootstrapping your Substrate-managed AWS organization</a></p>
     </section>
     <section id="next">
-        <p>Next:<br><a href="../integrating-your-google-identity-provider/">Integrating your Google identity provider</a><br>or<br><a href="../integrating-your-okta-identity-provider/">Integrating your Okta identity provider</a></p>
+        <p>Next:
+            <br><a href="../integrating-your-azure-ad-identity-provider/">Integrating your Azure AD identity provider</a><br>or
+            <br><a href="../integrating-your-google-identity-provider/">Integrating your Google identity provider</a><br>or
+            <br><a href="../integrating-your-okta-identity-provider/">Integrating your Okta identity&nbsp;provider</a>
+        </p>
     </section>
 </section></p>
 

@@ -21,7 +21,7 @@ These steps must be completed by a Google Super Admin. Be mindful, too, of which
 5. Click **OAuth consent screen**
 6. Select &ldquo;Internal&rdquo;
 7. Click **CREATE**
-8. Enter &ldquo;Intranet&rdquo; for _Application name_
+8. Enter an _Application name_
 9. Enter your Intranet DNS domain name in _Authorized domains_
 10. Click **SAVE AND CONTINUE**
 11. Click **Credentials** in the left column
@@ -29,7 +29,7 @@ These steps must be completed by a Google Super Admin. Be mindful, too, of which
 13. Select &ldquo;Web application&rdquo; for _Application type_
 14. Enter a _Name_, if desired
 15. Click **ADD URI** in the _Authorized redirect URIs_ section
-16. Enter &ldquo;<https://example.com/login>&rdquo; (substituting your just-purchased or just-transferred Intranet DNS domain name)
+16. Enter &ldquo;https://<em>intranet-dns-domain-name</em>/login&rdquo; (substituting your just-purchased or just-transferred Intranet DNS domain name)
 17. Click **CREATE**
 18. Use the credentials to respond to `substrate create-admin-account`'s prompts
 19. Visit <https://console.cloud.google.com/apis/library/admin.googleapis.com> in a browser
@@ -42,7 +42,7 @@ These steps must be completed by a Google Super Admin. Be mindful, too, of which
 2. For every user authorized to use AWS:
     1. Click the user's name
     2. Click **User information**
-    3. In the _AWS_ section, click **Add RoleName** and paste the name (not the ARN) of the IAM role they should assume in your admin account (&ldquo;Administrator&rdquo; for yourself as you're getting started; if for others it's not &ldquo;Administrator&rdquo; or &ldquo;Auditor&rdquo;, ensure you've followed [adding non-Administrator roles for humans](../../adding-non-administrator-roles-for-humans/) first)
+    3. In the _AWS_ section, click **Add RoleName** and enter the name (not the ARN) of the IAM role they should assume in your admin account (&ldquo;Administrator&rdquo; for yourself as you're getting started; if for others it's not &ldquo;Administrator&rdquo; or &ldquo;Auditor&rdquo;, ensure you've followed [adding non-Administrator roles for humans](../../adding-non-administrator-roles-for-humans/) first)
     4. Click **SAVE**
 
 ## References
