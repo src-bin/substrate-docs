@@ -1,5 +1,30 @@
 # Substrate release notes
 
+<h2 id="2022.12">2022.12</h2>
+
+* Add support for Azure Active Directory identity providers. See [changing identity providers](../changing-identity-providers/) and [integrating your Azure AD identity provider](../getting-started/integrating-your-azure-ad-identity-provider/) if you want to switch.
+* Bug fix: Don't interpret the new default value for `-quality` as an erroneously user-supplied value with `-management` or `-special` in `substrate assume-role`.
+* Bug fix: Tolerate `substrate.qualities` being missing when trying to find a suitable default value for `-quality` options.
+* Bug fix: Change to `SUBSTRATE_ROOT`, if set, before trying to use `substrate.qualities` to find a suitable default value for `-quality` options.
+
+Upgrade Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, this will be all you need to do to upgrade.
+
+After upgrading Substrate, you should run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
+
+<h2 id="2022.11">2022.11</h2>
+
+* `-quality "..."` is now optional in organizations that have only one line in `substrate.qualities`, which can allow `substrate assume-role`, `substrate create-account`, and `substrate create-admin-account` invocations to be a little shorter. Note that `substrate accounts -format shell` will continue to generate the longer version with an explicit `-quality` option.
+* Use only tags to determine whether an account for a given domain, environment, and quality exists. This means that the email address on a Substrate-managed account doesn't have to be derived from the email address on the management account, that you don't absolutely have to change every account's email address if you want to change your management account's email address, and that you don't have to change the email address on every account you invite into your organization in order for Substrate to work with it.
+* Add `-number` to `substrate create-account` which allows you to tag an existing organization account with a domain, environment, and quality, generate Terraform modules for it, and manage its basic IAM roles just like any other Substrate-managed account.
+* Expand the bucket policy on the S3 buckets created in the deploy account in each region to allow `s3:GetBucketLocation`, `s3:GetObject*`, `s3:ListBucket*`, and `s3:PutObject*`.
+* Keep the Intranet's logs in CloudWatch for seven days instead of just one to facilitate debugging after the fact.
+* Transparently switch the Intranet's Lambda functions to run on the ARM architecture, which is 20% cheaper thanks in part to the underlying ARM instances using less power.
+* Bug fix: Correctly detect when an organization hits its limit on the number of accounts it can contain and open a support case to raise that limit.
+
+Upgrade Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, this will be all you need to do to upgrade.
+
+After upgrading Substrate, you should run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
+
 <h2 id="2022.10">2022.10</h2>
 
 * Change Substrate's internal use of AWS IAM roles to only assume a role if it's different than the role Substrate has already assumed. This ensures folks won't run afoul of the new, stricter evaluation of IAM roles' trust policies, as outlined in [Announcing an update to IAM role trust policy behavior](https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/) and set to take full effect February 15, 2023.
