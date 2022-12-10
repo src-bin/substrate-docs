@@ -59,7 +59,7 @@
 <li>Click <strong>OAuth consent screen</strong></li>
 <li>Select&nbsp;&ldquo;Internal&rdquo;</li>
 <li>Click <strong>CREATE</strong></li>
-<li>Enter &ldquo;Intranet&rdquo; for <em>Application name</em></li>
+<li>Enter an <em>Application name</em></li>
 <li>Enter your Intranet DNS domain name in <em>Authorized domains</em></li>
 <li>Click <strong>SAVE AND CONTINUE</strong></li>
 <li>Click <strong>Credentials</strong> in the left&nbsp;column</li>
@@ -67,7 +67,7 @@
 <li>Select &ldquo;Web application&rdquo; for <em>Application type</em></li>
 <li>Enter a <em>Name</em>, if&nbsp;desired</li>
 <li>Click <strong>ADD URI</strong> in the <em>Authorized redirect URIs</em>&nbsp;section</li>
-<li>Enter &ldquo;<a href="https://example.com/login">https://example.com/login</a>&rdquo; (substituting your just-purchased or just-transferred Intranet DNS domain&nbsp;name)</li>
+<li>Enter &ldquo;https://<em>intranet-dns-domain-name</em>/login&rdquo; (substituting your just-purchased or just-transferred Intranet DNS domain&nbsp;name)</li>
 <li>Click <strong>CREATE</strong></li>
 <li>Use the credentials to respond to <code>substrate create-admin-account</code>&rsquo;s&nbsp;prompts</li>
 <li>Visit <a href="https://console.cloud.google.com/apis/library/admin.googleapis.com">https://console.cloud.google.com/apis/library/admin.googleapis.com</a> in a&nbsp;browser</li>
@@ -83,7 +83,7 @@
 <ol>
 <li>Click the user&rsquo;s&nbsp;name</li>
 <li>Click <strong>User information</strong></li>
-<li>In the <em>AWS</em> section, click <strong>Add RoleName</strong> and paste the name (not the ARN) of the IAM role they should assume in your admin account (&ldquo;Administrator&rdquo; for yourself as you&rsquo;re getting started; if for others it&rsquo;s not &ldquo;Administrator&rdquo; or &ldquo;Auditor&rdquo;, ensure you&rsquo;ve followed <a href="../../adding-non-administrator-roles-for-humans/">adding non-Administrator roles for humans</a>&nbsp;first)</li>
+<li>In the <em>AWS</em> section, click <strong>Add RoleName</strong> and enter the name (not the ARN) of the IAM role they should assume in your admin account (&ldquo;Administrator&rdquo; for yourself as you&rsquo;re getting started; if for others it&rsquo;s not &ldquo;Administrator&rdquo; or &ldquo;Auditor&rdquo;, ensure you&rsquo;ve followed <a href="../../adding-non-administrator-roles-for-humans/">adding non-Administrator roles for humans</a>&nbsp;first)</li>
 <li>Click <strong>SAVE</strong></li>
 </ol></li>
 </ol>

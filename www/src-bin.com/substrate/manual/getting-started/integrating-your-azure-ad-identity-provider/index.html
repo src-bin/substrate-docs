@@ -57,39 +57,35 @@
 <p>TODO YOU LEFT OFF&nbsp;HERE</p>
 
 <ol>
-<li>Visit <a href="https://console.developers.google.com/">https://console.developers.google.com/</a> in a&nbsp;browser</li>
-<li>Click <strong>CREATE PROJECT</strong></li>
-<li>Name the project and, optionally, put it in an organization (but don&rsquo;t worry if you can&rsquo;t put it in an organization, because everything still works without&nbsp;one)</li>
-<li>Click <strong>CREATE</strong></li>
-<li>Click <strong>OAuth consent screen</strong></li>
-<li>Select&nbsp;&ldquo;Internal&rdquo;</li>
-<li>Click <strong>CREATE</strong></li>
-<li>Enter &ldquo;Intranet&rdquo; for <em>Application name</em></li>
-<li>Enter your Intranet DNS domain name in <em>Authorized domains</em></li>
-<li>Click <strong>SAVE AND CONTINUE</strong></li>
-<li>Click <strong>Credentials</strong> in the left&nbsp;column</li>
-<li>Click <strong>CREATE CREDENTIALS</strong> and then <strong>OAuth client ID</strong> in the expanded&nbsp;menu</li>
-<li>Select &ldquo;Web application&rdquo; for <em>Application type</em></li>
-<li>Enter a <em>Name</em>, if&nbsp;desired</li>
-<li>Click <strong>ADD URI</strong> in the <em>Authorized redirect URIs</em>&nbsp;section</li>
-<li>Enter &ldquo;<a href="https://example.com/login">https://example.com/login</a>&rdquo; (substituting your just-purchased or just-transferred Intranet DNS domain&nbsp;name)</li>
-<li>Click <strong>CREATE</strong></li>
-<li>Use the credentials to respond to <code>substrate create-admin-account</code>&rsquo;s&nbsp;prompts</li>
-<li>Visit <a href="https://console.cloud.google.com/apis/library/admin.googleapis.com">https://console.cloud.google.com/apis/library/admin.googleapis.com</a> in a&nbsp;browser</li>
-<li>Confirm the project you created a moment ago is selected (its name will be listed next to &ldquo;Google Cloud Platform&rdquo; in the&nbsp;header)</li>
-<li>Click <strong>ENABLE</strong></li>
+<li>Visit <a href="https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/RegisteredApps">https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/RegisteredApps</a> in a browser (or visit the Azure portal, click <strong>Azure Active Directory</strong>, and click <strong>App registrations</strong>)</li>
+<li>Click <strong>New registration</strong></li>
+<li>Enter a name for the&nbsp;application</li>
+<li>Select &ldquo;Accounts in this organizational directory only (Default Directory only - Single&nbsp;tenant)&rdquo;</li>
+<li>Select &ldquo;Web&rdquo; as the&nbsp;platform</li>
+<li>Enter &ldquo;https://<em>intranet-dns-domain-name</em>/login&rdquo; (substituting your just-purchased or just-transferred Intranet DNS domain name) next to the platform selector in the text input with <em>e.g. https://example.com/auth</em> as its&nbsp;placeholder</li>
+<li>Click <strong>Register</strong></li>
+<li>Use the <em>Application (client) ID</em> to respond to <code>substrate create-admin-account</code>&rsquo;s&nbsp;prompt</li>
+<li>Click <strong>Add a certificate or secret</strong></li>
+<li>Click <strong>New client secret</strong></li>
+<li>Enter a&nbsp;description</li>
+<li>Specify an expiration date however you see fit and set yourself a reminder to rotate the client secret before that date&nbsp;arrives</li>
+<li>Click <strong>Add</strong></li>
+<li>Use the <em>Value</em> to respond to <code>substrate create-admin-account</code>&rsquo;s prompt (being wary that this value will never be shown again; if you need to copy it again, you&rsquo;ll need to create a new client&nbsp;secret)</li>
 </ol>
 
 <h2>Authorize users to use AWS</h2>
 
 <ol>
-<li>Visit <a href="https://admin.google.com/ac/users">https://admin.google.com/ac/users</a> in a browser (or visit <a href="https://admin.google.com">https://admin.google.com</a> and click <strong>Users</strong>)</li>
+<li>Visit <a href="https://portal.azure.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers">https://portal.azure.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers</a> in a browser (or visit the Azure portal, click <strong>Azure Active Directory</strong>, and click <strong>Users</strong>)</li>
 <li>For every user authorized to use AWS:
 <ol>
 <li>Click the user&rsquo;s&nbsp;name</li>
-<li>Click <strong>User information</strong></li>
-<li>In the <em>AWS</em> section, click <strong>Add RoleName</strong> and paste the name (not the ARN) of the IAM role they should assume in your admin account (&ldquo;Administrator&rdquo; for yourself as you&rsquo;re getting started; if for others it&rsquo;s not &ldquo;Administrator&rdquo; or &ldquo;Auditor&rdquo;, ensure you&rsquo;ve followed <a href="../../adding-non-administrator-roles-for-humans/">adding non-Administrator roles for humans</a>&nbsp;first)</li>
-<li>Click <strong>SAVE</strong></li>
+<li>Click <strong>Custom security attributes (preview)</strong></li>
+<li>Click <strong>Add assignment</strong></li>
+<li>Select &ldquo;AWS&rdquo; in the <em>Attribute set</em>&nbsp;column</li>
+<li>Select &ldquo;RoleName&rdquo; in the <em>Attribute name</em>&nbsp;column</li>
+<li>Enter the name (not the ARN) of the IAM role they should assume in your admin account (&ldquo;Administrator&rdquo; for yourself as you&rsquo;re getting started; if for others it&rsquo;s not &ldquo;Administrator&rdquo; or &ldquo;Auditor&rdquo;, ensure you&rsquo;ve followed <a href="../../adding-non-administrator-roles-for-humans/">adding non-Administrator roles for humans</a>&nbsp;first)</li>
+<li>Click <strong>Save</strong></li>
 </ol></li>
 </ol>
 
