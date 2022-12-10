@@ -4,7 +4,7 @@ With your identity provider integrated, you're now entering the choose-your-own 
 
 Substrate helps you use multiple accounts to separate environments (like _development_ or _production_). Substrate also encourages you to organize your services into domains &mdash; single services or groups of tightly-coupled services &mdash; that help you reduce the blast radius of changes. You should read about [domains, environments, and qualities](../../domains-environments-qualities/) to get a feel for it.
 
-You've probably got in mind the first thing you're going to build with Substrate's help, so next you can jump straight into [adding a domain](../../adding-a-domain/). Or just run a command like this:
+You've probably got in mind the first thing you're going to build with Substrate's help, so next you can jump straight into [adding a domain](../../adding-a-domain/). Or just run a command like this (noting that `-quality` is optional if you only defined one):
 
 <pre><code>substrate create-account -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em></code></pre>
 

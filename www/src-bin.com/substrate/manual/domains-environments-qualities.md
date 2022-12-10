@@ -18,7 +18,7 @@ Organizations typically define environments like _development_, _staging_, and _
 
 ## Qualities
 
-Highly reliable services almost always implement changes gradually to give their operators a chance to detect and mitigate failures when the impact is small. Qualities help make gradual change possible for  AWS resources that would otherwise be difficult to incrementally change like load balancers, autoscaling groups, security groups, DNS zones, IAM roles, and more, even within a single service.
+Highly reliable services almost always implement changes gradually to give their operators a chance to detect and mitigate failures when the impact is small. Qualities help make incremental change possible for AWS resources that would otherwise be difficult to incrementally change like load balancers, autoscaling groups, security groups, DNS zones, IAM roles, and more, even within a single service.
 
 Use multiple qualities to protect any one service from changes that affect that whole service immediately.
 
@@ -26,7 +26,7 @@ An AWS account in your organization is associated with exactly one quality but c
 
 ### Examples
 
-Suppose your organization defined the qualities _alpha_, _beta_, and _gamma_ (which is one set of qualities that Substrate recommends). You could run 1% of your production environment in your alpha accounts, 9% in your beta accounts, and the remaining 90% in your gamma accounts. This isn't as smooth as routing a slowly increasing percentage of traffic to your new software as it's being deployed (and you should strongly consider doing that, too, eventually) but this strategy works when it's an AWS resource you want to change incrementally.
+Suppose your organization defined the qualities _alpha_, _beta_, and _gamma_ (which is one set of qualities that Substrate recommends). You could run 1% of your production environment in your alpha accounts, 9% in your beta accounts, and the remaining 90% in your gamma accounts. This isn't as smooth as routing a slowly increasing percentage of traffic to your new software as it's being deployed (and you should strongly consider doing that, too, eventually) but this strategy helps you incrementally change any AWS resource.
 
 You could also decide to name your qualities _blue_ and _green_ and swing traffic back and forth between them. The slight disadvantage to this architecture is that the one that's not receiving any traffic is not, at that moment, proving that its configuration is functional and thus the first trickle of traffic that comes to it when you start to swing back to it is slightly higher risk.
 

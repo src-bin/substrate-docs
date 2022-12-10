@@ -75,7 +75,7 @@
 
 <p>This program creates your AWS organization, creates the audit account and enables CloudTrail, creates the deploy and network accounts, configures a basic service control policy, and creates the necessary roles and policies to allow your administrators to move relatively&nbsp;freely.</p>
 
-<p>When this program exits, you should commit <code>substrate.*</code> to version control. Do not forget your root access key yet. It is safe to re-run this program at any&nbsp;time.</p>
+<p>When this program exits, you should add <code>.substrate.*</code> to your version control system&rsquo;s ignore list (e.g. <code>.gitignore</code>) and commit <code>substrate.*</code> to version control. Do not forget your root access key yet. It is safe to re-run this program at any&nbsp;time.</p>
 
 <h3>Delegate access to billing data</h3>
 
@@ -98,11 +98,11 @@
 
 <p>Here, too, during your first run you&rsquo;ll be prompted for your root access&nbsp;key.</p>
 
-<p>This program additionally asks for the names of your environments, the release qualities you want to use, and the specific combinations that are valid. You may want to peek ahead at <a href="../../domains-environments-qualities/">domains, environments, and qualities</a> to see how these pieces fit together. Environments typically have names like &ldquo;development&rdquo; and &ldquo;production&rdquo; &mdash; they identify a set of data and all the infrastructure that may access it. Qualities are names given to independent copies of your infrastructure <em>within an environment</em> that make it possible to gradually deploy changes to AWS resources just like you might gradually deploy changes to your&nbsp;software.</p>
+<p>This program additionally asks for the names of your environments, the release qualities you want to use, and the specific combinations that are valid. You may want to peek ahead at <a href="../../domains-environments-qualities/">domains, environments, and qualities</a> to see how these pieces fit together. Environments typically have names like &ldquo;development&rdquo; and &ldquo;production&rdquo; &mdash; they identify a set of data and all the infrastructure that may access it. Qualities are names given to independent copies of your infrastructure <em>within an environment</em> that make it possible to incrementally change AWS resources. If you&rsquo;re unsure, defining a single quality called &ldquo;default&rdquo; is&nbsp;good.</p>
 
 <p>It also asks which AWS regions you want to use. Your answers inform how it lays out your networks to strike a balance between security, reliability, ergonomics, and cost. Substrate recommends starting with 2-4 regions that make geographic sense to your&nbsp;customers.</p>
 
-<p>This program may attempt to programmatically raise the limit on some specific AWS service quotas. Depending on the regions you chose, how many environments and qualities you specified, and how the AWS support staff are feeling, this may block you for a long time. It&rsquo;s recommended to start slow by, for instance, only specifying &ldquo;admin&rdquo; and &ldquo;staging&rdquo; environments, expecting to add more&nbsp;later.</p>
+<p>This program may attempt to programmatically raise the limit on some specific AWS service quotas. Depending on the regions you chose, how many environments and qualities you specified, and how the AWS support staff are feeling, this may block you for a long time. It&rsquo;s recommended to start slow by, for instance, only specifying &ldquo;admin&rdquo; and &ldquo;production&rdquo; environments, expecting to add more&nbsp;later.</p>
 
 <p>When this program exits, you should commit <code>substrate.*</code> and <code>root-modules/network/</code> to version control. It is safe to re-run this program at any time and during those runs you can add additional environments and qualities if you so&nbsp;choose.</p>
 
