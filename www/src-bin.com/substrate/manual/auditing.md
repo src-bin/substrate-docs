@@ -16,13 +16,13 @@ Many tools have grown the ability to assume an IAM role in your AWS account to p
       "Version": "2012-10-17",
       "Statement": [
         {
+          "Action": "sts:AssumeRole",
           "Effect": "Allow",
           "Principal": {
             "AWS": [
               "arn:aws:iam::ACCOUNT_NUMBER:role/ROLE_NAME"
             ]
-          },
-          "Action": "sts:AssumeRole"
+          }
         }
       ]
     }
