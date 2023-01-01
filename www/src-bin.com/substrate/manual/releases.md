@@ -1,5 +1,30 @@
 # Substrate release notes
 
+<!--
+<h2 id="2023.01">2023.01</h2>
+-->
+
+<!--
+* `substrate terraform` will now download and unzip the correct version of Terraform into the same directory as `substrate` itself.
+* Upgrade Terraform to version 1.3.6 and the Terraform AWS provider to at least version 4.47.0.
+* `substrate intranet-zip` now supports `-base64sha256` and `-format json` which are used to protect against accidental Intranet downgrades.
+* `substrate -version` now writes to standard output instead of standard error to make install automation easier to write.
+-->
+
+<!--
+Upgrade Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, this will be all you need to do to upgrade.
+-->
+
+<!--
+After upgrading Substrate:
+-->
+
+<!--
+1. Upgrade Terraform to version 1.3.6 by running `substrate terraform`, [downloading from Hashicorp](https://releases.hashicorp.com/terraform/1.3.6/), or some other means of your choice.
+2. Run `sh <(substrate accounts -format shell -no-apply)` to review what Terraform plans to do.
+3. Run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
+-->
+
 <h2 id="2022.12">2022.12</h2>
 
 * Add support for Azure Active Directory identity providers. See [changing identity providers](../changing-identity-providers/) and [integrating your Azure AD identity provider](../getting-started/integrating-your-azure-ad-identity-provider/) if you want to switch.
