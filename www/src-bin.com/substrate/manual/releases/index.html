@@ -35,33 +35,24 @@
 
 <h1>Substrate release notes</h1>
 
-<!--
+<h2 id="2023.01">2023.01</h2>
 
+<ul>
+<li>Upgrade Terraform to version 1.3.6 and the Terraform AWS provider to at least version&nbsp;4.47.0.</li>
+<li><code>substrate terraform</code> will now download and unzip the correct version of Terraform into the same directory as <code>substrate</code>&nbsp;itself.</li>
+<li><code>substrate intranet-zip</code> now supports <code>-base64sha256</code> and <code>-format json</code> which are used in the generated Terraform code to prevent Intranet&nbsp;downgrades.</li>
+<li>Bug fix: <code>substrate -version</code> now writes to standard output instead of standard error to make install automation easier to&nbsp;write.</li>
+</ul>
 
-fd1ab2f6fbf13843ee5ccb0c3f3ac206
+<p>Upgrade Substrate by running <code>substrate upgrade</code> and following its prompts. If your copy of <code>substrate</code> is writeable, this will be all you need to do to&nbsp;upgrade.</p>
 
+<p>After upgrading&nbsp;Substrate:</p>
 
--->
-
-<!--
-* `substrate terraform` will now download and unzip the correct version of Terraform into the same directory as `substrate` itself.
-* Upgrade Terraform to version 1.3.6 and the Terraform AWS provider to at least version 4.47.0.
-* `substrate -version` now writes to standard output instead of standard error to make install automation easier to write.
--->
-
-<!--
-Upgrade Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, this will be all you need to do to upgrade.
--->
-
-<!--
-After upgrading Substrate:
--->
-
-<!--
-1. Upgrade Terraform to version 1.3.6 by running `substrate terraform`, [downloading from Hashicorp](https://releases.hashicorp.com/terraform/1.3.6/), or some other means of your choice.
-2. Run `sh <(substrate accounts -format shell -no-apply)` to review what Terraform plans to do.
-3. Run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
--->
+<ol>
+<li>Upgrade Terraform to version 1.3.6 by running <code>substrate terraform</code>, <a href="https://releases.hashicorp.com/terraform/1.3.6/">downloading from Hashicorp</a>, or some other means of your&nbsp;choice.</li>
+<li>Run <code>sh &lt;(substrate accounts -format shell -no-apply)</code> to review what Terraform plans to&nbsp;do.</li>
+<li>Run <code>sh &lt;(substrate accounts -auto-approve -format shell)</code> to apply the&nbsp;changes.</li>
+</ol>
 
 <h2 id="2022.12">2022.12</h2>
 
