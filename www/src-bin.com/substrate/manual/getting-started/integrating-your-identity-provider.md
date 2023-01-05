@@ -1,6 +1,6 @@
 # Integrating your identity provider to control access to AWS
 
-Substrate uses an OAuth OIDC identity provider to broker all your human access to AWS. Substrate supports [Azure Active Directory](https://azure.microsoft.com/en-us/products/active-directory/), [Google Workspace](https://workspace.google.com/) and [Okta](https://www.okta.com/). You almost certainly already have one already. It pays dividends to standardize on an identity provider early and configure every bit of SaaS your company uses to rely on it.
+Substrate uses an OAuth OIDC identity provider to broker all your human access to AWS. Substrate supports [Azure Active Directory](https://azure.microsoft.com/en-us/products/active-directory/), [Google Workspace](https://workspace.google.com/) and [Okta](https://www.okta.com/). You almost certainly have one already. It pays dividends to standardize on an identity provider early and configure every bit of SaaS your company uses to rely on it.
 
 Feel free to try them all. Whichever you choose, take comfort in knowing your decision isn't permanent. [Changing identity providers](../../changing-identity-providers/) documents how to move from one to another.
 

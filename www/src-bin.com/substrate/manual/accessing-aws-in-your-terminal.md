@@ -2,7 +2,7 @@
 
 For most tasks, you're going to need AWS credentials. Substrate strongly discourages the creation of personal IAM users with long-lived access keys; these are highly likely to be stolen in case of a laptop compromise and misuse can be difficult to detect. It's best not to have them at all. Instead, Substrate helps you get very short-lived AWS credentials in one of three ways:
 
-1. Run `eval $(substrate credentials)` in your terminal and follow its instructions. This will work from instances in the cloud or a laptop, though the flow is a smoothest on a laptop where a web browser can be opened from the command line. This is the best choice for most folks.
+1. Run `eval $(substrate credentials)` in your terminal and follow its instructions. This will work from instances in the cloud or a laptop, though the flow is smoothest on a laptop where a web browser can be opened from the command line. This is the best choice for most folks.
 
 2. You can also visit <https://example.com/instance-factory> (substituting your Intranet DNS domain name) and follow the steps to launch an EC2 instance to use for your administrative work. This makes the most sense for folks who use a terminal-based text editor and like to work &ldquo;in the cloud.&rdquo;
 
