@@ -1,6 +1,6 @@
 # Upgrading Substrate
 
-In general, upgrading Substrate is a matter of running `substrate upgrade`. If your `substrate` binary is not writeable, `substrate upgrade` will produce the URL of the tarball you'll need to download and untar to get the new `substrate` binary. You should put this on your PATH, replacing the old version.
+In general, upgrading Substrate is a matter of running `substrate upgrade`. If your `substrate` binary is not writeable, `substrate upgrade` will produce the URL of the tarball you'll need to download and untar to get the new `substrate` binary. You should put this in your PATH, replacing the old version.
 
 After upgrading, you should re-run the bootstrapping and account creation commands. The most thorough upgrade requires that you run the following after replacing the binaries:
 
