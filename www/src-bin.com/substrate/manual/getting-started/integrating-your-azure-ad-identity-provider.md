@@ -17,8 +17,6 @@ These steps must be completed by an Azure administrator with the Application Adm
 
 ## Create and configure an OAuth OIDC client
 
-TODO YOU LEFT OFF HERE
-
 1. Visit <https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/RegisteredApps> in a browser (or visit the Azure portal, click **Azure Active Directory**, and click **App registrations**)
 2. Click **New registration**
 3. Enter a name for the application
