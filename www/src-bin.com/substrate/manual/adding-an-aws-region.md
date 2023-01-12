@@ -1,4 +1,4 @@
-# Adding a region
+# Adding an AWS region
 
 Substrate is designed to accommodate multi-region infrastructures from day one and is ready at a moment's notice if you start with one region but decide suddenly to add more.
 
