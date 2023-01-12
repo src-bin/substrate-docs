@@ -2,6 +2,13 @@
 
 set -e -x
 
+OS=$(uname -s)
+# brew install findutils and gnu-sed to make this work on macOS arm64
+if [ $OS = 'Darwin' ]; then
+    HOMEBREW=/opt/homebrew
+    PATH=$HOMEBREW/opt/findutils/libexec/gnubin:$HOMEBREW/opt/gnu-sed/libexec/gnubin:$PATH
+fi
+
 find -name "*.md" |
 while read PATHNAME
 do
