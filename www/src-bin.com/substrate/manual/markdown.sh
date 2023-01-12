@@ -2,6 +2,13 @@
 
 set -e -x
 
+OS=$(uname -s)
+# brew install findutils and gnu-sed to make this work on macOS arm64
+if [ $OS = 'Darwin' ]; then
+    HOMEBREW=/opt/homebrew
+    PATH=$HOMEBREW/opt/findutils/libexec/gnubin:$HOMEBREW/opt/gnu-sed/libexec/gnubin:$PATH
+fi
+
 find -name "*.md" |
 while read PATHNAME
 do
@@ -45,7 +52,7 @@ do
         <section>
 EOF
         echo
-        perl -e 'require "/usr/bin/Markdown.pl"; srand(47); $m = Text::Markdown->new(empty_element_suffix => "\>"); print $m->markdown(join("", <>));' <"$PATHNAME" |
+        perl -e "require \"$(which Markdown.pl)\"; srand(47); \$m = Text::Markdown->new(empty_element_suffix => \"\>\"); print \$m->markdown(join(\"\", <>));" <"$PATHNAME" |
         sed -E "s/'/\\&rsquo;/g; s/ ([^ >]+<\/[a-z]+>)$/\\&nbsp;\\1/"
         echo
         cat <<EOF
