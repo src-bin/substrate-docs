@@ -1,6 +1,6 @@
 # Adding administrators to your AWS organization
 
-The Administrator role in all your Substrate-managed AWS accounts is managed outside of Terraform because Substrate configures Terraform to assume the Administrator role during Terraform runs. A classic chicken-and-egg problem. By default, the Administrator role in your admin account(s) can assume the Administrator role in all your service accounts and human users with the `RoleName` attribute set to &ldquo;Administrator&rdquo; in your identity provider can assume the Administrator role in your admin account(s). And while that's very often enough, there are plenty of reasons you might want to extend this.
+The Administrator role in all your Substrate-managed AWS accounts is managed outside of Terraform because Substrate configures Terraform to assume the Administrator role during Terraform runs. A classic chicken-and-egg problem. By default, the Administrator role in your admin account(s) can assume the Administrator role in all your service accounts and human users with the `RoleName` attribute set to “Administrator” in your identity provider can assume the Administrator role in your admin account(s). And while that's very often enough, there are plenty of reasons you might want to extend this.
 
 You may have additional human users that can't, for whatever reason, be granted accounts in your identity provider. You may choose to grant these folks access via an IAM user (with two-factor authentication, of course!), via a separate AWS account to which they already have access, or by using Terraform to configure a parallel identity provider they can access. In all of these cases, these users will need to assume the Administrator role.
 
@@ -12,25 +12,27 @@ The contents of `substrate.Administrator.assume-role-policy.json` must be a well
 
 The simplest `substrate.Administrator.assume-role-policy.json` looks like this:
 
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
     {
-      "Version": "2012-10-17",
-      "Statement": [
-        {
-          "Effect": "Allow",
-          "Principal": {
-            "AWS": [
-              "arn:aws:iam::ACCOUNT_NUMBER:role/ROLE_NAME"
-            ]
-          },
-          "Action": "sts:AssumeRole"
-        }
-      ]
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::ACCOUNT_NUMBER:role/ROLE_NAME"
+        ]
+      },
+      "Action": "sts:AssumeRole"
     }
+  ]
+}
+```
 
 You can include as many principals as you'd like in the innermost list.
 
-Every time you update this file, you'll need to re-run <code>substrate create-admin-account -quality <em>quality</em></code> in order to update the Administrator role in all the relevant accounts. This policy will be merged with the policy Substrate generates for the Administrator role (since roles may only have a single assume-role policy).
+Every time you update this file, you'll need to re-run `substrate create-admin-account -quality`` `_`quality`_ in order to update the Administrator role in all the relevant accounts. This policy will be merged with the policy Substrate generates for the Administrator role (since roles may only have a single assume-role policy).
 
 Once successfully applied, your additional administrators will be able to assume the Administrator role in all your accounts.
 
-Note, too, that this pattern can be applied to the Auditor role using the `substrate.Auditor.assume-role-policy.json` file per [auditing your Substrate-managed AWS organization](../auditing/).
+Note, too, that this pattern can be applied to the Auditor role using the `substrate.Auditor.assume-role-policy.json` file per [auditing your Substrate-managed AWS organization](auditing/).

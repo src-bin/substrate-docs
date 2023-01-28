@@ -7,11 +7,11 @@ Most likely, you've already opened (at least) one AWS account(s), and you're pro
 
 In fact, integrating your original AWS account(s) into your new Substrate-managed AWS organization is a good idea for a few reasons:
 
-- It can quickly improve your security posture if you create an Administrator role there that can be assumed by the Administrator role in your admin account(s), thus allowing you to delete long-lived access keys and uncontrolled IAM users there.
-- It may simplify some migrations by allowing policies written using the `aws:PrincipalOrgID` condition key to interoperate with this account. (Don't worry if policies and condition keys are not familiar topics.)
-- Integrating access to its billing data will give you better visibility into where you're spending money with AWS.
+* It can quickly improve your security posture if you create an Administrator role there that can be assumed by the Administrator role in your admin account(s), thus allowing you to delete long-lived access keys and uncontrolled IAM users there.
+* It may simplify some migrations by allowing policies written using the `aws:PrincipalOrgID` condition key to interoperate with this account. (Don't worry if policies and condition keys are not familiar topics.)
+* Integrating access to its billing data will give you better visibility into where you're spending money with AWS.
 
-You can invite as many AWS accounts as you like into your new Substrate-managed AWS organization but only if you have _not_ configured AWS Organizations manually in those accounts. If you have and you would still like to adopt Substrate, ask us at <hello@src-bin.com> and we'll work with you to make everything right.
+You can invite as many AWS accounts as you like into your new Substrate-managed AWS organization but only if you have _not_ configured AWS Organizations manually in those accounts. If you have and you would still like to adopt Substrate, ask us at [hello@src-bin.com](mailto:hello@src-bin.com) and we'll work with you to make everything right.
 
 ## Inviting the account into your organization
 
@@ -19,14 +19,14 @@ To begin, you'll need root (not IAM user) login credentials for the AWS Console 
 
 1. Open the Accounts page of your Intranet
 2. Assume the OrganizationAdministrator role in your management account
-3. Visit <https://console.aws.amazon.com/organizations/home?#/accounts>
+3. Visit [https://console.aws.amazon.com/organizations/home?#/accounts](https://console.aws.amazon.com/organizations/home?#/accounts)
 4. Click **Add account**
 5. Click **Invite account**
 6. Enter the email address of your original AWS account, the one that you're inviting into your organization (or its account number, if you have that handy)
 7. Click **Invite**
 8. In an incognito window, sign into the AWS Console using root (not IAM user) credentials for the account you just invited into your organization
-9. In that incognito window, visit <https://console.aws.amazon.com/cloudtrail/home#/dashboard> and delete any existing trails (to avoid very expensive surprises in your consolidated AWS bills)
-10. In that incognito window, visit <https://console.aws.amazon.com/organizations/home#/invites>
+9. In that incognito window, visit [https://console.aws.amazon.com/cloudtrail/home#/dashboard](https://console.aws.amazon.com/cloudtrail/home#/dashboard) and delete any existing trails (to avoid very expensive surprises in your consolidated AWS bills)
+10. In that incognito window, visit [https://console.aws.amazon.com/organizations/home#/invites](https://console.aws.amazon.com/organizations/home#/invites)
 11. Click **Accept**
 12. Click **Confirm**
 
@@ -35,35 +35,33 @@ If you stop here, you'll have integrated billing data from your original AWS acc
 To allow your admin accounts to access this original AWS account, use the AWS Console in your original AWS account to create the Administrator role as follows:
 
 1. Note all the role ARNs in the table listing your admin accounts in `substrate.accounts.txt`
-2. Create a new role named Administrator in your original AWS account with the following assume role policy, substituting your admin account number for `ADMIN_ACCOUNT_NUMBER` (and adding additional elements to that list if you have multiple admin accounts):
+2.  Create a new role named Administrator in your original AWS account with the following assume role policy, substituting your admin account number for `ADMIN_ACCOUNT_NUMBER` (and adding additional elements to that list if you have multiple admin accounts):
 
-        {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": [
-                  "arn:aws:iam::ADMIN_ACCOUNT_NUMBER:role/Administrator",
-                  "arn:aws:iam::ADMIN_ACCOUNT_NUMBER:role/Intranet"
-                ]
-              },
-              "Action": "sts:AssumeRole"
-            }
-          ]
-        }
-
+    ```
+     {
+       "Version": "2012-10-17",
+       "Statement": [
+         {
+           "Effect": "Allow",
+           "Principal": {
+             "AWS": [
+               "arn:aws:iam::ADMIN_ACCOUNT_NUMBER:role/Administrator",
+               "arn:aws:iam::ADMIN_ACCOUNT_NUMBER:role/Intranet"
+             ]
+           },
+           "Action": "sts:AssumeRole"
+         }
+       ]
+     }
+    ```
 3. Attach the managed AdministratorAccess policy to this new role
 
-This manual change in the AWS Console, which would usually be distasteful, has paved the way for Substrate to manage your original AWS account, especially this Administrator role. To complete the integration, run <code>substrate create-account -domain <em>domain</em> -environment <em>environment</em> -quality <em>quality</em> -number <em>12-digit-account-number</em></code> to tag your original AWS account, manage its Administrator and Auditor roles, and generate its basic Terraform directory structure.
+This manual change in the AWS Console, which would usually be distasteful, has paved the way for Substrate to manage your original AWS account, especially this Administrator role. To complete the integration, run `substrate create-account -domain`` `_`domain`_` ``-environment`` `_`environment`_` ``-quality`` `_`quality`_` ``-number`` `_`12-digit-account-number`_ to tag your original AWS account, manage its Administrator and Auditor roles, and generate its basic Terraform directory structure.
 
 After you've completed these steps, your original AWS account is part of your Substrate-managed AWS organization, just like any other service account.
 
-<section class="table">
-    <section id="previous">
-        <p>Previous:<br><a href="../deleting-unnecessary-root-access-keys/">Deleting unnecessary root access keys</a></p>
-    </section>
-    <section id="next">
-        <p>Next:<br><a href="../managing-your-infrastructure-in-service-accounts/">Managing your infrastructure in service accounts</a></p>
-    </section>
-</section>
+Previous:\
+[Deleting unnecessary root access keys](../deleting-unnecessary-root-access-keys/)
+
+Next:\
+[Managing your infrastructure in service accounts](../managing-your-infrastructure-in-service-accounts/)
