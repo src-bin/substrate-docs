@@ -22,7 +22,6 @@
 * [Deep-linking into the AWS Console](deep-linking-into-the-aws-console.md)
 * [Getting everyone else started](getting-everyone-else-started.md)
 * [Multi-region strategy](multi-region-strategy.md)
-* [Telemetry in Substrate](telemetry.md)
 
 ## Concepts and Terms
 
@@ -91,3 +90,7 @@
 
 * [Substrate release notes](release-notes-and-upgrading/releases.md)
 * [Upgrading Substrate](release-notes-and-upgrading/upgrading.md)
+
+## Meta
+
+* [Telemetry in Substrate](meta/telemetry.md)
