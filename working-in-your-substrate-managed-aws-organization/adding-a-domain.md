@@ -4,7 +4,7 @@ Domains are a mechanism for protecting one service (or group of services) from o
 
 If not immediately, you'll eventually create this domain in all of your environment/quality pairs to enable a complete progression from e.g. development through production.
 
-See [domains, environments, and qualities](domains-environments-qualities/) for more discussion of these fundamental Substrate concepts.
+See [domains, environments, and qualities](../domains-environments-qualities/) for more discussion of these fundamental Substrate concepts.
 
 ## Generated Terraform modules
 

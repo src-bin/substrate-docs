@@ -35,4 +35,4 @@ Every time you update this file, you'll need to re-run `substrate create-admin-a
 
 Once successfully applied, your additional administrators will be able to assume the Administrator role in all your accounts.
 
-Note, too, that this pattern can be applied to the Auditor role using the `substrate.Auditor.assume-role-policy.json` file per [auditing your Substrate-managed AWS organization](auditing/).
+Note, too, that this pattern can be applied to the Auditor role using the `substrate.Auditor.assume-role-policy.json` file per [auditing your Substrate-managed AWS organization](../auditing/).

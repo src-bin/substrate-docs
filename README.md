@@ -1,13 +1,30 @@
-# Accessing AWS in your terminal
+# Overview
 
-For most tasks, you're going to need AWS credentials. Substrate strongly discourages the creation of personal IAM users with long-lived access keys; these are highly likely to be stolen in case of a laptop compromise and misuse can be difficult to detect. It's best not to have them at all. Instead, Substrate helps you get very short-lived AWS credentials in one of three ways:
+Substrate helps you manage secure, reliable, and compliant cloud infrastructure in AWS. This part of the manual exists to guide you through installing Substrate and bootstrapping your Substrate-managed AWS organization.
 
-1. Run `eval $(substrate credentials)` in your terminal and follow its instructions. This will work from instances in the cloud or a laptop, though the flow is smoothest on a laptop where a web browser can be opened from the command line. This is the best choice for most folks.
+## A warning about existing AWS organizations
 
-2. You can also visit <https://example.com/instance-factory> (substituting your Intranet DNS domain name) and follow the steps to launch an EC2 instance to use for your administrative work. This makes the most sense for folks who use a terminal-based text editor and like to work &ldquo;in the cloud.&rdquo;
+Substrate expects to be able to create and configure AWS Organizations itself. Bootstrapping Substrate in an existing AWS organization is possible but requires more finesse than simply following this guide. If you have an existing AWS organization and want to adopt Substrate, please email <hello@src-bin.com> so we can work with you through your adoption.
 
-3. If for some reason `eval $(substrate credentials)` doesn't work for you, visit <https://example.com/credential-factory> (substituting your Intranet DNS domain name), then paste the `export` command into your terminal. This choice will work in the widest variety of places but is the most cumbersome.
+## What to expect
 
-In all three cases, the temporary credentials are going to assume the role you're assigned in your identity provider (Administrator, most likely) in (one of) your admin account(s). From here you'll be able to use `substrate assume-role` to move into other accounts as needed. They will be valid for 12 hours, which gives you a full day's work without reauthenticating while still being decidedly temporary.
+Following this getting started guide start to finish usually takes an hour or two, depending on how many environments and regions you define right out of the gate. You're free to work in fits and starts with the comfort of knowing that every Substrate command can be killed and restarted without losing your place or causing any harm.
 
-You may also be interested in [accessing the AWS Console](../accessing-the-aws-console/).
+You're going to need administrative privileges in your identity provider (&ldquo;super admin&rdquo; in Google or at least the ability to configure new apps in Okta) in the sixth step. If you don't already have that it might be wise to seek that out now before it becomes a blocker.
+
+You're also going to be prompted for a DNS domain name to be used to serve Substrate-managed tools for minting temporary AWS credentials, launching personal EC2 instances, and accessing the AWS Console. Talk with your team now so that you know what you're going to purchase when the time comes. Here is an excerpt from a few pages ahead in the manual to help you make your choice:
+
+> One of those prompts concerns purchasing or transferring a DNS domain name or delegating a DNS zone from elsewhere into this new account. If you're at a loss for inspiration, consider using your company's name with the `.company` or `.tools` TLD. Avoid overloading any domain you use for public-facing web services, especially those that set cookies, to reduce the impact of e.g. CSRF or XSS vulnerabilities.
+
+Substrate's output will tell you what it's doing, what to commit to version control, and what to do next. If you're ever in doubt, get in touch in Slack or at <hello@src-bin.com>.
+
+After you've completed this getting started guide you'll have a fully configured AWS organization integrated with your identity provider, access to AWS via your terminal and the AWS Console protected by your identity provider, a fully configured Terraform installation, and a head start delivering secure, reliable, and compliant cloud infrastructure in AWS.
+
+<section class="table">
+    <section id="previous">
+        <p>Previous:<br><a href="../../">Substrate manual</a></p>
+    </section>
+    <section id="next">
+        <p>Next:<br><a href="../opening-a-fresh-aws-account/">Opening a fresh AWS account</a></p>
+    </section>
+</section>

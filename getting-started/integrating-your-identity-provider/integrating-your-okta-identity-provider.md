@@ -17,7 +17,7 @@
 13. Paste the _Client ID_, _Client secret_, and _Okta domain_ in response to `substrate create-admin-account`'s prompts
 
 Previous:\
-[Integrating your identity provider to control access to AWS](../integrating-your-identity-provider/)
+[Integrating your identity provider to control access to AWS](../../integrating-your-identity-provider/)
 
 Next:\
-[Deleting unnecessary root access keys](../deleting-unnecessary-root-access-keys/)
+[Deleting unnecessary root access keys](../../deleting-unnecessary-root-access-keys/)
