@@ -4,7 +4,6 @@
 
 ## Getting Started
 
-* [Overview](<README (1).md>)
 * [Opening a fresh AWS account](getting-started/opening-a-fresh-aws-account.md)
 * [Installing Substrate and Terraform](getting-started/installing.md)
 * [Configuring Substrate shell completion](getting-started/shell-completion.md)
