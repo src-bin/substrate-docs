@@ -1,6 +1,5 @@
 ---
 description: Substrate manages secure, reliable, and compliant cloud infrastructure in AWS.
-layout: landing
 ---
 
 # Substrate Manual
