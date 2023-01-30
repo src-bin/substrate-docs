@@ -4,6 +4,7 @@
 
 ## Getting Started
 
+* [Overview](getting-started/overview.md)
 * [Opening a fresh AWS account](getting-started/opening-a-fresh-aws-account.md)
 * [Installing Substrate and Terraform](getting-started/installing.md)
 * [Configuring Substrate shell completion](getting-started/shell-completion.md)
@@ -15,12 +16,6 @@
 * [Deleting unnecessary root access keys](getting-started/deleting-unnecessary-root-access-keys.md)
 * [Integrating your original AWS account(s)](getting-started/integrating-your-original-aws-account.md)
 * [Managing your infrastructure in service accounts](getting-started/managing-your-infrastructure-in-service-accounts.md)
-
-***
-
-* [Deep-linking into the AWS Console](deep-linking-into-the-aws-console.md)
-* [Getting everyone else started](getting-everyone-else-started.md)
-* [Multi-region strategy](multi-region-strategy.md)
 
 ## Concepts and Terms
 
