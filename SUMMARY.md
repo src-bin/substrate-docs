@@ -93,4 +93,4 @@
 
 ## Meta
 
-* [Telemetry in Substrate](meta/telemetry.md)
+* [Telemetry in Substrate](telemetry.md)
