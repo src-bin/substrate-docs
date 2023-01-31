@@ -49,3 +49,9 @@ These steps must be completed by a Google Super Admin. Be mindful, too, of which
 
 * [https://cloud.google.com/identity-platform/docs/web/oidc](https://cloud.google.com/identity-platform/docs/web/oidc)
 * [https://developers.google.com/identity/protocols/oauth2/openid-connect](https://developers.google.com/identity/protocols/oauth2/openid-connect)
+
+Previous:\
+[Integrating your identity provider to control access to AWS](../../integrating-your-identity-provider/)
+
+Next:\
+[Deleting unnecessary root access keys](../../deleting-unnecessary-root-access-keys/)

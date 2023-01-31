@@ -2,13 +2,15 @@
 
 There isn't usually much to do in your admin account(s). Instead, you'll be assuming roles in other accounts where your real work happens. There are three ways this happens:
 
-## `substrate assume-role`
+```shell-session
+substrate assume-role
+```
 
 Ad-hoc movement throughout your organization is made easy by the `substrate assume-role` command. It understands the layout and can convert domains, environments, and qualities into the appropriate AWS account numbers for you.
 
 To get temporary credentials in your _example development default_ account (once you've created such an account), you'd run `substrate assume-role -domain example -environment development -quality default`. Without any additional arguments, `substrate assume-role` prints shell environment variables so you should wrap it in `eval`. It will also feed the shell an `unassume-role` alias you can use to pop back into your admin account:
 
-```
+```shell-session
 eval $(substrate assume-role -domain example -environment development -quality default)
 # do whatever you like
 unassume-role
@@ -16,7 +18,7 @@ unassume-role
 
 If you have a specific command you need to run, tack it onto the end thus:
 
-```
+```shell-session
 substrate assume-role -domain example -environment development -quality default aws ec2 describe-security-groups
 ```
 

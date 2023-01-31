@@ -37,7 +37,7 @@ To allow your admin accounts to access this original AWS account, use the AWS Co
 1. Note all the role ARNs in the table listing your admin accounts in `substrate.accounts.txt`
 2.  Create a new role named Administrator in your original AWS account with the following assume role policy, substituting your admin account number for `ADMIN_ACCOUNT_NUMBER` (and adding additional elements to that list if you have multiple admin accounts):
 
-    ```
+    ```json
      {
        "Version": "2012-10-17",
        "Statement": [

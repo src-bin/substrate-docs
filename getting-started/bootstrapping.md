@@ -22,7 +22,11 @@ If you like, now or later, you can set `SUBSTRATE_ROOT` in your environment to a
 
 ## Bootstrapping your management account
 
-### `substrate bootstrap-management-account`
+Run:
+
+```shell-session
+substrate bootstrap-management-account
+```
 
 When you run this program, you'll be prompted several times for input. As much as is possible, this input is all saved to the local filesystem and referenced on subsequent runs.
 
@@ -53,7 +57,11 @@ While you're logged into your management account using the root credentials, fol
 
 The previous step created the three special AWS accounts - audit, deploy, and network - but neglected to complete the configuration of the deploy and network accounts. The reason for this is because both of these accounts are managed by Terraform code. The bootstrapping steps generate some code while leaving room for you to add more later.
 
-### `substrate bootstrap-network-account`
+Run:
+
+```shell-session
+substrate bootstrap-network-account
+```
 
 Here, too, during your first run you'll be prompted for your root access key.
 
@@ -67,7 +75,11 @@ When this program exits, you should commit `substrate.*` and `root-modules/netwo
 
 ## Bootstrapping your deploy account
 
-### `substrate bootstrap-deploy-account`
+Run:
+
+```shell-session
+substrate bootstrap-deploy-account
+```
 
 This program doesn't need any input except during its first run in which you'll be prompted for your root access key.
 

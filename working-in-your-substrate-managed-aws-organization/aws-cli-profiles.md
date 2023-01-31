@@ -28,7 +28,7 @@ Note well that, in order for this to succeed, you'll need to have already run `e
 
 Use your profile thus:
 
-```
+```shell-session
 eval $(substrate credentials)
 aws sts get-caller-identity --profile whatever-you-want-to-call-it
 ```

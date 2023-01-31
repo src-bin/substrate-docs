@@ -6,7 +6,7 @@ Substrate helps you use multiple accounts to separate environments (like _develo
 
 You've probably got in mind the first thing you're going to build with Substrate's help, so next you can jump straight into [adding a domain](../adding-a-domain/). Or just run a command like this (noting that `-quality` is optional if you only defined one):
 
-```
+```shell-session
 substrate create-account -domain domain -environment environment -quality quality
 ```
 

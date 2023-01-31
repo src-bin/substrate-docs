@@ -6,13 +6,13 @@ Shell completion makes using Substrate interactively much more pleasant. We reco
 
 ## Bash
 
-```
+```shell
 complete -C "substrate --shell-completion" substrate
 ```
 
 ## Z shell
 
-```
+```shell
 autoload compinit
 compinit
 autoload bashcompinit

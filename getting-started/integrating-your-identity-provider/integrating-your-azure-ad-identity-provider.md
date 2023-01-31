@@ -43,3 +43,9 @@ These steps must be completed by an Azure administrator with the Application Adm
    5. Select “RoleName” in the _Attribute name_ column
    6. Enter the name (not the ARN) of the IAM role they should assume in your admin account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](../../adding-non-administrator-roles-for-humans/) first)
    7. Click **Save**
+
+Previous:\
+[Integrating your identity provider to control access to AWS](../../integrating-your-identity-provider/)
+
+Next:\
+[Deleting unnecessary root access keys](../../deleting-unnecessary-root-access-keys/)

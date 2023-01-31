@@ -19,3 +19,9 @@ You're also going to be prompted for a DNS domain name to be used to serve Subst
 Substrate's output will tell you what it's doing, what to commit to version control, and what to do next. If you're ever in doubt, get in touch in Slack or at [hello@src-bin.com](mailto:hello@src-bin.com).
 
 After you've completed this getting started guide you'll have a fully configured AWS organization integrated with your identity provider, access to AWS via your terminal and the AWS Console protected by your identity provider, a fully configured Terraform installation, and a head start delivering secure, reliable, and compliant cloud infrastructure in AWS.
+
+Previous:\
+[Substrate manual](./)
+
+Next:\
+[Opening a fresh AWS account](opening-a-fresh-aws-account/)

@@ -12,7 +12,7 @@ The contents of `substrate.Administrator.assume-role-policy.json` must be a well
 
 The simplest `substrate.Administrator.assume-role-policy.json` looks like this:
 
-```
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
