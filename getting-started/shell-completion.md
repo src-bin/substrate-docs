@@ -6,21 +6,16 @@ Shell completion makes using Substrate interactively much more pleasant. We reco
 
 ## Bash
 
-    complete -C "substrate --shell-completion" substrate
+```
+complete -C "substrate --shell-completion" substrate
+```
 
 ## Z shell
 
-    autoload compinit
-    compinit
-    autoload bashcompinit
-    bashcompinit
-    complete -C "substrate --shell-completion" substrate
-
-<section class="table">
-    <section id="previous">
-        <p>Previous:<br><a href="../installing/">Installing Substrate and Terraform</a></p>
-    </section>
-    <section id="next">
-        <p>Next:<br><a href="../bootstrapping/">Bootstrapping your Substrate-managed AWS organization</a></p>
-    </section>
-</section>
+```
+autoload compinit
+compinit
+autoload bashcompinit
+bashcompinit
+complete -C "substrate --shell-completion" substrate
+```

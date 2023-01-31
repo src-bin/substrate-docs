@@ -59,9 +59,3 @@ To allow your admin accounts to access this original AWS account, use the AWS Co
 This manual change in the AWS Console, which would usually be distasteful, has paved the way for Substrate to manage your original AWS account, especially this Administrator role. To complete the integration, run `substrate create-account -domain`` `_`domain`_` ``-environment`` `_`environment`_` ``-quality`` `_`quality`_` ``-number`` `_`12-digit-account-number`_ to tag your original AWS account, manage its Administrator and Auditor roles, and generate its basic Terraform directory structure.
 
 After you've completed these steps, your original AWS account is part of your Substrate-managed AWS organization, just like any other service account.
-
-Previous:\
-[Deleting unnecessary root access keys](../deleting-unnecessary-root-access-keys/)
-
-Next:\
-[Managing your infrastructure in service accounts](../managing-your-infrastructure-in-service-accounts/)
