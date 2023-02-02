@@ -1,6 +1,24 @@
 # Substrate release notes
 
-## 2023.01 <a href="#2023.01" id="2023.01"></a>
+<h2 id="2023.02">2023.02</h2>
+
+* Allow adopting an existing account as the Substrate-managed audit account to prevent duplication when bootstrapping Substrate in existing organizations.
+* Make the Substrate-managed CloudTrail configuration optional to prevent very expensive duplication when bootstrapping Substrate in existing organizations.
+* Allow opting out of the Service Control Policy that enforces the uses of the EC2 IMDSv2 to allow more time for legacy workloads to be upgraded.
+* Don't make folks go through the exercise of pairing environments and qualities in `substrate bootstrap-network-account` in case there's only one valid quality.
+* Stop asking for confirmation before applying Terraform changes in `root-modules/network/peering`, which are completely generated, very simple, and very safe to make `substrate bootstrap-network-account` a much more pleasant experience.
+* Rewrite `module.substrate.tags` to be based on the `root-modules` filesystem hierarchy instead of an external process so it can be used earlier in the Terraform run.
+* Annotate the Intranet's Accounts page, the output of `substrate accounts`, and the `substrate.accounts.txt` file with the version of Substrate last used to manage each account in your organization to make upgrades more observable.
+* Remove long-unused `substrate-instance-factory` security group from admin accounts. The Instance Factory stopped using this security group over a year ago but if there do happen to still be EC2 instances using this security group, `substrate create-admin-account` will fail.
+* Enforce CSRF protections in the Intranet more aggressively when the CSRF cookie isn't present, closing the transitional period for this security feature.
+* Introduce the `SUBSTRATE_DEBUG_AWS_LOGS` and `SUBSTRATE_DEBUG_AWS_RETRIES` environment variables to support debugging Substrate.
+* Bug fix: Race between VPC-related Terraform resources and sharing/tagging the appropriate VPC in admin and service accounts is no longer a race.
+
+Upgrade Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, this will be all you need to do to upgrade.
+
+After upgrading Substrate, you should run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes. Commit the new `substrate.enforce-imdsv2` and `substrate.manage-cloudtrail` files to version control.
+
+<h2 id="2023.01">2023.01</h2>
 
 * Upgrade Terraform to version 1.3.6 and the Terraform AWS provider to at least version 4.47.0.
 * `substrate terraform` will now download and unzip the correct version of Terraform into the same directory as `substrate` itself.
