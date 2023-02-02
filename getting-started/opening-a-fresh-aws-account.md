@@ -10,15 +10,13 @@ Visit <https://portal.aws.amazon.com/billing/signup#/start> to begin. Follow the
 
 You should setup multi-factor authentication for the root of this new account immediately:
 
+TODO revisit the root MFA steps since they changed that page
 1. Visit <https://console.aws.amazon.com/iam/home#/security_credentials>
-2. Open the _Multi-factor authentication (MFA)_ section
-3. Click **Activate MFA**
-4. Select &ldquo;Virtual MFA device&rdquo;
-5. Click **Continue**
-6. Take a screenshot of the QR code (don't fret, we'll delete it shortly)
-7. Scan the QR code in Google Authenticator or your favorite TOTP app
-8. Enter the next two six-digit codes the app generates
-9. Click **Assign MFA**
+2. Click **Assign MFA**
+3. Give your MFA device a name
+4. Select a device type
+5. Click **Next**
+6. Follow the remaining prompts for your device type
 
 For business continuity, you should ensure one or two other people can login to this account. Add them to the email distribution, securely share the password with them, and either send them the QR code or allow them to scan it from your screen. Backup that QR code because without either that or control of the phone number that originally opened the account, you will be unable to login.
 
