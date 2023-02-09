@@ -37,11 +37,11 @@
 ## Working in your Substrate-managed AWS organization
 
 * [Accessing AWS in your terminal](working-in-your-substrate-managed-aws-organization/accessing-aws-in-your-terminal.md)
-* [Accessing the AWS Console](working-in-your-substrate-managed-aws-organization/accessing-the-aws-console.md)
+* [Accessing the AWS console](working-in-your-substrate-managed-aws-organization/accessing-the-aws-console.md)
 * [Moving between AWS accounts](working-in-your-substrate-managed-aws-organization/moving-between-aws-accounts.md)
 * [Using AWS CLI profiles](working-in-your-substrate-managed-aws-organization/aws-cli-profiles.md)
 * [Jumping into private networks](working-in-your-substrate-managed-aws-organization/jumping-into-private-networks.md)
-* [Writing Terraform Code](working-in-your-substrate-managed-aws-organization/writing-terraform-code.md)
+* [Writing Terraform code](working-in-your-substrate-managed-aws-organization/writing-terraform-code.md)
 * [Using Amazon EC2 when IMDSv2 is required](working-in-your-substrate-managed-aws-organization/ec2-imdsv2.md)
 * [Additional Terraform providers](working-in-your-substrate-managed-aws-organization/additional-terraform-providers.md)
 * [Adding a domain](working-in-your-substrate-managed-aws-organization/adding-a-domain.md)
@@ -59,11 +59,11 @@
 
 * [Onboarding users](administering-your-substrate-managed-aws-organization/onboarding-users.md)
 * [Offboarding users](administering-your-substrate-managed-aws-organization/offboarding-users.md)
-* [Adding non-administrator roles for humans](administering-your-substrate-managed-aws-organization/adding-non-administrator-roles-for-humans.md)
 * [Allowing third parties to access your AWS organization](administering-your-substrate-managed-aws-organization/allowing-third-parties-to-access-your-aws-organization.md)
 * [Adding administrators to your AWS organization](administering-your-substrate-managed-aws-organization/adding-administrators.md)
 * [Customizing EC2 instances from the Instance Factory](administering-your-substrate-managed-aws-organization/customizing-instance-factory.md)
 * [Cost management](administering-your-substrate-managed-aws-organization/cost-management.md)
+* [Adding non-administrator roles for humans](administering-your-substrate-managed-aws-organization/adding-non-administrator-roles-for-humans.md)
 
 ## Compliance
 
@@ -72,7 +72,7 @@
 
 ## Runbooks for emergency and once-in-a-blue-moon operations
 
-* [Subscribing to AWS Support plans](runbooks/aws-support.md)
+* [Subscribing to AWS support plans](runbooks/aws-support.md)
 * [Closing an AWS account](runbooks/closing-an-aws-account.md)
 * [Removing an AWS account from your organization](runbooks/removing-an-aws-account-from-your-organization.md)
 * [Removing an AWS region](runbooks/removing-an-aws-region.md)

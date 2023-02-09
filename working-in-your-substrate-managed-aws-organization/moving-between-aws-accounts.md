@@ -30,6 +30,6 @@ By default, `substrate assume-role` will carry on with the same role name — Ad
 
 A lot of work in your AWS organization hopefully happens in Terraform and not ad-hoc shell sessions. `substrate create-account` creates a root Terraform module for you with providers configured to assume the appropriate role so you don't have to think about matching credentials in your environment with directories in which you invoke `terraform apply`. All you'll ever need to invoke Terraform are those Administrator you get from the Credential and Instance Factories.
 
-## AWS Console
+## AWS console
 
 The AWS Console includes a “switch role” feature that you're welcome to use but [accessing the AWS Console](../accessing-the-aws-console/) shows that you probably won't need it. In your Substrate-managed AWS organization, access to the AWS Console feels less like switching roles and more like going straight into the account you need to access.
