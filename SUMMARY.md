@@ -1,8 +1,8 @@
 # Table of contents
 
-* [Substrate Manual](README.md)
+* [Substrate manual](README.md)
 
-## Getting Started
+## Getting started
 
 * [Overview](getting-started/overview.md)
 * [Opening a fresh AWS account](getting-started/opening-a-fresh-aws-account.md)
@@ -17,7 +17,7 @@
 * [Integrating your original AWS account(s)](getting-started/integrating-your-original-aws-account.md)
 * [Managing your infrastructure in service accounts](getting-started/managing-your-infrastructure-in-service-accounts.md)
 
-## Concepts and Terms
+## Concepts and terms
 
 * [Accounts in a Substrate-managed AWS organization](concepts-and-terms/accounts.md)
 * [Domains, environments, and qualities](concepts-and-terms/domains-environments-qualities.md)
