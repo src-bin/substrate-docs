@@ -81,11 +81,13 @@
 * [Regaining access in case the Credential and Instance Factories are broken](runbooks-for-emergency-and-once-in-a-blue-moon-operations/regaining-access.md)
 * [Debugging Substrate](runbooks-for-emergency-and-once-in-a-blue-moon-operations/debugging.md)
 
-## Release notes and upgrading
+## Upgrading
 
-* [Substrate release notes](releases.md)
 * [Upgrading Substrate](upgrading.md)
 
 ## Meta
 
 * [Telemetry in Substrate](meta/telemetry.md)
+
+
+* [Substrate release notes](releases.md)
