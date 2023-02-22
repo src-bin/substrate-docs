@@ -83,8 +83,8 @@
 
 ## Release notes and upgrading
 
-* [Substrate release notes](release-notes-and-upgrading/releases.md)
-* [Upgrading Substrate](release-notes-and-upgrading/upgrading.md)
+* [Substrate release notes](releases.md)
+* [Upgrading Substrate](upgrading.md)
 
 ## Meta
 
