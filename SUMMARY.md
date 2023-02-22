@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Substrate manual](README.md)
+* [Substrate docs](README.md)
 
 ## Getting started
 
