@@ -1,6 +1,6 @@
 # Substrate release notes
 
-<h2 id="2023.02">2023.02</h2>
+## 2023.02 <a href="#2023.02" id="2023.02"></a>
 
 * Allow adopting an existing account as the Substrate-managed audit account to prevent duplication when bootstrapping Substrate in existing organizations.
 * Make the Substrate-managed CloudTrail configuration optional to prevent very expensive duplication when bootstrapping Substrate in existing organizations.
@@ -18,7 +18,7 @@ Upgrade Substrate by running `substrate upgrade` and following its prompts. If y
 
 After upgrading Substrate, you should run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes. Commit the new `substrate.enforce-imdsv2` and `substrate.manage-cloudtrail` files to version control.
 
-<h2 id="2023.01">2023.01</h2>
+## 2023.01 <a href="#2023.01" id="2023.01"></a>
 
 * Upgrade Terraform to version 1.3.6 and the Terraform AWS provider to at least version 4.47.0.
 * `substrate terraform` will now download and unzip the correct version of Terraform into the same directory as `substrate` itself.
@@ -94,7 +94,7 @@ If you wish to instantiate the new common modules in your existing service accou
        source = "../../common/regional"
      }
     ```
-3. Run `substrate create-account -domain`` `_`domain`_` ``-environment`` `_`environment`_` ``-quality`` `_`quality`_ for each _domain_ service account.
+3. Run ` substrate create-account -domain`` `` `_`domain`_` ``-environment`` `_`environment`_` ``-quality`` `_`quality`_ for each _domain_ service account.
 
 These modules aren't being instantiated in existing service accounts automatically because Substrate can't guarantee that's safe.
 
@@ -113,7 +113,7 @@ After upgrading Substrate, you should run `sh <(substrate accounts -format shell
 
 Get the 2022.09 release by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, this will be all you need to do to upgrade.
 
-After upgrading Substrate, you at least need to run `substrate create-admin-account -quality`` `_`quality`_ to update your Intranet. Even better would be to run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
+After upgrading Substrate, you at least need to run ` substrate create-admin-account -quality`` `` `_`quality`_ to update your Intranet. Even better would be to run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
 
 ## 2022.08 <a href="#2022.08" id="2022.08"></a>
 
@@ -135,7 +135,7 @@ Upgrade Substrate as in the [updated installation manual](../getting-started/ins
 >
 > You can install Substrate wherever you like. If `~/bin` doesn't suit you, just ensure the directory where you install it is on your `PATH`.
 
-After upgrading Substrate, the best idea is to run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform proposes to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to ensure your code and your AWS organization don't diverge. If you need a minimal upgrade process, it's `substrate create-admin-account -quality`` `_`quality`_ to update your Intranet.
+After upgrading Substrate, the best idea is to run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform proposes to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to ensure your code and your AWS organization don't diverge. If you need a minimal upgrade process, it's ` substrate create-admin-account -quality`` `` `_`quality`_ to update your Intranet.
 
 **Advance notice of an upcoming change**: Next month's release will delete an old EC2 security group that was used by the Instance Factory until late 2021. Beware that, if you have any Instance Factory instances from 2021 or earlier, you'll have to change their security group or terminate them before upgrading next month.
 
@@ -167,8 +167,8 @@ After upgrading Substrate:
 1. `substrate bootstrap-management-account`
 2. `substrate bootstrap-network-account`
 3. `substrate bootstrap-deploy-account`
-4. `substrate create-admin-account -quality`` `_`quality`_ for each of your admin accounts
-5. `substrate create-account -domain`` `_`domain`_` ``-environment`` `_`environment`_` ``-quality`` `_`quality`_ for each of your service accounts
+4. ` substrate create-admin-account -quality`` `` `_`quality`_ for each of your admin accounts
+5. ` substrate create-account -domain`` `` `_`domain`_` ``-environment`` `_`environment`_` ``-quality`` `_`quality`_ for each of your service accounts
 
 If your shell supports process substitution, you can run `sh <(substrate accounts -format shell)` to run all of these, in the proper order, in one command. As of this release you can make this non-interactive as `sh <(substrate accounts -auto-approve -format shell)` but this is not recommended as it forgoes your opportunity to object before Terraform applies changes.
 
@@ -187,8 +187,8 @@ After upgrading Substrate:
 2. `substrate bootstrap-management-account`
 3. `substrate bootstrap-network-account`
 4. `substrate bootstrap-deploy-account`
-5. `substrate create-admin-account -quality`` `_`quality`_ for each of your admin accounts
-6. `substrate create-account -domain`` `_`domain`_` ``-environment`` `_`environment`_` ``-quality`` `_`quality`_ for each of your service accounts
+5. ` substrate create-admin-account -quality`` `` `_`quality`_ for each of your admin accounts
+6. ` substrate create-account -domain`` `` `_`domain`_` ``-environment`` `_`environment`_` ``-quality`` `_`quality`_ for each of your service accounts
 
 If your shell supports process substitution, you can upgrade Terraform and then run `sh <(substrate accounts -format shell)` to run all of these, in the proper order, in one command.
 
@@ -207,7 +207,7 @@ If your shell supports process substitution, you can upgrade Terraform and then 
 After upgrading Substrate:
 
 1. `substrate bootstrap-management-account`
-2. `substrate create-admin-account -quality`` `_`quality`_ for each of your admin accounts
+2. ` substrate create-admin-account -quality`` `` `_`quality`_ for each of your admin accounts
 
 ## 2022.04 <a href="#2022.04" id="2022.04"></a>
 
@@ -227,7 +227,7 @@ After upgrading Substrate:
 
 1. [Configure Substrate shell completion](../getting-started/shell-completion/)
 2. `substrate bootstrap-management-account`
-3. `substrate create-admin-account -quality`` `_`quality`_ for each of your admin accounts
+3. ` substrate create-admin-account -quality`` `` `_`quality`_ for each of your admin accounts
 
 ## 2022.03 <a href="#2022.03" id="2022.03"></a>
 
@@ -413,7 +413,7 @@ If you’re upgrading from 2021.08, follow the upgrade instructions from 2021.09
 
 This release changes the interactive interface to `substrate-bootstrap-network-account` and `substrate-create-admin-account` to make them easier to run in CI. **If you are automating these commands by providing `yes` and `no` answers on standard input, this release will break your automation; you should run these commands interactively first to see what’s changed.** The details of what’s changed are listed in the usual format below.
 
-* Move all Substrate commands into the `substrate` binary with symbolic links replacing the `substrate-*` binaries from previous releases. This can mostly be considered a no-op but note that now Substrate commands may be also be invoked as `substrate`` `_`subcommand`_. This is not a deprecation notice for the original invocation style.
+* Move all Substrate commands into the `substrate` binary with symbolic links replacing the `substrate-*` binaries from previous releases. This can mostly be considered a no-op but note that now Substrate commands may be also be invoked as ` substrate`` `` `_`subcommand`_. This is not a deprecation notice for the original invocation style.
 * Added `-fully-interactive`, `-minimally-interactive`, and `-non-interactive` to all Substrate commands. `-fully-interactive` is almost identical (see below) to the behavior of 2021.08 and earlier releases. `-minimally-interactive` is the new default and removes the incessant “is this correct? (yes/no)” dialogs, which I thought would be welcome but turned out to be annoying. `-non-interactive` will never prompt for input and will instead exit with a non-zero status if input is required.
 * Changed the interactive prompts concerning Google and Okta configuration to make them less bothersome and (in the Okta case) less prone to unintentional changes. **If you are automating `substrate-create-admin-account` by providing `yes` and `no` answers on standard input, this change will break your automation; you should run this command interactively first to see what’s changed.**
 * Added a confirmation to `substrate-create-admin-account` and `substrate-create-account` to prevent errant creation of new AWS accounts (which are tedious to delete in case creation was a mistake) plus a new `-create` option to suppress that confirmation.
@@ -452,8 +452,7 @@ After upgrading Substrate:
 * The Intranet’s `/accounts` page now opens the AWS Console in new browser tabs as it probably always should have.
 * Substrate now only manages the version constraint on the `archive`, `aws`, and `external` providers rather than all of `versions.tf`. This opens the door to Substrate users adding (and version constraining) additional providers. See [additional Terraform providers](../additional-terraform-providers/) for an example.
 * Upgrade to and pin Terraform 1.0.2 and the `aws` provider >= 3.49.0.
-*   Tag many more AWS resources with `Manager` and `SubstrateVersion` using the `default_tags` facility of the AWS provider. If you encounter the following error, remove `Manager` and `SubstrateVersion` (if present) from the indicated resources and re-run.\
-
+*   Tag many more AWS resources with `Manager` and `SubstrateVersion` using the `default_tags` facility of the AWS provider. If you encounter the following error, remove `Manager` and `SubstrateVersion` (if present) from the indicated resources and re-run.\\
 
     ```
     Error: "tags" are identical to those in the "default_tags" configuration block of the provider: please de-duplicate and try again
@@ -533,7 +532,7 @@ After upgrading:
 
 1. `rm -f -r root-modules/network/*/peering` and remove these files from version control.
 2. `substrate-bootstrap-network-account` to peer all your VPCs that should be peered.
-3. `substrate-create-admin-account -quality="..."` to fix Instance Factory IAM roles, following the [Google SAML setup](https://src-bin.com/substrate/manual/getting-started/google-saml/) guide if Google is your IdP to also get 12-hour AWS Console sessions.
+3. `substrate-create-admin-account -quality="..."` to fix Instance Factory IAM roles, following the [Google SAML setup](../getting-started/integrating-your-identity-provider/integrating-your-google-identity-provider.md) guide if Google is your IdP to also get 12-hour AWS Console sessions.
 
 ## 2021.02 <a href="#2021.02" id="2021.02"></a>
 
