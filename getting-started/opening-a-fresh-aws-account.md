@@ -10,8 +10,6 @@ Visit [https://portal.aws.amazon.com/billing/signup#/start](https://portal.aws.a
 
 You should setup multi-factor authentication for the root of this new account immediately:
 
-TODO revisit the root MFA steps since they changed that page
-
 1. Visit [https://console.aws.amazon.com/iam/home#/security\_credentials](https://console.aws.amazon.com/iam/home#/security\_credentials)
 2. Click **Assign MFA**
 3. Give your MFA device a name
