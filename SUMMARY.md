@@ -85,7 +85,7 @@
 
 * [Upgrading Substrate](upgrading/upgrading-substrate.md)
 
-## Meta
+## Meta <a href="#/" id="meta"></a>
 
 * [Telemetry in Substrate](meta/telemetry.md)
 * [Substrate release notes](releases.md)
