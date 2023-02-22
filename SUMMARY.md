@@ -70,16 +70,16 @@
 * [Addressing SOC 2 criteria with Substrate](compliance/addressing-soc-2-criteria-with-substrate.md)
 * [Auditing your Substrate-managed AWS organization](compliance/auditing.md)
 
-## Runbooks for emergency and once-in-a-blue-moon operations
+## Runbooks for emergency and once-in-a-blue-moon operations <a href="#runbooks" id="runbooks"></a>
 
-* [Subscribing to AWS support plans](runbooks-for-emergency-and-once-in-a-blue-moon-operations/aws-support.md)
-* [Closing an AWS account](runbooks-for-emergency-and-once-in-a-blue-moon-operations/closing-an-aws-account.md)
-* [Removing an AWS account from your organization](runbooks-for-emergency-and-once-in-a-blue-moon-operations/removing-an-aws-account-from-your-organization.md)
-* [Removing an AWS region](runbooks-for-emergency-and-once-in-a-blue-moon-operations/removing-an-aws-region.md)
-* [Changing identity providers](runbooks-for-emergency-and-once-in-a-blue-moon-operations/changing-identity-providers.md)
-* [Sharing CloudWatch data between accounts](runbooks-for-emergency-and-once-in-a-blue-moon-operations/cloudwatch-sharing.md)
-* [Regaining access in case the Credential and Instance Factories are broken](runbooks-for-emergency-and-once-in-a-blue-moon-operations/regaining-access.md)
-* [Debugging Substrate](runbooks-for-emergency-and-once-in-a-blue-moon-operations/debugging.md)
+* [Subscribing to AWS support plans](runbooks/aws-support.md)
+* [Closing an AWS account](runbooks/closing-an-aws-account.md)
+* [Removing an AWS account from your organization](runbooks/removing-an-aws-account-from-your-organization.md)
+* [Removing an AWS region](runbooks/removing-an-aws-region.md)
+* [Changing identity providers](runbooks/changing-identity-providers.md)
+* [Sharing CloudWatch data between accounts](runbooks/cloudwatch-sharing.md)
+* [Regaining access in case the Credential and Instance Factories are broken](runbooks/regaining-access.md)
+* [Debugging Substrate](runbooks/debugging.md)
 
 ## Upgrading
 
