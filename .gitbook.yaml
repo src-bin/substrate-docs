@@ -1,2 +1,3 @@
+root: ./
 redirects:
-    substrate/releases: substrate/release-notes-and-upgrading/releases.md
+    releases: release-notes-and-upgrading/releases.md
