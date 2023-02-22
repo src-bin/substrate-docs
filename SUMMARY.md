@@ -50,20 +50,20 @@
 * [Deploying software](working-in-your-substrate-managed-aws-organization/deploying-software.md)
 * [Protecting internal websites](working-in-your-substrate-managed-aws-organization/protecting-internal-websites.md)
 
-## Automating operations with Substrate
+## Automating operations with Substrate <a href="#automating" id="automating"></a>
 
-* [Enumerating all your AWS accounts](automating-operations-with-substrate/enumerating-all-your-aws-accounts.md)
-* [Enumerating all your root Terraform modules](automating-operations-with-substrate/enumerating-all-your-root-terraform-modules.md)
+* [Enumerating all your AWS accounts](automating/enumerating-all-your-aws-accounts.md)
+* [Enumerating all your root Terraform modules](automating/enumerating-all-your-root-terraform-modules.md)
 
-## Administering your Substrate-managed AWS organization
+## Administering your Substrate-managed AWS organization <a href="#administering" id="administering"></a>
 
-* [Onboarding users](administering-your-substrate-managed-aws-organization/onboarding-users.md)
-* [Offboarding users](administering-your-substrate-managed-aws-organization/offboarding-users.md)
-* [Allowing third parties to access your AWS organization](administering-your-substrate-managed-aws-organization/allowing-third-parties-to-access-your-aws-organization.md)
-* [Adding administrators to your AWS organization](administering-your-substrate-managed-aws-organization/adding-administrators.md)
-* [Customizing EC2 instances from the Instance Factory](administering-your-substrate-managed-aws-organization/customizing-instance-factory.md)
-* [Cost management](administering-your-substrate-managed-aws-organization/cost-management.md)
-* [Adding non-administrator roles for humans](administering-your-substrate-managed-aws-organization/adding-non-administrator-roles-for-humans.md)
+* [Onboarding users](administering/onboarding-users.md)
+* [Offboarding users](administering/offboarding-users.md)
+* [Allowing third parties to access your AWS organization](administering/allowing-third-parties-to-access-your-aws-organization.md)
+* [Adding administrators to your AWS organization](administering/adding-administrators.md)
+* [Customizing EC2 instances from the Instance Factory](administering/customizing-instance-factory.md)
+* [Cost management](administering/cost-management.md)
+* [Adding non-administrator roles for humans](administering/adding-non-administrator-roles-for-humans.md)
 
 ## Compliance
 
@@ -83,13 +83,9 @@
 
 ## Upgrading
 
-* [Upgrading Substrate](upgrading.md)
+* [Upgrading Substrate](upgrading/upgrading-substrate.md)
 
 ## Meta
 
 * [Telemetry in Substrate](meta/telemetry.md)
-
-
-
-
 * [Substrate release notes](releases.md)
