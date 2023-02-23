@@ -7,7 +7,7 @@ Feel free to try them all. Whichever you choose, take comfort in knowing your de
 In the next section, whichever identity provider you choose, you'll run:
 
 ```shell-session
-substrate create-admin-account -quality quality
+substrate create-admin-account -quality <quality>
 ```
 
 The documentation will help you respond to its prompts.

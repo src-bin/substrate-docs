@@ -1,6 +1,6 @@
 # Integrating your Google identity provider
 
-`substrate create-admin-account -quality`` `_`quality`_ will ask for several inputs, which this page will help you provide from your Google identity provider.
+`substrate create-admin-account -quality`` `_`<quality>`_ will ask for several inputs, which this page will help you provide from your Google identity provider.
 
 These steps must be completed by a Google Super Admin. Be mindful, too, of which Google account you're using if you're signed into more than one in the same browser profile. Google has a habit of switching accounts when you least expect it.
 

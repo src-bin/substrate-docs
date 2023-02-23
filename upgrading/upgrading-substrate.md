@@ -7,8 +7,8 @@ After upgrading, you should re-run the bootstrapping and account creation comman
 1. `substrate bootstrap-management-account`
 2. `substrate bootstrap-network-account`
 3. `substrate bootstrap-deploy-account`
-4. `substrate create-admin-account -quality "..."` for each of your admin accounts
-5. `substrate create-account -domain "..." -environment "..." -quality "..."` for each of your other accounts
+4. `substrate create-admin-account -quality <quality>` for each of your admin accounts
+5. `substrate create-account -domain <domain> -environment <environment> -quality <quality>` for each of your other accounts
 
 As a convenience, `substrate accounts -format shell` will generate all of these commands and put them in the proper order. For the most streamlined workflow, run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
 

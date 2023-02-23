@@ -1,6 +1,6 @@
 # Integrating your Okta identity provider
 
-`substrate create-admin-account -quality`` `_`quality`_ will ask for several inputs, which this page will help you provide from your Okta identity provider.
+`substrate create-admin-account -quality`` `_`<quality>`_ will ask for several inputs, which this page will help you provide from your Okta identity provider.
 
 1. Visit your Okta admin panel in a browser
 2. Click the **hamburger menu**
