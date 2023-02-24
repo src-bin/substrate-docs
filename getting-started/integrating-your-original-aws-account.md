@@ -56,6 +56,6 @@ To allow your admin accounts to access this original AWS account, use the AWS Co
     ```
 3. Attach the managed AdministratorAccess policy to this new role
 
-This manual change in the AWS Console, which would usually be distasteful, has paved the way for Substrate to manage your original AWS account, especially this Administrator role. To complete the integration, run `substrate create-account -domain`` `_`domain`_` ``-environment`` `_`<environment>`_` ``-quality`` `_`<quality>`_` ``-number`` `_`<12-digit-account-number>`_ to tag your original AWS account, manage its Administrator and Auditor roles, and generate its basic Terraform directory structure.
+This manual change in the AWS Console, which would usually be distasteful, has paved the way for Substrate to manage your original AWS account, especially this Administrator role. To complete the integration, run `substrate create-account -domain <domain> environment <environment> -quality <quality> -number <12-digit-account-number>` to tag your original AWS account, manage its Administrator and Auditor roles, and generate its basic Terraform directory structure.
 
 After you've completed these steps, your original AWS account is part of your Substrate-managed AWS organization, just like any other service account.

@@ -35,4 +35,4 @@ Every time you update this file, you'll need to re-run whichever of `substrate b
 
 This will authorize third-party principals to `sts:AssumeRole` using the ARN of one of your Auditor roles and operate as you would there.
 
-Note, too, that this pattern can be applied to the Administrator role using the `substrate.Administrator.assume-role-policy.json` file per [adding administrators to your AWS organization](https://github.com/src-bin/substrate-manual/blob/main/adding-administrators/README.md).
+Note, too, that this pattern can be applied to the Administrator role using the `substrate.Administrator.assume-role-policy.json` file per [adding administrators to your AWS organization](../administering/adding-administrators.md).

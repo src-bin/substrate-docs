@@ -6,19 +6,19 @@ The best strategies use IAM roles to avoid the need for long-lived access keys. 
 
 ## Special-purpose IAM roles in certain accounts
 
-Simplistic integrations with AWS will require you to create an IAM role in each account the third party needs to access. This can be tedious for you, having many AWS accounts, but it's perhaps the best security story because everything is very explicit. The pattern is just like [adding non-Administrator (and non-Auditor) roles for humans](https://github.com/src-bin/substrate-manual/blob/main/adding-non-administrator-roles-for-humans/README.md) (the “in your service accounts” section), trusting the third party's AWS account number or IAM role ARN instead of your admin account.
+Simplistic integrations with AWS will require you to create an IAM role in each account the third party needs to access. This can be tedious for you, having many AWS accounts, but it's perhaps the best security story because everything is very explicit. The pattern is just like [adding non-Administrator (and non-Auditor) roles for humans](adding-non-administrator-roles-for-humans.md) (the “in your service accounts” section), trusting the third party's AWS account number or IAM role ARN instead of your admin account.
 
 ## Special-purpose IAM role that can assume roles
 
-More advanced integrations with AWS, ones that are aware of AWS Organizations, may be able to use `sts:AssumeRole` to move around your organization automatically. For these cases, act like you're [adding non-Administrator (and non-Auditor) roles for humans](https://github.com/src-bin/substrate-manual/blob/main/adding-non-administrator-roles-for-humans/README.md), following every step. Trust the third party's account number or IAM role ARN to assume the role in your admin account; trust that role to assume the role in all your service accounts.
+More advanced integrations with AWS, ones that are aware of AWS Organizations, may be able to use `sts:AssumeRole` to move around your organization automatically. For these cases, act like you're [adding non-Administrator (and non-Auditor) roles for humans](adding-non-administrator-roles-for-humans.md), following every step. Trust the third party's account number or IAM role ARN to assume the role in your admin account; trust that role to assume the role in all your service accounts.
 
 ## Reusing the Substrate-managed Auditor role
 
-A great many integrations can be trusted with read-only access (specifically, the kind of read-only access that Substrate manages, without blanket `s3:GetObject`). In those cases, the `substrate.Auditor.assume-role-policy.json` file discussed along with [auditing your Substrate-managed AWS organization](https://github.com/src-bin/substrate-manual/blob/main/auditing/README.md) offers a simple solution.
+A great many integrations can be trusted with read-only access (specifically, the kind of read-only access that Substrate manages, without blanket `s3:GetObject`). In those cases, the `substrate.Auditor.assume-role-policy.json` file discussed along with [auditing your Substrate-managed AWS organization](../compliance/auditing.md) offers a simple solution.
 
 ## Reusing the Substrate-managed Administrator role
 
-Sometimes you will want to grant third-parties administrative access (e.g. to allow a CI/CD system to `terraform apply`). In those cases, the `substrate.Administrator.assume-role-policy.json` file discussed in [adding administrators to your AWS organization](https://github.com/src-bin/substrate-manual/blob/main/adding-administrators/README.md) offers a simple solution.
+Sometimes you will want to grant third-parties administrative access (e.g. to allow a CI/CD system to `terraform apply`). In those cases, the `substrate.Administrator.assume-role-policy.json` file discussed in [adding administrators to your AWS organization](adding-administrators.md) offers a simple solution.
 
 ## Creating an IAM user
 

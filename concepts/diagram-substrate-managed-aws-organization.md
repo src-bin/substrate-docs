@@ -11,4 +11,4 @@ A Substrate-managed AWS organization is comprised of half-a-dozen or more AWS ac
 * Admin account: Integrates with an identity provider, serves the Intranet, and helps authorized humans get into AWS.
 * Service accounts: Contain all the rest of the AWS resources, serve your production traffic, and protect customers' data.
 
-Go deeper and take a look at a [diagram of a multi-quality, multi-region service](https://github.com/src-bin/substrate-manual/blob/main/diagram-multi-quality-multi-region-service/README.md) provisioned within two service accounts, as highlighted in grey at the top of this diagram.
+Go deeper and take a look at a [diagram of a multi-quality, multi-region service](../guidance/diagram-multi-quality-multi-region-service.md) provisioned within two service accounts, as highlighted in grey at the top of this diagram.

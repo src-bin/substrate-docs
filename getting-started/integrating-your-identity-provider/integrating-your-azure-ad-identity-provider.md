@@ -1,6 +1,6 @@
 # Integrating your Azure AD identity provider
 
-`substrate create-admin-account -quality`` `_`quality`_ will ask for several inputs, which this page will help you provide from your Azure AD identity provider.
+`substrate create-admin-account -quality <quality>` will ask for several inputs, which this page will help you provide from your Azure AD identity provider.
 
 These steps must be completed by an Azure administrator with the Application Administrator, Attribute Assignment Administrator, and Attribute Definition Administrator roles in an organization subscribed to Azure AD Premium 1 or Azure AD Premium 2.
 
