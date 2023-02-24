@@ -2,7 +2,7 @@
 
 <figure><img src="https://src-bin.com/img/substrate.png" alt="Diagram of a Substrate-managed AWS organization"><figcaption><p>A Substrate-managed AWS organization</p></figcaption></figure>
 
-A Substrate-managed AWS organization is comprised of half-a-dozen or more AWS accounts all working together. Briefly, since these [accounts](https://github.com/src-bin/substrate-manual/blob/main/accounts/README.md) are all discussed in detail elsewhere:
+A Substrate-managed AWS organization is comprised of half-a-dozen or more AWS accounts all working together. Briefly, since these [accounts](accounts.md) are all discussed in detail elsewhere:
 
 * Management account: Creates the AWS organization and organization-wide CloudTrail. Receives your bill.
 * Audit account: Stores the organization-wide CloudTrail.
