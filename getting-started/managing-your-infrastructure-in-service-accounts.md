@@ -14,4 +14,4 @@ The environment and quality there should be a combination you defined way back w
 
 After creating your first (or your fiftieth) service account, you'll be [writing Terraform code](https://github.com/src-bin/substrate-manual/blob/main/writing-terraform-code/README.md). Substrate doesn't change or restrict how you write Terraform code but it does introduce a few handy shortcuts you can use to name things sensibly and get access to the network it's configured for each of your environments.
 
-The [Substrate manual](https://github.com/src-bin/substrate-manual/blob/main/README.md) has architectural reference material, day-to-day advice, runbooks for emergencies, and more.
+The [Substrate documentation](../) has architectural reference material, day-to-day advice, runbooks for emergencies, and more.
