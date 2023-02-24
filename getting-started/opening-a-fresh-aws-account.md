@@ -20,3 +20,9 @@ TODO revisit the root MFA steps since they changed that page
 6. Follow the remaining prompts for your device type
 
 For business continuity, you should ensure one or two other people can login to this account. Add them to the email distribution, securely share the password with them, and either send them the QR code or allow them to scan it from your screen. Backup that QR code because without either that or control of the phone number that originally opened the account, you will be unable to login.
+
+Previous:\
+[Overview](https://github.com/src-bin/substrate-manual/blob/main/overview/README.md)
+
+Next:\
+[Installing Substrate and Terraform](https://github.com/src-bin/substrate-manual/blob/main/installing/README.md)
