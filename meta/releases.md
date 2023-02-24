@@ -35,7 +35,7 @@ After upgrading Substrate:
 
 ## 2022.12 <a href="#2022.12" id="2022.12"></a>
 
-* Add support for Azure Active Directory identity providers. See [changing identity providers](../changing-identity-providers/) and [integrating your Azure AD identity provider](../getting-started/integrating-your-azure-ad-identity-provider/) if you want to switch.
+* Add support for Azure Active Directory identity providers. See [changing identity providers](https://github.com/src-bin/substrate-manual/blob/main/changing-identity-providers/README.md) and [integrating your Azure AD identity provider](https://github.com/src-bin/substrate-manual/blob/main/getting-started/integrating-your-azure-ad-identity-provider/README.md) if you want to switch.
 * Bug fix: Don't interpret the new default value for `-quality` as an erroneously user-supplied value with `-management` or `-special` in `substrate assume-role`.
 * Bug fix: Tolerate `substrate.qualities` being missing when trying to find a suitable default value for `-quality` options.
 * Bug fix: Change to `SUBSTRATE_ROOT`, if set, before trying to use `substrate.qualities` to find a suitable default value for `-quality` options.
@@ -125,7 +125,7 @@ After upgrading Substrate, you at least need to run ` substrate create-admin-acc
 * Bug fix: Don't fail spuriously when trying to create an account that already exists when the organization is at its limit for accounts.
 * Bug fix: Prevent a rare crash when submitting telemetry to Source & Binary.
 
-Upgrade Substrate as in the [updated installation manual](../getting-started/installing/):
+Upgrade Substrate as in the [updated installation manual](getting-started/installing.md):
 
 > ```
 > tar xf substrate-version-commit-OS-ARCH.tar.gz -C ~/bin --strip-components 2 substrate-version-commit-OS-ARCH/bin/substrate
@@ -152,7 +152,7 @@ After upgrading Substrate, the best idea is to run `sh <(substrate accounts -for
 * Bug fix: Substrate shell completion never fully worked in Z shell but now it does.
 * Bug fix: Running Lambda function processes could corrupt themselves with environment variables for the CredentialFactory user, losing access to the Intranet role until the process ends.
 
-Upgrade Substrate as in the [updated installation manual](../getting-started/installing/):
+Upgrade Substrate as in the [updated installation manual](getting-started/installing.md):
 
 > ```
 > tar xf substrate-version-commit-OS-ARCH.tar.gz -C ~/bin --strip-components 2 substrate-version-commit-OS-ARCH/bin/substrate
@@ -194,7 +194,7 @@ If your shell supports process substitution, you can upgrade Terraform and then 
 
 ## 2022.05 <a href="#2022.05" id="2022.05"></a>
 
-* Allow customization of EC2 instances from the Instance Factory by using a launch template named `InstanceFactory-arm64` or `InstanceFactory-x86_64`, if the one matching the requested instance type is defined. See [customizing EC2 instances from the Instance Factory](../customizing-instance-factory/) for details and an example.
+* Allow customization of EC2 instances from the Instance Factory by using a launch template named `InstanceFactory-arm64` or `InstanceFactory-x86_64`, if the one matching the requested instance type is defined. See [customizing EC2 instances from the Instance Factory](administering/customizing-instance-factory.md) for details and an example.
 * Add `cloudtrail:DeleteTrail` to the (short) list of APIs that are denied by the Substrate-managed service control policy on your management account.
 * Remove verion constraints from Terraform modules in the `modules/` tree, instead letting all the version constraints come from the root module.
 * Upgrade the Terraform AWS provider to at least 4.12.
@@ -213,25 +213,25 @@ After upgrading Substrate:
 
 * Enforce, via organization-wide Service Control Policy, that EC2 instances must be launched with access to IMDSv2 and not IMDSv1. The Instance Factory has been launching compatible instances since 2021.10. If for some reason you need to roll this step back, use your Intranet's Accounts page to open the AWS Console in your management account with the OrganizationAdministrator role, visit [https://console.aws.amazon.com/organizations/v2/home/policies/service-control-policy](https://console.aws.amazon.com/organizations/v2/home/policies/service-control-policy), and delete SubstrateServiceControlPolicy. When you've migrated whatever needed IMDSv1 to use IMDSv2, re-run `substrate bootstrap-management-account`.
 * Substrate now ships with a rudimentary autocomplete mechanism for Bash, Z shell, and other shells with compatibility for Bash completion.
-* Substrate can now be used to drive the `--profile` option to the standard AWS CLI. See [using AWS CLI profiles](../aws-cli-profiles/) for details.
+* Substrate can now be used to drive the `--profile` option to the standard AWS CLI. See [using AWS CLI profiles](working/aws-cli-profiles.md) for details.
 * Upgrade the AWS Terraform provider to version 4.9.0 or (slightly) newer.
 * Remove the dependency on the AWS CLI in the generated `modules/substrate` Terraform code.
 * Bug fix: Lessen the possibility of a `TooManyRequestsException` from AWS Organizations during Terraform runs.
 * Bug fix: Update the `SubstrateVersion` tag on your AWS accounts themselves when Substrate tries to create them and finds that they already exist.
-* Bug fix: This time Substrate _actually_ asks if it may post [telemetry](../telemetry/) to Source & Binary as promised in the previous release.
+* Bug fix: This time Substrate _actually_ asks if it may post [telemetry](meta/telemetry.md) to Source & Binary as promised in the previous release.
 * Bug fix: Prevent a rare crash when trying to post tememetry early so commands can exit earlier.
 * Bug fix: Use Terraform resource references in `root-modules/deploy` to avoid a race during `substrate bootstrap-deploy-account`.
 * Bug fix: Properly support older instance types, especially t2, in the Instance Factory.
 
 After upgrading Substrate:
 
-1. [Configure Substrate shell completion](../getting-started/shell-completion/)
+1. [Configure Substrate shell completion](getting-started/shell-completion.md)
 2. `substrate bootstrap-management-account`
 3. ` substrate create-admin-account -quality`` `` `_`quality`_ for each of your admin accounts
 
 ## 2022.03 <a href="#2022.03" id="2022.03"></a>
 
-* Substrate now asks if it may post [telemetry](../telemetry/) to Source & Binary. The data will be used to better understand how Substrate is being used and how it can be improved.
+* Substrate now asks if it may post [telemetry](meta/telemetry.md) to Source & Binary. The data will be used to better understand how Substrate is being used and how it can be improved.
 * Address deprecation warnings from the AWS Terraform provider by refactoring `root-modules/deploy`.
 * Bug fix: Correctly pass an AWS access key to Terraform even if that access key is from an IAM user. This situation is unlikely but can come up during bootstrapping in brownfield environments.
 * Bug fix: Display environments and qualities in the order they're defined in `substrate.environments` and `substrate.qualities` on the Intranet's Accounts page and in the output of `substrate accounts` and `substrate root-modules`.
@@ -266,7 +266,7 @@ After upgrading Substrate, do the following to land the Terraform upgrade and re
 
 * The `-role="..."` option to `substrate-assume-role` now defaults to OrganizationAdministrator, Auditor, DeployAdministrator, or NetworkAdministrator for the special accounts and Administrator for admin and service accounts (or Auditor pretty much across the board, if you begin in the Auditor role). This should save a great deal of typing.
 * Add a navigational header to the Intranet to help folks get around.
-* Allow the Auditor role in the audit account to use Amazon Athena to query the CloudTrail logs stored in S3 there. See [auditing your Substrate-managed AWS organization](../auditing/) for more details.
+* Allow the Auditor role in the audit account to use Amazon Athena to query the CloudTrail logs stored in S3 there. See [auditing your Substrate-managed AWS organization](compliance/auditing.md) for more details.
 * Bug fix: Substrate 2021.12 inadvertantly stopped accepting EC2 instance profile credentials on Instance Factory instances. (The instances are still assigned the correct role, Substrate programs just wouldn't use it.) Substrate programs once again use EC2 instance profile credentials when available.
 
 After upgrading Substrate:
@@ -392,7 +392,7 @@ After upgrading Substrate:
 * `substrate-whoami` output now also includes your IAM role ARN.
 * Prompt folks to `cd` or set `SUBSTRATE_ROOT` when they try to `eval $(substrate-credentials)` from outside the Substrate repository.
 * Allow all accounts in the organization, not just admin accounts, to read shared CloudWatch metrics.
-* Added experimental `modules/intranet/regional/proxy` that makes it easy to put SSO in front of internal websites and HTTP APIs. See [protecting internal websites](../protecting-internal-websites/) for more information and an example.
+* Added experimental `modules/intranet/regional/proxy` that makes it easy to put SSO in front of internal websites and HTTP APIs. See [protecting internal websites](working/protecting-internal-websites.md) for more information and an example.
 * Bug fix: Grant `s3:PutObjectAcl` so that it’s possible for all authorized principals to upload objects with the `bucket-owner-full-control` canned ACL.
 * Bug fix: Extract `substrate-intranet.zip` from the `substrate` binary during Terraform runs in `root-modules/admin/*/*` instead of only during `substrate-create-admin-account`. This makes it far less painful for mulitple teammates to work in the same Substrate repository and for CI/CD systems to apply Terraform changes.
 * Bug fix: Prevent a race between VPC sharing and tagging that caused `substrate-create-admin-account` and `substrate-create-account` to fail every time they were used to actually create an account.
@@ -439,7 +439,7 @@ After upgrading Substrate:
 * The Instance Factory now supports ARM instances (i.e. the a1, c6g, m6g, r6g, and t4g families).
 * Bug fix: Switch back to the original working directory in `substrate-assume-role` (which will have changed if invoked with `SUBSTRATE_ROOT` set) before forking and executing a child process.
 * Added `substrate-whoami` to make it easy to learn the domain, environment, and quality of the AWS account your current credentials operate on.
-* Added `-format=json` to `substrate-accounts` to make it easier to enumerate and act programatically on every AWS account in your organization. See [enumerating all your AWS accounts](../enumerating-all-your-aws-accounts/) for an example.
+* Added `-format=json` to `substrate-accounts` to make it easier to enumerate and act programatically on every AWS account in your organization. See [enumerating all your AWS accounts](automating/enumerating-all-your-aws-accounts.md) for an example.
 
 After upgrading Substrate:
 
@@ -450,7 +450,7 @@ After upgrading Substrate:
 ## 2021.07 <a href="#2021.07" id="2021.07"></a>
 
 * The Intranet’s `/accounts` page now opens the AWS Console in new browser tabs as it probably always should have.
-* Substrate now only manages the version constraint on the `archive`, `aws`, and `external` providers rather than all of `versions.tf`. This opens the door to Substrate users adding (and version constraining) additional providers. See [additional Terraform providers](../additional-terraform-providers/) for an example.
+* Substrate now only manages the version constraint on the `archive`, `aws`, and `external` providers rather than all of `versions.tf`. This opens the door to Substrate users adding (and version constraining) additional providers. See [additional Terraform providers](working/additional-terraform-providers.md) for an example.
 * Upgrade to and pin Terraform 1.0.2 and the `aws` provider >= 3.49.0.
 *   Tag many more AWS resources with `Manager` and `SubstrateVersion` using the `default_tags` facility of the AWS provider. If you encounter the following error, remove `Manager` and `SubstrateVersion` (if present) from the indicated resources and re-run.\\
 
@@ -504,7 +504,7 @@ If you’ve added any stub `provider` blocks to your modules, leave them in plac
 After upgrading:
 
 * Run `substrate-bootstrap-network-account` to fix S3 routes.
-* Run `substrate-create-admin-account -quality="..."` to enable direct CloudWatch access and make Instance Factory improvements.
+* Run `substrate-create-admin-account -quality=<quality>` to enable direct CloudWatch access and make Instance Factory improvements.
 
 ## 2021.04 <a href="#2021.04" id="2021.04"></a>
 
@@ -513,7 +513,7 @@ After upgrading:
 * Added `substrate-create-terraform-module` which creates the directory structure (with the `global` and `regional` pattern), providers, and Substrate metadata for a new Terraform module.
 * Now building for M1 Macs, too.
 
-After upgrading, run `substrate-create-admin-account -quality="..."` to add `/accounts` to your Intranet.
+After upgrading, run `substrate-create-admin-account -quality=<quality>` to add `/accounts` to your Intranet.
 
 ## 2021.03 <a href="#2021.03" id="2021.03"></a>
 
@@ -532,7 +532,7 @@ After upgrading:
 
 1. `rm -f -r root-modules/network/*/peering` and remove these files from version control.
 2. `substrate-bootstrap-network-account` to peer all your VPCs that should be peered.
-3. `substrate-create-admin-account -quality="..."` to fix Instance Factory IAM roles, following the [Google SAML setup](../getting-started/integrating-your-identity-provider/integrating-your-google-identity-provider.md) guide if Google is your IdP to also get 12-hour AWS Console sessions.
+3. `substrate-create-admin-account -quality="..."` to fix Instance Factory IAM roles, following the [Google SAML setup](getting-started/integrating-your-identity-provider/integrating-your-google-identity-provider.md) guide if Google is your IdP to also get 12-hour AWS Console sessions.
 
 ## 2021.02 <a href="#2021.02" id="2021.02"></a>
 
