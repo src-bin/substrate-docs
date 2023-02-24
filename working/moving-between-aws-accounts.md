@@ -10,7 +10,7 @@ Ad-hoc movement throughout your organization is made easy by the `substrate assu
 
 To get temporary credentials in your _example development default_ account (once you've created such an account), you'd run `substrate assume-role -domain example -environment development -quality default`. Without any additional arguments, `substrate assume-role` prints shell environment variables so you should wrap it in `eval`. It will also feed the shell an `unassume-role` alias you can use to pop back into your admin account:
 
-```shell-session
+```sh
 eval $(substrate assume-role -domain example -environment development -quality default)
 # do whatever you like
 unassume-role
