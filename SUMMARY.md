@@ -17,60 +17,60 @@
 * [Integrating your original AWS account(s)](getting-started/integrating-your-original-aws-account.md)
 * [Managing your infrastructure in service accounts](getting-started/managing-your-infrastructure-in-service-accounts.md)
 
-## Concepts and terms
+## Concepts and terms <a href="#concepts" id="concepts"></a>
 
-* [Accounts in a Substrate-managed AWS organization](concepts-and-terms/accounts.md)
-* [Domains, environments, and qualities](concepts-and-terms/domains-environments-qualities.md)
-* [Networking](concepts-and-terms/networking.md)
-* [Diagram of a Substrate-managed AWS organization](concepts-and-terms/diagram-substrate-managed-aws-organization.md)
-* [Global and regional Terraform modules](concepts-and-terms/global-and-regional-terraform-modules.md)
-* [Root Terraform modules](concepts-and-terms/root-terraform-modules.md)
-* [Substrate filesystem hierarchy](concepts-and-terms/substrate-filesystem-hierarchy.md)
+* [Accounts in a Substrate-managed AWS organization](concepts/accounts.md)
+* [Domains, environments, and qualities](concepts/domains-environments-qualities.md)
+* [Networking](concepts/networking.md)
+* [Diagram of a Substrate-managed AWS organization](concepts/diagram-substrate-managed-aws-organization.md)
+* [Global and regional Terraform modules](concepts/global-and-regional-terraform-modules.md)
+* [Root Terraform modules](concepts/root-terraform-modules.md)
+* [Substrate filesystem hierarchy](concepts/substrate-filesystem-hierarchy.md)
 
-## Architectural guidance
+## Architectural guidance <a href="#guidance" id="guidance"></a>
 
-* [Technology choices](architectural-guidance/technology-choices.md)
-* [Multi-tenancy](architectural-guidance/multi-tenancy.md)
-* [Diagram of a multi-quality, multi-region service](architectural-guidance/diagram-multi-quality-multi-region-service.md)
-* [Deciding where to host internal tools](architectural-guidance/internal-tools.md)
+* [Technology choices](guidance/technology-choices.md)
+* [Multi-tenancy](guidance/multi-tenancy.md)
+* [Diagram of a multi-quality, multi-region service](guidance/diagram-multi-quality-multi-region-service.md)
+* [Deciding where to host internal tools](guidance/internal-tools.md)
 
-## Working in your Substrate-managed AWS organization
+## Working in your Substrate-managed AWS organization <a href="#working" id="working"></a>
 
-* [Accessing AWS in your terminal](working-in-your-substrate-managed-aws-organization/accessing-aws-in-your-terminal.md)
-* [Accessing the AWS console](working-in-your-substrate-managed-aws-organization/accessing-the-aws-console.md)
-* [Moving between AWS accounts](working-in-your-substrate-managed-aws-organization/moving-between-aws-accounts.md)
-* [Using AWS CLI profiles](working-in-your-substrate-managed-aws-organization/aws-cli-profiles.md)
-* [Jumping into private networks](working-in-your-substrate-managed-aws-organization/jumping-into-private-networks.md)
-* [Writing Terraform code](working-in-your-substrate-managed-aws-organization/writing-terraform-code.md)
-* [Using Amazon EC2 when IMDSv2 is required](working-in-your-substrate-managed-aws-organization/ec2-imdsv2.md)
-* [Additional Terraform providers](working-in-your-substrate-managed-aws-organization/additional-terraform-providers.md)
-* [Adding a domain](working-in-your-substrate-managed-aws-organization/adding-a-domain.md)
-* [Adding an environment or quality](working-in-your-substrate-managed-aws-organization/adding-an-environment-or-quality.md)
-* [Adding an AWS region](working-in-your-substrate-managed-aws-organization/adding-an-aws-region.md)
-* [Deploying software](working-in-your-substrate-managed-aws-organization/deploying-software.md)
-* [Protecting internal websites](working-in-your-substrate-managed-aws-organization/protecting-internal-websites.md)
+* [Accessing AWS in your terminal](working/accessing-aws-in-your-terminal.md)
+* [Accessing the AWS console](working/accessing-the-aws-console.md)
+* [Moving between AWS accounts](working/moving-between-aws-accounts.md)
+* [Using AWS CLI profiles](working/aws-cli-profiles.md)
+* [Jumping into private networks](working/jumping-into-private-networks.md)
+* [Writing Terraform code](working/writing-terraform-code.md)
+* [Using Amazon EC2 when IMDSv2 is required](working/ec2-imdsv2.md)
+* [Additional Terraform providers](working/additional-terraform-providers.md)
+* [Adding a domain](working/adding-a-domain.md)
+* [Adding an environment or quality](working/adding-an-environment-or-quality.md)
+* [Adding an AWS region](working/adding-an-aws-region.md)
+* [Deploying software](working/deploying-software.md)
+* [Protecting internal websites](working/protecting-internal-websites.md)
 
-## Automating operations with Substrate
+## Automating operations with Substrate <a href="#automating" id="automating"></a>
 
-* [Enumerating all your AWS accounts](automating-operations-with-substrate/enumerating-all-your-aws-accounts.md)
-* [Enumerating all your root Terraform modules](automating-operations-with-substrate/enumerating-all-your-root-terraform-modules.md)
+* [Enumerating all your AWS accounts](automating/enumerating-all-your-aws-accounts.md)
+* [Enumerating all your root Terraform modules](automating/enumerating-all-your-root-terraform-modules.md)
 
-## Administering your Substrate-managed AWS organization
+## Administering your Substrate-managed AWS organization <a href="#administering" id="administering"></a>
 
-* [Onboarding users](administering-your-substrate-managed-aws-organization/onboarding-users.md)
-* [Offboarding users](administering-your-substrate-managed-aws-organization/offboarding-users.md)
-* [Allowing third parties to access your AWS organization](administering-your-substrate-managed-aws-organization/allowing-third-parties-to-access-your-aws-organization.md)
-* [Adding administrators to your AWS organization](administering-your-substrate-managed-aws-organization/adding-administrators.md)
-* [Customizing EC2 instances from the Instance Factory](administering-your-substrate-managed-aws-organization/customizing-instance-factory.md)
-* [Cost management](administering-your-substrate-managed-aws-organization/cost-management.md)
-* [Adding non-administrator roles for humans](administering-your-substrate-managed-aws-organization/adding-non-administrator-roles-for-humans.md)
+* [Onboarding users](administering/onboarding-users.md)
+* [Offboarding users](administering/offboarding-users.md)
+* [Allowing third parties to access your AWS organization](administering/allowing-third-parties-to-access-your-aws-organization.md)
+* [Adding administrators to your AWS organization](administering/adding-administrators.md)
+* [Customizing EC2 instances from the Instance Factory](administering/customizing-instance-factory.md)
+* [Cost management](administering/cost-management.md)
+* [Adding non-administrator roles for humans](administering/adding-non-administrator-roles-for-humans.md)
 
 ## Compliance
 
 * [Addressing SOC 2 criteria with Substrate](compliance/addressing-soc-2-criteria-with-substrate.md)
 * [Auditing your Substrate-managed AWS organization](compliance/auditing.md)
 
-## Runbooks for emergency and once-in-a-blue-moon operations
+## Runbooks for emergency and once-in-a-blue-moon operations <a href="#runbooks" id="runbooks"></a>
 
 * [Subscribing to AWS support plans](runbooks/aws-support.md)
 * [Closing an AWS account](runbooks/closing-an-aws-account.md)
@@ -81,11 +81,11 @@
 * [Regaining access in case the Credential and Instance Factories are broken](runbooks/regaining-access.md)
 * [Debugging Substrate](runbooks/debugging.md)
 
-## Release notes and upgrading
+## Release notes and upgrading <a href="#upgrading" id="upgrading"></a>
 
-* [Substrate release notes](releases.md)
-* [Upgrading Substrate](upgrading.md)
+* [Upgrading Substrate](upgrading/upgrading.md)
 
 ## Meta
 
 * [Telemetry in Substrate](telemetry.md)
+* [Substrate release notes](meta/releases.md)

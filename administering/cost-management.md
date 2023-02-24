@@ -4,7 +4,7 @@ Substrate makes it standard operating procedure to use multiple AWS accounts. Ea
 
 To use Cost Explorer, first ensure you've followed the steps to **Delegate access to billing data** in the [getting started](broken-reference) guide. Then, alas, you'll have to wait up to 24 hours for AWS to get you enrolled in Cost Explorer. From that second day onward, though, it'll be up and running.
 
-The most important facet to use when dissecting your bill is AWS account. If you're using [domains, environments, and qualities](../concepts-and-terms/domains-environments-qualities.md) effectively, you won't need to stress greatly over tagging strategies in order to quickly derive meaningful insights on your cloud infrastructure costs.
+The most important facet to use when dissecting your bill is AWS account. If you're using [domains, environments, and qualities](../concepts/domains-environments-qualities.md) effectively, you won't need to stress greatly over tagging strategies in order to quickly derive meaningful insights on your cloud infrastructure costs.
 
 Be mindful, though, that Cost Explorer works for all accounts in your AWS organization. This can be useful, of course, because it allows domain owners to dissect their own costs endlessly without being distracted by costs associated with other domains. To get a view of the entire organization, though, assume a role like OrganizationAdministrator in your master account.
 
