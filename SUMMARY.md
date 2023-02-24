@@ -88,4 +88,4 @@
 ## Meta
 
 * [Telemetry in Substrate](meta/telemetry.md)
-* [Substrate release notes](releases.md)
+* [Substrate release notes](meta/releases.md)
