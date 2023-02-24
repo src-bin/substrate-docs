@@ -5,5 +5,5 @@ AWS paves the way for the CloudWatch console to view metrics cross-account and c
 To use this facility, follow these steps:
 
 1. Visit the [cross-account cross-region settings in the CloudWatch console](https://console.aws.amazon.com/cloudwatch/home?region=us-east-1#settings:/xaxr/view)
-1. Check the &ldquo;Show selector in the console&rdquo; box
-1. Click **Save changes**
+2. Check the “Show selector in the console” box
+3. Click **Save changes**

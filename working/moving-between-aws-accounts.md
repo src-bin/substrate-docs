@@ -32,4 +32,4 @@ A lot of work in your AWS organization hopefully happens in Terraform and not ad
 
 ## AWS console
 
-The AWS Console includes a “switch role” feature that you're welcome to use but [accessing the AWS Console](../accessing-the-aws-console/) shows that you probably won't need it. In your Substrate-managed AWS organization, access to the AWS Console feels less like switching roles and more like going straight into the account you need to access.
+The AWS Console includes a “switch role” feature that you're welcome to use but [accessing the AWS Console](accessing-the-aws-console.md) shows that you probably won't need it. In your Substrate-managed AWS organization, access to the AWS Console feels less like switching roles and more like going straight into the account you need to access.

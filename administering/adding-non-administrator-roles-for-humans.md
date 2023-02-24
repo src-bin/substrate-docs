@@ -63,13 +63,21 @@ resource "aws_iam_role_policy_attachment" "developer" {
 
 This role is called “Developer” but of course you can call yours whatever you like and have as many as you like.
 
+<<<<<<< HEAD
 Run `substrate create-admin-account -quality`` `_`quality`_ to create this role, then update the `RoleName` attribute in your identity provider to assign it to whichever users you like.
+=======
+Run `substrate create-admin-account -quality <quality>` to create this role, then update the `RoleName` attribute in your identity provider to assign it to whichever users you like.
+>>>>>>> 2023.02
 
 ## In your service accounts
 
 In order for users assigned this role to assume roles in other AWS accounts, your service accounts, you'll need to create roles in those accounts, too, and authorize this role to assume them. You do this on each account individually.
 
+<<<<<<< HEAD
 In each service account, code like this in a new file in `modules/`_`domain`_`/global` or `root-modules/`_`domain`_`/`_`environment`_`/`_`quality`_`/global` will allow these new non-Administrator users to assume a role in that account:
+=======
+In each service account, code like this in a new file in `modules/<domain>/global` or `root-modules/<domain>/<environment>/<quality>/global` will allow these new non-Administrator users to assume a role in that account:
+>>>>>>> 2023.02
 
 ```
 data "aws_iam_policy_document" "developer" {
@@ -113,7 +121,7 @@ resource "aws_iam_role_policy_attachment" "developer" {
 }
 ```
 
-Run `substrate create-account -domain`` `_`domain`_` ``-environment`` `_`environment`_` ``-quality`` `_`quality`_ to create this role.
+Run `substrate create-account -domain <domain> -environment <environment> -quality <quality>` to create this role.
 
 ### In your identity provider
 

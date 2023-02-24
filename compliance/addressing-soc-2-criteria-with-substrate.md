@@ -2,13 +2,13 @@
 
 Most Substrate users are already or soon will be operating a SOC 2 compliance program. The following [SOC 2 criteria](https://us.aicpa.org/content/dam/aicpa/interestareas/frc/assuranceadvisoryservices/downloadabledocuments/trust-services-criteria.pdf) are at least partially addressed merely by adopting Substrate. In some cases, reference controls are provided that you're free to adopt verbatim or adapt as you and your auditors see fit.
 
-_If you're feeling a bit like a deer in headlights about SOC 2 compliance, take Source &amp; Binary's [SOC 2 compliance workshop](/compliance/) and make SOC 2 a competitive advantage for your business. Email <hello@src-bin.com> to schedule yours._
+_If you're feeling a bit like a deer in headlights about SOC 2 compliance, take Source & Binary's_ [_SOC 2 compliance workshop_](https://src-bin.com/compliance/) _and make SOC 2 a competitive advantage for your business. Email_ [_hello@src-bin.com_](mailto:hello@src-bin.com) _to schedule yours._
 
 ## CC6.1
 
 **The entity implements logical access security software, infrastructure, and architectures over protected information assets to protect them from security events to meet the entity's objectives.**
 
-Substrate requires you to use an OAuth OIDC identity provider to control access to AWS (where, presumably, your &ldquo;information assets&rdquo; are hosted) to benefit from controls commonly applied to identity providers:
+Substrate requires you to use an OAuth OIDC identity provider to control access to AWS (where, presumably, your “information assets” are hosted) to benefit from controls commonly applied to identity providers:
 
 * Users have unique accounts for access to sensitive data, infrastructure, and tools.
 * Access to sensitive data, infrastructure, and tools requires two-factor authentication.
@@ -40,8 +40,8 @@ In a Substrate-managed AWS organization, all actors are considered to be outside
 
 Controls to consider:
 
-* Access to sensitive data, infrastructure, and tools is controlled by [your identity provider].
-* SSH access to sensitive infrastructure is restricted to [role name(s)].
+* Access to sensitive data, infrastructure, and tools is controlled by \[your identity provider].
+* SSH access to sensitive infrastructure is restricted to \[role name(s)].
 
 Provide evidence of these controls functioning by showing firewall rules restricting SSH access to 192.168.0.0/16, only your admin VPCs having CIDR prefixes within that, and only authorized users being able to use the Instance Factory.
 
@@ -85,7 +85,7 @@ So long as you define your infrastructure using `module.substrate.private_subnet
 
 Control to consider: Infrastructure is provisioned across three availability zones.
 
-Provide evidence of this control functioning by showing your Terraform code, actual resources (ECS or EKS clusters, autoscaling groups, database clusters, etc.) in the AWS Console, and the [documentation for `module.substrate.private_subnet_ids` and `module.substrate.public_subnet_ids`](../writing-terraform-code/).
+Provide evidence of this control functioning by showing your Terraform code, actual resources (ECS or EKS clusters, autoscaling groups, database clusters, etc.) in the AWS Console, and the [documentation for `module.substrate.private_subnet_ids` and `module.substrate.public_subnet_ids`](../working/writing-terraform-code/).
 
 <!--
 

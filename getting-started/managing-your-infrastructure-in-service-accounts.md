@@ -7,7 +7,7 @@ Substrate helps you use multiple accounts to separate environments (like _develo
 You've probably got in mind the first thing you're going to build with Substrate's help, so next you can jump straight into [adding a domain](../working/adding-a-domain.md). Or just run a command like this (noting that `-quality` is optional if you only defined one):
 
 ```shell-session
-substrate create-account -domain domain -environment environment -quality quality
+substrate create-account -domain <domain> -environment environment -quality <quality>
 ```
 
 The environment and quality there should be a combination you defined way back when you ran `substrate bootstrap-network-account`. If it's not, no big deal: Just run `substrate bootstrap-network-account -fully-interactive` and change your answers. And, as with all Substrate commands, this one's safe to run over and over again; in fact, running it again is the quickest way to run all the Terraform code related to that service account.

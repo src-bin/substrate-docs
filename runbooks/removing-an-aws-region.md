@@ -12,12 +12,12 @@ Run `substrate bootstrap-network-account -fully-interactive`. When prompted if y
 
 ## Destroy admin and service infrastructure in the region
 
-`find root-modules -name`` `_`region`_ to list all the root modules that run in the region. Starting with your admin and service accounts, run `terraform destroy` in each one and then `rm -f -r` that directory.
+`find root-modules -name <region>` to list all the root modules that run in the region. Starting with your admin and service accounts, run `terraform destroy` in each one and then `rm -f -r` that directory.
 
 ## Destroy network peering relationships
 
-`find root-modules/network/peering -name`` `_`region`_ to list all the root modules that manage network peering relationships that involve the region. Run `terraform destroy` and `rm -f -r` for each one, just as you did for service accounts before.
+`find root-modules/network/peering -name <region>` to list all the root modules that manage network peering relationships that involve the region. Run `terraform destroy` and `rm -f -r` for each one, just as you did for service accounts before.
 
 ## Destroy deploy buckets and the networks themselves
 
-`find root-modules -name`` `_`region`_ again and run `terraform destroy` and `rm -f -r` for everything that's left. It's likely that you'll have to destroy the networks twice to fully resolve Terraform's dependencies.
+`find root-modules -name <region>` again and run `terraform destroy` and `rm -f -r` for everything that's left. It's likely that you'll have to destroy the networks twice to fully resolve Terraform's dependencies.

@@ -81,11 +81,11 @@
 * [Regaining access in case the Credential and Instance Factories are broken](runbooks/regaining-access.md)
 * [Debugging Substrate](runbooks/debugging.md)
 
-## Release notes and upgrading <a href="#upgrading" id="upgrading"></a>
+## Upgrading
 
-* [Upgrading Substrate](upgrading/upgrading.md)
+* [Upgrading Substrate](upgrading/upgrading-substrate.md)
 
 ## Meta
 
-* [Telemetry in Substrate](telemetry.md)
-* [Substrate release notes](meta/releases.md)
+* [Telemetry in Substrate](meta/telemetry.md)
+* [Substrate release notes](releases.md)

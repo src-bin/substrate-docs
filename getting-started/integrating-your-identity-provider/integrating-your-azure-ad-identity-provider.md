@@ -1,6 +1,6 @@
 # Integrating your Azure AD identity provider
 
-`substrate create-admin-account -quality`` `_`quality`_ will ask for several inputs, which this page will help you provide from your Azure AD identity provider.
+`substrate create-admin-account -quality <quality>` will ask for several inputs, which this page will help you provide from your Azure AD identity provider.
 
 These steps must be completed by an Azure administrator with the Application Administrator, Attribute Assignment Administrator, and Attribute Definition Administrator roles in an organization subscribed to Azure AD Premium 1 or Azure AD Premium 2.
 
@@ -41,5 +41,5 @@ These steps must be completed by an Azure administrator with the Application Adm
    3. Click **Add assignment**
    4. Select “AWS” in the _Attribute set_ column
    5. Select “RoleName” in the _Attribute name_ column
-   6. Enter the name (not the ARN) of the IAM role they should assume in your admin account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](../../adding-non-administrator-roles-for-humans/) first)
+   6. Enter the name (not the ARN) of the IAM role they should assume in your admin account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](https://github.com/src-bin/substrate-manual/blob/main/adding-non-administrator-roles-for-humans/README.md) first)
    7. Click **Save**

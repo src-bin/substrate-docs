@@ -44,8 +44,8 @@ An AWS account in your organization is associated with exactly one domain but ca
 
 It is intended that every AWS account that shares the same domain also shares the same Terraform codebase. That codebase progresses through environments and qualities as changes are deployed. For example, consider the domain _example_ which exists in the following environments and qualities:
 
-- Domain: _example_, Environment: _staging_, Quality: _alpha_
-- Domain: _example_, Environment: _production_, Quality: _beta_
-- Domain: _example_, Environment: _production_, Quality: _gamma_
+* Domain: _example_, Environment: _staging_, Quality: _alpha_
+* Domain: _example_, Environment: _production_, Quality: _beta_
+* Domain: _example_, Environment: _production_, Quality: _gamma_
 
 They all refer back to the same modules, parameterized according to their domain, environment, and quality plus the appropriate VPC and subnet IDs. The difference between them, then, is _when_ changes are deployed.

@@ -31,8 +31,8 @@ The simplest `substrate.Administrator.assume-role-policy.json` looks like this:
 
 You can include as many principals as you'd like in the innermost list.
 
-Every time you update this file, you'll need to re-run `substrate create-admin-account -quality`` `_`quality`_ in order to update the Administrator role in all the relevant accounts. This policy will be merged with the policy Substrate generates for the Administrator role (since roles may only have a single assume-role policy).
+Every time you update this file, you'll need to re-run `substrate create-admin-account -quality <quality>` in order to update the Administrator role in all the relevant accounts. This policy will be merged with the policy Substrate generates for the Administrator role (since roles may only have a single assume-role policy).
 
 Once successfully applied, your additional administrators will be able to assume the Administrator role in all your accounts.
 
-Note, too, that this pattern can be applied to the Auditor role using the `substrate.Auditor.assume-role-policy.json` file per [auditing your Substrate-managed AWS organization](../auditing/).
+Note, too, that this pattern can be applied to the Auditor role using the `substrate.Auditor.assume-role-policy.json` file per [auditing your Substrate-managed AWS organization](../compliance/auditing.md).

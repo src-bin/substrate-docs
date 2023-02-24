@@ -32,10 +32,10 @@ When you run this program, you'll be prompted several times for input. As much a
 
 The first of these inputs is an access key from the root of your new AWS account. It is never saved to disk (for security reasons) so keep it handy until later in this guide when it you're told it's safe to delete it. To create a root access key:
 
-1. Visit <https://console.aws.amazon.com/iam/home#/security_credentials>
+1. Visit [https://console.aws.amazon.com/iam/home#/security\_credentials](https://console.aws.amazon.com/iam/home#/security\_credentials)
 2. Scroll to the _Access keys_ section
 3. Click **Create access key**
-4. Check the &ldquo;I understand...&rdquo; box and click **Create access key**
+4. Check the “I understand...” box and click **Create access key**
 5. Click **Show**
 6. Save these values in your password manager for now
 
@@ -51,7 +51,7 @@ While you're logged into your management account using the root credentials, fol
 2. Open the _IAM User and Role Access to Billing Information_ section
 3. Check “Activate IAM Access”
 4. Click **Update**
-5. Visit <https://console.aws.amazon.com/billing/home#/costexplorer>
+5. Visit [https://console.aws.amazon.com/billing/home#/costexplorer](https://console.aws.amazon.com/billing/home#/costexplorer)
 6. Click **Enable Cost Explorer** or **Launch Cost Explorer** (whichever is displayed)
 
 ## Bootstrapping your network account
@@ -66,7 +66,7 @@ substrate bootstrap-network-account
 
 Here, too, during your first run you'll be prompted for your root access key.
 
-This program additionally asks for the names of your environments, the release qualities you want to use, and the specific combinations that are valid. You may want to peek ahead at [domains, environments, and qualities](../domains-environments-qualities/) to see how these pieces fit together. Environments typically have names like “development” and “production” — they identify a set of data and all the infrastructure that may access it. Qualities are names given to independent copies of your infrastructure _within an environment_ that make it possible to incrementally change AWS resources. If you're unsure, defining a single quality called “default” is good.
+This program additionally asks for the names of your environments, the release qualities you want to use, and the specific combinations that are valid. You may want to peek ahead at [domains, environments, and qualities](../concepts/domains-environments-qualities.md) to see how these pieces fit together. Environments typically have names like “development” and “production” — they identify a set of data and all the infrastructure that may access it. Qualities are names given to independent copies of your infrastructure _within an environment_ that make it possible to incrementally change AWS resources. If you're unsure, defining a single quality called “default” is good.
 
 It also asks which AWS regions you want to use. Your answers inform how it lays out your networks to strike a balance between security, reliability, ergonomics, and cost. If you're unsure, starting with one region is fine.
 

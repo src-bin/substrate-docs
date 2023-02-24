@@ -1,6 +1,6 @@
 # Jumping into private networks
 
-Substrate manages VPCs for each of your environments, as documented in [networking](../networking/), and each of these is constructed with three public and three private subnets. The private subnets, being private, aren't directly accessible from the Internet. And though the public subnets are, it's recommended that the traffic they do allow directly from the public Internet be handled first by ALB, NLB, API Gateway, or the like.
+Substrate manages VPCs for each of your environments, as documented in [networking](../concepts/networking.md), and each of these is constructed with three public and three private subnets. The private subnets, being private, aren't directly accessible from the Internet. And though the public subnets are, it's recommended that the traffic they do allow directly from the public Internet be handled first by ALB, NLB, API Gateway, or the like.
 
 We recommend that you only allow SSH traffic from the public Internet into your admin account. Conveniently, this is exactly how the Instance Factory is meant to be used. So in order to jump into your private networks via SSH, use an EC2 instance from the Instance Factory as a jump box.
 
