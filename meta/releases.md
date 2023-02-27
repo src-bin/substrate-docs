@@ -1,5 +1,21 @@
 # Substrate release notes
 
+## 2023.03 <a href="#2023.03" id="2023.03"></a>
+
+* Added `substrate create-role` to allow you to create and manage IAM roles and policies across all your AWS accounts. It supports selecting accounts by domain, environment, and quality and can grant access to selected accounts to humans (via your identity provider), AWS services, GitHub Actions configurations, and arbitrary AWS principals.
+* Added `substrate delete-role` for thoroughly deleting IAM roles created by `substrate create-role` across all your AWS accounts.
+* Added `substrate roles` which inspects all your AWS accounts and can recreate all your previous `substrate create-role` commands. It's analogous to `substrate accounts`, including supporting a `-format shell` option.
+* Tailored the output of `substrate whoami` to the kind of account so that it doesn't report &mdash; alarmingly, at first glance &mdash; that certain accounts don't have Domain, Environment, and Quality tags.
+* Only support the `-non-interactive`, `-minimally-interactive`, and `-fully-interactive` flags on bootstrapping and account creation subcommands. They had no purpose in other subcommands but muddled their usage messages.
+* Bug fix: Formally disallow spaces and commas in the names of domains, environments, and qualities.
+* Bug fix: More aggressively garbage-collect expired tokens from half-completed `eval $(substrate credentials)` invocations in Credential Factory.
+
+Upgrade Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, this will be all you need to do to upgrade.
+
+After upgrading Substrate, you should run `sh <(substrate accounts -format shell -no-apply)`. This Substrate upgrade does not require any Terraform changes to be applied so whether and when to do so is left to you.
+
+This month, Substrate's documentation and release notes are moving to <https://docs.src-bin.com/substrate/>. Old URLs will redirect to their equivalent on the new subdomain. And for your troubles, we're pleased to now offer search over the Substrate documentation. Going forward, the new canonical URL for the release notes is <http://docs.src-bin.com/substrate/releases>.
+
 ## 2023.02 <a href="#2023.02" id="2023.02"></a>
 
 * Allow adopting an existing account as the Substrate-managed audit account to prevent duplication when bootstrapping Substrate in existing organizations.
