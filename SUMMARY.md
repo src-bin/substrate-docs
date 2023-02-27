@@ -87,5 +87,6 @@
 
 ## Meta
 
-* [Telemetry in Substrate](meta/telemetry.md)
 * [Substrate release notes](meta/releases.md)
+* [Telemetry in Substrate](meta/telemetry.md)
+* [Typographical conventions](meta/typography.md)
