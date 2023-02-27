@@ -53,6 +53,7 @@
 * [Adding a domain](working/adding-a-domain.md)
 * [Adding an environment or quality](working/adding-an-environment-or-quality.md)
 * [Adding an AWS region](working/adding-an-aws-region.md)
+* [Adding custom IAM roles for humans or services](working/custom-iam-roles.md)
 * [Deploying software](working/deploying-software.md)
 * [Protecting internal websites](working/protecting-internal-websites.md)
 
@@ -60,6 +61,7 @@
 
 * [Enumerating all your AWS accounts](automating/enumerating-all-your-aws-accounts.md)
 * [Enumerating all your root Terraform modules](automating/enumerating-all-your-root-terraform-modules.md)
+* [Enumerating all your custom AWS IAM roles](automating/enumerating-all-your-aws-iam-roles.md)
 
 ## Administering your Substrate-managed AWS organization <a href="#administering" id="administering"></a>
 
@@ -69,7 +71,6 @@
 * [Adding administrators to your AWS organization](administering/adding-administrators.md)
 * [Customizing EC2 instances from the Instance Factory](administering/customizing-instance-factory.md)
 * [Cost management](administering/cost-management.md)
-* [Adding non-administrator roles for humans](administering/adding-non-administrator-roles-for-humans.md)
 
 ## Compliance
 

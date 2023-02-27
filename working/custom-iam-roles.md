@@ -1,3 +1,20 @@
+# Custom IAM roles
+
+Once you've isolated your various environments and services in their own AWS accounts, you'll no doubt need to get into those accounts to operate those services, deploy changes, and debug unexpected behavior. Substrate provides the Administrator and Auditor roles automatically but in many cases Administrator, which is allowed to use all AWS APIs in all your AWS accounts, is too privileged and Auditor, which has limited read-only access to all your AWS accounts, is too restricted.
+
+If Administrator is too privileged and Auditor is too restricted, you need to create custom IAM roles. Substrate will help you with that.
+
+TODO TODO TODO
+
+
+
+
+
+
+----
+
+TODO keep a bit of this in some form to explain both adding even more advanced policies to Substrate-managed roles and as an example of how to go even further beyond (and when you'd do so, like if the role's a service account _only_ for a single domain where it's actually not awkward to define it in Terraform)
+
 # Adding non-administrator roles for humans
 
 ## Adding non-Administrator (and non-Auditor) roles for humans
@@ -118,3 +135,4 @@ Run `substrate create-account -domain <domain> -environment <environment> -quali
 ### In your identity provider
 
 Visit [https://admin.google.com/ac/users](https://admin.google.com/ac/users) in a browser (or visit [https://admin.google.com](https://admin.google.com) and click **Users**) and modify the _RoleName_ attribute in the _AWS_ section for whomever you want to assume this new role.
+
