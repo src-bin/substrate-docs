@@ -17,6 +17,12 @@
 * [Integrating your original AWS account(s)](getting-started/integrating-your-original-aws-account.md)
 * [Managing your infrastructure in service accounts](getting-started/managing-your-infrastructure-in-service-accounts.md)
 
+## Keeping going TODO this is a bad title
+
+* [Getting everyone else started](getting-everyone-else-started.md)
+* [Upgrading Substrate](upgrading.md)
+* [Substrate release notes](releases.md)
+
 ## Concepts and terms <a href="#concepts" id="concepts"></a>
 
 * [Accounts in a Substrate-managed AWS organization](concepts/accounts.md)
@@ -81,12 +87,7 @@
 * [Regaining access in case the Credential and Instance Factories are broken](runbooks/regaining-access.md)
 * [Debugging Substrate](runbooks/debugging.md)
 
-## Upgrading
+## References <a href="#references" id="references"></a>
 
-* [Upgrading Substrate](upgrading/upgrading-substrate.md)
-
-## Meta
-
-* [Substrate release notes](meta/releases.md)
 * [Telemetry in Substrate](meta/telemetry.md)
 * [Typographical conventions](meta/typography.md)
