@@ -19,7 +19,6 @@
 ## Using Substrate <a href="#use" id="use"></a>
 
 * [Installing Substrate and Terraform](use/installing.md)
-*
 * [Daily workflow](use/daily-workflow.md)
 * [Getting everyone else started](use/getting-everyone-else-started.md)
 * [Upgrading Substrate](use/upgrading.md)
