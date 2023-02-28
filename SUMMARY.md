@@ -88,5 +88,4 @@
 
 ## Meta
 
-*
 * [Typographical conventions](meta/typography.md)
