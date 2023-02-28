@@ -4,6 +4,10 @@ description: Substrate manages secure, reliable, and compliant cloud infrastruct
 
 # Substrate documentation
 
-## Get started with Substrate
+New to Substrate? In AWS, the one true unit of isolation is the AWS account, but isolating all your environments and services in their own AWS accounts can be tedious. Substrate removes all the tedium from having lots of AWS accounts - access, navigation, IAM roles and permissions, networking, and more - so you can reap all the security, reliability, and compliance benefits of true isolation between your AWS workloads.
 
-<table data-card-size="large" data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>Opening a fresh AWS account</td><td>Detailed instructions for opening a new AWS account.</td><td></td><td><a href="getting-started/opening-a-fresh-aws-account.md">opening-a-fresh-aws-account.md</a></td></tr><tr><td>Installing Substrate</td><td>Detailed instructions for installing Substrate and Terraform</td><td></td><td><a href="getting-started/installing.md">installing.md</a></td></tr><tr><td>Boostrapping Substrate</td><td>Bootstrapping you Substrate managed AWS organization</td><td></td><td><a href="getting-started/bootstrapping.md">bootstrapping.md</a></td></tr><tr><td>Integrating your Identity Provider</td><td>How to integrate Substrate with your Identity Provider</td><td></td><td><a href="getting-started/integrating-your-original-aws-account.md">integrating-your-original-aws-account.md</a></td></tr></tbody></table>
+If you're the first person at your company to pick up Substrate, begin by [bootstrapping your AWS organization](bootstrapping/overview.md).
+
+New users at companies already using Substrate can jump straight to [installing](bootstrapping/installing.md) and [using](use/daily-workflow.md) Substrate.
+
+Once you're up and running, this site has all your references for common access and management tasks, resources for your first (or fourteenth) SOC 2 audit, architectures that get the most of of Substrate and AWS, and more.
