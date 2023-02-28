@@ -234,7 +234,7 @@ After upgrading Substrate:
 * Remove the dependency on the AWS CLI in the generated `modules/substrate` Terraform code.
 * Bug fix: Lessen the possibility of a `TooManyRequestsException` from AWS Organizations during Terraform runs.
 * Bug fix: Update the `SubstrateVersion` tag on your AWS accounts themselves when Substrate tries to create them and finds that they already exist.
-* Bug fix: This time Substrate _actually_ asks if it may post [telemetry](meta/telemetry.md) to Source & Binary as promised in the previous release.
+* Bug fix: This time Substrate _actually_ asks if it may post [telemetry](ref/telemetry.md) to Source & Binary as promised in the previous release.
 * Bug fix: Prevent a rare crash when trying to post tememetry early so commands can exit earlier.
 * Bug fix: Use Terraform resource references in `root-modules/deploy` to avoid a race during `substrate bootstrap-deploy-account`.
 * Bug fix: Properly support older instance types, especially t2, in the Instance Factory.
@@ -247,7 +247,7 @@ After upgrading Substrate:
 
 ## 2022.03 <a href="#2022.03" id="2022.03"></a>
 
-* Substrate now asks if it may post [telemetry](meta/telemetry.md) to Source & Binary. The data will be used to better understand how Substrate is being used and how it can be improved.
+* Substrate now asks if it may post [telemetry](ref/telemetry.md) to Source & Binary. The data will be used to better understand how Substrate is being used and how it can be improved.
 * Address deprecation warnings from the AWS Terraform provider by refactoring `root-modules/deploy`.
 * Bug fix: Correctly pass an AWS access key to Terraform even if that access key is from an IAM user. This situation is unlikely but can come up during bootstrapping in brownfield environments.
 * Bug fix: Display environments and qualities in the order they're defined in `substrate.environments` and `substrate.qualities` on the Intranet's Accounts page and in the output of `substrate accounts` and `substrate root-modules`.
