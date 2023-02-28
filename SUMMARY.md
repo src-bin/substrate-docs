@@ -35,6 +35,7 @@
 * [Enumerating all your root Terraform modules](access/enumerating-all-your-root-terraform-modules.md)
 * [Enumerating all your custom AWS IAM roles](access/enumerating-all-your-aws-iam-roles.md)
 * [Cost management](access/cost-management.md)
+* [Deep-linking into the AWS Console](access/deep-linking-into-the-aws-console.md)
 
 ## Managing AWS accounts, roles, and resources <a href="#mgmt" id="mgmt"></a>
 
@@ -73,6 +74,7 @@
 * [Substrate filesystem hierarchy](ref/substrate-filesystem-hierarchy.md)
 * [Networking](ref/networking.md)
 * [Diagram of a multi-quality, multi-region service](ref/diagram-multi-quality-multi-region-service.md)
+* [Multi-region strategy](ref/multi-region-strategy.md)
 * [Technology choices](ref/technology-choices.md)
 * [Multi-tenancy](ref/multi-tenancy.md)
 * [Deciding where to host internal tools](ref/internal-tools.md)
