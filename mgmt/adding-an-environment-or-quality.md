@@ -6,7 +6,7 @@ Add more environments to create entirely disjoint data sets with all the support
 
 Add more qualities to create the opportunity to incrementally change load balancers, autoscaling groups, security groups, DNS zones, IAM roles, and other AWS resources that are typically difficult to incrementally change.
 
-See [domains, environments, and qualities](../concepts/domains-environments-qualities.md) for more discussion of these fundamental Substrate concepts.
+See [domains, environments, and qualities](../ref/domains-environments-qualities.md) for more discussion of these fundamental Substrate concepts.
 
 To add an environment, a quality, or both, follow these steps:
 

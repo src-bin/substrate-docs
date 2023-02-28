@@ -66,7 +66,7 @@ substrate bootstrap-network-account
 
 Here, too, during your first run you'll be prompted for your root access key.
 
-This program additionally asks for the names of your environments, the release qualities you want to use, and the specific combinations that are valid. You may want to peek ahead at [domains, environments, and qualities](../concepts/domains-environments-qualities.md) to see how these pieces fit together. Environments typically have names like “development” and “production” — they identify a set of data and all the infrastructure that may access it. Qualities are names given to independent copies of your infrastructure _within an environment_ that make it possible to incrementally change AWS resources. If you're unsure, defining a single quality called “default” is good.
+This program additionally asks for the names of your environments, the release qualities you want to use, and the specific combinations that are valid. You may want to peek ahead at [domains, environments, and qualities](../ref/domains-environments-qualities.md) to see how these pieces fit together. Environments typically have names like “development” and “production” — they identify a set of data and all the infrastructure that may access it. Qualities are names given to independent copies of your infrastructure _within an environment_ that make it possible to incrementally change AWS resources. If you're unsure, defining a single quality called “default” is good.
 
 It also asks which AWS regions you want to use. Your answers inform how it lays out your networks to strike a balance between security, reliability, ergonomics, and cost. If you're unsure, starting with one region is fine.
 

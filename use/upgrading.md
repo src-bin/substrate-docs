@@ -12,6 +12,6 @@ After upgrading, you should re-run the bootstrapping and account creation comman
 
 As a convenience, `substrate accounts -format shell` will generate all of these commands and put them in the proper order. For the most streamlined workflow, run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
 
-See the [release notes](../releases.md) for version-specific upgrade instructions. They will endeavor to call out which of these steps, and potentially additional steps, are necessary to gain access to new features.
+See the [release notes](broken-reference) for version-specific upgrade instructions. They will endeavor to call out which of these steps, and potentially additional steps, are necessary to gain access to new features.
 
 **Upgrade compatibility is only guaranteed from one month to the next so it's important to stay up-to-date. Behavior of upgrading several versions in one step is undefined and may not function properly.**

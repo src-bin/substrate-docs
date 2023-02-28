@@ -7,7 +7,6 @@
 
 * [Overview](bootstrapping/overview.md)
 * [Opening a fresh AWS account](bootstrapping/opening-a-fresh-aws-account.md)
-* [Installing Substrate and Terraform](bootstrapping/installing.md)
 * [Configuring Substrate shell completion](bootstrapping/shell-completion.md)
 * [Bootstrapping your Substrate-managed AWS organization](bootstrapping/bootstrapping.md)
 * [Integrating your identity provider to control access to AWS](bootstrapping/integrating-your-identity-provider/README.md)
@@ -19,6 +18,7 @@
 
 ## Using Substrate <a href="#use" id="use"></a>
 
+* [Installing Substrate and Terraform](use/installing.md)
 *
 * [Daily workflow](use/daily-workflow.md)
 * [Getting everyone else started](use/getting-everyone-else-started.md)
