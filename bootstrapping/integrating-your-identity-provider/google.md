@@ -45,4 +45,4 @@ These steps must be completed by a Google Super Admin. Be mindful, too, of which
    3. In the _AWS_ section, click **Add RoleName** and enter the name (not the ARN) of the IAM role they should assume in your admin account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](https://github.com/src-bin/substrate-manual/blob/main/adding-non-administrator-roles-for-humans/README.md) first)
    4. Click **SAVE**
 
-With your identity provider integrated, jump to [deleting unnecessary root access keys](bootstrapping/deleting-unnecessary-root-access-keys.md).
+With your identity provider integrated, jump to [deleting unnecessary root access keys](../deleting-unnecessary-root-access-keys.md).
