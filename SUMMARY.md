@@ -89,4 +89,5 @@
 
 # Meta
 
+* [Release notes](releases.md)
 * [Typographical conventions](meta/typography.md)
