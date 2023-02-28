@@ -19,9 +19,8 @@
 
 ## Using Substrate <a href="#use" id="use"></a>
 
-* [Installing Substrate and Terraform](use/installing.md)
+* [Getting started (after someone else has bootstrapped Substrate)](use/getting-started.md)
 * [Daily workflow](use/daily-workflow.md)
-* [Getting everyone else started](use/getting-everyone-else-started.md)
 * [Upgrading Substrate](use/upgrading.md)
 
 ## Accessing and navigating AWS <a href="#access" id="access"></a>
