@@ -3,7 +3,7 @@
 * [Welcome](README.md)
 * [Release notes](releases.md)
 
-## Bootstrapping your Substrate-managed AWS organization <a href="#bootstrapping" id="bootstrapping">
+## Bootstrapping your Substrate-managed AWS organization <a href="#bootstrapping" id="bootstrapping"></a>
 
 * [Overview](bootstrapping/overview.md)
 * [Opening a fresh AWS account](bootstrapping/opening-a-fresh-aws-account.md)
@@ -17,14 +17,14 @@
 * [Deleting unnecessary root access keys](bootstrapping/deleting-unnecessary-root-access-keys.md)
 * [Integrating your original AWS account(s)](bootstrapping/integrating-your-original-aws-account.md)
 
-## Using Substrate <a href="#use" id="use">
+## Using Substrate <a href="#use" id="use"></a>
 
-* [Installing Substrate and Terraform](bootstrapping/installing.md)
+*
 * [Daily workflow](use/daily-workflow.md)
 * [Getting everyone else started](use/getting-everyone-else-started.md)
 * [Upgrading Substrate](use/upgrading.md)
 
-## Accessing and navigating AWS <a href="#access" id="access">
+## Accessing and navigating AWS <a href="#access" id="access"></a>
 
 * [Accessing AWS in your terminal](access/accessing-aws-in-your-terminal.md)
 * [Accessing the AWS console](access/accessing-the-aws-console.md)
@@ -87,7 +87,7 @@
 * [Regaining access in case the Credential and Instance Factories are broken](runbooks/regaining-access.md)
 * [Debugging Substrate](runbooks/debugging.md)
 
-# Meta
+## Meta
 
-* [Release notes](releases.md)
+*
 * [Typographical conventions](meta/typography.md)
