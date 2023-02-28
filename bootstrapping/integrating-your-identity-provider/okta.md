@@ -15,3 +15,5 @@
 11. Select “Limit access to selected groups” and select the groups that are authorized to use AWS (or choose another option; this can always be reconfigured)
 12. Click **Save**
 13. Paste the _Client ID_, _Client secret_, and _Okta domain_ in response to `substrate create-admin-account`'s prompts
+
+With your identity provider integrated, jump to [deleting unnecessary root access keys](bootstrapping/deleting-unnecessary-root-access-keys.md).

@@ -16,6 +16,6 @@ One of those prompts concerns purchasing or transferring a DNS domain name or de
 
 Jump straight to the documentation for your identity provider of choice:
 
-* [Azure Active Directory](integrating-your-azure-ad-identity-provider.md)
-* [Google Workspace](integrating-your-google-identity-provider.md)
-* [Okta](integrating-your-okta-identity-provider.md)
+* [Azure Active Directory](azure-ad.md)
+* [Google Workspace](google.md)
+* [Okta](okta.md)
