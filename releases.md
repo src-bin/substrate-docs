@@ -1,4 +1,4 @@
-# Substrate release notes
+# Release notes
 
 ## 2023.03 <a href="#2023.03" id="2023.03"></a>
 
@@ -14,7 +14,7 @@ Upgrade Substrate by running `substrate upgrade` and following its prompts. If y
 
 After upgrading Substrate, you should run `sh <(substrate accounts -format shell -no-apply)`. This Substrate upgrade does not require any Terraform changes to be applied so whether and when to do so is left to you.
 
-This month, Substrate's documentation and release notes are moving to <https://docs.src-bin.com/substrate/>. Old URLs will redirect to their equivalent on the new subdomain. And for your troubles, we're pleased to now offer search over the Substrate documentation. Going forward, the new canonical URL for the release notes is <http://docs.src-bin.com/substrate/releases>.
+This month, Substrate's documentation and release notes are moving to <https://docs.src-bin.com/substrate/>. Old URLs will redirect to their equivalent on the new subdomain. And, for your troubles, we're pleased to now offer search over the Substrate documentation! Going forward, the new canonical URL for the release notes is <http://docs.src-bin.com/substrate/releases>.
 
 ## 2023.02 <a href="#2023.02" id="2023.02"></a>
 
