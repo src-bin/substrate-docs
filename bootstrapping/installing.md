@@ -7,7 +7,7 @@ Most steps in the getting started guide only need to be performed once. This ste
 Substrate is distributed directly to customers. You'll have access to a feed of releases which includes links to download tarballs. Download the latest one for your platform. Then extract it by running a command like this from your downloads directory:
 
 ```shell-session
-tar xf substrate-<version-commit>-<OS-ARCH>.tar.gz
+tar xf substrate-<version-commit>-<OS>-<ARCH>.tar.gz
 ```
 
 This will create `substrate-<version>-<commit>-<OS>-<ARCH>`, which contains `bin/substrate` (typically all you need), `opt/bin/` with some optional extra programs that are part of the Substrate distribution, and `src/` with the complete source code for this release of Substrate.
