@@ -1,4 +1,4 @@
-# Custom IAM roles
+# Adding custom IAM roles for humans or services
 
 Once you've isolated your various environments and services in their own AWS accounts, you'll no doubt need to get into those accounts to operate those services, deploy changes, and debug unexpected behavior. Substrate provides the Administrator and Auditor roles automatically but in many cases Administrator, which is allowed to use all AWS APIs in all your AWS accounts, is too privileged and Auditor, which has limited read-only access to all your AWS accounts, is too restricted.
 
@@ -52,7 +52,7 @@ substrate create-role -role <RoleName> -all-domains -all-environments [assume-ro
 
 Even as expressive as `substrate create-role` is, you may find reason to take a role created through this command and manage what it's allowed to do in Terraform. The most common reason to do this is when you want to allow the role to do more in e.g. your development environment than in your production environment.
 
-First, create a role using `substrate create-role` but don't specify any policy attachment flags (i.e. don't specify `-administrator`, `-read-only, `-policy-arn`, or `-policy`).
+First, create a role using `substrate create-role` but don't specify any policy attachment flags (i.e. don't specify `-administrator`, `-read-only`, `-policy-arn`, or `-policy`).
 
 Then, in a file in `modules/<domain>/global` or `modules/common/global`, include Terraform code like this:
 
