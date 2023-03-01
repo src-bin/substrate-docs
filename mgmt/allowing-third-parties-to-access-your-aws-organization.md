@@ -6,11 +6,54 @@ The best strategies use IAM roles to avoid the need for long-lived access keys. 
 
 ## Special-purpose IAM roles in certain accounts
 
-Simplistic integrations with AWS will require you to create an IAM role in each account the third party needs to access. This can be tedious for you, having many AWS accounts, but it's perhaps the best security story because everything is very explicit. The pattern is just like [adding non-Administrator (and non-Auditor) roles for humans](adding-non-administrator-roles-for-humans.md) (the “in your service accounts” section), trusting the third party's AWS account number or IAM role ARN instead of your admin account.
+Simplistic integrations with AWS will require you to create an IAM role in each account the third party needs to access, which is easy enough with `substrate create-role`. The third party should provide you with their account number or the role ARN they'll be using. Create an assume-role policy like this and commit it someplace in your Substrate repository, replacing the placeholder with the principal your third-party provided:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": ["<third-party-AWS-account-number-or-role-ARN>"]
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+
+Then use `substrate create-role` to create a role in some or all of your AWS accounts and provide the file you just created as an extra assume-role policy:
+
+```shell-session
+substrate create-role -role <RoleName> [account selection flags] -assume-role-policy <filename>
+```
 
 ## Special-purpose IAM role that can assume roles
 
-More advanced integrations with AWS, ones that are aware of AWS Organizations, may be able to use `sts:AssumeRole` to move around your organization automatically. For these cases, act like you're [adding non-Administrator (and non-Auditor) roles for humans](adding-non-administrator-roles-for-humans.md), following every step. Trust the third party's account number or IAM role ARN to assume the role in your admin account; trust that role to assume the role in all your service accounts.
+More advanced integrations with AWS, ones that are aware of AWS Organizations, may be able to use `sts:AssumeRole` to move around your organization automatically. Take advantage of this by creating two roles. The first one should be created as in the previous section, specifying `-admin` as the lone account selection flag. The second role should trust the first role. Once again create an assume-role policy like this and commit it someplace in your Substrate repository, replacing the placeholders with your admin account number and the first role's name:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": ["arn:aws:iam::<admin-account-number>:role/<RoleName>"]
+        ]
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+
+Then use `substrate create-role` a second time to create a role in some or all of your AWS accounts and provide the file you just created as an extra assume-role policy:
+
+```shell-session
+substrate create-role -role <AnotherRoleName> [account selection flags] -assume-role-policy <filename>
+```
 
 ## Reusing the Substrate-managed Auditor role
 
