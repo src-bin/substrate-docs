@@ -93,7 +93,7 @@ CC2.1, CC4.1 use the Auditor role to enable infrastructure-level vulnerability s
 
 CC2.2, CC2.3 system boundaries (and internal partitions) as AWS accounts, mapped in `substrate.accounts.txt`
 
-CC2.2, CC7.3 TODO publish a sample incident response plan like J's
+CC2.2, CC7.3 publish a sample incident response plan like J's
 
 CC3.2 to the degree that changes are risky, Substrate helps to minimize the blast radius of changes in service (especially) of availability
 
@@ -109,9 +109,9 @@ CC6.7 IdP brokers all access
 
 CC6.8, CC7.1 Terraform code under version control and mandatory code review governs everything that runs in AWS
 
-CC7.1 TODO is there a scanner we can cost-effectively enable by default?
+CC7.1 is there a scanner we can cost-effectively enable by default?
 
-CC7.2 CloudTrail TODO what alerts should we configure by default? (also note that they need their own monitoring for availability)
+CC7.2 CloudTrail what alerts should we configure by default? (also note that they need their own monitoring for availability; maybe just GuardDuty and Pingdom)
 
 A1.1 elastic nature of almost all AWS products makes this trivial, minimizing active capacity management burdens
 

@@ -16,7 +16,7 @@ resource "aws_launch_template" "instance-factory" {
   update_default_version = true
   user_data = base64encode(<<EOF
 #!/bin/sh
-# TODO configure whatever you like
+# <configure whatever you like here>
 EOF
   )
 }
@@ -105,7 +105,7 @@ resource "aws_launch_template" "instance-factory" {
   update_default_version = true
   user_data = base64encode(<<EOF
 #!/bin/sh
-# TODO configure whatever you like
+# <configure whatever you like here>
 EOF
   )
 }

@@ -82,10 +82,10 @@ module "proxy-example" {
   authorizer_id            = aws_api_gateway_authorizer.substrate.id
   lambda_role_arn          = data.aws_iam_role.intranet.arn
   parent_resource_id       = aws_api_gateway_rest_api.intranet.root_resource_id
-  proxy_destination_url    = "http://TODO"
+  proxy_destination_url    = "http://<internal-website>"
   proxy_path_prefix        = "example"
   rest_api_id              = aws_api_gateway_rest_api.intranet.id
-  security_group_ids       = ["TODO"]
+  security_group_ids       = ["<security-group-id>"]
   strip_path_prefix        = true
   subnet_ids               = module.substrate.public_subnet_ids
 
