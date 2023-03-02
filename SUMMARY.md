@@ -26,7 +26,7 @@
 ## Accessing and navigating AWS <a href="#access" id="access"></a>
 
 * [Accessing AWS in your terminal](access/accessing-aws-in-your-terminal.md)
-* [Accessing the AWS console](access/accessing-the-aws-console.md)
+* [Accessing the AWS Console](access/accessing-the-aws-console.md)
 * [Moving between AWS accounts](access/moving-between-aws-accounts.md)
 * [Using AWS CLI profiles](access/aws-cli-profiles.md)
 * [Jumping into private networks](access/jumping-into-private-networks.md)

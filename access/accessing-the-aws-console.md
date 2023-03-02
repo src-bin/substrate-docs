@@ -1,4 +1,4 @@
-# Accessing the AWS console
+# Accessing the AWS Console
 
 Sometimes there's no substitute for the AWS Console. When you have lots of AWS accounts, getting into the AWS Console in the right account can be a challenge. Substrate's here to help.
 
