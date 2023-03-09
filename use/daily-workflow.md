@@ -74,3 +74,9 @@ terraform -chdir=root-modules/<domain>/<environment>/<quality>/<region> apply
 In addition to brokering AWS credentials via your identity provider, your Intranet also includes the Instance Factory that can provision personal, temporary EC2 instances in your admin account for use as jump boxen or development environments.
 
 To provision your own, visit your Intranet in your web browser, click Instance Factory, choose a region, and choose an instance type.
+
+## Login to the AWS Console
+
+Sometimes the fastest way to understand what's going on is to use the AWS Console. With lots of AWS accounts, though, this can be tricky. Your Intranet's Accounts page provides direct links into the AWS Console as your assigned IAM role or as the limited read-only Auditor role.
+
+Or, if you're starting from a terminal, you can open the AWS Console by using the `-console` option to `substrate assume-role` (with all the rest of the options just like you'd normally provide).
