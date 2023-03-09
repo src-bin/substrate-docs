@@ -1,5 +1,15 @@
 # Release notes
 
+## 2023.04 <a href="#2023.04" id="2023.04"></a>
+
+* Bug fix: The cache of accounts wasn't being cleared early enough such that `substrate.accounts.txt` could have included stale Substrate version numbers.
+* Bug fix: In some situations, `substrate roles` would write out empty filenames for the `-assume-role-policy` and `-policy` options. Now it never does that.
+* Bug fix: `substrate roles` would never write out any `-github-actions` options no matter how nicely you asked. It is better behaved now.
+
+Upgrade Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, this will be all you need to do to upgrade.
+
+After upgrading Substrate, you should run `sh <(substrate accounts -format shell -no-apply)`. This Substrate upgrade does not require any Terraform changes to be applied so whether and when to do so is left to you.
+
 ## 2023.03 <a href="#2023.03" id="2023.03"></a>
 
 * Added `substrate create-role` to allow you to create and manage IAM roles and policies across all your AWS accounts. It supports selecting accounts by domain, environment, and quality and can grant access to selected accounts to humans (via your identity provider), AWS services, GitHub Actions configurations, and arbitrary AWS principals.
