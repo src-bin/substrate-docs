@@ -2,13 +2,17 @@
 
 ## 2023.04 <a href="#2023.04" id="2023.04"></a>
 
+* Cache an access key for the CredentialFactory IAM user in AWS Secrets Manager to make the Credential Factory, both in the browser and the terminal, substantially faster.
+* Inspect the roles in all your AWS accounts concurrently to make `substrate roles` substantially faster, too.
+* Print much more helpful errors when the simple explanation is that there weren't any AWS credentials in the environment.
+* Bug fix: Really, truly, never ask if you're OK submitting telemetry to Source & Binary outside of the first time you run `substrate bootstrap-management-account`.
 * Bug fix: The cache of accounts wasn't being cleared early enough such that `substrate.accounts.txt` could have included stale Substrate version numbers.
 * Bug fix: In some situations, `substrate roles` would write out empty filenames for the `-assume-role-policy` and `-policy` options. Now it never does that.
 * Bug fix: `substrate roles` would never write out any `-github-actions` options no matter how nicely you asked. It is better behaved now.
 
 Upgrade Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, this will be all you need to do to upgrade.
 
-After upgrading Substrate, you should run `sh <(substrate accounts -format shell -no-apply)`. This Substrate upgrade does not require any Terraform changes to be applied so whether and when to do so is left to you.
+After upgrading Substrate, you should run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
 
 ## 2023.03 <a href="#2023.03" id="2023.03"></a>
 
