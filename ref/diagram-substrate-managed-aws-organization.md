@@ -1,6 +1,6 @@
 # Diagram of a Substrate-managed AWS organization
 
-<figure><img src="https://src-bin.com/img/substrate.png" alt="Diagram of a Substrate-managed AWS organization"><figcaption><p>A Substrate-managed AWS organization</p></figcaption></figure>
+<figure><img src="substrate.png" alt="Diagram of a Substrate-managed AWS organization"><figcaption><p>A Substrate-managed AWS organization</p></figcaption></figure>
 
 A Substrate-managed AWS organization is comprised of half-a-dozen or more AWS accounts all working together. Briefly, since these [accounts](accounts.md) are all discussed in detail elsewhere:
 
