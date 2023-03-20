@@ -41,5 +41,5 @@ These steps must be completed by an Azure administrator with the Application Adm
    3. Click **Add assignment**
    4. Select “AWS” in the _Attribute set_ column
    5. Select “RoleName” in the _Attribute name_ column
-   6. Enter the name (not the ARN) of the IAM role they should assume in your admin account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](https://github.com/src-bin/substrate-manual/blob/main/adding-non-administrator-roles-for-humans/README.md) first)
+   6. Enter the name (not the ARN) of the IAM role they should assume in your admin account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](../../administering/adding-non-administrator-roles-for-humans.md) first)
    7. Click **Save**
