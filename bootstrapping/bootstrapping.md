@@ -70,7 +70,9 @@ This program additionally asks for the names of your environments, the release q
 
 It also asks which AWS regions you want to use. Your answers inform how it lays out your networks to strike a balance between security, reliability, ergonomics, and cost. If you're unsure, starting with one region is fine.
 
-This program may attempt to programmatically raise the limit on some specific AWS service quotas. Depending on the regions you chose, how many environments and qualities you specified, and how the AWS support staff are feeling, this may block you for a long time. It's recommended to start slow by, for instance, only specifying “admin” and “production” environments, expecting to add more later.
+Substrate will provoision NAT Gateways for your networks if you so choose, which will enable outbound IPv4 access to the Internet from your private subnets. The AWS-managed NAT Gateways will cost about $100 per month per region per environment/quality pair. Without them, private subnets will only have outbound IPv6 access to the Internet; this is very possibly a fine state as the only notable thing that servers tend to access that isn't available via IPv6 is GitHub.
+
+Even if you want Substrate to provision NAT Gateways, we recommend you initially answer "no" when prompted about them. This is because provisioning NAT Gateways for two or more environments will require more Elastic IP addresses than AWS' default service quota allows. Substrate will programmatically raise the limit on the relevant AWS service quotas but it may take AWS staff hours or days to respond. Thus, we think it's best to come back later to request these quotas be raised. Once they are, you can change that "no" to a "yes" and Substrate will provision your NAT Gateways.
 
 When this program exits, you should commit `substrate.*` and `root-modules/network/` to version control. It is safe to re-run this program at any time and during those runs you can add additional environments and qualities if you so choose.
 
