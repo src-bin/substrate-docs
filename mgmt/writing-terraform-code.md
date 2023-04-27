@@ -46,7 +46,7 @@ The vast majority of your work should happen in your domain's Terraform modules.
 
 You selected some number of AWS regions when you configured your network but you may not want to run all your infrastructure in all those regions all the time (if for no other reason than cost control). You may edit `root-modules/*/*/*/*/main.tf` to customize which of your selected regions are actually in use. By default, all your selected regions are in use. If you don't want to provision your infrastructure in any of them, simply comment out the resources in `root-modules/*/*/*/*/main.tf` (substituting your domains, environments, qualities, and regions as desired).
 
-Every domain module automatically instantiates a common module, too. Here, `modules/example/global` instantiates `modules/common/global` and `modules/example/regional` instantiates `modules/common/regional`. These common modules, following the now-familiar pattern of [global and regional Terraform modules](https://github.com/src-bin/substrate-manual/blob/main/global-and-regional-terraform-modules/README.md), are for resources that should exist in every service account. Note that the common modules are not instantiated in admin accounts or the audit, deploy, management, or network accounts.
+Every domain module automatically instantiates a common module, too. Here, `modules/example/global` instantiates `modules/common/global` and `modules/example/regional` instantiates `modules/common/regional`. These common modules, following the now-familiar pattern of [global and regional Terraform modules](../global-and-regional-terraform-modules/), are for resources that should exist in every service account. Note that the common modules are not instantiated in admin accounts or the audit, deploy, management, or network accounts.
 
 ### Testing and deploying Terraform changes
 
@@ -62,7 +62,7 @@ It's no accident that `modules/example/global` and `modules/example/regional` ar
 
 As you write your own Terraform modules, you're certainly going to want to parameterize them in the same ways Substrate helps you parameterize your AWS accounts. Plus, you're also going to need a network, and Substrate's already created some and shared the right one with every service account to make it easy, secure, and cost-effective to build new things.
 
-`substrate create-account` automatically creates global and regional Terraform modules for your domain in `modules/`_`domain`_. Those modules include a reference to `modules/substrate` which provides the following helpful context:
+`substrate create-account` automatically creates global and regional Terraform modules for your domain in `modules/<`_`domain`_`>`. Those modules include a reference to `modules/substrate` which provides the following helpful context:
 
 * `module.substrate.tags.domain`: The domain of this AWS account, from the tags on the account itself.
 * `module.substrate.tags.environment`: The environment of this AWS account, from the tags on the account itself.
