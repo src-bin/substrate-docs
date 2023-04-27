@@ -62,7 +62,7 @@ It's no accident that `modules/example/global` and `modules/example/regional` ar
 
 As you write your own Terraform modules, you're certainly going to want to parameterize them in the same ways Substrate helps you parameterize your AWS accounts. Plus, you're also going to need a network, and Substrate's already created some and shared the right one with every service account to make it easy, secure, and cost-effective to build new things.
 
-`substrate create-account` automatically creates global and regional Terraform modules for your domain in `modules/`_`domain`_. Those modules include a reference to `modules/substrate` which provides the following helpful context:
+`substrate create-account` automatically creates global and regional Terraform modules for your domain in `modules/<`_`domain`_`>`. Those modules include a reference to `modules/substrate` which provides the following helpful context:
 
 * `module.substrate.tags.domain`: The domain of this AWS account, from the tags on the account itself.
 * `module.substrate.tags.environment`: The environment of this AWS account, from the tags on the account itself.
