@@ -4,7 +4,11 @@ Most steps in the getting started guide only need to be performed once. This ste
 
 ## Substrate
 
-Substrate is distributed directly to customers. You'll have access to a feed of releases which includes links to download tarballs. Download the latest one for your platform. Then extract it by running a command like this from your downloads directory:
+Substrate is distributed directly to customers. You'll have access to a feed of releases which includes links to download tarballs, usually distributed via a shared Slack channel (or another medium if that doesn't work for you). After the first the time, though, it's typically not necessary to handle these tarballs directly.
+
+### Manual installation
+
+Download the latest one for your platform. Then extract it by running a command like this from your downloads directory:
 
 ```shell-session
 tar xf substrate-<version>-<commit>-<OS>-<ARCH>.tar.gz
@@ -21,6 +25,20 @@ tar xf substrate-<version>-<commit>-<OS>-<ARCH>.tar.gz -C ~/bin --strip-componen
 Each released _version_ and _commit_ is offered in four binary formats; choose the appropriate one for your system. _`<OS>`_ is one of “`darwin`” or “`linux`” and _`<ARCH>`_ is one of “`amd64`” or “`arm64`”.
 
 You can install Substrate wherever you like. If `~/bin` doesn't suit you, just ensure the directory where you install it is on your `PATH`.
+
+### Unattended installation
+
+Installing Substrate on fleets of laptops, in EC2 instances you get from the Instance Factory, or anywhere else could be tedious if you had to follow the procedure above each time and update the version string each month so Substrate ships with an automation-friendly install method. To install the latest version, month in and month out, without having to micromanage version strings, do the following:
+
+1. Copy `substrate-<version>-<commit>-<OS>-<ARCH>.tar.gz/src/install.sh` from any Substrate release tarball
+2. Arrange for `install.sh` to be distributed to your fleet of laptops, EC2 instances, or whatever other endpoints you have in mind
+3. Arrange to execute `install.sh -p <prefix> -v <known-version>` at first boot or setup time, with `<prefix>` being the contents of your `substrate.prefix` file and `<known-version>` being any full Substrate version string (like 2047.12-0123abc)
+
+`install.sh` and its arguments are intended to be durable and should not need to be updated. Specifically, there is no need to update the arguments each month when Substrate is released because the program will walk the chain of releases forward from the one given to the latest one.
+
+### Upgrading
+
+Once some version of Substrate is installed, upgrading is a simple matter of running `substrate upgrade`.
 
 ## Terraform
 
