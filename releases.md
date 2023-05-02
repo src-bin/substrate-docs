@@ -2,13 +2,14 @@
 
 ## 2023.05 <a href="#2023.05" id="2023.05"></a>
 
-* Bug fix: Don't include `-admin` in the output of `substrate roles` just because `-humans` was included in the arguments to `substrate create-role`. The previous behavior potentially granted too many privileges in the admin account. Re-running `substrate create-role` will minimize the role's privileges in the admin account.
-* Bug fix: Don't attach policies specified by `-administrator-access`, `-read-only-access`, `-policy-arn`, or `-policy` options to admin accounts when `-humans` is given unless `-admin` is given, too. The previous behavior potentially granted too many privileges in the admin account. Re-running `substrate create-role` will minimize the role's privileges in the admin account.
-* Change `substrate create-role`'s canned access policy options from `-administrator` and `-read-only` to `-administrator-access` and `-read-only-access` to match the AWS-managed policy names and distinguish them from the similarly named `-admin` account-selection option.
 * Add support for the `AWS_RoleName` custom user attribute in Okta, which catches up with Azure AD and Google by allowing Okta users to assign initial AWS IAM roles to each of their users individually.
 * Save a click on subsequent Intranet logins when using a Google IdP and when multiple Google accounts are logged in by remembering the Google Workspace domain in a cookie.
+* Change `substrate create-role`'s canned access policy options from `-administrator` and `-read-only` to `-administrator-access` and `-read-only-access` to match the AWS-managed policy names and distinguish them from the similarly named `-admin` account-selection option.
 * When Substrate's run from a Fish shell, environment variables printed by `substrate credentials` and `substrate assume-role` will use Fish syntax.
-* Document the `install.sh` program that's been quietly distributed for the past few months. See the documentation on [unattended installation](bootstrapping/installing#unattended-installation) for more information.
+* Document the `install.sh` program that's been quietly distributed with Substrate for the past few months. See the documentation on [unattended installation](bootstrapping/installing#unattended-installation) for more information.
+* Bug fix: Don't include `-admin` in the output of `substrate roles` just because `-humans` was included in the arguments to `substrate create-role`. The previous behavior potentially granted too many privileges in the admin account. Re-running `substrate create-role` with `-humans` and without `-admin` will correct the role's privileges in the admin account.
+* Bug fix: Don't attach policies specified by `-administrator-access`, `-read-only-access`, `-policy-arn`, or `-policy` options to admin accounts when `-humans` is given unless `-admin` is given, too. The previous behavior potentially granted too many privileges in the admin account. Re-running `substrate create-role` will correct the role's privileges in the admin account.
+* Bug fix: Accommodate a new error from S3 in which we cannot set ACLs on newly created buckets.
 
 Before upgrading Substrate, if you use Okta as your identity provider, add the `AWS_RoleName` attribute to each of your users by [integrating your Okta identity provider](bootstrapping/integrating-your-identity-provider/okta) again. If you use a different identity provider, no action is necessary.
 

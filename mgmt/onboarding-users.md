@@ -4,6 +4,17 @@ When new folks join your company they're probably going to need access to AWS. H
 
 After you've added folks to the identity provider per your usual onboarding process for all employees, do the following for each user who needs access to AWS.
 
+## Azure AD
+
+1. Visit [https://portal.azure.com/#view/Microsoft\_AAD\_UsersAndTenants/UserManagementMenuBlade/\~/AllUsers](https://portal.azure.com/#view/Microsoft\_AAD\_UsersAndTenants/UserManagementMenuBlade/\~/AllUsers) in a browser (or visit the Azure portal, click **Azure Active Directory**, and click **Users**)
+2. Click the user's name
+3. Click **Custom security attributes (preview)**
+4. Click **Add assignment**
+5. Select “AWS” in the _Attribute set_ column
+6. Select “RoleName” in the _Attribute name_ column
+7. Enter the name (not the ARN) of the IAM role they should assume in your admin account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](../../mgmt/custom-iam-roles) first)
+8. Click **Save**
+
 ## Google Workspace
 
 1. Visit [https://admin.google.com/ac/users](https://admin.google.com/ac/users) (or visit [https://admin.google.com](https://admin.google.com) and click **Users**)
@@ -14,8 +25,18 @@ After you've added folks to the identity provider per your usual onboarding proc
 
 ## Okta
 
-1. Open the configuration screen for your “Intranet” app
-2. Click the **Assignments** tab
-3. Click **Assign** and then **Assign to People**
-4. Select your new folks
-5. Click **Assign**
+1. Visit your Okta admin panel in a browser
+2. Click the **hamburger menu**
+3. Click **People** in the **Directory** section
+4. Click the user's name
+5. Click **Profile**
+6. Click **Edit**
+7. In the _AWS\_RoleName_ input, enter the name (not the ARN) of the IAM role they should assume in your admin account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](https://github.com/src-bin/substrate-manual/blob/main/adding-non-administrator-roles-for-humans/README.md) first)
+8. Click **Save**
+9. Click the **hamburger menu**
+10. Click **Applications** in the **Applications** section
+11. Click the name of your Intranet application
+12. Click the **Assignments** tab
+13. Click **Assign** and then **Assign to People**
+14. Select your new folks
+15. Click **Assign**
