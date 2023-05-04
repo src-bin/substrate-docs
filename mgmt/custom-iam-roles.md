@@ -38,7 +38,7 @@ This technique is very useful when creating a custom IAM role for a finance team
 
 ## Iterating on your custom IAM role
 
-There's no need to fret about getting your role definitions exactly right on the first try, as you can start small, in a single account, and iterate until your custom IAM role is ready to be created in lots or even all of your AWS accounts. You might follow a progression like this, assuming you have environments called "development", "staging", and "production":
+There's no need to fret about getting your role definitions exactly right on the first try, as you can start small, in a single account, and iterate until your custom IAM role is ready to be created in lots or even all of your AWS accounts. You might follow a progression like this, assuming you have environments called “development”, “staging”, and “production”:
 
 ```shell-session
 substrate create-role -role <RoleName> -domain <domain> -environment development [assume-role-policy flags] [policy attachment flags]
