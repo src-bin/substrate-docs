@@ -37,7 +37,7 @@ As for the practical matter of buying DNS domain names, here's what we recommend
 
 If you want to go to the extreme, you can use Substrate in a purely serverless environment by simply not using the VPCs Substrate manages and shares into your domain accounts.
 
-If you take this path, you should ensure you've answered "no" to Substrate managing NAT Gateways in your networks, as they cost about $100 per month per region per environment/quality pair.
+If you take this path, you should ensure you've answered “no” to Substrate managing NAT Gateways in your networks, as they cost about $100 per month per region per environment/quality pair.
 
 ## Secrets
 

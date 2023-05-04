@@ -423,7 +423,7 @@ Before upgrading Substrate, if you’re using Google as your IdP:
    3. In the blank bottom row, enter “RoleName” for _Name_, select “Text” for _Info type_, select “Visible to user and admin” for _Visibility_, select “Single Value” for _No. of values_
    4. Click **SAVE**
 2. Visit [https://admin.google.com/ac/users](https://admin.google.com/ac/users) and set the _RoleName_ attribute in the _AWS_ category to “Administrator” for every user authorized to use AWS.
-3. Visit [https://console.cloud.google.com/apis/library/admin.googleapis.com](https://console.cloud.google.com/apis/library/admin.googleapis.com), confirm the selected project is the one that contains your Intranet’s OAuth OIDC configuration (its name will be listed next to "Google Cloud Platform" in the header), and click **ENABLE**.
+3. Visit [https://console.cloud.google.com/apis/library/admin.googleapis.com](https://console.cloud.google.com/apis/library/admin.googleapis.com), confirm the selected project is the one that contains your Intranet’s OAuth OIDC configuration (its name will be listed next to “Google Cloud Platform” in the header), and click **ENABLE**.
 
 After upgrading Substrate:
 
