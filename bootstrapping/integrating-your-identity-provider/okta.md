@@ -27,6 +27,8 @@
 11. Select “Limit access to selected groups” and select the groups that are authorized to use AWS (or choose another option; this can always be reconfigured)
 12. Click **Save**
 13. Paste the _Client ID_, _Client secret_, and _Okta domain_ in response to `substrate create-admin-account`'s prompts
+14. Click **Okta API Scopes**
+15. Click **Grant** at the end of the “okta.users.read.self” line
 
 ## Authorize users to use AWS
 

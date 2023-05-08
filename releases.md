@@ -11,7 +11,7 @@
 * Bug fix: Don't attach policies specified by `-administrator-access`, `-read-only-access`, `-policy-arn`, or `-policy` options to admin accounts when `-humans` is given unless `-admin` is given, too. The previous behavior potentially granted too many privileges in the admin account. Re-running `substrate create-role` will correct the role's privileges in the admin account.
 * Bug fix: Accommodate a new error from S3 in which we cannot set ACLs on newly created buckets.
 
-Before upgrading Substrate, if you use Okta as your identity provider, add the `AWS_RoleName` attribute to each of your users by [integrating your Okta identity provider](bootstrapping/integrating-your-identity-provider/okta) again. If you use a different identity provider, no action is necessary.
+Before upgrading Substrate, if you use Okta as your identity provider, add the `okta.users.read.self` scope to your Intranet application and the `AWS_RoleName` attribute to each of your users by [integrating your Okta identity provider](bootstrapping/integrating-your-identity-provider/okta) again. If you use a different identity provider, no action is necessary.
 
 Upgrade Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, this will be all you need to do to upgrade.
 
