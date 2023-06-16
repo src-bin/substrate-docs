@@ -8,20 +8,24 @@ After you've added folks to the identity provider per your usual onboarding proc
 
 1. Visit <https://portal.azure.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/\~/AllUsers> in a browser (or visit the Azure portal, click **Azure Active Directory**, and click **Users**)
 2. Click the user's name
-3. Click **Custom security attributes (preview)**
-4. Click **Add assignment**
-5. Select “AWS” in the _Attribute set_ column
-6. Select “RoleName” in the _Attribute name_ column
-7. Enter the name (not the ARN) of the IAM role they should assume in your admin account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](../../mgmt/custom-iam-roles) first)
-8. Click **Save**
-9. Visit <https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview/menuId~/null> in that same browser (or visit the Azure portal, click **Azure Active Directory**, and click **Enterprise applications**)
-10. Click the name of the application you created above
-11. Click **Users and groups** in the left column
-12. Click **Add user/group**
-13. Click **Users**
-14. Select the user you're onboarding
-15. Click **Select**
-16. Click **Assign**
+3. Click **Assigned roles** in the left column
+4. Click **Add assignments**
+5. Select “Attribute Assignment Reader” and “Attribute Definition Reader”
+6. Click **Add**
+7. Click **Custom security attributes (preview)**
+8. Click **Add assignment**
+9. Select “AWS” in the _Attribute set_ column
+10. Select “RoleName” in the _Attribute name_ column
+11. Enter the name (not the ARN) of the IAM role they should assume in your admin account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](../../mgmt/custom-iam-roles) first)
+12. Click **Save**
+13. Visit <https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview/menuId~/null> in that same browser (or visit the Azure portal, click **Azure Active Directory**, and click **Enterprise applications**)
+14. Click the name of the application you created above
+15. Click **Users and groups** in the left column
+16. Click **Add user/group**
+17. Click **Users**
+19. Select the user you're onboarding
+19. Click **Select**
+20. Click **Assign**
 
 ## Google Workspace
 
