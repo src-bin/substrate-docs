@@ -1,5 +1,15 @@
 # Release notes
 
+## 2023.07 <a href="#2023.07" id="2023.07"></a>
+
+* Add `EmailSHA256` to the standard telemetry in order to approximate the total number of Substrate users.
+* Route telemetry to your Intranet first, log it to CloudWatch, and then submit to Source & Binary (if enabled), allowing you to inspect everything that's submitted.
+* Bug fix: Don't allow `substsrate create-role` to manage Administrator or Auditor and especially don't allow `substrate delete-role` to delete them.
+
+Upgrade Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, this will be all you need to do to upgrade.
+
+After upgrading Substrate, run `substrate create-admin-account -quality <quality>` to upgrade the Intranet. This is all that's required but, for good measure, you should run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
+
 ## 2023.06 <a href="#2023.06" id="2023.06"></a>
 
 * Add a page to the Intranet with information on the current Substrate version, available upgrades, and links to download Substrate.
