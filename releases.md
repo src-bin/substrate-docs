@@ -1,5 +1,26 @@
 # Release notes
 
+## 2023.08 <a href="#2023.08" id="2023.08"></a>
+
+Substrate 2023.08 is a major release. The marquee feature is the introduction of 12-hour AWS Console sessions from the Intranet's Accounts page but there's much, much more happening behind the scenes. Because of the complexity of the changes in this release, we're declaring ahead of time that **you may not skip over this release in a catch-up upgrade**. Next month's release will rely on the fact that all upgrades to 2023.09 will be coming from 2023.08.
+
+* `substrate bootstrap-management-account`, `substrate bootstrap-deploy-account`, `substrate bootstrap-network-account`, and `substrate create-admin-account` have all been removed in favor of a new, unified, and much faster `substrate setup` command. This command, like all Substrate commands, is idempotent and safe to run over and over again.
+* The admin account has been renamed the Substrate account and all aspirational hints at having multiple admin accounts have been removed. The Substrate account remains the account where the Intranet runs, where Credential Factory mints temporary credentials, and where Instance Factory launches instances. `substrate setup` will transparently upgrade everything the first time you run it. This name change is meant to more clearly demarcate Substrate when it's setup in complex existing AWS organizations.
+* The Intranet's CredentialFactory IAM user has been replaced with its more versatile Substrate IAM user. The CredentialFactory IAM user will be fully removed in a future release.
+* The Intranet now mints 12-hour sessions for the AWS Console, too.
+* The new `substrate setup-cloudtrail` command separates CloudTrail configuration from the rest of setup to make it easier for administrators to delay or entirely opt out of Substrate managint CloudTrail.
+* Stop creating the deploy account in new organizations (but maintain it in existing organizations). If the deploy account doesn't exist, store Terraform state in the Substrate account.
+* Tag all Substrate-managed accounts with the SubstrateType tag with one of the following values: "Substrate", "management", "audit", "deploy", "network", or "service".
+* Add `-substrate` to `substrate assume-role` for assuming roles in the Substrate account. Continue to accept `-admin` for now, too.
+* Add `-substrate` to `substrate create-role` and use "substrate" instead of "admin" in annotations left for `substrate roles`. Continue to accept `-admin` and understand "admin" annotations for now, too.
+* Change the GitHub OAuth OIDC thumbprint to "ffffffffffffffffffffffffffffffffffffffff" at GitHub's recommendation because authentication between AWS and GitHub is now handled beyond customers' hands using the Web PKI.
+
+Upgrade your local copy of Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, it will be upgraded in place.
+
+After upgrading your local copy of Substrate, run `substrate setup`. This will turn your admin account into your Substrate account and ensure the entire matrix of IAM policies, roles, and users are up-to-date. It will run Terraform against your deploy, network, and Substrate accounts; you may add `-auto-approve` to make these non-interactive.
+
+It is still good practice to run `sh <(substrate accounts -format shell)` or `sh <(substrate accounts -format shell -no-apply)` followed by `sh <(substrate accounts -auto-approve -format shell)` to ensure that not only are all your service accounts in good standing in terms of the Substrate-managed IAM policies and roles but that all your Terraform code is working, too. However, as this is often a very onerous part of upgrading Substrate, we will endeavor from now on _not_ to require you to apply Terraform changes in service accounts as part of Substrate upgrades.
+
 ## 2023.07 <a href="#2023.07" id="2023.07"></a>
 
 * Add `EmailSHA256` to the standard telemetry in order to approximate the total number of Substrate users.
