@@ -2,7 +2,7 @@
 
 The Substrate-managed Instance Factory launches EC2 instances with the latest Amazon Linux 2 AMI by default. This is a good default. You should consider, if you're just getting started, always using Amazon Linux 2 as the base operating system for your EC2 instances. If you'd rather use Ubuntu or something else, however, that's perfectly reasonable and Substrate will help you do so. In fact, Substrate will help you customize EC2 instances from the Instance Factory however you see fit.
 
-Define a launch template in your admin account(s) called `InstanceFactory-arm64` and another called `InstanceFactory-x86_64`. Specifically, define these Terraform resources in `modules/intranet/regional/launch-templates.tf` (or another new file in that directory). Configure all your customizations there. Substrate will choose the appropriate launch template based on the instance type users choose in the Instance Factory.
+Define a launch template in your Substrate account called `InstanceFactory-arm64` and another called `InstanceFactory-x86_64`. Specifically, define these Terraform resources in `modules/intranet/regional/launch-templates.tf` (or another new file in that directory). Configure all your customizations there. Substrate will choose the appropriate launch template based on the instance type users choose in the Instance Factory.
 
 ## Customizing via user data
 
@@ -75,7 +75,7 @@ EOF
 }
 ```
 
-Then create a secret in AWS Secrets Manager named “SmallstepEnrollmentToken”, accessible to principals in your admin account (by its account number only, rather than a specific role ARN), in each of your regions. Its value must be the enrollment token provided by Smallstep.
+Then create a secret in AWS Secrets Manager named “SmallstepEnrollmentToken”, accessible to principals in your Substrate account (by its account number only, rather than a specific role ARN), in each of your regions. Its value must be the enrollment token provided by Smallstep.
 
 ## Customizing the AMI itself
 

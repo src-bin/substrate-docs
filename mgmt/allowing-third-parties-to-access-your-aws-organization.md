@@ -31,7 +31,7 @@ substrate create-role -role <RoleName> [account selection flags] -assume-role-po
 
 ## Special-purpose IAM role that can assume roles
 
-More advanced integrations with AWS, ones that are aware of AWS Organizations, may be able to use `sts:AssumeRole` to move around your organization automatically. Take advantage of this by creating two roles. The first one should be created as in the previous section, specifying `-admin` as the lone account selection flag. The second role should trust the first role. Once again create an assume-role policy like this and commit it someplace in your Substrate repository, replacing the placeholders with your admin account number and the first role's name:
+More advanced integrations with AWS, ones that are aware of AWS Organizations, may be able to use `sts:AssumeRole` to move around your organization automatically. Take advantage of this by creating two roles. The first one should be created as in the previous section, specifying `-admin` as the lone account selection flag. The second role should trust the first role. Once again create an assume-role policy like this and commit it someplace in your Substrate repository, replacing the placeholders with your Substrate account number and the first role's name:
 
 ```json
 {
@@ -40,7 +40,7 @@ More advanced integrations with AWS, ones that are aware of AWS Organizations, m
     {
       "Effect": "Allow",
       "Principal": {
-        "AWS": ["arn:aws:iam::<admin-account-number>:role/<RoleName>"]
+        "AWS": ["arn:aws:iam::<Substrate-account-number>:role/<RoleName>"]
         ]
       },
       "Action": "sts:AssumeRole"
@@ -67,15 +67,15 @@ Sometimes you will want to grant third-parties administrative access (e.g. to al
 
 If no better option exists, you can create an IAM user for a third party. Here, due to the riskier credential management story, we recommend granting absolutely minimal permissions. In the example, we'll use Circle CI, a service that (at the time of this writing) only supported AWS integration via IAM user.
 
-1. `root-modules/admin/<quality>/global/<circle-ci>.tf`: Add an IAM user in your admin account; allow it to `sts:AssumeRole`, constraining which roles it's allowed to assume as you see fit
-2. `root-modules/<domain>/<environment>/<quality>/global/admin-providers.tf`: Add a provider referencing your admin account with `alias = "admin"` so that the IAM user in your admin account may assume roles in this other account
-   * This isn't strictly necessary — IAM users can of course be created in any AWS account — but it's more convenient to centralize credential management in your admin accounts so it's easier to manage multiple domains, environments, and/or qualities
+1. `root-modules/admin/<quality>/global/<circle-ci>.tf`: Add an IAM user in your Substrate account; allow it to `sts:AssumeRole`, constraining which roles it's allowed to assume as you see fit
+2. `root-modules/<domain>/<environment>/<quality>/global/admin-providers.tf`: Add a provider referencing your Substrate account with `alias = "admin"` so that the IAM user in your Substrate account may assume roles in this other account
+   * This isn't strictly necessary — IAM users can of course be created in any AWS account — but it's more convenient to centralize credential management in your Substrate account so it's easier to manage multiple domains, environments, and/or qualities
 3. `root-modules/<domain>/<environment>/<quality>/global/main.tf`: Add `aws.admin = aws.admin` to the `providers` map passed to `module "<domain>"` so that the IAM role in step 6 may reference the IAM user from step 1 (substituting the domain, environment, and quality of the account in question)
 4. `modules/<domain>/global/admin-providers.tf`: Add `provider "aws" { alias = "admin" }` to tell Terraform to expect an `aws.admin` provider
-5. `modules/<domain>/global/main.tf`: Add a data source that looks up the Circle CI user in the admin account using the `aws.admin` provider so that the IAM role in step 6 may reference the IAM user from step 1 (substituting the domain of the account in question)
-6. `modules/<domain>/global/main.tf`: Add an IAM role that may be assumed by the Circle CI user in your admin account
+5. `modules/<domain>/global/main.tf`: Add a data source that looks up the Circle CI user in the Substrate account using the `aws.admin` provider so that the IAM role in step 6 may reference the IAM user from step 1 (substituting the domain of the account in question)
+6. `modules/<domain>/global/main.tf`: Add an IAM role that may be assumed by the Circle CI user in your Substrate account
 7. `modules/<domain>/global/main.tf`: Attach policies, inline or managed, to allow the service account to perform its duties
-8. `substrate create-admin-account -quality <quality>`
+8. `substrate setup`
 9. `substrate create-account -domain <domain> -environment <environment> -quality <quality>`
 10. `aws iam create-access-key --user-name <circle-ci>` and give the resulting access key to Circle CI
 

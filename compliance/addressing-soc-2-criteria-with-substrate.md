@@ -36,7 +36,7 @@ Provide evidence of existing change-of-role processes handling AWS by changing y
 
 **The entity implements logical access security measures to protect against threats from sources outside its system boundaries.**
 
-In a Substrate-managed AWS organization, all actors are considered to be outside the system's boundaries unless they're authorized by your identity provider. Once authorized, users can use AWS APIs or SSH (via the Instance Factory) to access sensitive data, infrastructure, and tools. Restricting production SSH access to 192.168.0.0/16 (the network used by your admin account(s)) ensures that the Instance Factory is the only way in and access to the Instance Factory is controlled by your identity provider.
+In a Substrate-managed AWS organization, all actors are considered to be outside the system's boundaries unless they're authorized by your identity provider. Once authorized, users can use AWS APIs or SSH (via the Instance Factory) to access sensitive data, infrastructure, and tools. Restricting production SSH access to 192.168.0.0/16 (the network used by your Substrate account) ensures that the Instance Factory is the only way in and access to the Instance Factory is controlled by your identity provider.
 
 Controls to consider:
 
@@ -74,8 +74,6 @@ Provide evidence of these controls functioning by showing that development and p
 **The entity identifies, selects, and develops risk mitigation activities for risks arising from potential business disruptions.**
 
 Substrate can help you architect your Terraform code to be multi-region-ready. Substrate also supports multiple environments which can facilitate disaster recovery exercises (or even the real thing).
-
-<!--Though uncommon, Substrate supports creating multiple admin accounts, which means it's possible to account for an identity provider outage by configuring a second one.-->
 
 ## A1.2
 

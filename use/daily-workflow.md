@@ -71,7 +71,7 @@ terraform -chdir=root-modules/<domain>/<environment>/<quality>/<region> apply
 
 ## Launch an EC2 instance
 
-In addition to brokering AWS credentials via your identity provider, your Intranet also includes the Instance Factory that can provision personal, temporary EC2 instances in your admin account for use as jump boxen or development environments.
+In addition to brokering AWS credentials via your identity provider, your Intranet also includes the Instance Factory that can provision personal, temporary EC2 instances in your Substrate account for use as jump boxen or development environments.
 
 To provision your own, visit your Intranet in your web browser, click Instance Factory, choose a region, and choose an instance type.
 

@@ -1,6 +1,6 @@
 # Integrating your Okta identity provider
 
-`substrate create-admin-account -quality <quality>` will ask for several inputs, which this page will help you provide from your Okta identity provider.
+`substrate setup` will ask for several inputs, which this page will help you provide from your Okta identity provider.
 
 ## Create a custom profile attribute
 
@@ -26,7 +26,7 @@
 10. Remove all _Sign-out redirect URIs_
 11. Select “Limit access to selected groups” and select the groups that are authorized to use AWS (or choose another option; this can always be reconfigured)
 12. Click **Save**
-13. Paste the _Client ID_, _Client secret_, and _Okta domain_ in response to `substrate create-admin-account`'s prompts
+13. Paste the _Client ID_, _Client secret_, and _Okta domain_ in response to `substrate setup`'s prompts
 14. Click **Okta API Scopes**
 15. Click **Grant** at the end of the “okta.users.read.self” line
 
@@ -39,7 +39,7 @@
    1. Click the user's name
    2. Click **Profile**
    3. Click **Edit**
-   4. In the _AWS\_RoleName_ input, enter the name (not the ARN) of the IAM role they should assume in your admin account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](https://github.com/src-bin/substrate-manual/blob/main/adding-non-administrator-roles-for-humans/README.md) first)
+   4. In the _AWS\_RoleName_ input, enter the name (not the ARN) of the IAM role they should assume in your Substrate account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](https://github.com/src-bin/substrate-manual/blob/main/adding-non-administrator-roles-for-humans/README.md) first)
    3. Click **Save**
 
-With your identity provider integrated, jump to [deleting unnecessary root access keys](../deleting-unnecessary-root-access-keys.md).
+With your identity provider integrated, jump to [finishing up in your management account](../finishing.md).

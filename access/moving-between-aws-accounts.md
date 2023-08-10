@@ -1,6 +1,6 @@
 # Moving between AWS accounts
 
-There isn't usually much to do in your admin account(s). Instead, you'll be assuming roles in other accounts where your real work happens. There are three ways this happens:
+There isn't usually much to do in your Substrate account. Instead, you'll be assuming roles in other accounts where your real work happens. There are three ways this happens:
 
 ```shell-session
 substrate assume-role
@@ -8,7 +8,7 @@ substrate assume-role
 
 Ad-hoc movement throughout your organization is made easy by the `substrate assume-role` command. It understands the layout and can convert domains, environments, and qualities into the appropriate AWS account numbers for you.
 
-To get temporary credentials in your _example development default_ account (once you've created such an account), you'd run `substrate assume-role -domain example -environment development -quality default`. Without any additional arguments, `substrate assume-role` prints shell environment variables so you should wrap it in `eval`. It will also feed the shell an `unassume-role` alias you can use to pop back into your admin account:
+To get temporary credentials in your _example development default_ account (once you've created such an account), you'd run `substrate assume-role -domain example -environment development -quality default`. Without any additional arguments, `substrate assume-role` prints shell environment variables so you should wrap it in `eval`. It will also feed the shell an `unassume-role` alias you can use to pop back into your Substrate account:
 
 ```sh
 eval $(substrate assume-role -domain example -environment development -quality default)
@@ -22,7 +22,7 @@ If you have a specific command you need to run, tack it onto the end thus:
 substrate assume-role -domain example -environment development -quality default aws ec2 describe-security-groups
 ```
 
-In addition to the forms above that allow specifying a domain, environment, and quality, `substrate assume-role` can select your management account with `-management`, your deploy or network account with `-special deploy` or `-special network`, and an admin account with ` -admin -quality`` `` `_`quality`_. Or you can go completely off-road and specify any arbitrary AWS account with ` -number`` `` `_`number`_.
+In addition to the forms above that allow specifying a domain, environment, and quality, `substrate assume-role` can select your management account with `-management`, your deploy or network account with `-special deploy` or `-special network`, and your Substrate account with ` -admin -quality`` `` `_`quality`_. Or you can go completely off-road and specify any arbitrary AWS account with ` -number`` `` `_`number`_.
 
 By default, `substrate assume-role` will carry on with the same role name — Administrator (or OrganizationAdministrator, etc. as appropriate) when you're Administrator, Auditor when you're Auditor, and so on. You can specify a different role name using ` -role`` `` `_`role`_.
 

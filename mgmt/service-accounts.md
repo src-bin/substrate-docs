@@ -10,7 +10,7 @@ You've probably got in mind the first thing you're going to build with Substrate
 substrate create-account -domain <domain> -environment environment -quality <quality>
 ```
 
-The environment and quality there should be a combination you defined way back when you ran `substrate bootstrap-network-account`. If it's not, no big deal: Just run `substrate bootstrap-network-account -fully-interactive` and change your answers. And, as with all Substrate commands, this one's safe to run over and over again; in fact, running it again is the quickest way to run all the Terraform code related to that service account.
+The environment and quality there should be a combination you defined way back when you ran `substrate setup`. If it's not, no big deal: Just run `substrate setup -fully-interactive` and change your answers. And, as with all Substrate commands, this one's safe to run over and over again; in fact, running it again is the quickest way to run all the Terraform code related to that service account.
 
 After creating your first (or your fiftieth) service account, you'll be [writing Terraform code](writing-terraform-code.md). Substrate doesn't change or restrict how you write Terraform code but it does introduce a few handy shortcuts you can use to name things sensibly and get access to the network it's configured for each of your environments.
 

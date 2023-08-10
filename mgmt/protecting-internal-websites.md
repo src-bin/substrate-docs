@@ -2,7 +2,7 @@
 
 The tools Substrate manages under your Intranet (the Accounts page that facilitates logging into the AWS Console, the Credential Factory, and the Instance Factory) are far from the only internal tools you're going to operate as a part of your business. You should take advantage of your Intranet to protect your other internal tools with SSO, HTTP Strict Transport Security, a separate cookie scope, and a robust serverless exterior courtesy of AWS API Gateway.
 
-There are two main strategies for adding new features to your Intranet which should serve use cases as wide-ranging as Lambda functions in your admin account to load-balanced EC2 deployments in a service account. These strategies are both available to you after [deciding where to host](../ref/internal-tools.md) each particular internal tool.
+There are two main strategies for adding new features to your Intranet which should serve use cases as wide-ranging as Lambda functions in your Substrate account to load-balanced EC2 deployments in a service account. These strategies are both available to you after [deciding where to host](../ref/internal-tools.md) each particular internal tool.
 
 ## Integrating with API Gateway and Lambda in `modules/intranet/regional`
 
@@ -52,7 +52,7 @@ resource "aws_lambda_permission" "example" {
 }
 ```
 
-It is also possible to put the Lambda function in another AWS account but you'll need to grant your admin account(s) permission to invoke it with additional `aws_lambda_permission` resources.
+It is also possible to put the Lambda function in another AWS account but you'll need to grant your Substrate account permission to invoke it with additional `aws_lambda_permission` resources.
 
 ## Integrating with API Gateway and Lambda in your own module
 

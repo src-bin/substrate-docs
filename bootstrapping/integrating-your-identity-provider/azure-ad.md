@@ -1,6 +1,6 @@
 # Integrating your Azure AD identity provider
 
-`substrate create-admin-account -quality <quality>` will ask for several inputs, which this page will help you provide from your Azure AD identity provider.
+`substrate setup` will ask for several inputs, which this page will help you provide from your Azure AD identity provider.
 
 These steps must be completed by an Azure administrator with the Application Administrator, Attribute Assignment Administrator, and Attribute Definition Administrator roles in an organization subscribed to Azure AD Premium 1 or Azure AD Premium 2.
 
@@ -24,13 +24,13 @@ These steps must be completed by an Azure administrator with the Application Adm
 5. Select “Web” as the platform
 6. Enter “https://_intranet-dns-domain-name_/login” (substituting your just-purchased or just-transferred Intranet DNS domain name) next to the platform selector in the text input with _e.g. https://example.com/auth_ as its placeholder
 7. Click **Register**
-8. Use the _Application (client) ID_ to respond to `substrate create-admin-account`'s prompt
+8. Use the _Application (client) ID_ to respond to `substrate setup`'s prompt
 9. Click **Add a certificate or secret**
 10. Click **New client secret**
 11. Enter a description
 12. Specify an expiration date however you see fit and set yourself a reminder to rotate the client secret before that date arrives
 13. Click **Add**
-14. Use the _Value_ to respond to `substrate create-admin-account`'s prompt (being wary that this value will never be shown again; if you need to copy it again, you'll need to create a new client secret)
+14. Use the _Value_ to respond to `substrate setup`'s prompt (being wary that this value will never be shown again; if you need to copy it again, you'll need to create a new client secret)
 
 ## Authorize users to use AWS
 
@@ -45,7 +45,7 @@ These steps must be completed by an Azure administrator with the Application Adm
    8. Click **Add assignment**
    9. Select “AWS” in the _Attribute set_ column
    10. Select “RoleName” in the _Attribute name_ column
-   11. Enter the name (not the ARN) of the IAM role they should assume in your admin account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](../../mgmt/custom-iam-roles) first)
+   11. Enter the name (not the ARN) of the IAM role they should assume in your Substrate account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](../../mgmt/custom-iam-roles) first)
    12. Click **Save**
 3. Visit <https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview/menuId~/null> in that same browser (or visit the Azure portal, click **Azure Active Directory**, and click **Enterprise applications**)
 4. Click the name of the application you created above
@@ -56,4 +56,4 @@ These steps must be completed by an Azure administrator with the Application Adm
 9. Click **Select**
 10. Click **Assign**
 
-With your identity provider integrated, jump to [deleting unnecessary root access keys](../deleting-unnecessary-root-access-keys.md).
+With your identity provider integrated, jump to [finishing up in your management account](../finishing.md).

@@ -14,7 +14,8 @@
   * [Integrating your Azure AD identity provider](bootstrapping/integrating-your-identity-provider/azure-ad.md)
   * [Integrating your Google identity provider](bootstrapping/integrating-your-identity-provider/google.md)
   * [Integrating your Okta identity provider](bootstrapping/integrating-your-identity-provider/okta.md)
-* [Deleting unnecessary root access keys](bootstrapping/deleting-unnecessary-root-access-keys.md)
+* [Finishing up in your management account](bootstrapping/finishing.md)
+* [Configuring CloudTrail](bootstrapping/cloudtrail.md)
 * [Integrating your original AWS account(s)](bootstrapping/integrating-your-original-aws-account.md)
 
 ## Using Substrate <a href="#use" id="use"></a>

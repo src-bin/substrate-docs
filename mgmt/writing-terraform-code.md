@@ -8,7 +8,7 @@ Substrate generates a directory structure for your Terraform code, remote state 
 
 **tl;dr: Write code in the `modules` subdirectories Substrate creates for each domain. Run Terraform from the `root-modules` subdirectories matching the domain, environment, quality, and AWS region you want or just use `substrate create-account`.**
 
-Suppose you're responsible for a service called _example_ that you run in _staging_ as _alpha_-quality and in _production_ as _beta_- and _gamma_-quality. You will create those environments and qualities interactively with `substrate bootstrap-network-account` and will then run the following commands to create all your service accounts:
+Suppose you're responsible for a service called _example_ that you run in _staging_ as _alpha_-quality and in _production_ as _beta_- and _gamma_-quality. You will create those environments and qualities interactively with `substrate setup` and will then run the following commands to create all your service accounts:
 
 * `substrate create-account -domain example -environment staging -quality alpha`
 * `substrate create-account -domain example -environment production -quality beta`
@@ -46,7 +46,7 @@ The vast majority of your work should happen in your domain's Terraform modules.
 
 You selected some number of AWS regions when you configured your network but you may not want to run all your infrastructure in all those regions all the time (if for no other reason than cost control). You may edit `root-modules/*/*/*/*/main.tf` to customize which of your selected regions are actually in use. By default, all your selected regions are in use. If you don't want to provision your infrastructure in any of them, simply comment out the resources in `root-modules/*/*/*/*/main.tf` (substituting your domains, environments, qualities, and regions as desired).
 
-Every domain module automatically instantiates a common module, too. Here, `modules/example/global` instantiates `modules/common/global` and `modules/example/regional` instantiates `modules/common/regional`. These common modules, following the now-familiar pattern of [global and regional Terraform modules](../global-and-regional-terraform-modules/), are for resources that should exist in every service account. Note that the common modules are not instantiated in admin accounts or the audit, deploy, management, or network accounts.
+Every domain module automatically instantiates a common module, too. Here, `modules/example/global` instantiates `modules/common/global` and `modules/example/regional` instantiates `modules/common/regional`. These common modules, following the now-familiar pattern of [global and regional Terraform modules](../global-and-regional-terraform-modules/), are for resources that should exist in every service account. Note that the common modules are not instantiated in the Substrate, audit, deploy, management, or network accounts.
 
 ### Testing and deploying Terraform changes
 
@@ -69,5 +69,5 @@ As you write your own Terraform modules, you're certainly going to want to param
 * `module.substrate.tags.quality`: The quality of this AWS account, from the tags on the account itself.
 * `module.substrate.cidr_prefix`: The CIDR prefix of this environment/quality's shared VPC.
 * `module.substrate.private_subnet_ids`: A _set_ of three private subnet IDs in this environment/quality's shared VPC.
-* `module.substrate.public_subnet_ids`: A _set_ of three public subnet IDs in this environment/quality's shared VPC. (This set is empty in admin accounts.)
+* `module.substrate.public_subnet_ids`: A _set_ of three public subnet IDs in this environment/quality's shared VPC. (This set is empty in your Substrate account, which only has public networks because bastion/jump hosts need public IP addresses.)
 * `module.substrate.vpc_id`: The ID of this environment/quality's shared VPC.

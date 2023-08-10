@@ -1,6 +1,6 @@
 # Substrate filesystem hierarchy
 
-The directory in which you first run `substrate bootstrap-management-account` becomes the root of your Substrate repository. The tools will read and write many files in this directory tree, all of which should be committed to version control. (Substrate manages `.gitignore` files in certain subdirectories to keep your commits tidy.)
+The directory in which you first run `substrate setup` becomes the root of your Substrate repository. The tools will read and write many files in this directory tree, all of which should be committed to version control. (Substrate manages `.gitignore` files in certain subdirectories to keep your commits tidy.)
 
 You can create a Git (or other version control) repository specifically for Substrate, add Substrate to the root of an existing repository, or add Substrate in a subdirectory of a new or existing repository. If you're already a Terraform user, we find it convenient for Substrate to be committed to the same repository in which you store your existing Terraform modules.
 
@@ -9,24 +9,25 @@ Many Substrate commands tolerate being run in subdirectories of your Substrate r
 The following index describes the contents and purpose of all the files the various Substrate tools create in your Substrate repository on your behalf.
 
 * **`modules`**\
-  A tree of Terraform modules, the ones listed below to support your network and admin accounts, one module for each domain you define, and all the modules you define to encapsulate your own code. Substrate-managed files include a header identifying them as such and declaring whether you may edit them.
+  A tree of Terraform modules, the ones listed below to support your Substrate and network accounts, an additional one module for each domain you define, a common module included by all those domain modules since common infrastructure across accounts is such a ... common design pattern, and all the modules you define to encapsulate your own code. Substrate-managed files include a header identifying them as such and declaring whether you may edit them.
   * **`common`**
     * **`global`**\
       A blank slate, where you can add global resources to all your service accounts. (Managed by `substrate create-account`.)
-    * **`regional`** A blank slate, where you can add regional resources to all your service accounts. (Managed by `substrate create-account`.)
+    * **`regional`**\
+      A blank slate, where you can add regional resources to all your service accounts. (Managed by `substrate create-account`.)
   * **`deploy`**
     * **`global`**\
-      A blank slate, where you can add global resources (e.g. IAM roles) to your deploy account. (Managed by `substrate bootstrap-deploy-account`.)
+      A blank slate, where you can add global resources (e.g. IAM roles) to your deploy account. (Managed by `substrate setup`.)
     * **`regional`**\
-      A blank slate, where you can add regional resources (e.g. ECR repositories) to your deploy account. (Managed by `substrate bootstrap-deploy-account`.)
+      A blank slate, where you can add regional resources (e.g. ECR repositories) to your deploy account. (Managed by `substrate setup`.)
   * **`intranet`**\
-    Your Intranet, which runs in your admin account, and serves the Credential and Instance Factories, the Accounts page used to access the AWS Console, and potentially more. (Managed by `substrate create-admin-account`.)
+    Your Intranet, which runs in your Substrate account, and serves the Credential and Instance Factories, the Accounts page used to access the AWS Console, and pages you add yourself. (Managed by `substrate setup`.)
   * **`lambda-function`**\
-    An abstraction used by `modules/intranet` and that you're free to use if it works for you. (Managed by `substrate create-admin-account`.)
+    An abstraction used by `modules/intranet` and that you're free to use if it works for you. (Managed by `substrate setup`.)
   * **`peering-connection`**\
-    An abstraction used by `root-modules/network/peering`. (Managed by `substrate create-admin-account`.)
+    An abstraction used by `root-modules/network/peering`. (Managed by `substrate setup`.)
   * **`substrate`**\
-    A convenience for making domain, environment, and quality plus network configuration easy to access from your modules. (Managed by `substrate create-account` and `substrate create-admin-account`.)
+    A convenience for making domain, environment, and quality plus network configuration easy to access from your modules. (Managed by `substrate create-account` and `substrate setup`.)
   * _**`domain`**_
     * **`global`**
       * **`main.tf`**\
@@ -45,13 +46,13 @@ The following index describes the contents and purpose of all the files the vari
 * **`root-modules`**\
   A tree of Terraform root modules, each with a correctly configured state file stored in DynamoDB and S3. The tree is organized by domain, environment, quality, and region with some additional complexity for network peering arrangements. Substrate-managed files include a header identifying them as such and declaring whether you may edit them.
   * **`admin`**\
-    Your admin account, especially a reference to `modules/intranet`. (Managed by `substrate create-admin-account`.)
+    Your Substrate account (formerly known as your admin account), especially a reference to `modules/intranet`. (Managed by `substrate setup`.)
   * **`deploy`**\
-    Your deploy account, managing S3 buckets and also a good place to put e.g. AWS ECR resources. (Managed by \`substrate bootstrap-deploy-account.)
+    Your deploy account, managing S3 buckets and also a good place to put e.g. AWS ECR resources. (Managed by \`substrate setup.)
   * **`network`**\
-    Your network, where VPCs are defined before being shared. (Managed by `substrate bootstrap-network-account`.)
+    Your network, where VPCs are defined before being shared. (Managed by `substrate setup`.)
     * **`peering`**\
-      VPC peering relationships between regions and qualities within the same environment. (Managed by `substrate bootstrap-network-account`.)
+      VPC peering relationships between regions and qualities within the same environment. (Managed by `substrate setup`.)
   * _**`domain`**_
     * _**`environment`**_
       * _**`quality`**_\
@@ -80,35 +81,45 @@ The following index describes the contents and purpose of all the files the vari
             S3- and DynamoDB-backed Terraform state file configuration. (Managed by `substrate create-account`.)
           * **`versions.tf`**\
             Configuration of Terraform and provider versions, etc. (Managed by `substrate create-account`.)
+* **`substrate.Administrator.assume-role-policy.json`** and **`substrate.Auditor.assume-role-policy.json`**\
+  If present, these assume-role policies (as complete JSON documents) will be merged into the assume-role policies of the Substrate-managed Administrator and Auditor roles in all accounts, respectively. (Read by `substrate setup` and `substrate create-account`.)
 * **`substrate.accounts.txt`**\
-  A convenient listing of all your AWS accounts and the IAM roles to assume when you need to access them. (Managed by all the programs that potentially create AWS accounts.)
+  A convenient listing of all your AWS accounts and the IAM roles to assume when you need to access them. (Managed by `substrate setup`, `substrate setup-cloudtrail`, and `substrate create-account`.)
 * **`substrate.admin-networks.json`**\
-  Allocator for CIDR blocks used by VPCs and subnets for your admin accounts. (Managed by `substrate bootstrap-network-account`.)
+  Allocator for CIDR blocks used by VPCs and subnets for your Substrate account (formerly known as your admin account). (Managed by `substrate setup`.)
+* **`substrate.azure-ad-tenant`**\
+  Tenant ID of your Azure Active Directory identity provider, if you're using Azure Active Directory. (Managed by `substrate setup`.)
 * **`substrate.default-region`**\
-  The AWS region where CloudTrail logs and other global resources are located. (Managed by `substrate bootstrap-management-account`.)
+  The AWS region where CloudTrail logs and other global resources are located. (Managed by `substrate setup`.)
+* **`substrate.enforce-imdsv2`**\
+  "yes" or "no" to indicate whether the Substrate-managed Service Control Policy will enforce the use of v2 of the EC2 Instance Metadata Service (IMDSv2) as a security posture improvement. (Managed by `substrate setup`.)
 * **`substrate.environments`**\
-  Logically ordered list of all your environments. (Managed by `substrate bootstrap-network-account`.)
+  Logically ordered list of all your environments. (Managed by `substrate setup`.)
 * **`substrate.intranet-dns-domain-name`**\
-  DNS domain name that's owned by, or at least hosted in, your admin account. (Managed by `substrate create-admin-account`.)
+  DNS domain name that's owned by, or at least hosted in, your Substrate account. (Managed by `substrate setup`.)
+* **`substrate.management-account-id`**\
+  The 12-digit AWS account number of the organization's management account. Used as a safety feature to prevent managing one organization with another organization's code. (Managed by `substrate setup`.)
+* **`substrate.manage-cloudtrail`**\
+  "yes" or"no" to indicate whether Substrate is managing CloudTrail. (Managed by `substrate setup-cloudtrail`.)
 * **`substrate.networks.json`**\
-  Allocator for CIDR blocks used by VPCs and subnets for your non-admin accounts. (Managed by `substrate bootstrap-network-account`.)
+  Allocator for CIDR blocks used by VPCs and subnets for your service accounts. (Managed by `substrate setup`.)
 * **`substrate.oauth-oidc-client-id`**\
-  OAuth OIDC client ID from your identity provider. (Managed by `substrate create-admin-account`.)
+  OAuth OIDC client ID from your identity provider. (Managed by `substrate setup`.)
 * **`substrate.oauth-oidc-client-secret-timestamp`**\
-  Timestamp of the AWS Secrets Manager secret version that's storing the OAuth OIDC client secret from your identity provider. (Managed by `substrate create-admin-account`.)
+  Timestamp of the AWS Secrets Manager secret version that's storing the OAuth OIDC client secret from your identity provider. (Managed by `substrate setup`.)
 * **`substrate.okta-hostname`**\
-  Hostname of your Okta-hosted identity provider, if you're using Okta. (Managed by `substrate create-admin-account`.)
+  Hostname of your Okta-hosted identity provider, if you're using Okta. (Managed by `substrate setup`.)
 * **`substrate.nat-gateways`**\
-  "yes" or "no" to indicate whether NAT Gateways will be provisioned with your private subnets. (Managed by `substrate bootstrap-network-account`.)
+  "yes" or "no" to indicate whether NAT Gateways will be provisioned with your private subnets. (Managed by `substrate setup`.)
 * **`substrate.prefix`**\
-  Prefix to use for the names of global resources like S3 buckets. (Managed by `substrate bootstrap-management-account`.)
+  Prefix to use for the names of global resources like S3 buckets. (Managed by `substrate setup`.)
 * **`substrate.qualities`**\
-  Logically ordered list of all your qualities. (Managed by `substrate bootstrap-network-account`.)
+  Logically ordered list of all your qualities. (Managed by `substrate setup`.)
 * **`substrate.regions`**\
-  List of AWS regions you're using. (Managed by `substrate bootstrap-network-account`.)
+  List of AWS regions you're using. (Managed by `substrate setup`.)
 * **`substrate.saml-metadata.xml`**\
   Legacy configuration for a SAML integration that early Substrate installations have for getting into the AWS Console. (Not created for new installations.)
 * **`substrate.telemetry`**\
   "yes" or "no" to indicate whether telemetry may be sent to Source & Binary. (Managed by all Substrate tools.)
 * **`substrate.valid-environment-quality-pairs.json`**\
-  Pairings you've declared as valid. Used to avoid creating VPCs you'll never use to spare your service quotas. (Managed by `substrate bootstrap-network-account`.)
+  Pairings you've declared as valid. Used to avoid creating VPCs you'll never use to spare your service quotas. (Managed by `substrate setup`.)

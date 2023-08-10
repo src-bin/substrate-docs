@@ -31,8 +31,10 @@ Many tools have grown the ability to assume an IAM role in your AWS account to p
 
 You can include as many principals as you'd like in the innermost list.
 
-Every time you update this file, you'll need to re-run whichever of `substrate bootstrap-management-account`, `substrate bootstrap-deploy-account`, `substrate bootstrap-network-account`, `substrate create-admin-account` (for each of your admin accounts), and/or `substrate create-account` (for each of your service accounts) are relevant to your situation.
+Every time you update this file, you'll need to re-run `substrate setup` and `substrate create-account` for each of your service accounts.
 
 This will authorize third-party principals to `sts:AssumeRole` using the ARN of one of your Auditor roles and operate as you would there.
 
 Note, too, that this pattern can be applied to the Administrator role using the `substrate.Administrator.assume-role-policy.json` file per [adding administrators to your AWS organization](broken-reference).
+
+If allowing the third party organization-wide read-only access is too permissive, consider using `substrate create-role` to target certain accounts and grant exactly the permissions the third party requires.

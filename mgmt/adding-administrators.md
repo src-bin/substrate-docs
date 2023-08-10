@@ -1,6 +1,6 @@
 # Adding administrators to your AWS organization
 
-The Administrator role in all your Substrate-managed AWS accounts is managed outside of Terraform because Substrate configures Terraform to assume the Administrator role during Terraform runs. A classic chicken-and-egg problem. By default, the Administrator role in your admin account(s) can assume the Administrator role in all your service accounts and human users with the `RoleName` attribute set to “Administrator” in your identity provider can assume the Administrator role in your admin account(s). And while that's very often enough, there are plenty of reasons you might want to extend this.
+The Administrator role in all your Substrate-managed AWS accounts is managed outside of Terraform because Substrate configures Terraform to assume the Administrator role during Terraform runs. A classic chicken-and-egg problem. By default, the Administrator role in your Substrate account can assume the Administrator role in all your service accounts and human users with the `RoleName` attribute set to “Administrator” in your identity provider can assume the Administrator role in your Substrate account. And while that's very often enough, there are plenty of reasons you might want to extend this.
 
 You may have additional human users that can't, for whatever reason, be granted accounts in your identity provider. You may choose to grant these folks access via an IAM user (with two-factor authentication, of course!), via a separate AWS account to which they already have access, or by using Terraform to configure a parallel identity provider they can access. In all of these cases, these users will need to assume the Administrator role.
 
@@ -31,7 +31,7 @@ The simplest `substrate.Administrator.assume-role-policy.json` looks like this:
 
 You can include as many principals as you'd like in the innermost list.
 
-Every time you update this file, you'll need to re-run `substrate create-admin-account -quality <quality>` in order to update the Administrator role in all the relevant accounts. This policy will be merged with the policy Substrate generates for the Administrator role (since roles may only have a single assume-role policy).
+Every time you update this file, you'll need to re-run `substrate setup` in order to update the Administrator role in all the relevant accounts. This policy will be merged with the policy Substrate generates for the Administrator role (since roles may only have a single assume-role policy).
 
 Once successfully applied, your additional administrators will be able to assume the Administrator role in all your accounts.
 
