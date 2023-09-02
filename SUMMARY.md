@@ -23,6 +23,7 @@
 * [Getting started (after someone else has bootstrapped Substrate)](use/getting-started.md)
 * [Daily workflow](use/daily-workflow.md)
 * [Upgrading Substrate](use/upgrading.md)
+* [Upgrading Terraform](use/upgrading-terraform.md)
 
 ## Accessing and navigating AWS <a href="#access" id="access"></a>
 

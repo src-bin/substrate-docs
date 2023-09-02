@@ -123,3 +123,7 @@ The following index describes the contents and purpose of all the files the vari
   "yes" or "no" to indicate whether telemetry may be sent to Source & Binary. (Managed by all Substrate tools.)
 * **`substrate.valid-environment-quality-pairs.json`**\
   Pairings you've declared as valid. Used to avoid creating VPCs you'll never use to spare your service quotas. (Managed by `substrate setup`.)
+* **`terraform.version`**\
+  Version of Terraform that `substrate terraform` will install and that generated Terraform root modules will require.
+* **`terraform-aws.version-constraint`**\
+  Version constraint that generated Terraform code will include for the Terraform AWS provider. It should usually begin with the `~>` operator.
