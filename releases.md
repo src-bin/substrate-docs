@@ -1,5 +1,30 @@
 # Release notes
 
+## 2023.09 <a href="#2023.09" id="2023.09"></a>
+
+The only supported upgrade path to Substrate 2023.09 is directly from 2023.08. If you need to make a catch-up upgrade, please upgrade to 2023.08 first and then upgrade to 2023.09 immediately after.
+
+* Upgrade Terraform to version 1.5.6 and the Terraform AWS provider to at least version 4.67.0.
+* Cede control of Terraform and Terraform AWS provider upgrades to customers via the new `terraform.version` and `terraform-aws.version-constraint` files, initialized to "1.5.6" and "~> 4.67.0", respectively.
+* Add `AdministratorRoleARN` and `AuditorRoleARN` fields for each account to the output of `substrate accounts -format json` to make automation against all your AWS accounts easier to write.
+* Add `-arn` to `substrate assume-role` so it's easier to make use of the IAM role ARNs produced by `substrate accounts -format json`, the AWS APIs, and other tools.
+* Manage an AuditAdministrator role in the audit account that Administrator can assume. This provides a managed, sanctioned path to manage everything from CloudTrail Lake to IAM access for compliance monitoring tools like Vanta.
+* Manage a fully-fledged Auditor role in the management account, providing more read access than the very limited OrganizationReader role.
+* Add an experimental delegated organization administration policy that allows the Substrate account to call all read-only APIs offered by AWS Organizations. You must opt into this feature by including the string "DelegatedOrganizationAdministration" in the `SUBSTRATE_FEATURES` environment variable.
+* Delete the now-unused CredentialFactory IAM user, its access keys, and the cache of one of those access keys in Secrets Manager.
+* Bug fix: Properly detect root access keys in `substrate setup` when they're provided in the environment instead of interactively. Previously, Substrate would only detect root access keys and switch to an IAM user that can assume roles when the root access key was provided interactively.
+* Bug fix: Test access keys retrieved from Secrets Manager before using them. Previously, Substrate's Credential Factory couldn't recover if the access key cached in Secrets Manager was deactivated or deleted.
+
+Upgrade Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, this will be all you need to do to upgrade.
+
+After upgrading Substrate:
+
+1. Upgrade Terraform to version 1.5.6 by running `substrate terraform`, [downloading from Hashicorp](https://releases.hashicorp.com/terraform/1.5.6/), or some other means of your choice.
+2. Run `substrate setup` to update your Intranet.
+3. Run `substrate setup-cloudtrail` to create the new AuditAdministrator role in the audit account.
+
+In August, Hashicorp announced a license change for future releases of their products, including Terraform. Since we've gotten questions from a few customers, we thought it best to address this change in these release notes, especially given we're pushing an upgrade to a Terraform version covered by this new license. To the best of our knowledge, every Substrate customer's use of Terraform falls comfortably within the Additional Use Grant in Hashicorp's Business Source License that covers production use that does not compete with Hashicorp's products. Therefore no action is necessary for any Substrate customer.
+
 ## 2023.08 <a href="#2023.08" id="2023.08"></a>
 
 Substrate 2023.08 is a major release. The marquee feature is the introduction of 12-hour AWS Console sessions from the Intranet's Accounts page but there's much, much more happening behind the scenes. Because of the complexity of the changes in this release, we're declaring ahead of time that **you may not skip over this release in a catch-up upgrade**. Next month's release will rely on the fact that all upgrades to 2023.09 will be coming from 2023.08.
