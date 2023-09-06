@@ -42,8 +42,8 @@ Once some version of Substrate is installed, upgrading is a simple matter of run
 
 ## Terraform
 
-Substrate currently requires _exactly_ Terraform 1.3.6. (Substrate asks for Terraform to be upgraded every few releases to stay nearly current with Terraform.)
+Substrate currently requires _exactly_ Terraform 1.5.6. (Substrate asks for Terraform to be upgraded every few releases to stay nearly current with Terraform.)
 
-The easist way to install Terraform 1.3.6 is to run `substrate terraform`. If the directory that contains `substrate` itself is writable, `terraform` will be placed there, too.
+The easist way to install Terraform 1.5.6 is to run `substrate terraform`. If the directory that contains `substrate` itself is writable, `terraform` will be placed there, too.
 
-Alternatively, you can download [Terraform 1.3.6](https://releases.hashicorp.com/terraform/1.3.6/) from Hashicorp, with the filenames being parameterized with _`OS`_ and _`ARCH`_ the same as Substrate itself. Download and `unzip` the appropriate build. Move `terraform` into a directory on your `PATH`. (It doesn't have to be the same directory where you placed `substrate`.)
+Alternatively, you can download [Terraform 1.5.6](https://releases.hashicorp.com/terraform/1.5.6/) from Hashicorp, with the filenames being parameterized with _`OS`_ and _`ARCH`_ the same as Substrate itself. Download and `unzip` the appropriate build. Move `terraform` into a directory on your `PATH`. (It doesn't have to be the same directory where you placed `substrate`.)
