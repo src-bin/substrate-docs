@@ -2,8 +2,6 @@
 
 Most Substrate users are already or soon will be operating a SOC 2 compliance program. The following [SOC 2 criteria](https://us.aicpa.org/content/dam/aicpa/interestareas/frc/assuranceadvisoryservices/downloadabledocuments/trust-services-criteria.pdf) are at least partially addressed merely by adopting Substrate. In some cases, reference controls are provided that you're free to adopt verbatim or adapt as you and your auditors see fit.
 
-_If you're feeling a bit like a deer in headlights about SOC 2 compliance, take Source & Binary's_ [_SOC 2 compliance workshop_](./) _and make SOC 2 a competitive advantage for your business. Email_ [_hello@src-bin.com_](mailto:hello@src-bin.com) _to schedule yours._
-
 ## CC6.1
 
 **The entity implements logical access security software, infrastructure, and architectures over protected information assets to protect them from security events to meet the entity's objectives.**
@@ -84,37 +82,3 @@ So long as you define your infrastructure using `module.substrate.private_subnet
 Control to consider: Infrastructure is provisioned across three availability zones.
 
 Provide evidence of this control functioning by showing your Terraform code, actual resources (ECS or EKS clusters, autoscaling groups, database clusters, etc.) in the AWS Console, and the [documentation for `module.substrate.private_subnet_ids` and `module.substrate.public_subnet_ids`](../working/writing-terraform-code/).
-
-<!--
-
-CC2.1, CC4.1 use the Auditor role to enable infrastructure-level vulnerability scanning and penetration testing
-
-CC2.2, CC2.3 system boundaries (and internal partitions) as AWS accounts, mapped in `substrate.accounts.txt`
-
-CC2.2, CC7.3 publish a sample incident response plan like J's
-
-CC3.2 to the degree that changes are risky, Substrate helps to minimize the blast radius of changes in service (especially) of availability
-
-CC4.1 AWS access is brokered entirely by the IdP, which reduces the number of places where access must be granted, revoked, and reviewed
-
-CC5.1 multiple AWS accounts severely limit risks between domains, between environments, of over-permissioning, and of confused deputies
-
-CC6.1 IdP and IAM roles, 2FA or temporary credentials, segmentation of networks and AWS accounts, TLS or SSH for everything
-
-CC6.6 IdP brokers all access from the outside, encrypted by TLS and SSH, firewall defaults to closed
-
-CC6.7 IdP brokers all access
-
-CC6.8, CC7.1 Terraform code under version control and mandatory code review governs everything that runs in AWS
-
-CC7.1 is there a scanner we can cost-effectively enable by default?
-
-CC7.2 CloudTrail what alerts should we configure by default? (also note that they need their own monitoring for availability; maybe just GuardDuty and Pingdom)
-
-A1.1 elastic nature of almost all AWS products makes this trivial, minimizing active capacity management burdens
-
-A1.3 native use of environments and multiple regions can streamline disaster recovery exercises
-
-<h2 class="break">* * *</h2>
-
--->
