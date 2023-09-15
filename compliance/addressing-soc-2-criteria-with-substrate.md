@@ -2,8 +2,6 @@
 
 Most Substrate users are already or soon will be operating a SOC 2 compliance program. The following [SOC 2 criteria](https://us.aicpa.org/content/dam/aicpa/interestareas/frc/assuranceadvisoryservices/downloadabledocuments/trust-services-criteria.pdf) are at least partially addressed merely by adopting Substrate. In some cases, reference controls are provided that you're free to adopt verbatim or adapt as you and your auditors see fit.
 
-_If you're feeling a bit like a deer in headlights about SOC 2 compliance, take Source & Binary's_ [_SOC 2 compliance workshop_](https://github.com/src-bin/substrate-manual/blob/main/compliance/README.md) _and make SOC 2 a competitive advantage for your business. Email_ [_hello@src-bin.com_](mailto:hello@src-bin.com) _to schedule yours._
-
 ## CC6.1
 
 **The entity implements logical access security software, infrastructure, and architectures over protected information assets to protect them from security events to meet the entity's objectives.**
