@@ -1,5 +1,26 @@
 # Release notes
 
+## 2023.10 <a href="#2023.10" id="2023.10"></a>
+
+* Opt-in preview of the next generation of the Substrate-managed Intranet. See below for more information.
+* Add the `substrate setup-debugger` command to enable interactive access to the Substrate account before the identity provider integration is complete.
+* Bug fix: It is now possible (as was always intended) for your "default" region, where CloudTrail logs and the like are stored, to _not_ appear in your list of service regions.
+* Bug fix: Only use OAuth OIDC access tokens for endpoints that require them; use client ID and secret the rest of the time.
+* Bug fix: Correct a policy statement covering access to Substrate's cached access key, used for minting credentials, so that we can use the cache more often.
+
+Upgrade Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, this will be all you need to do to upgrade.
+
+The 2023.10 release contains an early preview of the next generation of the Substrate-managed Intranet. It's powered by AWS API Gateway v2 which, among other advantages over v1, makes it much, much more straightfoward to wrap and proxy other arbitrary services while transparently and comprehensively authenticating and authorizing traffic using your identity provider. Opt into the preview and see what's coming (on a separate hostname so that there's no impact on your existing Intranet) like this:
+
+    SUBSTRATE_FEATURES=APIGatewayV2 substrate setup
+
+The transition schedule from the original implementation of the Intranet to this new one is as follows:
+
+1. Substrate 2023.11 will serve the new Intranet on <https://preview.example.com> (replacing "example.com" with your Intranet DNS domain name).
+2. Substrate 2023.12 will swap the new Intranet into place on your Intranet DNS domain name and remove the old one.
+
+If you wish to begin transitioning any custom internal tools you've attached to your Intranet, you may add route keys to the Substrate API with the Substrate authorizer. Full documentation of all the expanded possibilities for proxying to internal tools is forthcoming.
+
 ## 2023.09 <a href="#2023.09" id="2023.09"></a>
 
 The only supported upgrade path to Substrate 2023.09 is directly from 2023.08. If you need to make a catch-up upgrade, please upgrade to 2023.08 first and then upgrade to 2023.09 immediately after.
