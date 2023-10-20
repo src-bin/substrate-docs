@@ -10,6 +10,16 @@ Shell completion makes using Substrate interactively much more pleasant. We reco
 complete -C "substrate --shell-completion" substrate
 ```
 
+## Fish
+Create $HOME/.config/fish/completions/substrate.fish with the following contents:
+```shell
+function _fish_complete_substrate
+    env COMP_LINE=(commandline -pc) substrate --shell-completion
+end
+
+complete -c substrate -f -a "(_fish_complete_substrate)"
+```
+
 ## Z shell
 
 ```shell
