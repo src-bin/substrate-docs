@@ -58,7 +58,7 @@
 * [Writing Terraform code](mgmt/writing-terraform-code.md)
 * [Additional Terraform providers](mgmt/additional-terraform-providers.md)
 * [Deploying software](mgmt/deploying-software.md)
-* [Protecting internal websites](mgmt/protecting-internal-websites.md)
+* [Protecting internal tools](mgmt/protecting-internal-tools.md)
 
 ## Compliance
 
