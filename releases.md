@@ -9,7 +9,7 @@ Upgrade Substrate by running `substrate upgrade` and following its prompts. If y
 
 The 2023.11 release contains a preview of the next generation of the Substrate-managed Intranet. It's powered by AWS API Gateway v2 which, among other advantages over v1, makes it much, much more straightfoward to wrap and proxy other arbitrary services while transparently and comprehensively authenticating and authorizing traffic using your identity provider. After you run `substrate setup`, the preview will be available on <https://preview.example.com> (replacing "example.com" with your Intranet DNS domain name).
 
-If you've added any of your internal tools to your Intranet, you'll need to migrate them to the new style of integration before upgrading to Substrate 2023.12. See the forward-looking half of the documentation on [protecting internal tools](mgmt/protecting-internal-tools#protecting-internal-tools-in-substrate-2023.12-and-beyond) for the details.
+If you've added any of your internal tools to your Intranet, you'll need to migrate them to the new style of integration before upgrading to Substrate 2023.12. See the forward-looking half of the documentation on [protecting internal tools](mgmt/protecting-internal-tools.md#protecting-internal-tools-in-substrate-2023.12-and-beyond) for the details.
 
 Substrate 2023.12 will swap the new Intranet into place on your Intranet DNS domain name and remove both the old Intranet and the `preview` subdomain.
 
