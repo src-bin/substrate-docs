@@ -46,6 +46,10 @@ To allow your Substrate account to access this original AWS account, use the AWS
            "Principal": {
              "AWS": [
                "arn:aws:iam::<Substrate-account-number>:role/Administrator",
+               "arn:aws:iam::<Substrate-account-number>:role/Substrate",
+               "arn:aws:iam::<Substrate-account-number>:user/Substrate",
+               "arn:aws:iam::<management-account-number>:role/Substrate",
+               "arn:aws:iam::<management-account-number>:user/Substrate"
              ]
            },
            "Action": "sts:AssumeRole"
