@@ -19,32 +19,32 @@ These steps must be completed by a Google Super Admin. Be mindful, too, of which
 3. Name the project and, optionally, put it in an organization (but don't worry if you can't put it in an organization, because everything still works without one)
 4. Click **CREATE**
 5. Click **SELECT PROJECT** in the status overlay that appears in the top right corner
-5. Click **OAuth consent screen**
-6. Select “Internal”
-7. Click **CREATE**
-8. Enter an _Application name_
-8. Select a _User support email_
-9. Enter your Intranet DNS domain name in _Authorized domains_
-8. In _Developer contact information_, enter one or more _Email addresses_
-10. Click **SAVE AND CONTINUE**
-11. Click **ADD OR REMOVE SCOPES**
-12. Select “.../auth/userinfo.email”, “.../auth/userinfo.profile”, and “openid”
-12. Enter “https://www.googleapis.com/auth/admin.directory.user.readonly” in the text input under _Manually add scopes_
-12. Click **ADD TO TABLE**
-13. Click **UPDATE**
-10. Click **SAVE AND CONTINUE**
-11. Click **Credentials** in the left column
-12. Click **CREATE CREDENTIALS** and then **OAuth client ID** in the expanded menu
-13. Select “Web application” for _Application type_
-14. Enter a _Name_, if desired
-15. Click **ADD URI** in the _Authorized redirect URIs_ section
-16. Enter “https://_intranet-dns-domain-name_/login” (substituting your just-purchased or just-transferred Intranet DNS domain name)
-17. Click **CREATE**
-18. Use the credentials to respond to `substrate setup`'s prompts
-18. Click **OK**
-19. Visit [https://console.cloud.google.com/apis/library/admin.googleapis.com](https://console.cloud.google.com/apis/library/admin.googleapis.com) in a browser
-20. Confirm the project you created a moment ago is selected (its name will be listed next to “Google Cloud Platform” in the header)
-21. Click **ENABLE**
+6. Click **OAuth consent screen**
+7. Select “Internal”
+8. Click **CREATE**
+9. Enter an _Application name_
+10. Select a _User support email_
+11. Enter your Intranet DNS domain name in _Authorized domains_
+12. In _Developer contact information_, enter one or more _Email addresses_
+13. Click **SAVE AND CONTINUE**
+14. Click **ADD OR REMOVE SCOPES**
+15. Select “.../auth/userinfo.email”, “.../auth/userinfo.profile”, and “openid”
+16. Enter “https://www.googleapis.com/auth/admin.directory.user.readonly” in the text input under _Manually add scopes_
+17. Click **ADD TO TABLE**
+18. Click **UPDATE**
+19. Click **SAVE AND CONTINUE**
+20. Click **Credentials** in the left column
+21. Click **CREATE CREDENTIALS** and then **OAuth client ID** in the expanded menu
+22. Select “Web application” for _Application type_
+23. Enter a _Name_, if desired
+24. Click **ADD URI** in the _Authorized redirect URIs_ section
+25. Enter “https://_intranet-dns-domain-name_/login” (substituting your just-purchased or just-transferred Intranet DNS domain name)
+26. Click **CREATE**
+27. Use the credentials to respond to `substrate setup`'s prompts
+28. Click **OK**
+29. Visit [https://console.cloud.google.com/apis/library/admin.googleapis.com](https://console.cloud.google.com/apis/library/admin.googleapis.com) in a browser
+30. Confirm the project you created a moment ago is selected (its name will be listed next to “Google Cloud Platform” in the header)
+31. Click **ENABLE**
 
 ## Authorize users to use AWS
 
