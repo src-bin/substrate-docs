@@ -6,9 +6,9 @@ This guide is meant to help folks get started using Substrate at a company that 
 
 Get a Substrate download URL from your coworkers. Take care to select the appropriate operating system and CPU architecture. Substrate releases for MacOS (“`darwin`”) and Linux on 64-bit x86 (“`amd64`”) and ARM (“`arm64`”).
 
-1. Download: `curl -O https://src-bin.com/substrate-<version-commit>-<OS>-<ARCH>.tar.gz`
-2. Extract: `tar xf substrate-<version-commit>-<OS>-<ARCH>.tar.gz`
-3. Install: `cp substrate-<version-commit>-<OS>-<ARCH>/bin/substrate ~/bin` (substituting your preferred writable directory in your PATH for “`~/bin`”, if you wish)
+1. Download, either by clicking the appropriate link on your Intranet's Substrate page or directly: `curl -O https://src-bin.com/substrate-<version>-<commit>-<OS>-<ARCH>.tar.gz`
+2. Extract: `tar xf substrate-<version>-<commit>-<OS>-<ARCH>.tar.gz`
+3. Install: `cp substrate-<version>-<commit>-<OS>-<ARCH>/bin/substrate ~/bin` (substituting your preferred writable directory in your PATH for “`~/bin`”, if you wish)
 
 Install the version of Terraform your organization requires: `substrate terraform`
 
