@@ -10,7 +10,7 @@ Get a Substrate download URL from your coworkers. Take care to select the approp
 2. Extract: `tar xf substrate-<version-commit>-<OS>-<ARCH>.tar.gz`
 3. Install: `cp substrate-<version-commit>-<OS>-<ARCH>/bin/substrate ~/bin` (substituting your preferred writable directory in your PATH for “`~/bin`”, if you wish)
 
-Substrate currently requires _exactly_ Terraform 1.3.6. You can install it any way you like but the easiest way is to let Substrate install it: `substrate terraform`
+Install the version of Terraform your organization requires: `substrate terraform`
 
 No Substrate installation is truly complete without shell completion, which is provided for Bash and Z shell (and any other shell with Bash-compatible completion). Add the appropriate configuration to your `~/.profile` and run `. ~/.profile`:
 
