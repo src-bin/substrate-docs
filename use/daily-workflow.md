@@ -4,6 +4,10 @@ Substrate is not here to dictate all aspects of your daily workflow, nor is Subs
 
 As such, Substrate introduces some extra tools to your daily workflow, mostly concerning accessing AWS and moving between AWS accounts.
 
+## Prerequisites
+
+You should either be the person who bootstrapped Substrate at your company or have followed the [getting started](getting-started.md) guide already. It's a great idea to make sure `SUBSTRATE_ROOT` is set in your environment to the fully-qualified pathname where you've cloned your Substrate repository.
+
 ## Get AWS credentials from your Credential Factory
 
 At the beginning of each working day, you'll want to refresh your AWS credentials, since each set only lasts 12 hours:
