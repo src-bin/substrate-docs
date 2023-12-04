@@ -1,5 +1,21 @@
 # Release notes
 
+## 2023.12 <a href="#2023.12" id="2023.12"></a>
+
+* Swap the next generation of the Substrate-managed Intranet, powered by AWS API Gateway v2, into service. This change is a no-op unless you've added your own internal tools to your Intranet. (See below.)
+* Remove API Gateway v1 resources from Terraform, which will result in plans that destroy lots of resources in `root-modules/admin/*/*`.
+* Automatically set the `-quality` option to `substrate assume-role` and `substrate create-account` when there's only one quality that's valid with the given environment. For the vast majority of uses, this means you'll never have to specify `-quality` again.
+* Add a short-circuit to `substrate credentials`. It will not open a browser window to authenticate with your IdP if there are credentials in its environment that are good for at least another six hours.
+* Add `-force` to `substrate credentials` which, when provided, will force it to open a browser window to (re)authenticate with your IdP even if there are valid credentials in the environment.
+* Move network sharing from generated Terraform code into Substrate. This removes the `aws_ram_*` and `aws_ec2_tag` resources from Terraform and leaves a `time_sleep` resource to be destroyed.
+* Add `OS` to the standard telemetry, with values like "darwin" or "linux".
+* Add `-console` to `substrate setup-debugger` to allow troubleshooting Substrate setup in the AWS Console as well as in a terminal.
+* Bug fix: Create the cross-account CloudWatch roles in all service accounts to prevent a crash that was possible in earlier versions.
+
+If you added your own internal tools to your Intranet, be sure to follow the updated documentation on [protecting internal tools](mgmt/protecting-internal-tools.md) before upgrading to avoid an outage to your internal tools. You can remove the old version after upgrading.
+
+Upgrade Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, it will be upgraded in place. Then run `substrate setup` to upgrade your Intranet.
+
 ## 2023.11 <a href="#2023.11" id="2023.11"></a>
 
 * Preview of the next generation of the Substrate-managed Intranet. See below for more information.
