@@ -1,4 +1,4 @@
-# Daily workflow when using Substrate
+# Daily workflow
 
 Substrate is not here to dictate all aspects of your daily workflow, nor is Substrate in the business of influencing or limiting your tool choices. Substrate is all about removing all the hassles that come with having lots of AWS accounts, the one true unit of isolation in AWS, so that you can reap all the security, reliability, and compliance benefits of isolating your workloads in their own AWS accounts.
 
@@ -60,11 +60,11 @@ Substrate manages an all-powerful Administrator role and a limited read-only Aud
 substrate create-role -role <RoleName> [account selection flags] [assume-role policy flags [policy attachment flags]
 ```
 
-There are a lot of options, though, so consult the documentation on [adding custom IAM roles for humans or services](mgmt/custom-iam-roles.md) to get the complete picture.
+There are a lot of options, though, so consult the documentation on [adding custom IAM roles for humans or services](../mgmt/custom-iam-roles.md) to get the complete picture.
 
 ## Plan and apply Terraform changes
 
-Substrate gives you production-ready Terraform infrastructure for all your AWS accounts with a module structure that enhances the isolation provided by your many AWS accounts and locked, remote state files. It strives to make [writing Terraform code](mgmt/writing-terraform-code.md) a straightforward exercise free of yak-shaving.
+Substrate gives you production-ready Terraform infrastructure for all your AWS accounts with a module structure that enhances the isolation provided by your many AWS accounts and locked, remote state files. It strives to make [writing Terraform code](../mgmt/writing-terraform-code.md) a straightforward exercise free of yak-shaving.
 
 And while `substrate create-account` does in fact plan and/or apply Terraform changes in all an account's root modules in a predictable order, iterating on your works-in-progress deserve a faster feedback loop:
 
