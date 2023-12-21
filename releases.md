@@ -23,7 +23,7 @@ Upgrade Substrate by running `substrate upgrade` and following its prompts. If y
 
 Upgrade Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, this will be all you need to do to upgrade.
 
-The 2023.11 release contains a preview of the next generation of the Substrate-managed Intranet. It's powered by AWS API Gateway v2 which, among other advantages over v1, makes it much, much more straightfoward to wrap and proxy other arbitrary services while transparently and comprehensively authenticating and authorizing traffic using your identity provider. After you run `substrate setup`, the preview will be available on <https://preview.example.com> (replacing "example.com" with your Intranet DNS domain name).
+The 2023.11 release contains a preview of the next generation of the Substrate-managed Intranet. It's powered by AWS API Gateway v2 which, among other advantages over v1, makes it much, much more straightfoward to wrap and proxy other arbitrary services while transparently and comprehensively authenticating and authorizing traffic using your identity provider. After you run `substrate setup`, the preview will be available on [https://preview.example.com](https://preview.example.com) (replacing "example.com" with your Intranet DNS domain name).
 
 If you've added any of your internal tools to your Intranet, you'll need to migrate them to the new style of integration before upgrading to Substrate 2023.12. See the forward-looking half of the documentation on [protecting internal tools](mgmt/protecting-internal-tools.md#protecting-internal-tools-in-substrate-2023.12-and-beyond) for the details.
 
@@ -41,11 +41,13 @@ Upgrade Substrate by running `substrate upgrade` and following its prompts. If y
 
 The 2023.10 release contains an early preview of the next generation of the Substrate-managed Intranet. It's powered by AWS API Gateway v2 which, among other advantages over v1, makes it much, much more straightfoward to wrap and proxy other arbitrary services while transparently and comprehensively authenticating and authorizing traffic using your identity provider. Opt into the preview and see what's coming (on a separate hostname so that there's no impact on your existing Intranet) like this:
 
-    SUBSTRATE_FEATURES=APIGatewayV2 substrate setup
+```
+SUBSTRATE_FEATURES=APIGatewayV2 substrate setup
+```
 
 The transition schedule from the original implementation of the Intranet to this new one is as follows:
 
-1. Substrate 2023.11 will serve the new Intranet on <https://preview.example.com> (replacing "example.com" with your Intranet DNS domain name).
+1. Substrate 2023.11 will serve the new Intranet on [https://preview.example.com](https://preview.example.com) (replacing "example.com" with your Intranet DNS domain name).
 2. Substrate 2023.12 will swap the new Intranet into place on your Intranet DNS domain name and remove the old one.
 
 If you wish to begin transitioning any custom internal tools you've attached to your Intranet, you may add route keys to the Substrate API with the Substrate authorizer. Full documentation of all the expanded possibilities for proxying to internal tools is forthcoming.
@@ -55,7 +57,7 @@ If you wish to begin transitioning any custom internal tools you've attached to 
 The only supported upgrade path to Substrate 2023.09 is directly from 2023.08. If you need to make a catch-up upgrade, please upgrade to 2023.08 first and then upgrade to 2023.09 immediately after.
 
 * Upgrade Terraform to version 1.5.6 and the Terraform AWS provider to at least version 4.67.0.
-* Cede control of Terraform and Terraform AWS provider upgrades to customers via the new `terraform.version` and `terraform-aws.version-constraint` files, initialized to "1.5.6" and "~> 4.67.0", respectively.
+* Cede control of Terraform and Terraform AWS provider upgrades to customers via the new `terraform.version` and `terraform-aws.version-constraint` files, initialized to "1.5.6" and "\~> 4.67.0", respectively.
 * Add `AdministratorRoleARN` and `AuditorRoleARN` fields for each account to the output of `substrate accounts -format json` to make automation against all your AWS accounts easier to write.
 * Add `-arn` to `substrate assume-role` so it's easier to make use of the IAM role ARNs produced by `substrate accounts -format json`, the AWS APIs, and other tools.
 * Manage an AuditAdministrator role in the audit account that Administrator can assume. This provides a managed, sanctioned path to manage everything from CloudTrail Lake to IAM access for compliance monitoring tools like Vanta.
@@ -123,12 +125,12 @@ After upgrading Substrate, run `substrate create-admin-account -quality <quality
 * Save a click on subsequent Intranet logins when using a Google IdP and when multiple Google accounts are logged in by remembering the Google Workspace domain in a cookie.
 * Change `substrate create-role`'s canned access policy options from `-administrator` and `-read-only` to `-administrator-access` and `-read-only-access` to match the AWS-managed policy names and distinguish them from the similarly named `-admin` account-selection option.
 * When Substrate's run from a Fish shell, environment variables printed by `substrate credentials` and `substrate assume-role` will use Fish syntax.
-* Document the `install.sh` program that's been quietly distributed with Substrate for the past few months. See the documentation on [unattended installation](bootstrapping/installing#unattended-installation) for more information.
+* Document the `install.sh` program that's been quietly distributed with Substrate for the past few months. See the documentation on [unattended installation](bootstrapping/installing/#unattended-installation) for more information.
 * Bug fix: Don't include `-admin` in the output of `substrate roles` just because `-humans` was included in the arguments to `substrate create-role`. The previous behavior potentially granted too many privileges in the admin account. Re-running `substrate create-role` with `-humans` and without `-admin` will correct the role's privileges in the admin account.
 * Bug fix: Don't attach policies specified by `-administrator-access`, `-read-only-access`, `-policy-arn`, or `-policy` options to admin accounts when `-humans` is given unless `-admin` is given, too. The previous behavior potentially granted too many privileges in the admin account. Re-running `substrate create-role` will correct the role's privileges in the admin account.
 * Bug fix: Accommodate a new error from S3 in which we cannot set ACLs on newly created buckets.
 
-Before upgrading Substrate, if you use Okta as your identity provider, add the `okta.users.read.self` scope to your Intranet application and the `AWS_RoleName` attribute to each of your users by [integrating your Okta identity provider](bootstrapping/integrating-your-identity-provider/okta) again. If you use a different identity provider, no action is necessary.
+Before upgrading Substrate, if you use Okta as your identity provider, add the `okta.users.read.self` scope to your Intranet application and the `AWS_RoleName` attribute to each of your users by [integrating your Okta identity provider](bootstrapping/integrating-your-identity-provider/okta/) again. If you use a different identity provider, no action is necessary.
 
 Upgrade Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, this will be all you need to do to upgrade.
 
@@ -153,7 +155,7 @@ After upgrading Substrate, run `substrate create-admin-account -quality <quality
 * Added `substrate create-role` to allow you to create and manage IAM roles and policies across all your AWS accounts. It supports selecting accounts by domain, environment, and quality and can grant access to selected accounts to humans (via your identity provider), AWS services, GitHub Actions configurations, and arbitrary AWS principals.
 * Added `substrate delete-role` for thoroughly deleting IAM roles created by `substrate create-role` across all your AWS accounts.
 * Added `substrate roles` which inspects all your AWS accounts and can recreate all your previous `substrate create-role` commands. It's analogous to `substrate accounts`, including supporting a `-format shell` option.
-* Tailored the output of `substrate whoami` to the kind of account so that it doesn't report &mdash; alarmingly, at first glance &mdash; that certain accounts don't have Domain, Environment, and Quality tags.
+* Tailored the output of `substrate whoami` to the kind of account so that it doesn't report — alarmingly, at first glance — that certain accounts don't have Domain, Environment, and Quality tags.
 * Only support the `-non-interactive`, `-minimally-interactive`, and `-fully-interactive` flags on bootstrapping and account creation subcommands. They had no purpose in other subcommands but muddled their usage messages.
 * Bug fix: Formally disallow spaces and commas in the names of domains, environments, and qualities.
 * Bug fix: More aggressively garbage-collect expired tokens from half-completed `eval $(substrate credentials)` invocations in Credential Factory.
@@ -162,7 +164,7 @@ Upgrade Substrate by running `substrate upgrade` and following its prompts. If y
 
 After upgrading Substrate, you should run `sh <(substrate accounts -format shell -no-apply)`. This Substrate upgrade does not require any Terraform changes to be applied so whether and when to do so is left to you.
 
-This month, Substrate's documentation and release notes are moving to <https://docs.src-bin.com/substrate/>. Old URLs will redirect to their equivalent on the new subdomain. And, for your troubles, we're pleased to now offer search over the Substrate documentation! Going forward, the new canonical URL for the release notes is <http://docs.src-bin.com/substrate/releases>.
+This month, Substrate's documentation and release notes are moving to [https://docs.src-bin.com/substrate/](https://docs.src-bin.com/substrate/). Old URLs will redirect to their equivalent on the new subdomain. And, for your troubles, we're pleased to now offer search over the Substrate documentation! Going forward, the new canonical URL for the release notes is [http://docs.src-bin.com/substrate/releases](http://docs.src-bin.com/substrate/releases).
 
 ## 2023.02 <a href="#2023.02" id="2023.02"></a>
 
@@ -199,7 +201,7 @@ After upgrading Substrate:
 
 ## 2022.12 <a href="#2022.12" id="2022.12"></a>
 
-* Add support for Azure Active Directory identity providers. See [changing identity providers](https://github.com/src-bin/substrate-manual/blob/main/changing-identity-providers/README.md) and [integrating your Azure AD identity provider](https://github.com/src-bin/substrate-manual/blob/main/getting-started/integrating-your-azure-ad-identity-provider/README.md) if you want to switch.
+* Add support for Azure Active Directory identity providers. See [changing identity providers](runbooks/changing-identity-providers.md) and [integrating your Azure AD identity provider](getting-started/integrating-your-azure-ad-identity-provider/) if you want to switch.
 * Bug fix: Don't interpret the new default value for `-quality` as an erroneously user-supplied value with `-management` or `-special` in `substrate assume-role`.
 * Bug fix: Tolerate `substrate.qualities` being missing when trying to find a suitable default value for `-quality` options.
 * Bug fix: Change to `SUBSTRATE_ROOT`, if set, before trying to use `substrate.qualities` to find a suitable default value for `-quality` options.

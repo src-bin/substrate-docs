@@ -9,7 +9,7 @@
 3. Click **Profile Editor** in the **Directory** section
 4. Click **User (default)** (with type “Okta”)
 5. Click **+ Add Attribute**
-6. Enter “AWS_RoleName” for both _Display name_ and _Variable name_
+6. Enter “AWS\_RoleName” for both _Display name_ and _Variable name_
 7. Click **Save**
 
 ## Create and configure an OAuth OIDC client
@@ -39,7 +39,7 @@
    1. Click the user's name
    2. Click **Profile**
    3. Click **Edit**
-   4. In the _AWS\_RoleName_ input, enter the name (not the ARN) of the IAM role they should assume in your Substrate account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](https://github.com/src-bin/substrate-manual/blob/main/adding-non-administrator-roles-for-humans/README.md) first)
-   3. Click **Save**
+   4. In the _AWS\_RoleName_ input, enter the name (not the ARN) of the IAM role they should assume in your Substrate account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](../../mgmt/custom-iam-roles.md) first)
+   5. Click **Save**
 
 With your identity provider integrated, jump to [finishing up in your management account](../finishing.md).
