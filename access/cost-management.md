@@ -2,7 +2,7 @@
 
 Substrate makes it standard operating procedure to use multiple AWS accounts. Each of those AWS accounts is an unavoidable cost allocation bucket. If you choose your domains reasonably well, cost allocation and management in a Substrate-managed AWS organization is an almost trivial problem. In such an AWS organization, AWS Cost Explorer, which usually gets a bad rap, is more than up to the task of helping you explore and manage costs.
 
-To use Cost Explorer, first ensure you've followed the steps to **Delegate access to billing data** in the [getting started](broken-reference) guide. Then, alas, you'll have to wait up to 24 hours for AWS to get you enrolled in Cost Explorer. From that second day onward, though, it'll be up and running.
+To use Cost Explorer, first ensure you've followed the steps to **Delegate access to billing data** in the [getting started](../use/getting-started.md) guide. Then, alas, you'll have to wait up to 24 hours for AWS to get you enrolled in Cost Explorer. From that second day onward, though, it'll be up and running.
 
 The most important facet to use when dissecting your bill is AWS account. If you're using [domains, environments, and qualities](../ref/domains-environments-qualities.md) effectively, you won't need to stress greatly over tagging strategies in order to quickly derive meaningful insights on your cloud infrastructure costs.
 
