@@ -46,7 +46,7 @@ In all of these situations, the account boundary serves as a critical isolating 
 
 In a Substrate-managed AWS organization you'll create and recreate and recreate accounts and IAM roles (always confident that Substrate will find them if they already exist).
 
-When you create (or recreate) an account, Substrate will ensure the account and its basic IAM roles are in good working order and then run the various Terraform root modules associated with the account (one for global resources and another for each region; see [global and regional Terraform modules](ref/global-and-regional-terraform-modules.md) for more).
+When you create (or recreate) an account, Substrate will ensure the account and its basic IAM roles are in good working order and then run the various Terraform root modules associated with the account (one for global resources and another for each region; see [global and regional Terraform modules](../ref/global-and-regional-terraform-modules.md) for more).
 
 Try it for yourself, using the domain, environment, and quality from a service account you find listed in `substrate.accounts.txt`:
 
