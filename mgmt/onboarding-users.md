@@ -43,7 +43,7 @@ After you've added folks to the identity provider per your usual onboarding proc
 4. Click the user's name
 5. Click **Profile**
 6. Click **Edit**
-7. In the _AWS\_RoleName_ input, enter the name (not the ARN) of the IAM role they should assume in your Substrate account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](../adding-non-administrator-roles-for-humans/) first)
+7. In the _AWS\_RoleName_ input, enter the name (not the ARN) of the IAM role they should assume in your Substrate account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](custom-iam-roles.md) first)
 8. Click **Save**
 9. Click the **hamburger menu**
 10. Click **Applications** in the **Applications** section

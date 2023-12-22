@@ -34,20 +34,20 @@ These steps must be completed by an Azure administrator with the Application Adm
 
 ## Authorize users to use AWS
 
-1. Visit <https://portal.azure.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/\~/AllUsers> in a browser (or visit the Azure portal, click **Azure Active Directory**, and click **Users**)
+1. Visit [https://portal.azure.com/#view/Microsoft\_AAD\_UsersAndTenants/UserManagementMenuBlade/\\\~/AllUsers](https://portal.azure.com/#view/Microsoft\_AAD\_UsersAndTenants/UserManagementMenuBlade/\\\~/AllUsers) in a browser (or visit the Azure portal, click **Azure Active Directory**, and click **Users**)
 2. For every user authorized to use AWS:
    1. Click the user's name
    2. Click **Assigned roles** in the left column
    3. Click **Add assignments**
    4. Select “Attribute Assignment Reader” and “Attribute Definition Reader”
    5. Click **Add**
-   7. Click **Custom security attributes (preview)** in the left column
-   8. Click **Add assignment**
-   9. Select “AWS” in the _Attribute set_ column
-   10. Select “RoleName” in the _Attribute name_ column
-   11. Enter the name (not the ARN) of the IAM role they should assume in your Substrate account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](../../mgmt/custom-iam-roles) first)
-   12. Click **Save**
-3. Visit <https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview/menuId~/null> in that same browser (or visit the Azure portal, click **Azure Active Directory**, and click **Enterprise applications**)
+   6. Click **Custom security attributes (preview)** in the left column
+   7. Click **Add assignment**
+   8. Select “AWS” in the _Attribute set_ column
+   9. Select “RoleName” in the _Attribute name_ column
+   10. Enter the name (not the ARN) of the IAM role they should assume in your Substrate account (“Administrator” for yourself as you're getting started; if for others it's not “Administrator” or “Auditor”, ensure you've followed [adding non-Administrator roles for humans](../../mgmt/custom-iam-roles.md) first)
+   11. Click **Save**
+3. Visit [https://portal.azure.com/#view/Microsoft\_AAD\_IAM/StartboardApplicationsMenuBlade/\~/AppAppsPreview/menuId\~/null](https://portal.azure.com/#view/Microsoft\_AAD\_IAM/StartboardApplicationsMenuBlade/\~/AppAppsPreview/menuId\~/null) in that same browser (or visit the Azure portal, click **Azure Active Directory**, and click **Enterprise applications**)
 4. Click the name of the application you created above
 5. Click **Users and groups** in the left column
 6. Click **Add user/group**
