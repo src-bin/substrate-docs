@@ -37,4 +37,4 @@ Once successfully applied, your additional administrators will be able to assume
 
 Note, too, that this pattern can be applied to the Auditor role using the `substrate.Auditor.assume-role-policy.json` file per [auditing your Substrate-managed AWS organization](../compliance/auditing.md).
 
-[Adding custom IAM roles for humans or services](mgmt/custom-iam-roles.md) offers far more flexible tools for managing IAM roles.
+[Adding custom IAM roles for humans or services](custom-iam-roles.md) offers far more flexible tools for managing IAM roles.
