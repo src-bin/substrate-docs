@@ -1,6 +1,6 @@
 # Adding a domain
 
-Domains are a mechanism for protecting one service (or group of services) from others. You may create as many as you like. Creation and subsequent updates are simple: Run `substrate create-account -domain <domain> -environment <environment> -quality <quality>` with the name of your (new) domain and a declared environment and quality. This will create a new AWS account in your organization, add it to `substrate.accounts.txt`, and create all the necessary IAM roles to allow administrators to access the account.
+Domains are a mechanism for protecting one service (or group of services) from others. You may create as many as you like. Creation and subsequent updates are simple: Run `substrate account create --domain <domain> --environment <environment>` with the name of your (new) domain and a declared environment. This will create a new AWS account in your organization, add it to `substrate.accounts.txt`, and create all the necessary IAM roles to allow administrators to access the account.
 
 If not immediately, you'll eventually create this domain in all of your environment/quality pairs to enable a complete progression from e.g. development through production.
 

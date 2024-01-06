@@ -6,28 +6,16 @@ This guide is meant to help folks get started using Substrate at a company that 
 
 Get a Substrate download URL from your coworkers. Take care to select the appropriate operating system and CPU architecture. Substrate releases for MacOS (“`darwin`”) and Linux on 64-bit x86 (“`amd64`”) and ARM (“`arm64`”).
 
-1. Download, either by clicking the appropriate link on your Intranet's Substrate page or directly: `curl -O https://src-bin.com/substrate-<version>-<commit>-<OS>-<ARCH>.tar.gz`
-2. Extract: `tar xf substrate-<version>-<commit>-<OS>-<ARCH>.tar.gz`
-3. Install: `cp substrate-<version>-<commit>-<OS>-<ARCH>/bin/substrate ~/bin` (substituting your preferred writable directory in your PATH for “`~/bin`”, if you wish)
+1. Download, either by clicking the appropriate link on your Intranet's Substrate page or directly: `curl -O https://src-bin.com/substrate-<version>-<OS>-<ARCH>.tar.gz`
+2. Extract: `tar xf substrate-<version>-<OS>-<ARCH>.tar.gz`
+3. Install: `cp substrate-<version>-<OS>-<ARCH>/bin/substrate ~/bin` (substituting your preferred writable directory in your PATH for “`~/bin`”, if you wish)
 
-Install the version of Terraform your organization requires: `substrate terraform`
+Install the version of Terraform your organization requires: `substrate terraform install`
 
-No Substrate installation is truly complete without shell completion, which is provided for Bash and Z shell (and any other shell with Bash-compatible completion). Add the appropriate configuration to your `~/.profile` and run `. ~/.profile`:
-
-### Bash
+No Substrate installation is truly complete without shell completion, which is provided for Bash, Fish, and Z shell (and any other shell with Bash-compatible completion). Add the appropriate configuration to your `~/.profile` and run `. ~/.profile`:
 
 ```shell
-complete -C "substrate --shell-completion" substrate
-```
-
-### Z shell
-
-```shell
-autoload compinit
-compinit
-autoload bashcompinit
-bashcompinit
-complete -C "substrate --shell-completion" substrate
+. <(substrate shell-completion)
 ```
 
 ## Clone your company's Substrate repository

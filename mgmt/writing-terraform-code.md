@@ -6,13 +6,13 @@ Substrate generates a directory structure for your Terraform code, remote state 
 
 ### Directory structure
 
-**tl;dr: Write code in the `modules` subdirectories Substrate creates for each domain. Run Terraform from the `root-modules` subdirectories matching the domain, environment, quality, and AWS region you want or just use `substrate create-account`.**
+**tl;dr: Write code in the `modules` subdirectories Substrate creates for each domain. Run Terraform with `substrate account update`, `substrate terraform`, or simply by running Terraform in the appropriate `root-modules` subdirectories.
 
 Suppose you're responsible for a service called _example_ that you run in _staging_ as _alpha_-quality and in _production_ as _beta_- and _gamma_-quality. You will create those environments and qualities interactively with `substrate setup` and will then run the following commands to create all your service accounts:
 
-* `substrate create-account -domain example -environment staging -quality alpha`
-* `substrate create-account -domain example -environment production -quality beta`
-* `substrate create-account -domain example -environment production -quality gamma`
+* `substrate account create --domain example --environment staging --quality alpha`
+* `substrate account create --domain example --environment production --quality beta`
+* `substrate account create --domain example --environment production --quality gamma`
 
 These will create the following directory trees, which you will should commit to version control:
 
@@ -54,15 +54,15 @@ It's no accident that `modules/example/global` and `modules/example/regional` ar
 
 1. Change e.g. an EC2 launch template in `modules/example/regional/main.tf`
 2. Commit, push, get a code review, and merge into the main branch
-3. `substrate create-account -domain example -environment staging -quality alpha` and verify your changes
-4. `substrate create-account -domain example -environment production -quality beta` and verify your changes, either at the end or at each pause between regions
-5. `substrate create-account -domain example -environment production -quality gamma` and verify your changes, either at the end or at each pause between regions
+3. `substrate account update --domain example --environment staging --quality alpha` and verify your changes
+4. `substrate account update --domain example --environment production --quality beta` and verify your changes, either at the end or at each pause between regions
+5. `substrate account update --domain example --environment production --quality gamma` and verify your changes, either at the end or at each pause between regions
 
 ## Referencing Substrate parameters in Terraform
 
 As you write your own Terraform modules, you're certainly going to want to parameterize them in the same ways Substrate helps you parameterize your AWS accounts. Plus, you're also going to need a network, and Substrate's already created some and shared the right one with every service account to make it easy, secure, and cost-effective to build new things.
 
-`substrate create-account` automatically creates global and regional Terraform modules for your domain in `modules/<`_`domain`_`>`. Those modules include a reference to `modules/substrate` which provides the following helpful context:
+`substrate account create` automatically creates global and regional Terraform modules for your domain in `modules/<domain>`. Those modules include a reference to `modules/substrate` which provides the following helpful context:
 
 * `module.substrate.tags.domain`: The domain of this AWS account, from the tags on the account itself.
 * `module.substrate.tags.environment`: The environment of this AWS account, from the tags on the account itself.

@@ -12,9 +12,9 @@ The following index describes the contents and purpose of all the files the vari
   A tree of Terraform modules, the ones listed below to support your Substrate and network accounts, an additional one module for each domain you define, a common module included by all those domain modules since common infrastructure across accounts is such a ... common design pattern, and all the modules you define to encapsulate your own code. Substrate-managed files include a header identifying them as such and declaring whether you may edit them.
   * **`common`**
     * **`global`**\
-      A blank slate, where you can add global resources to all your service accounts. (Managed by `substrate create-account`.)
+      A blank slate, where you can add global resources to all your service accounts. (Managed by `substrate account adopt|create|update`.)
     * **`regional`**\
-      A blank slate, where you can add regional resources to all your service accounts. (Managed by `substrate create-account`.)
+      A blank slate, where you can add regional resources to all your service accounts. (Managed by `substrate account adopt|create|update`.)
   * **`deploy`**
     * **`global`**\
       A blank slate, where you can add global resources (e.g. IAM roles) to your deploy account. (Managed by `substrate setup`.)
@@ -27,22 +27,22 @@ The following index describes the contents and purpose of all the files the vari
   * **`peering-connection`**\
     An abstraction used by `root-modules/network/peering`. (Managed by `substrate setup`.)
   * **`substrate`**\
-    A convenience for making domain, environment, and quality plus network configuration easy to access from your modules. (Managed by `substrate create-account` and `substrate setup`.)
+    A convenience for making domain, environment, and quality plus network configuration easy to access from your modules. (Managed by `substrate account adopt|create|update` and `substrate setup`.)
   * _**`domain`**_
     * **`global`**
       * **`main.tf`**\
-        A blank slate, where you can add your global Terraform resources. (Managed by `substrate create-account`.)
+        A blank slate, where you can add your global Terraform resources. (Managed by `substrate account adopt|create|update`.)
       * **`substrate.tf`**\
-        A reference to `modules/substrate/global`, which makes `module.substrate.tags` work in this module. (Managed by `substrate create-account`.)
+        A reference to `modules/substrate/global`, which makes `module.substrate.tags` work in this module. (Managed by `substrate account adopt|create|update`.)
       * **`versions.tf`**\
-        Configuration of Terraform and provider versions, etc. (Managed by `substrate create-account`.)
+        Configuration of Terraform and provider versions, etc. (Managed by `substrate account adopt|create|update`.)
     * **`regional`**
       * **`main.tf`**\
-        A blank slate, ready for you to add your regional Terraform resources. (Managed by `substrate create-account`.)
+        A blank slate, ready for you to add your regional Terraform resources. (Managed by `substrate account adopt|create|update`.)
       * **`substrate.tf`**\
-        A reference to `modules/substrate/regional`, which makes `module.substrate.tags`, `module.substrate.vpc_id`, etc. work in this module. (Managed by `substrate create-account`.)
+        A reference to `modules/substrate/regional`, which makes `module.substrate.tags`, `module.substrate.vpc_id`, etc. work in this module. (Managed by `substrate account adopt|create|update`.)
       * **`versions.tf`**\
-        Configuration of Terraform and provider versions, etc. (Managed by `substrate create-account`.)
+        Configuration of Terraform and provider versions, etc. (Managed by `substrate account adopt|create|update`.)
 * **`root-modules`**\
   A tree of Terraform root modules, each with a correctly configured state file stored in DynamoDB and S3. The tree is organized by domain, environment, quality, and region with some additional complexity for network peering arrangements. Substrate-managed files include a header identifying them as such and declaring whether you may edit them.
   * **`admin`**\
@@ -56,35 +56,35 @@ The following index describes the contents and purpose of all the files the vari
   * _**`domain`**_
     * _**`environment`**_
       * _**`quality`**_\
-        Each of your domains has root Terraform modules in each environment, quality, and region which configure Terraform and refer to `modules/`_`domain`_. (Managed by `substrate create-account`.)
+        Each of your domains has root Terraform modules in each environment, quality, and region which configure Terraform and refer to `modules/`_`domain`_. (Managed by `substrate account adopt|create|update`.)
         * **`global`**
           * **`main.tf`**\
-            A reference to `modules/`_`domain`_`/global` plus a place to put global, non-environmental Terraform resources. (Managed by `substrate create-account`.)
+            A reference to `modules/`_`domain`_`/global` plus a place to put global, non-environmental Terraform resources. (Managed by `substrate account adopt|create|update`.)
           * **`Makefile`**\
-            A convenience that allows running Terraform commands in this directory from another, like the more recently added `terraform -chdir` does. (Managed by `substrate create-account`.)
+            A convenience that allows running Terraform commands in this directory from another, like the more recently added `terraform -chdir` does. (Managed by `substrate account adopt|create|update`.)
           * **`providers.tf`**\
-            Terraform provider declarations. (Managed by `substrate create-account`.)
+            Terraform provider declarations. (Managed by `substrate account adopt|create|update`.)
           * **`terraform.tf`**\
-            S3- and DynamoDB-backed Terraform state file configuration. (Managed by `substrate create-account`.)
+            S3- and DynamoDB-backed Terraform state file configuration. (Managed by `substrate account adopt|create|update`.)
           * **`versions.tf`**\
-            Configuration of Terraform and provider versions, etc. (Managed by `substrate create-account`.)
+            Configuration of Terraform and provider versions, etc. (Managed by `substrate account adopt|create|update`.)
         * _**`region`**_
           * **`main.tf`**\
-            A reference to `modules/`_`domain`_`/regional` plus a place to put regional, non-environmental Terraform resources. (Managed by `substrate create-account`.)
+            A reference to `modules/`_`domain`_`/regional` plus a place to put regional, non-environmental Terraform resources. (Managed by `substrate account adopt|create|update`.)
           * **`Makefile`**\
-            A convenience that allows running Terraform commands in this directory from another, like the more recently added `terraform -chdir` does. (Managed by `substrate create-account`.)
+            A convenience that allows running Terraform commands in this directory from another, like the more recently added `terraform -chdir` does. (Managed by `substrate account adopt|create|update`.)
           * **`network.tf`**\
             Sharing and tagging the correct VPC from the network account into this account.
           * **`providers.tf`**\
-            Terraform provider declarations. (Managed by `substrate create-account`.)
+            Terraform provider declarations. (Managed by `substrate account adopt|create|update`.)
           * **`terraform.tf`**\
-            S3- and DynamoDB-backed Terraform state file configuration. (Managed by `substrate create-account`.)
+            S3- and DynamoDB-backed Terraform state file configuration. (Managed by `substrate account adopt|create|update`.)
           * **`versions.tf`**\
-            Configuration of Terraform and provider versions, etc. (Managed by `substrate create-account`.)
+            Configuration of Terraform and provider versions, etc. (Managed by `substrate account adopt|create|update`.)
 * **`substrate.Administrator.assume-role-policy.json`** and **`substrate.Auditor.assume-role-policy.json`**\
-  If present, these assume-role policies (as complete JSON documents) will be merged into the assume-role policies of the Substrate-managed Administrator and Auditor roles in all accounts, respectively. (Read by `substrate setup` and `substrate create-account`.)
+  If present, these assume-role policies (as complete JSON documents) will be merged into the assume-role policies of the Substrate-managed Administrator and Auditor roles in all accounts, respectively. (Read by `substrate setup` and `substrate account adopt|create|update`.)
 * **`substrate.accounts.txt`**\
-  A convenient listing of all your AWS accounts and the IAM roles to assume when you need to access them. (Managed by `substrate setup`, `substrate setup-cloudtrail`, and `substrate create-account`.)
+  A convenient listing of all your AWS accounts and the IAM roles to assume when you need to access them. (Managed by `substrate setup`, `substrate setup cloudtrail`, and `substrate account adopt|create|update`.)
 * **`substrate.admin-networks.json`**\
   Allocator for CIDR blocks used by VPCs and subnets for your Substrate account (formerly known as your admin account). (Managed by `substrate setup`.)
 * **`substrate.azure-ad-tenant`**\
@@ -100,7 +100,7 @@ The following index describes the contents and purpose of all the files the vari
 * **`substrate.management-account-id`**\
   The 12-digit AWS account number of the organization's management account. Used as a safety feature to prevent managing one organization with another organization's code. (Managed by `substrate setup`.)
 * **`substrate.manage-cloudtrail`**\
-  "yes" or"no" to indicate whether Substrate is managing CloudTrail. (Managed by `substrate setup-cloudtrail`.)
+  "yes" or"no" to indicate whether Substrate is managing CloudTrail. (Managed by `substrate setup cloudtrail`.)
 * **`substrate.networks.json`**\
   Allocator for CIDR blocks used by VPCs and subnets for your service accounts. (Managed by `substrate setup`.)
 * **`substrate.oauth-oidc-client-id`**\
@@ -119,11 +119,9 @@ The following index describes the contents and purpose of all the files the vari
   List of AWS regions you're using. (Managed by `substrate setup`.)
 * **`substrate.saml-metadata.xml`**\
   Legacy configuration for a SAML integration that early Substrate installations have for getting into the AWS Console. (Not created for new installations.)
-* **`substrate.telemetry`**\
-  "yes" or "no" to indicate whether telemetry may be sent to Source & Binary. (Managed by all Substrate tools.)
 * **`substrate.valid-environment-quality-pairs.json`**\
   Pairings you've declared as valid. Used to avoid creating VPCs you'll never use to spare your service quotas. (Managed by `substrate setup`.)
 * **`terraform.version`**\
-  Version of Terraform that `substrate terraform` will install and that generated Terraform root modules will require.
+  Version of Terraform that `substrate terraform install` will install and that generated Terraform root modules will require.
 * **`terraform-aws.version-constraint`**\
   Version constraint that generated Terraform code will include for the Terraform AWS provider. It should usually begin with the `~>` operator.

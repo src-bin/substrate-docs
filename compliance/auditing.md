@@ -2,7 +2,7 @@
 
 One of the very first things Substrate does is to configure AWS CloudTrail with a single trail that covers all organization accounts in all regions. To access this wealth of data, assume the `Auditor` role in your audit account.
 
-On the command line: `substrate assume-role -special audit`
+On the command line: `substrate assume-role --special audit`
 
 Or you can assume the role in the AWS Console via your Intranet's Accounts page.
 
@@ -31,10 +31,10 @@ Many tools have grown the ability to assume an IAM role in your AWS account to p
 
 You can include as many principals as you'd like in the innermost list.
 
-Every time you update this file, you'll need to re-run `substrate setup` and `substrate create-account` for each of your service accounts.
+Every time you update this file, you'll need to re-run `substrate setup` and `substrate account create` for each of your service accounts.
 
 This will authorize third-party principals to `sts:AssumeRole` using the ARN of one of your Auditor roles and operate as you would there.
 
 Note, too, that this pattern can be applied to the Administrator role using the `substrate.Administrator.assume-role-policy.json` file per [adding administrators to your AWS organization](../mgmt/adding-administrators.md).
 
-If allowing the third party organization-wide read-only access is too permissive, consider using `substrate create-role` to target certain accounts and grant exactly the permissions the third party requires.
+If allowing the third party organization-wide read-only access is too permissive, consider using `substrate role create` to target certain accounts and grant exactly the permissions the third party requires.

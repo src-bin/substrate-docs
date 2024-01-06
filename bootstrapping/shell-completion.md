@@ -7,17 +7,20 @@ Shell completion makes using Substrate interactively much more pleasant. We reco
 ## Bash
 
 ```shell
-complete -C "substrate --shell-completion" substrate
+. <(substrate shell-completion)
 ```
 
 ## Fish
+
 Create $HOME/.config/fish/completions/substrate.fish with the following contents:
+
 ```shell
 function _fish_complete_substrate
     env COMP_LINE=(commandline -pc) substrate --shell-completion
 end
 
 complete -c substrate -f -a "(_fish_complete_substrate)"
+. <(substrate shell-completion)
 ```
 
 ## Z shell
@@ -27,5 +30,5 @@ autoload compinit
 compinit
 autoload bashcompinit
 bashcompinit
-complete -C "substrate --shell-completion" substrate
+. <(substrate shell-completion)
 ```

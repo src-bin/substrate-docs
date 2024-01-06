@@ -18,12 +18,12 @@ eval $(substrate credentials)
 
 ## Assume roles to move between AWS accounts
 
-Learn what AWS accounts exist in your organization and how they're tagged by looking in `substrate.accounts.txt` or running `substrate accounts`.
+Learn what AWS accounts exist in your organization and how they're tagged by looking in `substrate.accounts.txt` or running `substrate account list`.
 
 You can run a one-off command in one of those accounts (and of course the one-off command doesn't have to be `aws ec2 describe-instances`):
 
 ```shell-session
-substrate assume-role -domain <domain> -environment <environment> -quality <quality> aws ec2 describe-instances
+substrate assume-role --domain <domain> --environment <environment> aws ec2 describe-instances
 ```
 
 ([Domains, environments, and qualities](../ref/domains-environments-qualities.md) are how Substrate organizes AWS accounts.)
@@ -31,7 +31,7 @@ substrate assume-role -domain <domain> -environment <environment> -quality <qual
 Or you can move your whole terminal session into another account:
 
 ```shell-session
-eval $(substrate assume-role -domain <domain> -environment <environment> -quality <quality>)
+eval $(substrate assume-role --domain <domain> --environment <environment>)
 ```
 
 And return from whence you came when you've wrapped up your work in that service account:
@@ -51,13 +51,13 @@ When you create (or recreate) an account, Substrate will ensure the account and 
 Try it for yourself, using the domain, environment, and quality from a service account you find listed in `substrate.accounts.txt`:
 
 ```shell-session
-substrate create-account -domain <domain> -environment <environment> -quality <quality>
+substrate account create --domain <domain> --environment <environment>
 ```
 
 Substrate manages an all-powerful Administrator role and a limited read-only Auditor role by default. But you're probably going to want to create custom IAM roles to complement the isolation you create by having lots of AWS accounts. Substrate manages IAM roles for cross-account access better than anything else around.
 
 ```shell-session
-substrate create-role -role <RoleName> [account selection flags] [assume-role policy flags [policy attachment flags]
+substrate role create --role <RoleName> [account selection flags] [assume-role policy flags] [policy attachment flags]
 ```
 
 There are a lot of options, though, so consult the documentation on [adding custom IAM roles for humans or services](../mgmt/custom-iam-roles.md) to get the complete picture.
@@ -66,11 +66,11 @@ There are a lot of options, though, so consult the documentation on [adding cust
 
 Substrate gives you production-ready Terraform infrastructure for all your AWS accounts with a module structure that enhances the isolation provided by your many AWS accounts and locked, remote state files. It strives to make [writing Terraform code](../mgmt/writing-terraform-code.md) a straightforward exercise free of yak-shaving.
 
-And while `substrate create-account` does in fact plan and/or apply Terraform changes in all an account's root modules in a predictable order, iterating on your works-in-progress deserve a faster feedback loop:
+And while `substrate account update` does in fact plan and/or apply Terraform changes in all an account's root modules in a predictable order, iterating on your works-in-progress deserve a faster feedback loop:
 
 ```shell-session
-terraform -chdir=root-modules/<domain>/<environment>/<quality>/<region> plan
-terraform -chdir=root-modules/<domain>/<environment>/<quality>/<region> apply
+substrate terraform --domain <domain> --environment <environment> --region <region> plan
+substrate terraform --domain <domain> --environment <environment> --region <region> apply
 ```
 
 ## Launch an EC2 instance
@@ -83,4 +83,4 @@ To provision your own, visit your Intranet in your web browser, click Instance F
 
 Sometimes the fastest way to understand what's going on is to use the AWS Console. With lots of AWS accounts, though, this can be tricky. Your Intranet's Accounts page provides direct links into the AWS Console as your assigned IAM role or as the limited read-only Auditor role.
 
-Or, if you're starting from a terminal, you can open the AWS Console by using the `-console` option to `substrate assume-role` (with all the rest of the options just like you'd normally provide).
+Or, if you're starting from a terminal, you can open the AWS Console by using the `--console` option to `substrate assume-role` (with all the rest of the options just like you'd normally provide).

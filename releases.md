@@ -1,5 +1,15 @@
 # Release notes
 
+## 2024.01<a href="#2024.01" id="2024.01"></a>
+
+* TODO
+
+Upgrade instructions:
+
+1. `substrate upgrade` to upgrade your local copy of the Substrate binary.
+2. `substrate setup` to upgrade TODO.
+3. Have everyone on your team run `substrate upgrade`, too.
+
 ## 2023.12 <a href="#2023.12" id="2023.12"></a>
 
 * Swap the next generation of the Substrate-managed Intranet, powered by AWS API Gateway v2, into service. This change is a no-op unless you've added your own internal tools to your Intranet. (See below.)

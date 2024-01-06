@@ -6,7 +6,7 @@ The best strategies use IAM roles to avoid the need for long-lived access keys. 
 
 ## Special-purpose IAM roles in certain accounts
 
-Simplistic integrations with AWS will require you to create an IAM role in each account the third party needs to access, which is easy enough with `substrate create-role`. The third party should provide you with their account number or the role ARN they'll be using. Create an assume-role policy like this and commit it someplace in your Substrate repository, replacing the placeholder with the principal your third-party provided:
+Simplistic integrations with AWS will require you to create an IAM role in each account the third party needs to access, which is easy enough with `substrate role create`. The third party should provide you with their account number or the role ARN they'll be using. Create an assume-role policy like this and commit it someplace in your Substrate repository, replacing the placeholder with the principal your third-party provided:
 
 ```json
 {
@@ -23,10 +23,10 @@ Simplistic integrations with AWS will require you to create an IAM role in each 
 }
 ```
 
-Then use `substrate create-role` to create a role in some or all of your AWS accounts and provide the file you just created as an extra assume-role policy:
+Then use `substrate role create` to create a role in some or all of your AWS accounts and provide the file you just created as an extra assume-role policy:
 
 ```shell-session
-substrate create-role -role <RoleName> [account selection flags] -assume-role-policy <filename>
+substrate role create --role <RoleName> [account selection flags] --assume-role-policy <filename>
 ```
 
 ## Special-purpose IAM role that can assume roles
@@ -49,10 +49,10 @@ More advanced integrations with AWS, ones that are aware of AWS Organizations, m
 }
 ```
 
-Then use `substrate create-role` a second time to create a role in some or all of your AWS accounts and provide the file you just created as an extra assume-role policy:
+Then use `substrate role create` a second time to create a role in some or all of your AWS accounts and provide the file you just created as an extra assume-role policy:
 
 ```shell-session
-substrate create-role -role <AnotherRoleName> [account selection flags] -assume-role-policy <filename>
+substrate role create --role <AnotherRoleName> [account selection flags] --assume-role-policy <filename>
 ```
 
 ## Reusing the Substrate-managed Auditor role
@@ -76,7 +76,7 @@ If no better option exists, you can create an IAM user for a third party. Here, 
 6. `modules/<domain>/global/main.tf`: Add an IAM role that may be assumed by the Circle CI user in your Substrate account
 7. `modules/<domain>/global/main.tf`: Attach policies, inline or managed, to allow the service account to perform its duties
 8. `substrate setup`
-9. `substrate create-account -domain <domain> -environment <environment> -quality <quality>`
+9. `substrate account account update --domain <domain> --environment <environment> --quality <quality>`
 10. `aws iam create-access-key --user-name <circle-ci>` and give the resulting access key to Circle CI
 
 Again, this is risky, because you're about to let this access key out of your control. Be sure you trust the third party. If you've established a SOC 2 compliance program (or are even considering it), this third party is now a subprocessor and you should be reviewing their security practices and, ideally, their SOC 2 report.

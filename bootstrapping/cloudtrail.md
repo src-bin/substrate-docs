@@ -5,7 +5,7 @@ If you don't already have CloudTrail configured in your organization, you'll wan
 Run:
 
 ```shell-session
-substrate setup-cloudtrail
+substrate setup cloudtrail
 ```
 
 This program finds or creates the audit account and enables CloudTrail to log everything to a locked-down S3 bucket in that account.

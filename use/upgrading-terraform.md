@@ -6,8 +6,8 @@ Upgrade Terraform as follows:
 
 1. Change the contents of `terraform.version` to specify the desired version.
 2. Commit that change to version control.
-3. Run `substrate terraform` (and mention to your teammates that they'll be prompted to do the same when their local version mismatches).
-4. Run `substrate setup` and `substrate create-account` in all your service accounts. The one-command way to do this is: `sh <(substrate accounts -format shell)`
+3. Run `substrate terraform install` (and mention to your teammates that they'll be prompted to do the same when their local version mismatches).
+4. Run `substrate setup` and `substrate account update` in all your service accounts. The one-command way to do this is: `sh <(substrate account list --format shell)`
 
 Likewise, the version of the Terraform AWS provider that Substrate will include as a constraint in generated Terraform root modules is controlled by the `terraform-aws.version-constraint` file in your Substrate repository. The contents of this file may be any Terraform provider version constraint but is most often the `~>` operator followed by the major and minor components of the minimum provider version number, like "~> 4.67" (with a trailing newline as mentioned above).
 
@@ -15,4 +15,4 @@ Upgrade the Terraform AWS provider as follows:
 
 1. Change the contents of `terraform-aws.version-constraint` to specify the desired minimum version.
 2. Commit that change to version control.
-3. Run `substrate setup` and `substrate create-account` in all your service accounts. The one-command way to do this is: `sh <(substrate accounts -format shell)`
+3. Run `substrate setup` and `substrate account update` in all your service accounts. The one-command way to do this is: `sh <(substrate account list --format shell)`

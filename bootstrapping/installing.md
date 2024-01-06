@@ -11,15 +11,15 @@ Substrate is distributed directly to customers. You'll have access to a feed of 
 Download the latest one for your platform. Then extract it by running a command like this from your downloads directory:
 
 ```shell-session
-tar xf substrate-<version>-<commit>-<OS>-<ARCH>.tar.gz
+tar xf substrate-<version>-<OS>-<ARCH>.tar.gz
 ```
 
-This will create `substrate-<version>-<commit>-<OS>-<ARCH>`, which contains `bin/substrate` (typically all you need), `opt/bin/` with some optional extra programs that are part of the Substrate distribution, and `src/` with the complete source code for this release of Substrate.
+This will create `substrate-<version>-<OS>-<ARCH>`, which contains `bin/substrate` (typically all you need), `opt/bin/` with some optional extra programs that are part of the Substrate distribution, and `src/` with the complete source code for this release of Substrate.
 
 To simply install Substrate in `~/bin` in a single command, run a command like this:
 
 ```shell-session
-tar xf substrate-<version>-<commit>-<OS>-<ARCH>.tar.gz -C ~/bin --strip-components 2 substrate-<version>-<commit>-<OS>-<ARCH>/bin/substrate
+tar xf substrate-<version>-<OS>-<ARCH>.tar.gz -C ~/bin --strip-components 2 substrate-<version>-<OS>-<ARCH>/bin/substrate
 ```
 
 Each released _version_ and _commit_ is offered in four binary formats; choose the appropriate one for your system. _`<OS>`_ is one of “`darwin`” or “`linux`” and _`<ARCH>`_ is one of “`amd64`” or “`arm64`”.
@@ -30,9 +30,9 @@ You can install Substrate wherever you like. If `~/bin` doesn't suit you, just e
 
 Installing Substrate on fleets of laptops, in EC2 instances you get from the Instance Factory, or anywhere else could be tedious if you had to follow the procedure above each time and update the version string each month so Substrate ships with an automation-friendly install method. To install the latest version, month in and month out, without having to micromanage version strings, do the following:
 
-1. Copy `substrate-<version>-<commit>-<OS>-<ARCH>.tar.gz/src/install.sh` from any Substrate release tarball
+1. Copy `substrate-<version>-<OS>-<ARCH>.tar.gz/src/install.sh` from any Substrate release tarball
 2. Arrange for `install.sh` to be distributed to your fleet of laptops, EC2 instances, or whatever other endpoints you have in mind
-3. Arrange to execute `install.sh -p <prefix> -v <known-version>` at first boot or setup time, with `<prefix>` being the contents of your `substrate.prefix` file and `<known-version>` being any full Substrate version string (like 2047.12-0123abc)
+3. Arrange to execute `install.sh -p <prefix> -v <known-version>` at first boot or setup time, with `<prefix>` being the contents of your `substrate.prefix` file and `<known-version>` being any full Substrate version string (like 2047.12-0123abc) FIXME NO LONGER NECESSARY
 
 `install.sh` and its arguments are intended to be durable and should not need to be updated. Specifically, there is no need to update the arguments each month when Substrate is released because the program will walk the chain of releases forward from the one given to the latest one.
 
@@ -44,6 +44,6 @@ Once some version of Substrate is installed, upgrading is a simple matter of run
 
 Substrate currently requires _exactly_ Terraform 1.5.6. (Substrate asks for Terraform to be upgraded every few releases to stay nearly current with Terraform.)
 
-The easist way to install Terraform 1.5.6 is to run `substrate terraform`. If the directory that contains `substrate` itself is writable, `terraform` will be placed there, too.
+The easist way to install Terraform 1.5.6 is to run `substrate terraform install`. If the directory that contains `substrate` itself is writable, `terraform` will be placed there, too.
 
 Alternatively, you can download [Terraform 1.5.6](https://releases.hashicorp.com/terraform/1.5.6/) from Hashicorp, with the filenames being parameterized with _`OS`_ and _`ARCH`_ the same as Substrate itself. Download and `unzip` the appropriate build. Move `terraform` into a directory on your `PATH`. (It doesn't have to be the same directory where you placed `substrate`.)

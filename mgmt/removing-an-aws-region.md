@@ -8,7 +8,7 @@ First and foremost, if you're going to remove a region and all the infrastructur
 
 ## Remove the region from Substrate
 
-Run `substrate setup -fully-interactive`. When prompted if your region list is accurate, respond “no”, and remove the region from your list of regions. When this command exits, you'll have a great many directories in `root-modules` that reference the region which will no longer be managed by any Substrate tools.
+Run `substrate setup --fully-interactive`. When prompted if your region list is accurate, respond “no”, and remove the region from your list of regions. When this command exits, you'll have a great many directories in `root-modules` that reference the region which will no longer be managed by any Substrate tools.
 
 ## Destroy admin and service infrastructure in the region
 

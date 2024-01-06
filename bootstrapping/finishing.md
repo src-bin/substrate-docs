@@ -14,9 +14,9 @@ With this working, we can tidy up your management account.
 
 ## Deleting unnecessary root access keys
 
-As a final test before deleting your root access key, verify that you can run `substrate assume-role -management`. If so, you can finally delete your root and OrganizationAdministrator access keys. They're simply security liabilities. Let's delete them:
+As a final test before deleting your root access key, verify that you can run `substrate assume-role --management`. If so, you can finally delete your root and OrganizationAdministrator access keys. They're simply security liabilities. Let's delete them:
 
-1. Run `substrate delete-static-access-keys` to delete access keys for the Substrate IAM user in your management account
+1. Run `substrate setup delete-static-access-keys` to delete access keys for the Substrate IAM user in your management account
 2. Visit [https://console.aws.amazon.com/iam/home#/security\_credentials](https://console.aws.amazon.com/iam/home#/security\_credentials) while signed in using the root email address, password, and second factor on your management account
 3. Scroll to the _Access keys_ section
 4. Select your root access key
