@@ -31,7 +31,7 @@ Many tools have grown the ability to assume an IAM role in your AWS account to p
 
 You can include as many principals as you'd like in the innermost list.
 
-Every time you update this file, you'll need to re-run `substrate setup` and `substrate account create` for each of your service accounts.
+Every time you update this file, you'll need to re-run `substrate setup` and `substrate account update` for each of your service accounts.
 
 This will authorize third-party principals to `sts:AssumeRole` using the ARN of one of your Auditor roles and operate as you would there.
 

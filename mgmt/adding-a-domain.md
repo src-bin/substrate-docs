@@ -11,3 +11,5 @@ See [domains, environments, and qualities](../ref/domains-environments-qualities
 All accounts with a given domain, across all environments and qualities, will be generated with Terraform code that references a generated Terraform module named the same as the domain. This is where you should put the vast majority of Terraform resources, possibly parameterized by `module.substrate.tags.domain`, `module.substrate.tags.environment`, and `module.substrate.tags.quality` as well as `module.substrate.public_subnet_ids` and `module.substrate.private_subnet_ids`.
 
 If you choose to add `variable` stanzas to that module, we recommend that you do not set a `default` for those variables; this will force you to consider the appropriate values when creating this domain in different environments and/or qualities.
+
+Run Terraform with `substrate account update`, `substrate terraform`, or `terraform` (directly in a root module directory).

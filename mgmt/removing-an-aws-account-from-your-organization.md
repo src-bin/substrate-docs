@@ -8,7 +8,7 @@ Before you begin this process, note well that AWS enforces a waiting period of �
 2. Leave “Root user” selected
 3. Enter the email address of the account (which you can find in `substrate.accounts.txt` or by the rules below)
    * If you're closing an account that `substrate account create` created, the email address is the same as you used for your management account with “+_domain_-_environment_-_quality_” appended to the local part
-   * If you're closing an account you invited into your organization, the email address is unchanged from what it was before it joined the organization
+   * If you're closing an account you invited into your organization or created manually and then used `substrate account adopt`, the email address is unchanged from what it was
 4. Click **Next**
 5. Click **Forgot password?**
 6. Respond to the captcha and click **Send email**

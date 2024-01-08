@@ -42,13 +42,19 @@ unassume-role
 
 In all of these situations, the account boundary serves as a critical isolating safety feature, ensuring exploratory changes in development can't impact production or emergency operational changes to one production service can't impact others.
 
-## Create AWS accounts and IAM roles
+## Create and update AWS accounts and IAM roles
 
-In a Substrate-managed AWS organization you'll create and recreate and recreate accounts and IAM roles (always confident that Substrate will find them if they already exist).
+In a Substrate-managed AWS organization you'll create and update accounts and IAM roles (always confident that Substrate will find them if they already exist).
 
-When you create (or recreate) an account, Substrate will ensure the account and its basic IAM roles are in good working order and then run the various Terraform root modules associated with the account (one for global resources and another for each region; see [global and regional Terraform modules](../ref/global-and-regional-terraform-modules.md) for more).
+When you create (or update) an account, Substrate will ensure the account and its basic IAM roles are in good working order and then run the various Terraform root modules associated with the account (one for global resources and another for each region; see [global and regional Terraform modules](../ref/global-and-regional-terraform-modules.md) for more).
 
-Try it for yourself, using the domain, environment, and quality from a service account you find listed in `substrate.accounts.txt`:
+Try it for yourself, using the domain and environment from a service account you find listed in `substrate.accounts.txt`:
+
+```shell-session
+substrate account update --domain <domain> --environment <environment>
+```
+
+Whenever necessary, you can create a new account for a new purpose:
 
 ```shell-session
 substrate account create --domain <domain> --environment <environment>
