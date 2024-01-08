@@ -4,7 +4,7 @@ Substrate 2022.04 introduced shell completion. It is developed against Bash so a
 
 Shell completion makes using Substrate interactively much more pleasant. We recommend adding the appropriate configuration to your `~/.profile` or equivalent.
 
-## Bash
+## Bash / Z shell
 
 ```shell
 . <(substrate shell-completion)
@@ -20,15 +20,5 @@ function _fish_complete_substrate
 end
 
 complete -c substrate -f -a "(_fish_complete_substrate)"
-. <(substrate shell-completion)
-```
-
-## Z shell
-
-```shell
-autoload compinit
-compinit
-autoload bashcompinit
-bashcompinit
 . <(substrate shell-completion)
 ```
