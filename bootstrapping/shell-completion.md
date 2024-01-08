@@ -12,7 +12,7 @@ Shell completion makes using Substrate interactively much more pleasant. We reco
 
 ## Fish
 
-Add the following to \~/.config/fish/config.fish
+Add the following to `~/.config/fish/config.fish`
 
 ```shell
 . $(substrate shell-completion | psub)
