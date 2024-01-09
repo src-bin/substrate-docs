@@ -2,12 +2,26 @@
 
 ## 2024.01<a href="#2024.01" id="2024.01"></a>
 
-* TODO
+* Rename and reorganize Substrate commands into a clearer and more extensible hierarchy. Highlights include `substrate accounts` becoming `substrate account list` and `substrate create-account` being split into `substrate account create` and `substrate account update` but there are many more changes, which are all detailed here for easy reference and bookmarking: [Changes to Substrate commands in 2024.01](ref/command-changes-2024.01.md)
+* Support `-d` as short for `--domain` and `-e` as short for `--environment`. Everywhere the long option is supported, the short option is now supported, too.
+* Add a new `substrate terraform` subcommand that translates flags like `--domain www --environment staging --region us-west-2` into the appropriate working directory before passing all remaining arguments to `terraform` itself. For example, `substrate terraform --domain www --environment staging --region us-west-2 plan` is the same as `terraform -chdir=root-modules/www/staging/default/us-west-2 plan`. Bonus: Substrate's autocomplete works for `--domain`, `--environment`, `--region`, etc. and then gives way to Terraform's autocomplete for `init`, `plan`, `apply`, etc.
+* On macOS, `substrate credentials` will store access keys in the keychain so they may be shared between processes, even in different terminal windows without having to copy any environment variables or write to any files. Setting `SUBSTRATE_FEATURES=IgnoreMacOSKeychain` in the environment will turn off this new feature, should it cause you problems.
+* Directly manage VPC peering between the Substrate network (used by Instance Factory) and each of your environments as well as inter-region peering within each environment. Remove all the generated Terraform code in the `root-modules/network/peering` tree.
+* Automatically run `terraform providers lock` when modules are generated to prevent Terraform failures on lock file misses or mismatches when applying Terraform changes on different OS/architecture combinations.
+* Make Substrate's non-sensitive [telemetry](ref/telemetry.md) mandatory. Remove the `substrate.telemetry` file that formerly controlled this feature.
+* Route telemetry straight to <a href="https://src-bin.com">https://src-bin.com</a> to improve the performance of every Substrate command. This revert a change from 2023.07 which began routing telemetry through the Intranet.
+* Add `--special audit` to the account selection flags for `substrate role create`. Creating custom roles in your audit account is now supported.
+* Print a warning when Substrate detects that the reason `substrate assume-role` failed is because you previously ran `eval $(substrate assume-role ...)` in the same shell.
+* Cache the output of the `organizations:DescribeOrganization` API locally in `.substrate.organization.json` to improve the performance of every Substrate command.
+* Remove legacy dispatching of commands like `substrate-assume-role` (note the first `-`) that have been deprecated for over a year.
+* Remove `substrate create-terraform-module` entirely. This subcommand produced restrictively configured Terraform modules. `mkdir`(1) is honestly better.
+* Bug fix: Never attach the SubstrateDenySensitiveReads policy to the Auditor role in the audit account.
+* Bug fix: With `SUBSTRATE_DEBUG_AWS_IAM_ASSUME_ROLE_POLICIES` in the environment, print the real assume-role policy rather than the partial assume-role policy used at creation to allow roles to reference themselves.
 
 Upgrade instructions:
 
 1. `substrate upgrade` to upgrade your local copy of the Substrate binary.
-2. `substrate setup` to upgrade TODO.
+2. `substrate setup` to upgrade your Intranet and the basic IAM roles Substrate manages.
 3. Have everyone on your team run `substrate upgrade`, too.
 
 ## 2023.12 <a href="#2023.12" id="2023.12"></a>
