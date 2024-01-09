@@ -17,6 +17,7 @@
 * Remove legacy dispatching of commands like `substrate-assume-role` (note the first `-`) that have been deprecated for over a year.
 * Remove `substrate create-terraform-module` entirely. This subcommand produced restrictively configured Terraform modules. `mkdir`(1) is honestly better.
 * Bug fix: Never attach the SubstrateDenySensitiveReads policy to the Auditor role in the audit account.
+* Bug fix: Don't reset Substrate-managed roles to an empty-ish assume-role policy when managing them.
 * Bug fix: With `SUBSTRATE_DEBUG_AWS_IAM_ASSUME_ROLE_POLICIES` in the environment, print the real assume-role policy rather than the partial assume-role policy used at creation to allow roles to reference themselves.
 
 Upgrade instructions:
