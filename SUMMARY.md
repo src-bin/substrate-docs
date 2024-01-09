@@ -80,6 +80,7 @@
 * [Multi-tenancy](ref/multi-tenancy.md)
 * [Deciding where to host internal tools](ref/internal-tools.md)
 * [Telemetry in Substrate](ref/telemetry.md)
+* [Changes to Substrate commands in 2024.01](ref/command-changes-2024.01.md)
 
 ## Runbooks for emergency and once-in-a-blue-moon operations <a href="#runbooks" id="runbooks"></a>
 
