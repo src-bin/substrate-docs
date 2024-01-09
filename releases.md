@@ -10,7 +10,7 @@
 * Directly manage VPC peering between the Substrate network (used by Instance Factory) and each of your environments as well as inter-region peering within each environment. Remove all the generated Terraform code in the `root-modules/network/peering` tree.
 * Automatically run `terraform providers lock` when modules are generated to prevent Terraform failures on lock file misses or mismatches when applying Terraform changes on different OS/architecture combinations.
 * Make Substrate's non-sensitive [telemetry](ref/telemetry.md) mandatory. Remove the `substrate.telemetry` file that formerly controlled this feature.
-* Route telemetry straight to <a href="https://src-bin.com">https://src-bin.com</a> to improve the performance of every Substrate command. This revert a change from 2023.07 which began routing telemetry through the Intranet.
+* Route telemetry straight to <a href="https://src-bin.com">https://src-bin.com</a> to improve the performance of every Substrate command. This reverts a change from 2023.07 which began routing telemetry through the Intranet.
 * Add `--special audit` to the account selection flags for `substrate role create`. Creating custom roles in your audit account is now supported.
 * Print a warning when Substrate detects that the reason `substrate assume-role` failed is because you previously ran `eval $(substrate assume-role ...)` in the same shell.
 * Cache the output of the `organizations:DescribeOrganization` API locally in `.substrate.organization.json` to improve the performance of every Substrate command.
