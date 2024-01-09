@@ -1,8 +1,8 @@
 # Release notes
 
-## 2024.01<a href="#2024.01" id="2024.01"></a>
+## 2024.01 <a href="#id-2024.01" id="id-2024.01"></a>
 
-* Rename and reorganize Substrate commands into a clearer and more extensible hierarchy. Highlights include `substrate accounts` becoming `substrate account list` and `substrate create-account` being split into `substrate account create` and `substrate account update` but there are many more changes. See [Changes to Substrate commands in 2024.01](https://docs.substrate.tools/substrate/ref/command-changes-2024.01) for easy reference and bookmarking.
+* Rename and reorganize Substrate commands into a clearer and more extensible hierarchy. Highlights include `substrate accounts` becoming `substrate account list` and `substrate create-account` being split into `substrate account create` and `substrate account update` but there are many more changes. See [Changes to Substrate commands in 2024.01](ref/command-changes-2024.01.md) for easy reference and bookmarking.
 * Switch to the POSIX standard of using two dashes to prefix long option names, i.e. `-domain` becomes `--domain`, etc.
 * Support `-d` as short for `--domain` and `-e` as short for `--environment`. Everywhere the long option is supported, the short option is now supported, too.
 * Add a new `substrate terraform` subcommand that translates flags like `--domain www --environment staging --region us-west-2` into the appropriate working directory before passing all remaining arguments to `terraform` itself. For example, `substrate terraform --domain www --environment staging --region us-west-2 plan` is the same as `terraform -chdir=root-modules/www/staging/default/us-west-2 plan`. Bonus: Substrate's autocomplete works for `--domain`, `--environment`, `--region`, etc. and then gives way to Terraform's autocomplete for `init`, `plan`, `apply`, etc.
@@ -10,7 +10,7 @@
 * Directly manage VPC peering between the Substrate network (used by Instance Factory) and each of your environments as well as inter-region peering within each environment. Substrate will remove all the generated Terraform code in the `root-modules/network/peering` tree.
 * Automatically run `terraform providers lock` when modules are generated to prevent Terraform failures on lock file misses or mismatches when applying Terraform changes on different OS/architecture combinations.
 * Make Substrate's non-sensitive [telemetry](ref/telemetry.md) mandatory. Substrate will remove the `substrate.telemetry` file that formerly controlled this feature; you can remove it from version control.
-* Route telemetry straight to <a href="https://src-bin.com">https://src-bin.com</a> to improve the performance of every Substrate command. This reverts a change from 2023.07 which began routing telemetry through the Intranet.
+* Route telemetry straight to [https://src-bin.com](https://src-bin.com) to improve the performance of every Substrate command. This reverts a change from 2023.07 which began routing telemetry through the Intranet.
 * Add `--special audit` to the account selection flags for `substrate role create`. Creating custom roles in your audit account is now supported.
 * Print a warning when Substrate detects that the reason `substrate assume-role` failed is because you previously ran `eval $(substrate assume-role ...)` in the same shell.
 * Cache the output of the `organizations:DescribeOrganization` API locally in `.substrate.organization.json` to improve the performance of every Substrate command.
@@ -26,7 +26,7 @@ Upgrade instructions:
 2. `substrate setup` to upgrade your Intranet and the basic IAM roles Substrate manages.
 3. Have everyone on your team run `substrate upgrade`, too.
 
-## 2023.12 <a href="#2023.12" id="2023.12"></a>
+## 2023.12 <a href="#id-2023.12" id="id-2023.12"></a>
 
 * Swap the next generation of the Substrate-managed Intranet, powered by AWS API Gateway v2, into service. This change is a no-op unless you've added your own internal tools to your Intranet. (See below.)
 * Remove API Gateway v1 resources from Terraform, which will result in plans that destroy lots of resources in `root-modules/admin/*/*`.
@@ -42,7 +42,7 @@ If you added your own internal tools to your Intranet, be sure to follow the upd
 
 Upgrade Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, it will be upgraded in place. Then run `substrate setup` to upgrade your Intranet.
 
-## 2023.11 <a href="#2023.11" id="2023.11"></a>
+## 2023.11 <a href="#id-2023.11" id="id-2023.11"></a>
 
 * Preview of the next generation of the Substrate-managed Intranet. See below for more information.
 * Add `-ignore-service-quotas` to `substrate accounts` which, with `-format shell`, will be passed through to the generated `substrate setup` and `substrate create-account` commands. (This is exactly how `-auto-approve` and `-no-apply` have worked for a long time.)
@@ -55,7 +55,7 @@ If you've added any of your internal tools to your Intranet, you'll need to migr
 
 Substrate 2023.12 will swap the new Intranet into place on your Intranet DNS domain name and remove both the old Intranet and the `preview` subdomain.
 
-## 2023.10 <a href="#2023.10" id="2023.10"></a>
+## 2023.10 <a href="#id-2023.10" id="id-2023.10"></a>
 
 * Opt-in preview of the next generation of the Substrate-managed Intranet. See below for more information.
 * Add the `substrate setup-debugger` command to enable interactive access to the Substrate account before the identity provider integration is complete.
@@ -78,7 +78,7 @@ The transition schedule from the original implementation of the Intranet to this
 
 If you wish to begin transitioning any custom internal tools you've attached to your Intranet, you may add route keys to the Substrate API with the Substrate authorizer. Full documentation of all the expanded possibilities for proxying to internal tools is forthcoming.
 
-## 2023.09 <a href="#2023.09" id="2023.09"></a>
+## 2023.09 <a href="#id-2023.09" id="id-2023.09"></a>
 
 The only supported upgrade path to Substrate 2023.09 is directly from 2023.08. If you need to make a catch-up upgrade, please upgrade to 2023.08 first and then upgrade to 2023.09 immediately after.
 
@@ -103,7 +103,7 @@ After upgrading Substrate:
 
 In August, Hashicorp announced a license change for future releases of their products, including Terraform. Since we've gotten questions from a few customers, we thought it best to address this change in these release notes, especially given we're pushing an upgrade to a Terraform version covered by this new license. To the best of our knowledge, every Substrate customer's use of Terraform falls comfortably within the Additional Use Grant in Hashicorp's Business Source License that covers production use that does not compete with Hashicorp's products. Therefore no action is necessary for any Substrate customer.
 
-## 2023.08 <a href="#2023.08" id="2023.08"></a>
+## 2023.08 <a href="#id-2023.08" id="id-2023.08"></a>
 
 Substrate 2023.08 is a major release. The marquee feature is the introduction of 12-hour AWS Console sessions from the Intranet's Accounts page but there's much, much more happening behind the scenes. Because of the complexity of the changes in this release, we're declaring ahead of time that **you may not skip over this release in a catch-up upgrade**. Next month's release will rely on the fact that all upgrades to 2023.09 will be coming from 2023.08.
 
@@ -124,7 +124,7 @@ After upgrading your local copy of Substrate, run `substrate setup`. This will t
 
 It is still good practice to run `sh <(substrate accounts -format shell)` or `sh <(substrate accounts -format shell -no-apply)` followed by `sh <(substrate accounts -auto-approve -format shell)` to ensure that not only are all your service accounts in good standing in terms of the Substrate-managed IAM policies and roles but that all your Terraform code is working, too. However, as this is often a very onerous part of upgrading Substrate, we will endeavor from now on _not_ to require you to apply Terraform changes in service accounts as part of Substrate upgrades.
 
-## 2023.07 <a href="#2023.07" id="2023.07"></a>
+## 2023.07 <a href="#id-2023.07" id="id-2023.07"></a>
 
 * Add `EmailSHA256` to the standard telemetry in order to approximate the total number of Substrate users.
 * Route telemetry to your Intranet first, log it to CloudWatch, and then submit to Source & Binary (if enabled), allowing you to inspect everything that's submitted.
@@ -134,7 +134,7 @@ Upgrade Substrate by running `substrate upgrade` and following its prompts. If y
 
 After upgrading Substrate, run `substrate create-admin-account -quality <quality>` to upgrade the Intranet. This is all that's required but, for good measure, you should run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
 
-## 2023.06 <a href="#2023.06" id="2023.06"></a>
+## 2023.06 <a href="#id-2023.06" id="id-2023.06"></a>
 
 * Add a page to the Intranet with information on the current Substrate version, available upgrades, and links to download Substrate.
 * Warn when `substrate delete-role` doesn't actually find any roles to delete, as it would when the `-role` option is misspelled.
@@ -145,7 +145,7 @@ Upgrade Substrate by running `substrate upgrade` and following its prompts. If y
 
 After upgrading Substrate, run `substrate create-admin-account -quality <quality>` to upgrade the Intranet. This is all that's required but, for good measure, you should run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
 
-## 2023.05 <a href="#2023.05" id="2023.05"></a>
+## 2023.05 <a href="#id-2023.05" id="id-2023.05"></a>
 
 * Add support for the `AWS_RoleName` custom user attribute in Okta, which catches up with Azure AD and Google by allowing Okta users to assign initial AWS IAM roles to each of their users individually.
 * Save a click on subsequent Intranet logins when using a Google IdP and when multiple Google accounts are logged in by remembering the Google Workspace domain in a cookie.
@@ -162,7 +162,7 @@ Upgrade Substrate by running `substrate upgrade` and following its prompts. If y
 
 After upgrading Substrate, run `substrate create-admin-account -quality <quality>` to upgrade the Intranet. This is all that's required but, for good measure, you should run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
 
-## 2023.04 <a href="#2023.04" id="2023.04"></a>
+## 2023.04 <a href="#id-2023.04" id="id-2023.04"></a>
 
 * Cache an access key for the CredentialFactory IAM user (required to make 12-hour sessions) in AWS Secrets Manager to make the Credential Factory, both in the browser and the terminal, substantially faster.
 * Inspect the roles in all your AWS accounts concurrently to make `substrate roles` substantially faster, too.
@@ -176,7 +176,7 @@ Upgrade Substrate by running `substrate upgrade` and following its prompts. If y
 
 After upgrading Substrate, run `substrate create-admin-account -quality <quality>` to upgrade the Intranet. This is all that's required but, for good measure, you should run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
 
-## 2023.03 <a href="#2023.03" id="2023.03"></a>
+## 2023.03 <a href="#id-2023.03" id="id-2023.03"></a>
 
 * Added `substrate create-role` to allow you to create and manage IAM roles and policies across all your AWS accounts. It supports selecting accounts by domain, environment, and quality and can grant access to selected accounts to humans (via your identity provider), AWS services, GitHub Actions configurations, and arbitrary AWS principals.
 * Added `substrate delete-role` for thoroughly deleting IAM roles created by `substrate create-role` across all your AWS accounts.
@@ -192,7 +192,7 @@ After upgrading Substrate, you should run `sh <(substrate accounts -format shell
 
 This month, Substrate's documentation and release notes are moving to [https://docs.src-bin.com/substrate/](https://docs.src-bin.com/substrate/). Old URLs will redirect to their equivalent on the new subdomain. And, for your troubles, we're pleased to now offer search over the Substrate documentation! Going forward, the new canonical URL for the release notes is [http://docs.src-bin.com/substrate/releases](http://docs.src-bin.com/substrate/releases).
 
-## 2023.02 <a href="#2023.02" id="2023.02"></a>
+## 2023.02 <a href="#id-2023.02" id="id-2023.02"></a>
 
 * Allow adopting an existing account as the Substrate-managed audit account to prevent duplication when bootstrapping Substrate in existing organizations.
 * Make the Substrate-managed CloudTrail configuration optional to prevent very expensive duplication when bootstrapping Substrate in existing organizations.
@@ -210,7 +210,7 @@ Upgrade Substrate by running `substrate upgrade` and following its prompts. If y
 
 After upgrading Substrate, you should run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes. Commit the new `substrate.enforce-imdsv2` and `substrate.manage-cloudtrail` files to version control.
 
-## 2023.01 <a href="#2023.01" id="2023.01"></a>
+## 2023.01 <a href="#id-2023.01" id="id-2023.01"></a>
 
 * Upgrade Terraform to version 1.3.6 and the Terraform AWS provider to at least version 4.47.0.
 * `substrate terraform` will now download and unzip the correct version of Terraform into the same directory as `substrate` itself.
@@ -225,7 +225,7 @@ After upgrading Substrate:
 2. Run `sh <(substrate accounts -format shell -no-apply)` to review what Terraform plans to do.
 3. Run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
 
-## 2022.12 <a href="#2022.12" id="2022.12"></a>
+## 2022.12 <a href="#id-2022.12" id="id-2022.12"></a>
 
 * Add support for Azure Active Directory identity providers. See [changing identity providers](runbooks/changing-identity-providers.md) and [integrating your Azure AD identity provider](bootstrapping/integrating-your-identity-provider/azure-ad.md) if you want to switch.
 * Bug fix: Don't interpret the new default value for `-quality` as an erroneously user-supplied value with `-management` or `-special` in `substrate assume-role`.
@@ -236,7 +236,7 @@ Upgrade Substrate by running `substrate upgrade` and following its prompts. If y
 
 After upgrading Substrate, you should run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
 
-## 2022.11 <a href="#2022.11" id="2022.11"></a>
+## 2022.11 <a href="#id-2022.11" id="id-2022.11"></a>
 
 * `-quality "..."` is now optional in organizations that have only one line in `substrate.qualities`, which can allow `substrate assume-role`, `substrate create-account`, and `substrate create-admin-account` invocations to be a little shorter. Note that `substrate accounts -format shell` will continue to generate the longer version with an explicit `-quality` option.
 * Use only tags to determine whether an account for a given domain, environment, and quality exists. This means that the email address on a Substrate-managed account doesn't have to be derived from the email address on the management account, that you don't absolutely have to change every account's email address if you want to change your management account's email address, and that you don't have to change the email address on every account you invite into your organization in order for Substrate to work with it.
@@ -250,7 +250,7 @@ Upgrade Substrate by running `substrate upgrade` and following its prompts. If y
 
 After upgrading Substrate, you should run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
 
-## 2022.10 <a href="#2022.10" id="2022.10"></a>
+## 2022.10 <a href="#id-2022.10" id="id-2022.10"></a>
 
 * Change Substrate's internal use of AWS IAM roles to only assume a role if it's different than the role Substrate has already assumed. This ensures folks won't run afoul of the new, stricter evaluation of IAM roles' trust policies, as outlined in [Announcing an update to IAM role trust policy behavior](https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/) and set to take full effect February 15, 2023.
 * Allow the DeployAdministrator and NetworkAdministrator roles to assume themselves, explicitly allowing this after the new, stricter evaluation of IAM roles' trust policies (described above) takes full effect.
@@ -294,7 +294,7 @@ Upgrade Substrate by running `substrate upgrade` and following its prompts. If y
 
 After upgrading Substrate, you should run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
 
-## 2022.09 <a href="#2022.09" id="2022.09"></a>
+## 2022.09 <a href="#id-2022.09" id="id-2022.09"></a>
 
 * Ensure folks assigned non-Administrator roles in their identity provider can always get credentials and get into the AWS Console. This will manifest as Terraform changing an ARN to `"*"` in your admin account.
 * Expand the Intranet's logging to CloudWatch Logs to better help folks diagnose any `substrate credentials` failures they may encounter.
@@ -307,7 +307,7 @@ Get the 2022.09 release by running `substrate upgrade` and following its prompts
 
 After upgrading Substrate, you at least need to run ` substrate create-admin-account -quality`` `` `_`quality`_ to update your Intranet. Even better would be to run `sh <(substrate accounts -format shell -no-apply)`, review what Terraform plans to do, and then run `sh <(substrate accounts -auto-approve -format shell)` to apply the changes.
 
-## 2022.08 <a href="#2022.08" id="2022.08"></a>
+## 2022.08 <a href="#id-2022.08" id="id-2022.08"></a>
 
 * Automate the tedious step of logging out of the AWS Console before logging in again in a different account. The window that opens will now briefly display the AWS homepage before redirecting to the AWS Console. (This marks the first introduction of JavaScript in the Intranet but, having exhausted all other options, this seems a worthwhile cause. Note, however, that this enhancement does not cover the `-console` option to `substrate assume-role` in order to keep that command completely decoupled from the Intranet.)
 * Add `-no-apply` to `substrate accounts -format shell` to enable you to review all the changes Terraform is planning to make across all your accounts at once. (After you review, you could swap `-no-apply` for `-auto-approve` or run `terraform apply` in each root module directly.)
@@ -331,7 +331,7 @@ After upgrading Substrate, the best idea is to run `sh <(substrate accounts -for
 
 **Advance notice of an upcoming change**: Next month's release will delete an old EC2 security group that was used by the Instance Factory until late 2021. Beware that, if you have any Instance Factory instances from 2021 or earlier, you'll have to change their security group or terminate them before upgrading next month.
 
-## 2022.07 <a href="#2022.07" id="2022.07"></a>
+## 2022.07 <a href="#id-2022.07" id="id-2022.07"></a>
 
 * Restructure the Substrate distribution to:
   * Separate the `substrate` program in `bin/` from optional extra programs in `opt/bin/`.
@@ -364,7 +364,7 @@ After upgrading Substrate:
 
 If your shell supports process substitution, you can run `sh <(substrate accounts -format shell)` to run all of these, in the proper order, in one command. As of this release you can make this non-interactive as `sh <(substrate accounts -auto-approve -format shell)` but this is not recommended as it forgoes your opportunity to object before Terraform applies changes.
 
-## 2022.06 <a href="#2022.06" id="2022.06"></a>
+## 2022.06 <a href="#id-2022.06" id="id-2022.06"></a>
 
 * Substrate subcommands that create AWS accounts or apply Terraform code (`substrate bootstrap-*` and `substrate create-*account`) now prevent Substrate downgrades by checking the tags on the accounts themselves.
 * POST requests to the Instance Factory have long-overdue CSRF mitigations in place.
@@ -384,7 +384,7 @@ After upgrading Substrate:
 
 If your shell supports process substitution, you can upgrade Terraform and then run `sh <(substrate accounts -format shell)` to run all of these, in the proper order, in one command.
 
-## 2022.05 <a href="#2022.05" id="2022.05"></a>
+## 2022.05 <a href="#id-2022.05" id="id-2022.05"></a>
 
 * Allow customization of EC2 instances from the Instance Factory by using a launch template named `InstanceFactory-arm64` or `InstanceFactory-x86_64`, if the one matching the requested instance type is defined. See [customizing EC2 instances from the Instance Factory](mgmt/customizing-instance-factory.md) for details and an example.
 * Add `cloudtrail:DeleteTrail` to the (short) list of APIs that are denied by the Substrate-managed service control policy on your management account.
@@ -401,7 +401,7 @@ After upgrading Substrate:
 1. `substrate bootstrap-management-account`
 2. ` substrate create-admin-account -quality`` `` `_`quality`_ for each of your admin accounts
 
-## 2022.04 <a href="#2022.04" id="2022.04"></a>
+## 2022.04 <a href="#id-2022.04" id="id-2022.04"></a>
 
 * Enforce, via organization-wide Service Control Policy, that EC2 instances must be launched with access to IMDSv2 and not IMDSv1. The Instance Factory has been launching compatible instances since 2021.10. If for some reason you need to roll this step back, use your Intranet's Accounts page to open the AWS Console in your management account with the OrganizationAdministrator role, visit [https://console.aws.amazon.com/organizations/v2/home/policies/service-control-policy](https://console.aws.amazon.com/organizations/v2/home/policies/service-control-policy), and delete SubstrateServiceControlPolicy. When you've migrated whatever needed IMDSv1 to use IMDSv2, re-run `substrate bootstrap-management-account`.
 * Substrate now ships with a rudimentary autocomplete mechanism for Bash, Z shell, and other shells with compatibility for Bash completion.
@@ -421,7 +421,7 @@ After upgrading Substrate:
 2. `substrate bootstrap-management-account`
 3. ` substrate create-admin-account -quality`` `` `_`quality`_ for each of your admin accounts
 
-## 2022.03 <a href="#2022.03" id="2022.03"></a>
+## 2022.03 <a href="#id-2022.03" id="id-2022.03"></a>
 
 * Substrate now asks if it may post [telemetry](ref/telemetry.md) to Source & Binary. The data will be used to better understand how Substrate is being used and how it can be improved.
 * Address deprecation warnings from the AWS Terraform provider by refactoring `root-modules/deploy`.
@@ -433,7 +433,7 @@ After upgrading Substrate:
 1. `substrate bootstrap-deploy-account`
 2. `substrate-create-admin-account -quality="..."` for each of your admin accounts
 
-## 2022.02 <a href="#2022.02" id="2022.02"></a>
+## 2022.02 <a href="#id-2022.02" id="id-2022.02"></a>
 
 * Upgrade to Terraform 1.1.6.
 * Manage L-29A0C5DF, the AWS service limit on the number of accounts in an AWS organization, so that `substrate-create-admin-account` and `substrate-create-account` can proceed smoothly when you create your 11th account.
@@ -454,7 +454,7 @@ After upgrading Substrate, do the following to land the Terraform upgrade and re
 3. `substrate-create-admin-account -quality="..."` for each of your admin accounts
 4. `substrate-create-account -domain="..." -environment="..." -quality="..."` for each of your service accounts
 
-## 2022.01 <a href="#2022.01" id="2022.01"></a>
+## 2022.01 <a href="#id-2022.01" id="id-2022.01"></a>
 
 * The `-role="..."` option to `substrate-assume-role` now defaults to OrganizationAdministrator, Auditor, DeployAdministrator, or NetworkAdministrator for the special accounts and Administrator for admin and service accounts (or Auditor pretty much across the board, if you begin in the Auditor role). This should save a great deal of typing.
 * Add a navigational header to the Intranet to help folks get around.
@@ -466,7 +466,7 @@ After upgrading Substrate:
 1. `substrate-create-admin-account -quality="..."`
 2. Upgrade Substrate in your Instance Factory instances, if you install it there
 
-## 2021.12 <a href="#2021.12" id="2021.12"></a>
+## 2021.12 <a href="#id-2021.12" id="id-2021.12"></a>
 
 * Substate now uses your default region (the one you chose to host your organization’s CloudTrail logs, among other things) when it executes global root modules. This allows you to more completely decouple yourself from us-east-1 if you so choose.
 * Bug fix: Allow the Instance Factory to pass any IAM role configured in your IdP on to EC2 instances your non-Administrator users launch.
@@ -550,7 +550,7 @@ Once all of these have run successfully, ensure all your coworkers upgrade Subst
 
 I regret the complexity of this upgrade process but feel it is, on balance, less risky than attempting to hide all this motion behind automation. Thanks for your patience.
 
-## 2021.11 <a href="#2021.11" id="2021.11"></a>
+## 2021.11 <a href="#id-2021.11" id="id-2021.11"></a>
 
 * New installations no longer configure a SAML provider. Instead, all AWS API and Console access is brokered by OAuth OIDC and your Intranet. Existing SAML providers are not removed.
 * For those using Google as their IdP, read the name of the role to assume in the Credential and Instance Factories and the AWS Console from custom attributes on Google Workspace users. (For Okta users, Administrator is still the default.)
@@ -574,7 +574,7 @@ After upgrading Substrate:
 
 1. Run `substrate-create-admin-account -quality="..."` to upgrade your Intranet.
 
-## 2021.10 <a href="#2021.10" id="2021.10"></a>
+## 2021.10 <a href="#id-2021.10" id="id-2021.10"></a>
 
 * The Intranet’s `/accounts` page now logs you into the AWS Console and assumes the specified role without requiring you to have already been logged in.
 * The `-console` option to `substrate-assume-role` likewise now logs into the AWS Console and assumes the specified role without requiring you to have already been logged in.
@@ -595,13 +595,13 @@ After upgrading Substrate:
 1. Run `substrate-bootstrap-deploy-account` to fix the bucket policy so that all authorized principals in the organization can upload to the deploy artifact bucket(s).
 2. Run `substrate-create-admin-account -quality="..."` to upgrade your Intranet and Auditor roles. Note well this will produce a fair number of new resources; this is step one in a multi-month process of brining some naming consistency to Substrate-managed resources in IAM, Lambda, and other AWS services.
 
-## 2021.09.28 <a href="#2021.09.28" id="2021.09.28"></a>
+## 2021.09.28 <a href="#id-2021.09.28" id="id-2021.09.28"></a>
 
 * Bug fix: Properly detect when Substrate tools are invoked via symbolic links (i.e. in their original `substrate-assume-role` form rather than their new `substrate assume-role` form) on MacOS.
 
 If you’re upgrading from 2021.08, follow the upgrade instructions from 2021.09. If you already upgraded to 2021.09, there are no further upgrade steps.
 
-## 2021.09 <a href="#2021.09" id="2021.09"></a>
+## 2021.09 <a href="#id-2021.09" id="id-2021.09"></a>
 
 This release changes the interactive interface to `substrate-bootstrap-network-account` and `substrate-create-admin-account` to make them easier to run in CI. **If you are automating these commands by providing `yes` and `no` answers on standard input, this release will break your automation; you should run these commands interactively first to see what’s changed.** The details of what’s changed are listed in the usual format below.
 
@@ -623,7 +623,7 @@ After upgrading Substrate:
 2. Run `substrate-bootstrap-deploy-account` to reconfigure the deploy buckets in S3 and generate the `global` root module.
 3. Run `substrate-create-admin-account -quality="..."` to add the e-mail address column to your Intranet’s `/accounts` page.
 
-## 2021.08 <a href="#2021.08" id="2021.08"></a>
+## 2021.08 <a href="#id-2021.08" id="id-2021.08"></a>
 
 * Roll `substrate-apigateway-authorizer`, `substrate-credential-factory`, and `substrate-instance-factory` into `substrate-intranet`. This is a no-op listed here for transparency. It’s a prerequisite step towards unifying all the Substrate tools as subcommands of `substrate`, thereby reducing the size and complexity of the Substrate distribution.
 * Stop using the `archive` and `external` Terraform providers by embedding `substrate-intranet.zip` directly in `substrate-create-admin-account`. Dependence on these providers will be made optional in a subsequent release.
@@ -639,7 +639,7 @@ After upgrading Substrate:
 2. Run `substrate-bootstrap-network-account` to remove coarse-grained organization-wide VPC sharing.
 3. Run `substrate-create-admin-account -quality="..."` to upgrade your Intranet.
 
-## 2021.07 <a href="#2021.07" id="2021.07"></a>
+## 2021.07 <a href="#id-2021.07" id="id-2021.07"></a>
 
 * The Intranet’s `/accounts` page now opens the AWS Console in new browser tabs as it probably always should have.
 * Substrate now only manages the version constraint on the `archive`, `aws`, and `external` providers rather than all of `versions.tf`. This opens the door to Substrate users adding (and version constraining) additional providers. See [additional Terraform providers](mgmt/additional-terraform-providers.md) for an example.
@@ -664,7 +664,7 @@ After upgrading Terraform and Substrate:
 1. Run `substrate-bootstrap-network-account` and `substrate-bootstrap-deploy-account` to complete the Terraform 1.0.2 upgrade there. Note well that `tags` and `tags_all` output will be somewhat confusing but will ultimately do the right thing.
 2. Run `substrate-create-admin-account` and `substrate-create-account` to complete the Terraform 1.0.2 upgrade for each of your admin and service accounts. Here, too, note well that `tags` and `tags_all` output will be somewhat confusing but will ultimately do the right thing.
 
-## 2021.06 <a href="#2021.06" id="2021.06"></a>
+## 2021.06 <a href="#id-2021.06" id="id-2021.06"></a>
 
 * List all the Intranet resources on the Intranet homepage, not just top-level resources.
 * Roll `substrate-apigateway-authenticator` and `substrate-apigateway-index` into `substrate-intranet`. This is a no-op listed here for transparency.
@@ -685,7 +685,7 @@ After upgrading Terraform and Substrate:
 
 If you’ve added any stub `provider` blocks to your modules, leave them in place for now and accept the deprecation warning. Terraform only allows one `required_providers` block and that is now managed by Substrate. A future release will accommodate these additional providers.
 
-## 2021.05 <a href="#2021.05" id="2021.05"></a>
+## 2021.05 <a href="#id-2021.05" id="id-2021.05"></a>
 
 * Bug fix: S3 traffic from private subnets is now correctly routed via the VPC Endpoint and not through the NAT Gateway.
 * Bug fix: Allow outbound IPv6 traffic from Instance Factory instances to match IPv4 and enable use of the IPv6 Internet.
@@ -698,7 +698,7 @@ After upgrading:
 * Run `substrate-bootstrap-network-account` to fix S3 routes.
 * Run `substrate-create-admin-account -quality=<quality>` to enable direct CloudWatch access and make Instance Factory improvements.
 
-## 2021.04 <a href="#2021.04" id="2021.04"></a>
+## 2021.04 <a href="#id-2021.04" id="id-2021.04"></a>
 
 * Added `/accounts` to the Intranet with links to assume the Administrator and Auditor roles in all your accounts in the AWS Console.
 * Added `-console` to `substrate-assume-role` which attempts to open the AWS Console’s role switching screen in your web browser with all the values filled in.
@@ -707,7 +707,7 @@ After upgrading:
 
 After upgrading, run `substrate-create-admin-account -quality=<quality>` to add `/accounts` to your Intranet.
 
-## 2021.03 <a href="#2021.03" id="2021.03"></a>
+## 2021.03 <a href="#id-2021.03" id="id-2021.03"></a>
 
 * Extended AWS Console sessions to 12 hours for organizations using Google as their IdP.
 * Upgrade to and pin Terraform 0.14.7.
@@ -726,7 +726,7 @@ After upgrading:
 2. `substrate-bootstrap-network-account` to peer all your VPCs that should be peered.
 3. `substrate-create-admin-account -quality="..."` to fix Instance Factory IAM roles, following the [Google SAML setup](bootstrapping/integrating-your-identity-provider/google.md) guide if Google is your IdP to also get 12-hour AWS Console sessions.
 
-## 2021.02 <a href="#2021.02" id="2021.02"></a>
+## 2021.02 <a href="#id-2021.02" id="id-2021.02"></a>
 
 * Added `-format` from `substrate-credentials` to `substrate-assume-role` per request from a customer. Now credentials can be had with or without the `export` prefix or as JSON a la `aws sts assume-role` itself.
 * Removed `root-modules/admin/*`’s awkward dependency on finding `GOBIN` in the environment. The generated `Makefile` in each root module remains, however.
@@ -742,11 +742,11 @@ You must upgrade to Terraform 0.13.6 in order to use Substrate 2021.02. Terrafor
 * [https://releases.hashicorp.com/terraform/0.13.6/terraform\_0.13.6\_linux\_amd64.zip](https://releases.hashicorp.com/terraform/0.13.6/terraform\_0.13.6\_linux\_amd64.zip)
 * [https://releases.hashicorp.com/terraform/0.13.6/terraform\_0.13.6\_linux\_arm64.zip](https://releases.hashicorp.com/terraform/0.13.6/terraform\_0.13.6\_linux\_arm64.zip)
 
-## 2021.01 <a href="#2021.01" id="2021.01"></a>
+## 2021.01 <a href="#id-2021.01" id="id-2021.01"></a>
 
 You must run `substrate-create-admin-account` for each of your admin accounts before you'll be able to use `eval $(substrate-credentials)` to streamline your use of the Credential Factory.
 
-## 2020.12 <a href="#2020.12" id="2020.12"></a>
+## 2020.12 <a href="#id-2020.12" id="id-2020.12"></a>
 
 You must run `substrate-bootstrap-management-account` in order to re-tag your former master account as your management account. (This rename follows AWS' own renaming.)
 
