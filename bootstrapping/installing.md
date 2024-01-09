@@ -4,11 +4,14 @@ Most steps in the getting started guide only need to be performed once. This ste
 
 ## Substrate
 
-Substrate is distributed directly to customers. You'll have access to a feed of releases which includes links to download tarballs, usually distributed via a shared Slack channel (or another medium if that doesn't work for you). After the first the time, though, it's typically not necessary to handle these tarballs directly.
-
 ### Manual installation
 
-Download the latest one for your platform. Then extract it by running a command like this from your downloads directory:
+* <https://src-bin.com/substrate-2024.01-darwin-amd64.tar.gz>
+* <https://src-bin.com/substrate-2024.01-darwin-arm64.tar.gz>
+* <https://src-bin.com/substrate-2024.01-linux-amd64.tar.gz>
+* <https://src-bin.com/substrate-2024.01-linux-arm64.tar.gz>
+
+Download the tarball for your platform. Then extract it by running a command like this from your downloads directory:
 
 ```shell-session
 tar xf substrate-<version>-<OS>-<ARCH>.tar.gz
@@ -32,9 +35,7 @@ Installing Substrate on fleets of laptops, in EC2 instances you get from the Ins
 
 1. Copy `substrate-<version>-<OS>-<ARCH>.tar.gz/src/install.sh` from any Substrate release tarball
 2. Arrange for `install.sh` to be distributed to your fleet of laptops, EC2 instances, or whatever other endpoints you have in mind
-3. Arrange to execute `install.sh -p <prefix> -v <known-version>` at first boot or setup time, with `<prefix>` being the contents of your `substrate.prefix` file and `<known-version>` being any full Substrate version string (like 2047.12-0123abc) FIXME NO LONGER NECESSARY
-
-`install.sh` and its arguments are intended to be durable and should not need to be updated. Specifically, there is no need to update the arguments each month when Substrate is released because the program will walk the chain of releases forward from the one given to the latest one.
+3. Arrange to execute `install.sh -d <dirname>` at first boot or setup time, where `<dirname>` is the name of a directory on `PATH` where Substrate will be installed.
 
 ### Upgrading
 
@@ -42,7 +43,7 @@ Once some version of Substrate is installed, upgrading is a simple matter of run
 
 ## Terraform
 
-Substrate currently requires _exactly_ Terraform 1.5.6. (Substrate asks for Terraform to be upgraded every few releases to stay nearly current with Terraform.)
+Substrate currently requires at least Terraform 1.5.6. (Substrate asks for Terraform to be upgraded every few releases to stay nearly current with Terraform.)
 
 The easist way to install Terraform 1.5.6 is to run `substrate terraform install`. If the directory that contains `substrate` itself is writable, `terraform` will be placed there, too.
 
