@@ -2,7 +2,7 @@
 
 ## 2024.01<a href="#2024.01" id="2024.01"></a>
 
-* Rename and reorganize Substrate commands into a clearer and more extensible hierarchy. Highlights include `substrate accounts` becoming `substrate account list` and `substrate create-account` being split into `substrate account create` and `substrate account update` but there are many more changes, which are all detailed here for easy reference and bookmarking: [Changes to Substrate commands in 2024.01](ref/command-changes-2024.01.md)
+* Rename and reorganize Substrate commands into a clearer and more extensible hierarchy. Highlights include `substrate accounts` becoming `substrate account list` and `substrate create-account` being split into `substrate account create` and `substrate account update` but there are many more changes. See [Changes to Substrate commands in 2024.01](ref/command-changes-2024.01.md) for easy reference and bookmarking.
 * Switch to the POSIX standard of using two dashes to prefix long option names, i.e. `-domain` becomes `--domain`, etc.
 * Support `-d` as short for `--domain` and `-e` as short for `--environment`. Everywhere the long option is supported, the short option is now supported, too.
 * Add a new `substrate terraform` subcommand that translates flags like `--domain www --environment staging --region us-west-2` into the appropriate working directory before passing all remaining arguments to `terraform` itself. For example, `substrate terraform --domain www --environment staging --region us-west-2 plan` is the same as `terraform -chdir=root-modules/www/staging/default/us-west-2 plan`. Bonus: Substrate's autocomplete works for `--domain`, `--environment`, `--region`, etc. and then gives way to Terraform's autocomplete for `init`, `plan`, `apply`, etc.
