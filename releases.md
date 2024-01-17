@@ -129,7 +129,7 @@ It is still good practice to run `sh <(substrate accounts -format shell)` or `sh
 
 * Add `EmailSHA256` to the standard telemetry in order to approximate the total number of Substrate users.
 * Route telemetry to your Intranet first, log it to CloudWatch, and then submit to Source & Binary (if enabled), allowing you to inspect everything that's submitted.
-* Bug fix: Don't allow `substsrate create-role` to manage Administrator or Auditor and especially don't allow `substrate delete-role` to delete them.
+* Bug fix: Don't allow `substrate create-role` to manage Administrator or Auditor and especially don't allow `substrate delete-role` to delete them.
 
 Upgrade Substrate by running `substrate upgrade` and following its prompts. If your copy of `substrate` is writeable, this will be all you need to do to upgrade.
 
