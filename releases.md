@@ -1,5 +1,27 @@
 # Release notes
 
+## 2024.02 <a href="#id-2024.02" id="id-2024.02"></a>
+
+Note about the future: You will not be able to upgrade to Substrate 2024.03 without upgrading to Substrate 2024.02 first.
+
+* Natively manage all the VPCs that are peered and shared into your service accounts. Substrate no longer needs to execute any Terraform code in order to get everything setup.
+* Remove formerly Substrate-generated Terraform resources from both the `root-modules/network/` tree and the various state files stored in S3. This allows these modules to remain in place to host customer resources.
+* Add `--terraform` to `substrate setup`, which causes Substrate to run `terraform init` and `terraform plan` or `terraform apply` from all the leaf directories in the `root-modules/deploy/` and `root-modules/network/` trees. If you've never added custom resources there, you'll never need to supply this flag.
+* Partially revert a change from 2024.01 that turned out to be too slow for the benefit it provided: Don't `terraform providers lock` by default. Instead, the new `--providers-lock` flag to `substrate setup` and `substrate account update` selectively enables this feature.
+* Add the Gateway VPC Endpoint (that's the free kind) for DynamoDB by default, in addition to the one for S3 that Substrate has managed since 2020.
+* Enable all the AWS Organizations policy types instead of just Service Control Policies.
+* In Instance Factory, create the IAM instance profile for the user's role just in time, which makes it a little easier to use custom roles in your IdP.
+* Add `substrate account close` so you can use `--domain` and `--environment` to close AWS accounts (with an aggressive confirmation step, as the significance of closing an accound demands).
+* Bug fix: Require (implied or explicit) --quality with --substrate in commands that select an account using the common flags. This is usually implied but, in the rare case it must be explicit, the error is clearer now.
+* Bug fix: Update the tags on the audit and (legacy) deploy accounts when we manage the IAM roles in those accounts so the accounts table will properly list them as being up-to-date.
+* Bug fix: Don't output non-sequiters when `substrate` is invoked from outside a Substrate repository and can't orient itself in the macOS keychain.
+
+Upgrade instructions:
+
+1. `substrate upgrade` to upgrade your local copy of the Substrate binary.
+2. `substrate setup` to upgrade AWS Organizations and IAM, your networks, and your Intranet.
+3. Have everyone on your team run `substrate upgrade`, too.
+
 ## 2024.01 <a href="#id-2024.01" id="id-2024.01"></a>
 
 * Rename and reorganize Substrate commands into a clearer and more extensible hierarchy. Highlights include `substrate accounts` becoming `substrate account list` and `substrate create-account` being split into `substrate account create` and `substrate account update` but there are many more changes. See [Changes to Substrate commands in 2024.01](ref/command-changes-2024.01.md) for easy reference and bookmarking.
