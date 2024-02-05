@@ -23,7 +23,7 @@ In this example, we're going to route Intranet requests for `/example` to a Lamb
     resource "aws_apigatewayv2_route" "example" {
       api_id             = data.aws_apigatewayv2_api.substrate.id
       authorization_type = "CUSTOM"
-      authorizer_id      = data.awsapigatewayv2_api.substrate.tags["AuthorizerId"]
+      authorizer_id      = data.aws_apigatewayv2_api.substrate.tags["AuthorizerId"]
       route_key          = "ANY /example" # or "ANY /example/{proxy+}" or a more specific HTTP method
       target             = "integrations/${aws_apigatewayv2_integration.example.id}"
     }
