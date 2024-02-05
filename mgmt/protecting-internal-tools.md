@@ -32,7 +32,7 @@ In this example, we're going to route Intranet requests for `/example` to a Lamb
       action        = "lambda:InvokeFunction"
       function_name = aws_lambda_function.example.function_name
       principal     = "apigateway.amazonaws.com"
-      source_arn    = data.aws_apigatewayv2_api.substrate.execution_arn
+      source_arn    = "${data.aws_apigatewayv2_api.substrate.execution_arn}/*"
     }
 
 The `aws_apigatewayv2_integration` does not have to have `integration_type = "AWS_PROXY"`. Beware, though, that setting `integration_type = "HTTP_PROXY"` without also configuring VPC link with `connection_type = "VPC_LINK"`, a `connection_id` attribute, and an `aws_apigatewayv2_vpc_link` resource is almost certainly a security vulnerability.
