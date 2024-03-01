@@ -1,5 +1,25 @@
 # Release notes
 
+## 2024.03 <a href="#id-2024.03" id="id-2024.03"></a>
+
+Note well: Upgrading to Substrate 2024.03 is only supported from Substrate 2024.02.
+
+* Allow the Terraform AWS provider to be upgraded past version 5. Edit `terraform-aws.version-constraint` to have your desired version constraint applied to all your Terraform root modules.
+* Remove the transitional fine-grained Terraform state management present in Substrate 2024.01 and 2024.02 that migrated the Intranet, VPC peering, and VPC sharing from generated Terraform into Substrate itself. This completes the transition.
+* Add `--terraform` to `substrate setup` and `substrate account update`. Only actually run Terraform when this new option is given. This completes the decoupling of Substrate management actions (whether part of a Substrate upgrade or not) and Terraform runs.
+* Proceed without formatting generated Terraform code if `terraform` isn't found when trying to `terraform fmt`.
+* Print AWS credentials found in the macOS keychain as environment variables in `substrate credentials` so that the command's output has the same format no matter where credentials are found.
+* Update the NAT Gateway price estimate in `substrate setup` to $108 per environment per region per month, in line with the latest EC2 pricing documentation.
+* Bug fix: Don't open the macOS keychain when doing things like `--version` that we know don't require an AWS access key.
+* Bug fix: Include all custom routes that respond to GET in the Intranet's index except well-known routes that aren't useful when accessed directly e.g. `/favicon.ico`.
+* Bug fix: In some situations the `--quality` option was required with `--substrate`. Now it is not.
+
+Upgrade instructions:
+
+1. `substrate upgrade` to upgrade your local copy of the Substrate binary.
+2. `substrate setup` to upgrade AWS Organizations and IAM, your networks, and your Intranet.
+3. Have everyone on your team run `substrate upgrade`, too.
+
 ## 2024.02 <a href="#id-2024.02" id="id-2024.02"></a>
 
 Note about the future: You will not be able to upgrade to Substrate 2024.03 without upgrading to Substrate 2024.02 first.
