@@ -6,10 +6,10 @@ Most steps in the getting started guide only need to be performed once. This ste
 
 ### Manual installation
 
-* <https://src-bin.com/substrate-2024.02-darwin-amd64.tar.gz>
-* <https://src-bin.com/substrate-2024.02-darwin-arm64.tar.gz>
-* <https://src-bin.com/substrate-2024.02-linux-amd64.tar.gz>
-* <https://src-bin.com/substrate-2024.02-linux-arm64.tar.gz>
+* <https://src-bin.com/substrate-2024.03-darwin-amd64.tar.gz>
+* <https://src-bin.com/substrate-2024.03-darwin-arm64.tar.gz>
+* <https://src-bin.com/substrate-2024.03-linux-amd64.tar.gz>
+* <https://src-bin.com/substrate-2024.03-linux-arm64.tar.gz>
 
 Download the tarball for your platform. Then extract it by running a command like this from your downloads directory:
 
