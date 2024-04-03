@@ -1,5 +1,21 @@
 # Release notes
 
+## 2024.04 <a href="#id-2024.04" id="id-2024.04"></a>
+
+* Launch new Instance Factory instances using the latest Amazon Linux 2023 AMI
+* Bug fix: When changing a role managed by `substrate role create`, actually swap Administrator and ReadOnly policy attachments rather than just attaching the new one
+* Bug fix: Keep the `hd` cookie (for Google IdP installations) even when the `a` and `id` cookies are expired
+* Bug fix: Always attach Service Control Policies using credentials for the management account
+* Bug fix: Ask for credentials, if necessary, in `substrate setup cloudtrail`
+* Bug fix: Gracefully deal with `substrate.valid-environment-quality-pairs.json` not existing
+* Bug fix: Render the current, rather than the cached, Substrate version number in `substrate.accounts.txt`
+
+Upgrade instructions:
+
+1. `substrate upgrade` to upgrade your local copy of the Substrate binary.
+2. `substrate setup` to upgrade AWS Organizations and IAM, your networks, and your Intranet.
+3. Have everyone on your team run `substrate upgrade`, too.
+
 ## 2024.03 <a href="#id-2024.03" id="id-2024.03"></a>
 
 Note well: Upgrading to Substrate 2024.03 is only supported from Substrate 2024.02.
