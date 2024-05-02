@@ -1,5 +1,18 @@
 # Release notes
 
+## 2024.05 <a href="#id-2024.05" id="id-2024.05"></a>
+
+* Add the Name tag to VPC peering connections that Substrate manages in the network account
+* Bug fix: Detach IAM policies when re-running `substrate role create` without a `--policy-arn` flag given in a previous invocation
+* Bug fix: Remove IAM policy statements that are no longer in any file given in a `--policy` flag when re-running `substrate role create` without a `--policy` flag given in a previous invocation
+* Bug fix: Ensure `substrate role create` fails when no account selection flags are given (instead of successfully doing nothing)
+
+Upgrade instructions:
+
+1. `substrate upgrade` to upgrade your local copy of the Substrate binary.
+2. `substrate setup` to upgrade AWS Organizations and IAM, your networks, and your Intranet.
+3. Have everyone on your team run `substrate upgrade`, too.
+
 ## 2024.04 <a href="#id-2024.04" id="id-2024.04"></a>
 
 * Launch new Instance Factory instances using the latest Amazon Linux 2023 AMI
