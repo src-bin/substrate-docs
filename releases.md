@@ -1,5 +1,19 @@
 # Release notes
 
+## 2024.06 <a href="#id-2024.06" id="id-2024.06"></a>
+
+The theme of Substrate 2024.06 is to begin preparing organizations to optionally/additionally use AWS IAM Identity Center. This support will land fully over the next couple of releases.
+
+* Detect the existence (or not) of an AWS IAM Identity Center instance in the organization's management account; if none is found, Substrate now offers concrete steps for creating one (since there is no API for doing so directly)
+* If an AWS IAM Identity Center instance is found and the user allows Substrate to manage it, manage permission sets for Administrator and Auditor
+* Bug fix: Print clear help/usage messages for the `--providers-lock` option to `substrate setup` and `substrate account update`
+
+Upgrade instructions:
+
+1. `substrate upgrade` to upgrade your local copy of the Substrate binary.
+2. `substrate setup` to upgrade AWS Organizations and IAM, your networks, and your Intranet.
+3. Have everyone on your team run `substrate upgrade`, too.
+
 ## 2024.05 <a href="#id-2024.05" id="id-2024.05"></a>
 
 * Add the Name tag to VPC peering connections that Substrate manages in the network account
