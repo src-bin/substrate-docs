@@ -1,5 +1,17 @@
 # Release notes
 
+## 2024.07 <a href="#id-2024.07" id="id-2024.07"></a>
+
+* Manage Administrators and Auditors IdP groups in IAM Identity Center's identity store. (This identity store may be the built-in one or one associted with your IdP per the configuration you implemented in the AWS Console.)
+* Project Administrator and Auditor permission sets into every AWS account for the Administrators and Auditors IdP groups, respectively.
+* Stop sending telemetry to Source & Binary.
+
+Upgrade instructions:
+
+1. `substrate upgrade` to upgrade your local copy of the Substrate binary.
+2. `substrate setup` to upgrade AWS Organizations and IAM, your networks, and your Intranet.
+3. Have everyone on your team run `substrate upgrade`, too.
+
 ## 2024.06 <a href="#id-2024.06" id="id-2024.06"></a>
 
 The theme of Substrate 2024.06 is to begin preparing organizations to optionally/additionally use AWS IAM Identity Center. This support will land fully over the next couple of releases.
