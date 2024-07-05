@@ -12,7 +12,6 @@ This Documentation is also available on the [GitHub](https://github.com/src-bin/
 
 ## Table of contents
 
-* [Welcome](README.html)
 * [Release notes](releases.html)
 
 ### Bootstrapping your Substrate-managed AWS organization <a href="#bootstrapping" id="bootstrapping"></a>
