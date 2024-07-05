@@ -1,6 +1,6 @@
 # Substrate documentation
 
-New to Substrate? Here's the deal: In AWS, the one true unit of isolation is the AWS account but isolating all your environments and services in their own AWS accounts can be tedious. **Substrate removes all the hassles that come with having lots of AWS accounts** - access, navigation, IAM roles and permissions, networking, and more - so you can reap all the security, reliability, and compliance benefits of true isolation between your AWS workloads.
+New to [Substrate](https://substrate.tools)? Here's the deal: In AWS, the one true unit of isolation is the AWS account but isolating all your environments and services in their own AWS accounts can be tedious. **Substrate removes all the hassles that come with having lots of AWS accounts** - access, navigation, IAM roles and permissions, networking, and more - so you can reap all the security, reliability, and compliance benefits of true isolation between your AWS workloads.
 
 If you're the first person at your company to pick up Substrate, begin by [bootstrapping your AWS organization](bootstrapping/overview.html).
 
