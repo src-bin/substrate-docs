@@ -64,7 +64,7 @@ This Documentation is also available on the [GitHub](https://github.com/src-bin/
 * [Closing an AWS account](mgmt/closing-an-aws-account.html)
 * [Adding an AWS region](mgmt/adding-an-aws-region.html)
 * [Removing an AWS region](mgmt/removing-an-aws-region.html)
-* [Using Amazon EC2 when IMDSv2 is required](mgmt/ec2-.htmlsv2.html)
+* [Using Amazon EC2 when IMDSv2 is required](mgmt/ec2-imdsv2.html)
 * [Customizing EC2 instances from the Instance Factory](mgmt/customizing-instance-factory.html)
 * [Writing Terraform code](mgmt/writing-terraform-code.html)
 * [Additional Terraform providers](mgmt/additional-terraform-providers.html)
@@ -99,6 +99,7 @@ This Documentation is also available on the [GitHub](https://github.com/src-bin/
 * [Sharing CloudWatch data between accounts](runbooks/cloudwatch-sharing.html)
 * [Regaining access in case the Credential and Instance Factories are broken](runbooks/regaining-access.html)
 * [Debugging Substrate](runbooks/debugging.html)
+* [AWS IAM Identity Center](runbooks/aws-iam-identity-center.html)
 
 ### Meta
 
